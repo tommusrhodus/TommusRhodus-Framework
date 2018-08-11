@@ -34,10 +34,10 @@
  
 if( !class_exists( 'TommusRhodus_Framework' ) ){
 	class TommusRhodus_Framework {
-		
+		    
 		// This is where we'll hold our theme support array.
 		public $theme_support;
-		
+
 		/**
 		 * __construct()
 		 * 
@@ -137,15 +137,8 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			// Allow this CPT to use post formats (if needed) 
 			register_taxonomy_for_object_type( 'post_format', $type );
 			
-			// All CPT arguments are registered in the theme via theme support, you can filter these also.
-			if( is_array( $args ) ){
-				foreach( $args as $key => $value ){
-					$cpt_arguments[$key] = $value;
-				}
-			}
-			
 			// Register the post type, modify args using filter tommusrhodus_framework_cpt_{post-type}_args
-		    register_post_type( $type, apply_filters( 'tommusrhodus_framework_cpt_'. $type .'_args', $cpt_arguments ) ); 
+		    register_post_type( $type, apply_filters( 'tommusrhodus_framework_cpt_'. $type .'_args', $args ) ); 
 			    
 		}
 		
@@ -161,18 +154,11 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		 */
 		public function register_custom_post_taxonomy( $type = false, $args = false ){
 			
-			// All taxonomy arguments are registered in the theme via theme support, you can filter these also.
-			if( is_array( $args ) ){
-				foreach( $args as $key => $value ){
-					$taxonomy_arguments[$key] = $value;
-				}
-			}
-			
 			// Register the post type, modify args using filter tommusrhodus_framework_taxonomy_{taxonomy-type}_args
-			register_taxonomy( $type, $args['for_post_types'], apply_filters( 'tommusrhodus_framework_taxonomy_'. $type .'_args', $taxonomy_arguments ) );
+			register_taxonomy( $type, $args['for_post_types'], apply_filters( 'tommusrhodus_framework_taxonomy_'. $type .'_args', $args ) );
 			    
 		}
 		
 	}
-	new TommusRhodus_Framework();
+	$GLOBALS['trframework'] = new TommusRhodus_Framework();
 }
