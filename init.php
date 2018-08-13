@@ -34,10 +34,72 @@
  
 if( !class_exists( 'TommusRhodus_Framework' ) ){
 	class TommusRhodus_Framework {
-		    
+		
+		/**
+		 * Plugin version.
+		 *
+		 * @since 1.0.0
+		 * @var string $version Plugin version number.
+		 */
+		public $version = '1.0.0';
+	
+		/**
+		 * Instance of Woocommerce_Products_Per_Page.
+		 *
+		 * @since 1.0.0
+		 * @access private
+		 * @var object $instance The instance of TommusRhodus_Framework
+		 */
+		private static $instance;
+		
 		// This is where we'll hold our theme support array.
 		public $theme_support;
-
+		
+		/**
+		 * Instance.
+		 *
+		 * An global instance of the class. Used to retrieve the instance
+		 * to use on other files/plugins/themes.
+		 *
+		 * @since 1.0.0
+		 * @return object Instance of the class.
+		 */
+		public static function instance() {
+	
+			if ( is_null( self::$instance ) ){
+				self::$instance = new self();
+			}
+	
+			return self::$instance;
+	
+		}
+		
+		/**
+		 * __clone()
+		 * 
+		 * Cloning is forbidden.
+		 * 
+		 * @documentation Class structure taken from WooCommerce main Class.
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 */
+		public function __clone(){
+			// Do nothing
+		}
+	
+		/**
+		 * __wakeup()
+		 *  
+		 * Unserializing instances of this class is forbidden.
+		 * 
+		 * @documentation Class structure taken from WooCommerce main Class.
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 */
+		public function __wakeup(){
+			// Do nothing
+		}
+			
 		/**
 		 * __construct()
 		 * 
@@ -149,16 +211,87 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		 * into living, breathing post taxonomies that can be modified directly from the main theme.
 		 * 
 		 * @documentation https://developer.wordpress.org/reference/functions/register_taxonomy/
+		 * @param STRING - $type - taxonomy name string
+		 * @param ARGS - $array - Array of arguments for registering the taxonomy
 		 * @since 1.0.0
 		 * @blame Tom Rhodes
 		 */
 		public function register_custom_post_taxonomy( $type = false, $args = false ){
 			
-			// Register the post type, modify args using filter tommusrhodus_framework_taxonomy_{taxonomy-type}_args
-			register_taxonomy( $type, $args['for_post_types'], apply_filters( 'tommusrhodus_framework_taxonomy_'. $type .'_args', $args ) );
+			// Modify args using filter tommusrhodus_framework_taxonomy_{taxonomy-type}_args
+			$filtered_args = apply_filters( 'tommusrhodus_framework_taxonomy_'. $type .'_args', $args );
+			
+			// Register the taxonomy
+			register_taxonomy( $type, $filtered_args['for_post_types'], $filtered_args );
 			    
 		}
 		
+		/**
+		 * the_terms()
+		 * 
+		 * Accepts the arguments from our processed custom taxonomy types array, turns those arguments
+		 * into living, breathing post taxonomies that can be modified directly from the main theme.
+		 * 
+		 * @param INT - $id - Post ID to check against
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 */
+		function the_terms( $id = false, $taxonomy = false, $display = 'name', $separator = '', $before = false, $after = false, $class = false ){
+			
+			// Exit if we've not provided correct input
+			if( !$id || !$taxonomy ){
+				return false;
+			}
+			
+			// Gather terms for this post
+			$terms = get_the_terms( $id, $taxonomy );
+			
+			// If terms are empty, just return false
+			if(!( is_array( $terms ) )){
+				return false;
+			}
+			
+			$output = $before;
+			
+			if( 'slug' == $display ){
+			
+				foreach( $terms as $term ){
+					$output .= $term->slug . $separator;
+				}
+				
+			} elseif( 'name' == $display ){
+			
+				foreach( $terms as $term ){
+					$output .= $term->name . $separator;
+				}
+				
+			} elseif( 'link' == $display ){
+				
+				$class_attr = ( $class ) ? 'class="'. $class .'"' : false;
+				
+				foreach( $terms as $term ){
+					$output .= '<a href="'. get_term_link( $term ) .'" data-term-slug="'. $term->slug .'" '. $class .'>'. $term->name .'</a>'. $separator;
+				}
+				
+			}
+			
+			// Get the string length of the separator
+			$separator_length = strlen( $separator );
+			
+			$final_output = substr( $output, 0, -$separator_length );
+			
+			$final_output .= $after;
+			
+			return $final_output;
+			
+		}
+		
 	}
-	$GLOBALS['trframework'] = new TommusRhodus_Framework();
+	add_action( 'plugins_loaded', 'TommusRhodus_Framework' );
+}
+
+if( !function_exists( 'TommusRhodus_Framework' ) ){
+ 	function TommusRhodus_Framework() {
+		return TommusRhodus_Framework::instance();
+	}
 }
