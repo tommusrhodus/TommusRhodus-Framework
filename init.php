@@ -12,7 +12,6 @@
  * Text Domain:  trframework
  * Domain Path:  languages
  *
- *
  * Released under the GPL license
  * http://www.opensource.org/licenses/gpl-license.php
  *
@@ -36,24 +35,28 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 	class TommusRhodus_Framework {
 		
 		/**
-		 * Plugin version.
+		 * Plugin version
 		 *
 		 * @since 1.0.0
 		 * @var string $version Plugin version number.
+		 * @blame Tom Rhodes
 		 */
 		public $version = '1.0.0';
 	
 		/**
-		 * Instance of Woocommerce_Products_Per_Page.
+		 * Instance of TommusRhodus_Framework
 		 *
 		 * @since 1.0.0
 		 * @access private
 		 * @var object $instance The instance of TommusRhodus_Framework
+		 * @blame Tom Rhodes
 		 */
 		private static $instance;
 		
 		// This is where we'll hold our theme support array.
 		public $theme_support;
+		
+		public $path;
 		
 		/**
 		 * Instance.
@@ -63,6 +66,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		 *
 		 * @since 1.0.0
 		 * @return object Instance of the class.
+		 * @blame Tom Rhodes
 		 */
 		public static function instance() {
 	
@@ -90,7 +94,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		/**
 		 * __wakeup()
 		 *  
-		 * Unserializing instances of this class is forbidden.
+		 * Unserialising instances of this class is forbidden.
 		 * 
 		 * @documentation Class structure taken from WooCommerce main Class.
 		 * @since 1.0.0
@@ -120,6 +124,9 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			// Third, process the custom taxonomies
 			add_action( 'init', array( $this, 'process_custom_post_taxonomies' ), 20 );
 			
+			// Process WPBakery Blocks
+			add_action( 'init', array( $this, 'process_wpb_blocks' ), 100 );
+			
 		}
 		
 		/**
@@ -134,7 +141,14 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		 * @blame Tom Rhodes
 		 */
 		public function gather_theme_support(){
-			$this->theme_support = get_theme_support( 'tommusrhodus-framework' );
+		
+			$tr_framework_support = get_theme_support( 'tommusrhodus-framework' );
+			
+			if( is_array( $tr_framework_support ) ){
+				$this->path          = plugin_dir_path( __FILE__ );
+				$this->theme_support = $tr_framework_support[0];
+			}
+			
 		}
 		
 		/**
@@ -149,10 +163,10 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		public function process_custom_post_types(){
 			
 			// Check that we're actually registering post types in this theme, and that it's an array.
-			if( isset( $this->theme_support[0]['post_types'] ) && is_array( $this->theme_support[0]['post_types'] ) ){
+			if( isset( $this->theme_support['post_types'] ) && is_array( $this->theme_support['post_types'] ) ){
 				
 				// Loop through all post types and send data off to register_custom_post_type()
-				foreach( $this->theme_support[0]['post_types'] as $post_type => $args ){
+				foreach( $this->theme_support['post_types'] as $post_type => $args ){
 					$this->register_custom_post_type( $post_type, $args );
 				}
 				
@@ -172,10 +186,10 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		public function process_custom_post_taxonomies(){
 			
 			// Check that we're actually registering post types in this theme, and that it's an array.
-			if( isset( $this->theme_support[0]['taxonomy_types'] ) && is_array( $this->theme_support[0]['taxonomy_types'] ) ){
+			if( isset( $this->theme_support['taxonomy_types'] ) && is_array( $this->theme_support['taxonomy_types'] ) ){
 				
 				// Loop through all post types and send data off to register_custom_post_type()
-				foreach( $this->theme_support[0]['taxonomy_types'] as $taxonomy_type => $args ){
+				foreach( $this->theme_support['taxonomy_types'] as $taxonomy_type => $args ){
 					$this->register_custom_post_taxonomy( $taxonomy_type, $args );
 				}
 				
@@ -227,16 +241,45 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		}
 		
 		/**
-		 * the_terms()
+		 * process_wpb_blocks()
 		 * 
-		 * Accepts the arguments from our processed custom taxonomy types array, turns those arguments
-		 * into living, breathing post taxonomies that can be modified directly from the main theme.
+		 * Loops through our registered wpb blocks from theme support
 		 * 
-		 * @param INT - $id - Post ID to check against
 		 * @since 1.0.0
 		 * @blame Tom Rhodes
 		 */
-		function the_terms( $id = false, $taxonomy = false, $display = 'name', $separator = '', $before = false, $after = false, $class = false ){
+		public function process_wpb_blocks(){
+
+			// Check that this theme actually has wpb blocks, and then ensure we have a theme name set
+			if( isset( $this->theme_support['wpb_blocks'] ) && isset( $this->theme_support['wpb_blocks']['theme_name'] ) ){
+				
+				
+				// Grab blocks and loop over them
+				if( is_array( $this->theme_support['wpb_blocks']['blocks'] ) ){
+					foreach( $this->theme_support['wpb_blocks']['blocks'] as $block ){
+						include( $this->path . 'wpb-blocks/'. $this->theme_support['wpb_blocks']['theme_name'] .'/'. $block .'.php' );
+					}
+				}
+				
+			}
+			
+		}
+		
+		/**
+		 * the_terms()
+		 * 
+		 * A simple to use function that takes a taxonomy and post id, and returns a formatted list
+		 * of assigned terms. Has before and after markup functions
+		 * 
+		 * @param INT - $id - Post ID to check against
+		 * @param STRING - $taxonomy - Taxonomy to check against
+		 * @param STRING - $display - The display type to return, slug, name or link
+		 * @param STRING - $separator - The string to add between items
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 * @todo Tidy this up
+		 */
+		public function the_terms( $id = false, $taxonomy = false, $display = 'name', $separator = '', $before = false, $after = false, $class = false ){
 			
 			// Exit if we've not provided correct input
 			if( !$id || !$taxonomy ){
@@ -275,10 +318,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 				
 			}
 			
-			// Get the string length of the separator
-			$separator_length = strlen( $separator );
-			
-			$final_output = substr( $output, 0, -$separator_length );
+			$final_output = substr( $output, 0, -strlen( $separator ) );
 			
 			$final_output .= $after;
 			
@@ -287,7 +327,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		}
 		
 	}
-	add_action( 'plugins_loaded', 'TommusRhodus_Framework' );
+	add_action( 'plugins_loaded', 'TommusRhodus_Framework', 10 );
 }
 
 if( !function_exists( 'TommusRhodus_Framework' ) ){
