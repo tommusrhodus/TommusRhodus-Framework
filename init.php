@@ -116,7 +116,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		public function __construct(){
 			
 			// First, grab the theme support for tommusrhodus-framework for us to process afterward
-			add_action( 'init', array( $this, 'gather_theme_support' ), 10 );
+			add_action( 'after_setup_theme', array( $this, 'gather_theme_support' ), 20 );
 			
 			// Next, let's process the custom post types
 			add_action( 'init', array( $this, 'process_custom_post_types' ), 15 );
@@ -126,6 +126,76 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			
 			// Process WPBakery Blocks
 			add_action( 'init', array( $this, 'process_wpb_blocks' ), 100 );
+			
+			add_action( 'customize_register', array( $this, 'process_options' ), 15 );
+
+		}
+		
+		public function process_options( $wp_customize ){
+		
+			$panel_priority   = 200;
+			$section_priority = 100;
+			$option_priority  = 100;
+			
+			if( isset( $this->theme_support['theme_options'] ) && is_array( $this->theme_support['theme_options'] ) ){
+				
+				// Loop over each options group
+				foreach( $this->theme_support['theme_options'] as $group ){
+					
+					// Add each panel that's found
+					$wp_customize->add_panel( 
+						$group['title'], array(
+							'title'          => $group['title'],
+							'description'    => $group['description'],
+							'priority'       => $panel_priority++
+						) 
+					);
+					
+					// Loop over each section that's found
+					if( is_array( $group['sections'] ) ){
+						foreach( $group['sections'] as $section ){
+						
+							$wp_customize->add_section( 
+								$section['id'], array(
+									'title'          => $section['title'],
+									'description'    => $section['description'],
+									'priority'       => $section_priority++,
+									'panel'          => $group['title']
+								) 
+							);
+							
+							// Loop over each option that's found
+							if( is_array( $section['options'] ) ){
+								foreach( $section['options'] as $option ){
+									
+									$wp_customize->add_setting(
+										$option['id'], 
+										array(
+											'default'   => $option['default'],
+											'transport' => 'postMessage'
+										)
+									);
+									
+									$wp_customize->add_control( 
+										$option['id'], 
+										array(
+										    'type'     => $option['type'],
+										    'label'    => $option['title'],
+										    'section'  => $section['id'],
+										    'priority' => $option_priority++
+										) 
+									);
+									
+								}
+							}
+							
+						}
+					}
+
+					
+				} // End Foreach
+				
+			} // End If
 			
 		}
 		
