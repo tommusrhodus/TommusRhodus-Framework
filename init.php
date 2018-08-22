@@ -133,7 +133,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		
 		public function process_options( $wp_customize ){
 		
-			$panel_priority   = 200;
+			$panel_priority   = 300;
 			$section_priority = 100;
 			$option_priority  = 100;
 			
@@ -172,19 +172,38 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 										$option['id'], 
 										array(
 											'default'   => $option['default'],
-											'transport' => 'postMessage'
+											'transport' => $option['transport']
 										)
 									);
 									
-									$wp_customize->add_control( 
-										$option['id'], 
-										array(
-										    'type'     => $option['type'],
-										    'label'    => $option['title'],
-										    'section'  => $section['id'],
-										    'priority' => $option_priority++
-										) 
-									);
+									if( 'image' == $option['type'] ){
+										
+										$wp_customize->add_control( 
+											new WP_Customize_Image_Control(
+												$wp_customize, 
+												$option['id'], 
+												array(
+										    		'label'    => $option['title'],
+										    		'section'  => $section['id'],
+										    		'priority' => $option_priority++
+												)
+											)
+										);
+										   
+									} else {
+									
+										$wp_customize->add_control( 
+											$option['id'], 
+											array(
+											    'type'     => $option['type'],
+											    'label'    => $option['title'],
+											    'section'  => $section['id'],
+											    'priority' => $option_priority++,
+											    'choices'  => $option['choices']
+											) 
+										);
+									
+									}
 									
 								}
 							}
