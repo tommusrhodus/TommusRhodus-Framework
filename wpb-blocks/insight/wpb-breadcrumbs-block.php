@@ -17,10 +17,8 @@ if(!( function_exists( 'tommusrhodus_breadcrumbs_shortcode' ) )){
 				), $atts 
 			) 
 		);
-		
-		$class = ( has_excerpt() ) ? 'text-white position-absolute' : 'bg-primary text-white';
-		
-		return tommusrhodus_breadcrumbs( $class . ' ' . $custom_css_class );
+
+		return get_tommusrhodus_breadcrumbs( 'breadcrumb p-0 bg-transparent ' . $custom_css_class );
 		
 	}
 	add_shortcode( 'tommusrhodus_breadcrumbs', 'tommusrhodus_breadcrumbs_shortcode' );
@@ -38,15 +36,15 @@ if(!( function_exists( 'tommusrhodus_breadcrumbs_shortcode_vc' ) )){
 		vc_map( 
 			array(
 				"icon"     => 'tommusrhodus-vc-block',
-				"name"     => esc_html__( "Breadcrumbs", 'tommusrhodus' ),
+				"name"     => __( "Breadcrumbs", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_breadcrumbs",
-				"category" => esc_html__( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),
 				"params"   => array(
 					array(
 						"type"        => "textfield",
-						"heading"     => esc_html__( "Extra CSS Class Name", 'tommusrhodus' ),
+						"heading"     => __( "Extra CSS Class Name", 'tommusrhodus' ),
 						"param_name"  => "custom_css_class",
-						"description" => '<code>FOR DEVELOPERS</code> Add a class name and refer to it in custom CSS / JS',
+						"description" => __( '<code>FOR DEVELOPERS</code> Add a class name and refer to it in custom CSS / JS', 'tommusrhodus' ),
 					),
 				)
 			) 

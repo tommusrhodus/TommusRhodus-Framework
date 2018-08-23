@@ -118,15 +118,16 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			// First, grab the theme support for tommusrhodus-framework for us to process afterward
 			add_action( 'after_setup_theme', array( $this, 'gather_theme_support' ), 20 );
 			
+			// Process WPBakery Blocks
+			add_action( 'after_setup_theme', array( $this, 'process_wpb_blocks' ), 25 );
+			
 			// Next, let's process the custom post types
 			add_action( 'init', array( $this, 'process_custom_post_types' ), 15 );
 			
 			// Third, process the custom taxonomies
 			add_action( 'init', array( $this, 'process_custom_post_taxonomies' ), 20 );
-			
-			// Process WPBakery Blocks
-			add_action( 'init', array( $this, 'process_wpb_blocks' ), 100 );
-			
+
+			// Process Theme Options
 			add_action( 'customize_register', array( $this, 'process_options' ), 15 );
 
 		}
@@ -342,11 +343,10 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			// Check that this theme actually has wpb blocks, and then ensure we have a theme name set
 			if( isset( $this->theme_support['wpb_blocks'] ) && isset( $this->theme_support['wpb_blocks']['theme_name'] ) ){
 				
-				
 				// Grab blocks and loop over them
 				if( is_array( $this->theme_support['wpb_blocks']['blocks'] ) ){
 					foreach( $this->theme_support['wpb_blocks']['blocks'] as $block ){
-						include( $this->path . 'wpb-blocks/'. $this->theme_support['wpb_blocks']['theme_name'] .'/'. $block .'.php' );
+						include( $this->path . 'wpb-blocks/'. trailingslashit( $this->theme_support['wpb_blocks']['theme_name'] ) . $block .'.php' );
 					}
 				}
 				
