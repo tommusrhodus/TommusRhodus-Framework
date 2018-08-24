@@ -155,7 +155,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 					
 					// Add each panel that's found
 					$wp_customize->add_panel( 
-						sanitize_title( $panel['title'] ), array(
+						$panel['id'], array(
 							'title'          => $panel['title'],
 							'description'    => $panel['description'],
 							'priority'       => $panel_priority++
@@ -171,7 +171,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 									'title'          => $section['title'],
 									'description'    => $section['description'],
 									'priority'       => $section_priority++,
-									'panel'          => sanitize_title( $panel['title'] )
+									'panel'          => $panel['id']
 								) 
 							);
 							
