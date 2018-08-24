@@ -132,6 +132,16 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 
 		}
 		
+		/**
+		 * process_options()
+		 *  
+		 * @documentation https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_setting
+		 * @documentation https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_section
+		 * @documentation https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_control
+		 * @documentation https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_panel
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 */
 		public function process_options( $wp_customize ){
 		
 			$panel_priority   = 300;
@@ -141,27 +151,27 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			if( isset( $this->theme_support['theme_options'] ) && is_array( $this->theme_support['theme_options'] ) ){
 				
 				// Loop over each options group
-				foreach( $this->theme_support['theme_options'] as $group ){
+				foreach( $this->theme_support['theme_options'] as $panel ){
 					
 					// Add each panel that's found
 					$wp_customize->add_panel( 
-						$group['title'], array(
-							'title'          => $group['title'],
-							'description'    => $group['description'],
+						sanitize_title( $panel['title'] ), array(
+							'title'          => $panel['title'],
+							'description'    => $panel['description'],
 							'priority'       => $panel_priority++
 						) 
 					);
 					
 					// Loop over each section that's found
-					if( is_array( $group['sections'] ) ){
-						foreach( $group['sections'] as $section ){
+					if( is_array( $panel['sections'] ) ){
+						foreach( $panel['sections'] as $section ){
 						
 							$wp_customize->add_section( 
 								$section['id'], array(
 									'title'          => $section['title'],
 									'description'    => $section['description'],
 									'priority'       => $section_priority++,
-									'panel'          => $group['title']
+									'panel'          => sanitize_title( $panel['title'] )
 								) 
 							);
 							
@@ -181,6 +191,20 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 										
 										$wp_customize->add_control( 
 											new WP_Customize_Image_Control(
+												$wp_customize, 
+												$option['id'], 
+												array(
+										    		'label'    => $option['title'],
+										    		'section'  => $section['id'],
+										    		'priority' => $option_priority++
+												)
+											)
+										);
+										   
+									} elseif( 'color' == $option['type'] ){
+										
+										$wp_customize->add_control( 
+											new WP_Customize_Color_Control(
 												$wp_customize, 
 												$option['id'], 
 												array(
@@ -385,26 +409,24 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			
 			$output = $before;
 			
-			if( 'slug' == $display ){
+			foreach( $terms as $term ){
 			
-				foreach( $terms as $term ){
+				if( 'slug' == $display ){
+				
 					$output .= $term->slug . $separator;
-				}
+					
+				} elseif( 'name' == $display ){
 				
-			} elseif( 'name' == $display ){
-			
-				foreach( $terms as $term ){
 					$output .= $term->name . $separator;
-				}
-				
-			} elseif( 'link' == $display ){
-				
-				$class_attr = ( $class ) ? 'class="'. $class .'"' : false;
-				
-				foreach( $terms as $term ){
+					
+				} elseif( 'link' == $display ){
+					
+					$class_attr = ( $class ) ? 'class="'. $class .'"' : false;
+					
 					$output .= '<a href="'. get_term_link( $term ) .'" data-term-slug="'. $term->slug .'" '. $class .'>'. $term->name .'</a>'. $separator;
+					
 				}
-				
+			
 			}
 			
 			$final_output = substr( $output, 0, -strlen( $separator ) );
