@@ -33,15 +33,6 @@
  
 if( !class_exists( 'TommusRhodus_Framework' ) ){
 	class TommusRhodus_Framework {
-		
-		/**
-		 * Plugin version
-		 *
-		 * @since 1.0.0
-		 * @var string $version Plugin version number.
-		 * @blame Tom Rhodes
-		 */
-		public $version = '1.0.0';
 	
 		/**
 		 * Instance of TommusRhodus_Framework
@@ -53,9 +44,24 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		 */
 		private static $instance;
 		
-		// This is where we'll hold our theme support array.
+		/**
+		 * Instance of TommusRhodus_Framework
+		 *
+		 * @since 1.0.0
+		 * @access private
+		 * @var object $instance The instance of TommusRhodus_Framework
+		 * @blame Tom Rhodes
+		 */
 		public $theme_support;
 		
+		/**
+		 * Instance of TommusRhodus_Framework
+		 *
+		 * @since 1.0.0
+		 * @access private
+		 * @var object $instance The instance of TommusRhodus_Framework
+		 * @blame Tom Rhodes
+		 */
 		public $path;
 		
 		/**
@@ -134,6 +140,10 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		
 		/**
 		 * process_options()
+		 * 
+		 * Takes the options array from theme support and loops over to separate all options into
+		 * panels, sections, and options. Then registers all and creates usable options
+		 * within the WP Customiser
 		 *  
 		 * @documentation https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_setting
 		 * @documentation https://codex.wordpress.org/Class_Reference/WP_Customize_Manager/add_section
@@ -357,7 +367,8 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		/**
 		 * process_wpb_blocks()
 		 * 
-		 * Loops through our registered wpb blocks from theme support
+		 * Loops through our registered wpb blocks from theme support, functionality of each block
+		 * is contained within the included file.
 		 * 
 		 * @since 1.0.0
 		 * @blame Tom Rhodes

@@ -4,6 +4,7 @@
  * tommusrhodus_breadcrumbs_shortcode()
  * 
  * @documentation https://codex.wordpress.org/Function_Reference/add_shortcode
+ * @theme Insight
  * @since 1.0.0
  * @blame Tom Rhodes
  */
@@ -28,6 +29,7 @@ if(!( function_exists( 'tommusrhodus_breadcrumbs_shortcode' ) )){
  * tommusrhodus_breadcrumbs_shortcode_vc()
  * 
  * @documentation https://kb.wpbakery.com/docs/inner-api/vc_map/
+ * @theme Insight
  * @since 1.0.0
  * @blame Tom Rhodes
  */
