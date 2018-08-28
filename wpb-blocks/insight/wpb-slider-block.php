@@ -5,6 +5,7 @@
  * 
  * @documentation https://codex.wordpress.org/Function_Reference/add_shortcode/
  * @documentation https://developer.wordpress.org/reference/functions/wp_get_attachment_image/
+ * @documentation https://developer.wordpress.org/reference/functions/wp_get_attachment_caption/
  * @theme Insight
  * @since 1.0.0
  * @blame Tom Rhodes
