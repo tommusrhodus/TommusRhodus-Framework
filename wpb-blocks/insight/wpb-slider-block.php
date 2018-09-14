@@ -61,6 +61,7 @@ if(!( function_exists( 'tommusrhodus_slider_shortcode' ) )){
  */
 if(!( function_exists( 'tommusrhodus_slider_shortcode_vc' ) )){
 	function tommusrhodus_slider_shortcode_vc(){
+	
 		vc_map( 
 			array(
 				"icon"     => 'tommusrhodus-vc-block',
@@ -82,6 +83,7 @@ if(!( function_exists( 'tommusrhodus_slider_shortcode_vc' ) )){
 				)
 			) 
 		);
+		
 	}
 	add_action( 'vc_before_init', 'tommusrhodus_slider_shortcode_vc' );
 }
