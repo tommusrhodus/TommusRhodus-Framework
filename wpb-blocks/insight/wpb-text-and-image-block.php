@@ -56,6 +56,38 @@ if(!( function_exists( 'tommusrhodus_text_image_shortcode' ) )){
 				</div>
 			';
 			
+		} elseif( 'lozenge-right-small' == $layout ){
+			
+			$output = '
+				<div class="card row no-gutters flex-column flex-md-row flex-md-row-reverse '. $custom_css_class .'">
+				
+					<div class="flex-column col-md-5">
+						'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'card-img flex-grow-1 h-100' ) ) .'
+					</div>
+					
+					<div class="card-body d-flex align-items-center col-md-7 p-4">
+						<div>'. do_shortcode( $content ) .'</div>
+					</div>
+					
+				</div>
+			';
+			
+		}  elseif( 'lozenge-left-small' == $layout ){
+			
+			$output = '
+				<div class="card row no-gutters flex-column flex-md-row '. $custom_css_class .'">
+				
+					<div class="flex-column col-md-5">
+						'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'card-img flex-grow-1 h-100' ) ) .'
+					</div>
+					
+					<div class="card-body d-flex align-items-center col-md-7 p-4">
+						<div>'. do_shortcode( $content ) .'</div>
+					</div>
+					
+				</div>
+			';
+			
 		} elseif( 'lozenge-bottom-right' == $layout ){
 			
 			$output = '
@@ -197,7 +229,7 @@ if(!( function_exists( 'tommusrhodus_text_image_shortcode_vc' ) )){
 			    'name'                    => __( 'Text + Image' , 'tommusrhodus' ),
 			    'base'                    => 'tommusrhodus_text_image',
 			    'description'             => __( 'Create fancy images & text', 'tommusrhodus' ),
-			    'as_parent'               => array('except' => 'tommusrhodus_tabs_content' ),
+			    'as_parent'               => array( 'except' => 'tommusrhodus_tabs_content' ),
 			    'content_element'         => true,
 			    'show_settings_on_create' => true,
 			    "js_view"                 => 'VcColumnView',
@@ -213,15 +245,17 @@ if(!( function_exists( 'tommusrhodus_text_image_shortcode_vc' ) )){
 			    		"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
 			    		"param_name" => "layout",
 			    		"value"      => array(
-			    			'Lozenge with Image Right'       => 'lozenge-right',
-			    			'Lozenge with Image Left'        => 'lozenge-left',
-			    			'Lozenge with Text Bottom Right' => 'lozenge-bottom-right',
-			    			'Fullwidth with Image Right'     => 'full-right',
-			    			'Fullwidth with Image Left'      => 'full-left',
-			    			'Block with Image Right'         => 'block-right',
-			    			'Block with Image Left'          => 'block-left',
-			    			'Background with Block Right'    => 'background-right',
-			    			'Background with Block Left'     => 'background-left'
+			    			'Lozenge with Image Right'         => 'lozenge-right',
+			    			'Lozenge with Image Left'          => 'lozenge-left',
+			    			'Lozenge with Smaller Image Right' => 'lozenge-right-small',
+			    			'Lozenge with Smaller Image Left'  => 'lozenge-left-small',
+			    			'Lozenge with Text Bottom Right'   => 'lozenge-bottom-right',
+			    			'Fullwidth with Image Right'       => 'full-right',
+			    			'Fullwidth with Image Left'        => 'full-left',
+			    			'Block with Image Right'           => 'block-right',
+			    			'Block with Image Left'            => 'block-left',
+			    			'Background with Block Right'      => 'background-right',
+			    			'Background with Block Left'       => 'background-left'
 			    		)
 			    	),
 			    	array(
