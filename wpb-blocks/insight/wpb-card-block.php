@@ -18,6 +18,7 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 					'title'            => '',
 					'link'             => '',
 					'image'            => '',
+					'layout'           => 'image',
 					'custom_css_class' => ''
 				), $atts 
 			) 
@@ -30,17 +31,38 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 			$link_output = $built_link['url'];
 		}
 		
-		$output = '
-			<a href="'. esc_attr( $link_output ) .'" class="card hover-effect '. $custom_css_class .'">
-				'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'
-				<div class="card-body">
-					<div class="d-flex justify-content-between align-items-center">
-						<h6 class="mb-0">'. $title .'</h6>
-						<i class="material-icons text-dark">keyboard_arrow_right</i>
+		if( 'image' == $layout ){
+		
+			$output = '
+				<a href="'. esc_attr( $link_output ) .'" class="card hover-effect '. $custom_css_class .'">
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'
+					<div class="card-body">
+						<div class="d-flex justify-content-between align-items-center">
+							<h6 class="mb-0">'. $title .'</h6>
+							<i class="material-icons text-dark">keyboard_arrow_right</i>
+						</div>
 					</div>
+				</a>
+			';
+		
+		} elseif( 'text' == $layout ){
+		
+			$output = '
+				<div class="card '. $custom_css_class .'">
+				
+					<div class="card-body pb-5 pt-4">'. do_shortcode( $content ) .'</div>
+					
+					<div class="card-footer '. $custom_css_class .'">
+						<div class="d-flex align-items-center justify-content-between">
+							<a href="'. esc_attr( $link_output ) .'">'. $title .'</a>
+							<i class="material-icons text-dark">keyboard_arrow_right</i>
+						</div>
+					</div>
+					
 				</div>
-			</a>
-		';
+			';
+		
+		}
 		
 		return $output;
 		
@@ -66,6 +88,15 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),
 				"params"   => array(
 					array(
+						"type"       => "dropdown",
+						"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
+						"param_name" => "layout",
+						"value"      => array(
+							'Image and Link (No Content)'  => 'image',
+							'Text and Link (No Image)'     => 'text'
+						)
+					),
+					array(
 						"type"        => "attach_image",
 						"heading"     => __( "Card Image", 'tommusrhodus' ),
 						"param_name"  => "image"
@@ -80,6 +111,11 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 						"type"        => "vc_link",
 						"heading"     => __( "Card Link", 'tommusrhodus' ),
 						"param_name"  => "link"
+					),
+					array(
+						"type"        => "textarea_html",
+						"heading"     => __( "Block Content", 'tommusrhodus' ),
+						"param_name"  => "content"
 					),
 					array(
 						"type"        => "textfield",

@@ -21,8 +21,8 @@ if(!( function_exists( 'tommusrhodus_card_wrapper_shortcode' ) )){
 		);
 		
 		$output = '
-			<div class="card justify-content-center p-lg-4 p-3 flex-grow-1 '. $custom_css_class .'">
-				<div class="card-body py-3 flex-grow-0">'. do_shortcode( $content ) .'</div>
+			<div class="card justify-content-center flex-grow-1 '. $custom_css_class .'">
+				<div class="card-body py-4 flex-grow-0">'. do_shortcode( $content ) .'</div>
 			</div>
 		';
 		
