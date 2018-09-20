@@ -153,7 +153,13 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		 * @blame Tom Rhodes
 		 */
 		public function process_options( $wp_customize ){
-		
+			
+			// Add Custom Toggle Control
+			include( $this->path . 'customizer-controls/toggle-control.php' );
+			
+			// Register Toggle Control
+			$wp_customize->register_control_type( 'Tommus_Rhodus_Toggle_Control' );
+			
 			$panel_priority   = 300;
 			$section_priority = 100;
 			$option_priority  = 100;
@@ -225,6 +231,21 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 											)
 										);
 										   
+									} elseif( 'toggle' == $option['type'] ){
+										
+										$wp_customize->add_control( 
+											new Tommus_Rhodus_Toggle_Control( 
+												$wp_customize, 
+												$option['id'], 
+												array(
+													'label'    => $option['title'],
+													'section'  => $section['id'],
+													'type'     => 'toggle',
+													'priority' => $option_priority++
+												) 
+											) 
+										);
+										  
 									} else {
 									
 										$wp_customize->add_control( 
