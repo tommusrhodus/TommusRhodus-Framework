@@ -455,7 +455,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 					
 					$class_attr = ( $class ) ? 'class="'. $class .'"' : false;
 					
-					$output .= '<a href="'. get_term_link( $term ) .'" data-term-slug="'. $term->slug .'" '. $class .'>'. $term->name .'</a>';
+					$output .= '<a href="'. get_term_link( $term ) .'" data-term-slug="'. $term->slug .'" '. $class_attr .'>'. $term->name .'</a>';
 					
 				}
 				
@@ -463,9 +463,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			
 			}
 			
-			$final_output = substr( $output, 0, -strlen( $separator ) ) . $after;
-			
-			return $final_output;
+			return rtrim( $output, $separator ) . $after;
 			
 		}
 		
