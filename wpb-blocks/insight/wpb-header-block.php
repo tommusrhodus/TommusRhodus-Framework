@@ -75,6 +75,25 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				</section>
 			';
 			
+		} elseif( 'breadcrumbs-dark' == $layout ){
+					
+			$output = '
+				<section class="'. $custom_css_class .'">
+					
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image' ) ) .'
+
+					<div class="container height-lg-30">
+						<div class="row">
+							<div class="col-md-8 col-lg-7 col-xl-6">
+								'. get_tommusrhodus_breadcrumbs( 'breadcrumb p-0 bg-transparent' ) .'
+								'. do_shortcode( $content ) .'
+							</div>
+						</div>
+					</div>
+				
+				</section>
+			';
+			
 		} elseif( 'gradient' == $layout ){
 		
 			$output = '
@@ -136,10 +155,11 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 			    		"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
 			    		"param_name" => "layout",
 			    		"value"      => array(
-			    			'Standard Header Text Left'                => 'standard',
-			    			'Standard Header Text Right'               => 'standard-right',
-			    			'Header with Colour Overlay & Breadcrumbs' => 'breadcrumbs',
-			    			'Centered Header with Gradient Background' => 'gradient'
+			    			'Standard Header Text Left'                            => 'standard',
+			    			'Standard Header Text Right'                           => 'standard-right',
+			    			'Header with Colour Overlay & Breadcrumbs'             => 'breadcrumbs',
+			    			'Header with Colour Overlay & Breadcrumbs (Dark Text)' => 'breadcrumbs-dark',
+			    			'Centered Header with Gradient Background'             => 'gradient'
 			    		)
 			    	),
 			    	array(

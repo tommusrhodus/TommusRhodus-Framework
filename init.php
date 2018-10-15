@@ -445,25 +445,25 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			
 				if( 'slug' == $display ){
 				
-					$output .= $term->slug . $separator;
+					$output .= $term->slug;
 					
 				} elseif( 'name' == $display ){
 				
-					$output .= $term->name . $separator;
+					$output .= $term->name;
 					
 				} elseif( 'link' == $display ){
 					
 					$class_attr = ( $class ) ? 'class="'. $class .'"' : false;
 					
-					$output .= '<a href="'. get_term_link( $term ) .'" data-term-slug="'. $term->slug .'" '. $class .'>'. $term->name .'</a>'. $separator;
+					$output .= '<a href="'. get_term_link( $term ) .'" data-term-slug="'. $term->slug .'" '. $class .'>'. $term->name .'</a>';
 					
 				}
+				
+				$output .= $separator;
 			
 			}
 			
-			$final_output = substr( $output, 0, -strlen( $separator ) );
-			
-			$final_output .= $after;
+			$final_output = substr( $output, 0, -strlen( $separator ) ) . $after;
 			
 			return $final_output;
 			
