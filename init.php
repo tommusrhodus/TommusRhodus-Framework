@@ -247,7 +247,9 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 										);
 										  
 									} else {
-									
+										
+										$choices = ( isset( $option['choices'] ) ) ? $option['choices'] : false;
+										
 										$wp_customize->add_control( 
 											$option['id'], 
 											array(
@@ -255,7 +257,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 											    'label'    => $option['title'],
 											    'section'  => $section['id'],
 											    'priority' => $option_priority++,
-											    'choices'  => $option['choices']
+											    'choices'  => $choices
 											) 
 										);
 									
