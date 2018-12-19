@@ -12,6 +12,8 @@
 if(!( function_exists( 'tommusrhodus_header_slider_shortcode' ) )){
 	function tommusrhodus_header_slider_shortcode( $atts, $content = null ) {
 
+		global $header_height;
+
 		extract( 
 			shortcode_atts( 
 				array(
@@ -20,52 +22,53 @@ if(!( function_exists( 'tommusrhodus_header_slider_shortcode' ) )){
 					'opacity' => '',
 					'custom_css_class' => '',
 					'height' => '',
-					'timing' => '7000',
-					'arrows' => 'true'
 				), $atts 
 			) 
 		);
 		
 		$image = explode(',', $image);
-		$height = ( '' == $height ) ? '70' : $height;
+		$header_height = ( '' == $height ) ? '40' : $height;
 		
-		$output = '<section data-arrows="'. $arrows .'" data-timing="'. esc_attr($timing) .'" class="'. esc_attr($custom_css_class) .' cover height-'. $height .' imagebg text-center slider slider--ken-burns" data-arrows="true" data-paging="true"><ul class="slides">'. do_shortcode(htmlspecialchars_decode($content)) .'</ul></section>';
+		$output = '<section class="controls-inside p-0 controls-light bg-dark" data-flickity="{ &quot;cellAlign&quot;: &quot;left&quot;, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }">'. do_shortcode(htmlspecialchars_decode($content)) .'</section>';
 
 		return $output;
 	}
 
-	add_shortcode( 'tommusrhodus_tommusrhodus_header_slider', 'tommusrhodus_header_slider_shortcode' );
+	add_shortcode( 'tommusrhodus_header_slider', 'tommusrhodus_header_slider_shortcode' );
 
 }
 
 if(!( function_exists( 'tommusrhodus_header_slider_content_shortcode' ) )){
 	function tommusrhodus_header_slider_content_shortcode( $atts, $content = null ) {
+
+		global $header_height;
+
 		extract( 
 			shortcode_atts( 
 				array(
-					'image' => '',
-					'opacity' => '4'
+					'image' 	=> '',
+					'opacity' 	=> '50',
 				), $atts 
 			) 
 		);
+
+		$image_class = 'bg-image opacity-'.$opacity;
 		
 		$output = '
-		    <li class="imagebg" data-overlay="'. $opacity .'">
-		        <div class="background-image-holder background--top">
-		            '. wp_get_attachment_image( $image, 'full' ) .'
-		        </div>
-		        <div class="container pos-vertical-center">
-		            <div class="row">
-		                <div class="col-sm-12">'. do_shortcode(htmlspecialchars_decode($content)) .'</div>
-		            </div>
-		        </div>
-		    </li>
+			<div class="carousel-cell py-3 py-md-4 height-'. $header_height .'">
+				'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => $image_class ) ) .'
+				<div class="container">
+					<div class="row">
+						<div class="col-12 col-md-6">'. do_shortcode(htmlspecialchars_decode($content)) .'</div>
+					</div>
+				</div>
+			</div>
 		';
 		
 		return $output;
 	}
 
-	add_shortcode( 'tommusrhodus_tommusrhodus_header_slider_content', 'tommusrhodus_header_slider_content_shortcode' );
+	add_shortcode( 'tommusrhodus_header_slider_content', 'tommusrhodus_header_slider_content_shortcode' );
 
 }
 
@@ -87,23 +90,9 @@ function tommusrhodus_header_slider_shortcode_vc() {
 			"params" => array(
 				array(
 					"type" => "textfield",
-					"heading" => esc_html__("Hero Height", 'tommusrhodus'),
+					"heading" => esc_html__("Header Height", 'tommusrhodus'),
 					"param_name" => "height",
 					"description" => 'Leave blank for default height, enter 10, 20, 30, 40, 50, 60, 70, 80, 90 or 100 for custom height (percentage of window height)',
-				),
-				array(
-					"type" => "textfield",
-					"heading" => esc_html__("Timing", 'tommusrhodus'),
-					"param_name" => "timing",
-					'value' => '7000',
-					"description" => 'Timing speed for switching slides, in milliseconds. Default 7000 (7 seconds)',
-				),
-				array(
-					"type" => "textfield",
-					"heading" => esc_html__("Show Arrows?", 'tommusrhodus'),
-					"param_name" => "arrows",
-					'value' => 'true',
-					"description" => 'Show navigation arrows? <code>true</code> to show arrows, <code>false</code> to hide them',
 				),
 				array(
 					"type" => "textfield",
@@ -132,29 +121,29 @@ function tommusrhodus_header_slider_content_shortcode_vc() {
 		    'params'          => array(
 	            array(
 	            	"type" => "attach_image",
-	            	"heading" => esc_html__("Slide Background Image", 'stack'),
+	            	"heading" => esc_html__("Slide Background Image", 'tommusrhodus'),
 	            	"param_name" => "image"
 	            ),
 	            array(
 		    		"type" => "dropdown",
-		    		"heading" => __("Slide Background Image Overlay Opacity (Default 40%)", 'stack'),
+		    		"heading" => __("Slide Background Image Overlay Opacity (Default 40%)", 'tommusrhodus'),
 		    		"param_name" => "opacity",
 		    		"value" => array(
-		    			'40%' => '4',
-		    			'90%' => '9',
-		    			'80%' => '8',
-		    			'70%' => '7',
-		    			'60%' => '6',
-		    			'50%' => '5',
-		    			'30%' => '3',
-		    			'20%' => '2',
-		    			'10%' => '1',
+		    			'40%' => '40',
+		    			'90%' => '90',
+		    			'80%' => '80',
+		    			'70%' => '70',
+		    			'60%' => '60',
+		    			'50%' => '50',
+		    			'30%' => '30',
+		    			'20%' => '20',
+		    			'10%' => '10',
 		    			'0%' => '0',
 		    		)
 		    	),
 	            array(
 	            	"type" => "textarea_html",
-	            	"heading" => esc_html__("Slide Content", 'stack'),
+	            	"heading" => esc_html__("Slide Content", 'tommusrhodus'),
 	            	"param_name" => "content",
 	            	'holder' => 'div'
 	            ),

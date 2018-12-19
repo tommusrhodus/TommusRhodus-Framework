@@ -15,12 +15,17 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 		extract( 
 			shortcode_atts( 
 				array(
-					'image'            => '',
-					'layout'           => 'standard',
-					'custom_css_class' => ''
+					'image'            		=> '',
+					'layout'           		=> 'standard',
+					'opacity'		   		=> '',
+					'video_cover_image' 	=> '',					
+					'video_url'        		=> '',
+					'custom_css_class' 		=> ''
 				), $atts 
 			) 
 		);
+
+		$opacity = 'opacity-'.$opacity;
 		
 		$output = false;
 		
@@ -29,7 +34,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 			$output = '
 				<div class="p-0 bg-dark '. $custom_css_class .'">
 					
-					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image position-md-absolute opacity-80' ) ) .'
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image position-md-absolute '. $opacity ) ) .'
 				
 					<div class="container py-4 height-md-60">
 						<div class="row">
@@ -45,7 +50,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 			$output = '
 				<div class="p-0 bg-dark '. $custom_css_class .'">
 					
-					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image position-md-absolute opacity-80' ) ) .'
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image position-md-absolute '. $opacity ) ) .'
 				
 					<div class="container py-4 height-md-60">
 						<div class="row flex-md-row-reverse">
@@ -61,7 +66,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 			$output = '
 				<section class="bg-dark '. $custom_css_class .'">
 					
-					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image opacity-50' ) ) .'
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
 
 					<div class="container height-lg-30">
 						<div class="row">
@@ -80,7 +85,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 			$output = '
 				<section class="'. $custom_css_class .'">
 					
-					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image' ) ) .'
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
 
 					<div class="container height-lg-30">
 						<div class="row">
@@ -172,6 +177,48 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				</section>
 			';
 		
+		} elseif( 'inline-video' == $layout ){
+		
+			$output = '
+				<section class="bg-dark height-70 overlay-dark overlay-top">
+
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
+
+					<div class="container">
+						<div class="row align-items-center justify-content-between">
+							<div class="col-lg-5 mb-3 mb-lg-0">
+								'. do_shortcode( $content ) .'
+							</div>
+							<div class="col-lg-7">
+								<div class="video-cover rounded shadow-lg">
+									'. wp_get_attachment_image( $video_cover_image, 'full', 0, array( 'class' => 'bg-image' ) ) .'
+									<div class="video-play-icon"></div>
+									<div class="embed-responsive embed-responsive-16by9">
+										<iframe class="embed-responsive-item" data-src="'. esc_url( $video_url ) .'" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			';
+		
+		} elseif( 'gradient-modal-video' == $layout ){
+		
+			$output = '
+				<section class="height-80 bg-gradient-2">
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
+					<div class="container">
+						<div class="row text-center">
+							<div class="col">
+								<a class="video-play-icon video-play-icon-lg" data-fancybox="" href="'. esc_url( $video_url ) .'"></a>
+								'. do_shortcode( $content ) .'
+							</div>
+						</div>
+					</div>
+				</section>
+			';
+		
 		}
 		
 		return $output;
@@ -210,19 +257,49 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 			    		"param_name" => "image"
 			    	),
 			    	array(
+			    		"type" => "dropdown",
+			    		"heading" => __("Header Background Image Overlay Opacity", 'tommusrhodus'),
+			    		"param_name" => "opacity",
+			    		"value" => array(
+			    			'50%' => '50',
+			    			'90%' => '90',
+			    			'80%' => '80',
+			    			'70%' => '70',
+			    			'60%' => '60',			    			
+			    			'40%' => '40',
+			    			'30%' => '30',
+			    			'20%' => '20',
+			    			'10%' => '10',
+			    			'0%' => '0',
+			    		)
+			    	),
+			    	array(
 			    		"type"       => "dropdown",
 			    		"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
 			    		"param_name" => "layout",
 			    		"value"      => array(
-			    			'Standard Header Text Left'                            => 'standard',
-			    			'Standard Header Text Right'                           => 'standard-right',
-			    			'Header with Colour Overlay & Breadcrumbs'             => 'breadcrumbs',
-			    			'Header with Colour Overlay & Breadcrumbs (Dark Text)' => 'breadcrumbs-dark',
-			    			'Centered Header with Gradient Background'             => 'gradient',
-			    			'Half Text & Half Image'             				   => 'half-text-half-image',
-			    			'60% Text & 40% Image'             				   	   => '60-text-40-image',
-			    			'Standard Header Boxed Text Left'                      => 'standard-boxed-text',
+			    			'Standard Header Text Left'                            		=> 'standard',
+			    			'Standard Header Text Right'                           		=> 'standard-right',
+			    			'Header with Colour Overlay & Breadcrumbs'             		=> 'breadcrumbs',
+			    			'Header with Colour Overlay & Breadcrumbs (Dark Text)' 		=> 'breadcrumbs-dark',
+			    			'Centered Header with Gradient Background'             		=> 'gradient',
+			    			'Half Text & Half Image'             				   		=> 'half-text-half-image',
+			    			'60% Text & 40% Image'             				   	   		=> '60-text-40-image',
+			    			'Standard Header Boxed Text Left'                      		=> 'standard-boxed-text',			    			
+			    			'Header with Inline Video'                             		=> 'inline-video',			    			
+			    			'Centered Header with Gradient Background & Modal Video'	=> 'gradient-modal-video',
 			    		)
+			    	),		    	
+			    	array(
+			    		"type"        => "textfield",
+			    		"heading"     => __( "Video Embed/Watch URL", 'tommusrhodus' ),
+			    		"param_name"  => "video_url",
+			    		"description" => "For inline videos, enter an embed URL (such as https://www.youtube.com/embed/DYaq2sWTWAA?rel=0&showinfo=0&autoplay=1) - for modal videos, enter a warch url (such as https://www.youtube.com/watch?v=c8aFcHFu8QM)"
+			    	),
+			    	array(
+			    		"type"       => "attach_image",
+			    		"heading"    => __( "Inline Video Cover Image", 'tommusrhodus' ),
+			    		"param_name" => "video_cover_image"
 			    	),
 			    	array(
 			    		"type"        => "textfield",
