@@ -8,13 +8,13 @@ function tommusrhodus_post_shortcode( $atts ) {
 	extract( 
 		shortcode_atts( 
 			array(
-				'pppage' => '4',
-				'filter' => 'all',
-				'tag'    => 'all',
-				'layout' => '1',
-				'custom_css_class' => '',
-				'paging' => 'false',
-				'offset' => '0'
+				'pppage' 				=> '4',
+				'filter' 				=> 'all',
+				'featured_category' 	=> 'all',
+				'layout' 				=> '',
+				'custom_css_class' 		=> '',
+				'paging' 				=> 'false',
+				'offset' 				=> '0'
 			), $atts 
 		) 
 	);
@@ -76,21 +76,20 @@ function tommusrhodus_post_shortcode( $atts ) {
 		);
 		
 	}
-	
-	if(!( $tag == 'all' )){
-		$query_args['tax_query'] = array(
-			array(
-				'taxonomy' => 'post_tag',
-				'field'    => 'slug',
-				'terms'    => $tag
-			)
-		);
+
+	if (!( $featured_category == 'all' )) {
+		$featured_category = $featured_category;
+		$query_args['category__not_in']	= array($featured_category);
+	} else {
+		$featured = get_theme_mod( 'post_archive_featured_posts_category' );
+		$query_args['category__not_in']	= array($featured);
 	}
 	
 	$old_query = $wp_query;
 	$old_post = $post;
 	$wp_query = new WP_Query( $query_args );
-	$wp_query->{"doing_blog_shortcode"} = 'true';
+	$wp_query->{"doing_blog_shortcode"} = 'true';	
+	$wp_query->{"featured_category"} =  $featured_category;
 	
 	ob_start();
 	
@@ -130,7 +129,7 @@ function tommusrhodus_post_shortcode_vc() {
 					"type" => "dropdown",
 					"heading" => esc_html__("Post Display Type", 'tommusrhodus'),
 					"param_name" => "layout",
-					"value" => tommusrhodus_get_blog_layouts(),
+					"value" => array_flip( tommusrhodus_get_blog_layouts() ),
 				),
 				array(
 					"type" => "textfield",
