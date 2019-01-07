@@ -30,23 +30,24 @@ if(!( function_exists( 'tommusrhodus_carousel_shortcode' ) )){
 			$output = '<div data-flickity="{ &quot;cellAlign&quot;: &quot;center&quot;, &quot;autoPlay&quot;: true, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }" class="controls-light slider-highlight-selected '. $custom_css_class .'">';
 				
 			foreach( $images_exploded as $slide ){
-			
+
+				$image = get_post( $slide );
+				$image_caption = $image->post_excerpt;				
+				$image_desc = $image->post_content;
+
 				$output .= '
 					<div class="col-9 col-md-5 col-lg-4">
-						<a href="utility-coming-soon-1.html" class="card bg-transparent hover-effect shadow-sm">
-						
-							<img class="card-img-top" src="assets/img/pages/utility-coming-soon-1.jpg" alt="Coming Soon 1">
-							
+						<a href="' . esc_url( $image_caption ) . '" class="card bg-transparent hover-effect shadow-sm">
+							'. wp_get_attachment_image( $slide, 'full', '', array( 'class' => 'card-img-top' ) ) .'
 							<div class="card-body bg-white">
-								<div class="d-flex justify-content-between align-items-center">
-									<h6 class="mb-0">Coming Soon 1</h6>
+								<div class="d-flex justify-content-between align-items-center text-dark">
+									<h6 class="mb-0">' . wp_kses_post( $image_desc ) . '</h6>
 									<i class="material-icons text-dark">keyboard_arrow_right</i>
 								</div>
 							</div>
-							
 						</a>
 					</div>
-				';
+	        	';
 				
 			}
 				
@@ -73,13 +74,14 @@ if(!( function_exists( 'tommusrhodus_carousel_shortcode_vc' ) )){
 		vc_map( 
 			array(
 				"icon"     => 'tommusrhodus-vc-block',
-				"name"     => __( "carousel", 'tommusrhodus' ),
+				"name"     => __( "Carousel", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_carousel",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),
 				"params"   => array(
 					array(
 						"type"        => "attach_images",
-						"heading"     => __( "carousel Images", 'tommusrhodus' ),
+						"heading"     => __( "Carousel Images", 'tommusrhodus' ),
+						'description'  	=> __( 'These images will be used in the background of this header area - to have an image link to a page, simply place the URL you wish to link to into the <strong>CAPTION</strong> field.', 'tommusrhodus' ),
 						"param_name"  => "image"
 					),
 					array(

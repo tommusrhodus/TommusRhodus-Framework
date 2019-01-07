@@ -62,6 +62,25 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 				</div>
 			';
 		
+		} elseif( 'image_and_text' == $layout ){
+		
+			$output = '
+				<div class="card '. $custom_css_class .'">
+
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'
+
+					<div class="card-body py-3">'. do_shortcode( $content ) .' </div>
+
+					<div class="card-footer">
+						<div class="d-flex align-items-center justify-content-between">
+							<a href="'. esc_attr( $link_output ) .'">'. $title .'</a>
+							<i class="material-icons text-dark">keyboard_arrow_right</i>
+						</div>
+					</div>
+
+				</div>
+			';
+		
 		}
 		
 		return $output;
@@ -93,7 +112,8 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 						"param_name" => "layout",
 						"value"      => array(
 							'Image and Link (No Content)'  => 'image',
-							'Text and Link (No Image)'     => 'text'
+							'Text and Link (No Image)'     => 'text',
+							'Image, Text and Link'     	   => 'image_and_text'
 						)
 					),
 					array(
