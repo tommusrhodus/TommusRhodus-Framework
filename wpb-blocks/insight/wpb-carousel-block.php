@@ -32,8 +32,16 @@ if(!( function_exists( 'tommusrhodus_carousel_shortcode' ) )){
 			foreach( $images_exploded as $slide ){
 
 				$image = get_post( $slide );
-				$image_caption = $image->post_excerpt;				
-				$image_desc = $image->post_content;
+				if( !empty( $image->post_excerpt ) ) {
+					$image_caption = $image->post_excerpt;
+				} else {
+					$image_caption = '';
+				}
+				if( !empty( $image->post_content ) ) {
+					$image_desc = $image->post_content;
+				} else {
+					$image_desc = '';
+				}
 
 				$output .= '
 					<div class="col-9 col-md-5 col-lg-4">
