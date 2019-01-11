@@ -14,7 +14,8 @@ function tommusrhodus_post_shortcode( $atts ) {
 				'layout' 				=> '',
 				'custom_css_class' 		=> '',
 				'paging' 				=> 'false',
-				'offset' 				=> '0'
+				'offset' 				=> '0',
+				'show_pagination'		=> 'show'
 			), $atts 
 		) 
 	);
@@ -83,15 +84,16 @@ function tommusrhodus_post_shortcode( $atts ) {
 		$query_args['category__not_in']	= array($featured_category);
 	} else {
 		$featured = get_category_by_slug( get_theme_mod( 'post_archive_featured_posts_category' ) );
-		$featured_category = $featured_category->term_id;
-		$query_args['category__not_in']	= array($featured);
+		$featured_category = $featured->term_id;
+		$query_args['category__not_in']	= $featured;
 	}
 	
 	$old_query = $wp_query;
 	$old_post = $post;
 	$wp_query = new WP_Query( $query_args );
 	$wp_query->{"doing_blog_shortcode"} = 'true';	
-	$wp_query->{"featured_category"} =  $featured_category;
+	$wp_query->{"featured_category"} =  $featured_category;	
+	$wp_query->{"show_pagination"} = $show_pagination;	
 	
 	ob_start();
 	
@@ -140,6 +142,15 @@ function tommusrhodus_post_shortcode_vc() {
 					"value" => '0',
 					"description" => '<code>DEVELOPERS ONLY</code> - Offset posts shown, 0 for newest posts, 5 starts at fifth most recent etc.'
 				),
+				array(
+		    		"type" => "dropdown",
+		    		"heading" => esc_html__("Show Pagignation?", 'brailie'),
+		    		"param_name" => "show_pagination",
+		    		"value" => array(
+		    			'Yes' 	=> 'show',
+		    			'No' 	=> 'hide',
+		    		)
+		    	),
 				array(
 					"type" => "textfield",
 					"heading" => esc_html__("Extra CSS Class Name", 'tommusrhodus'),

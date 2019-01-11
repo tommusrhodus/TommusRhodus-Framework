@@ -11,6 +11,7 @@ function tommusrhodus_documentation_feed_shortcode( $atts ) {
 				'pppage' 				=> '4',
 				'filter' 				=> 'all',
 				'custom_css_class' 		=> '',
+				'layout' 				=> '',
 				'paging' 				=> 'false',
 				'offset' 				=> '0'
 			), $atts 
@@ -83,7 +84,7 @@ function tommusrhodus_documentation_feed_shortcode( $atts ) {
 	ob_start();
 	
 	echo '<div class="'. $custom_css_class .'">';
-	get_template_part( 'loop/loop', 'documentation-1' );
+	get_template_part( 'loop/loop-documentation', $layout );
 	echo '</div>';
 	
 	$output = ob_get_contents();
@@ -113,6 +114,12 @@ function tommusrhodus_documentation_feed_shortcode_vc() {
 					"heading" => esc_html__("Show How Many Posts?", 'tommusrhodus'),
 					"param_name" => "pppage",
 					"value" => '4'
+				),
+				array(
+					"type" => "dropdown",
+					"heading" => esc_html__("Article Display Type", 'tommusrhodus'),
+					"param_name" => "layout",
+					"value" => array_flip( tommusrhodus_get_documentation_layouts() ),
 				),
 				array(
 					"type" => "textfield",

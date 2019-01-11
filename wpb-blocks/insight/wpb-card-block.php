@@ -48,10 +48,13 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 		} elseif( 'text' == $layout ){
 		
 			$output = '
-				<div class="card '. $custom_css_class .'">
-				
-					<div class="card-body pb-5 pt-4">'. do_shortcode( $content ) .'</div>
-					
+				<div class="card '. $custom_css_class .'">';
+
+				if( $content ) {
+					$output .= '<div class="card-body pb-5 pt-4">'. do_shortcode( $content ) .'</div>';					
+				}					
+
+				$output .= '
 					<div class="card-footer '. $custom_css_class .'">
 						<div class="d-flex align-items-center justify-content-between">
 							<a href="'. esc_attr( $link_output ) .'">'. $title .'</a>
