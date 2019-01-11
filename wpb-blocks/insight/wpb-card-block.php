@@ -72,7 +72,7 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 
 					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'
 
-					<div class="card-body py-3">'. do_shortcode( $content ) .' </div>
+					<div class="card-body py-3">'. do_shortcode( $content ) .'</div>
 
 					<div class="card-footer">
 						<div class="d-flex align-items-center justify-content-between">
@@ -84,7 +84,15 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 				</div>
 			';
 		
-		}
+		} elseif( 'image_background_and_text_overlay' == $layout ){
+		
+			$output = '
+				<a href="'. esc_attr( $link_output ) .'" class="card bg-dark justify-content-end flex-fill mb-lg-0">
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img flex-grow-1' ) ) .'<div class="card-img-overlay bg-dark w-100"><span class="mb-0 text-white">'. do_shortcode( $content ) .'</span></div>
+				</a>
+			';
+		
+		}		
 		
 		return $output;
 		
@@ -114,9 +122,10 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 						"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
 						"param_name" => "layout",
 						"value"      => array(
-							'Image and Link (No Content)'  => 'image',
-							'Text and Link (No Image)'     => 'text',
-							'Image, Text and Link'     	   => 'image_and_text'
+							'Image and Link (No Content)'  					=> 'image',
+							'Text and Link (No Image)'     					=> 'text',
+							'Image, Text and Link'     	   					=> 'image_and_text',							
+							'Image Background, Text Overlay and Link'		=> 'image_background_and_text_overlay'
 						)
 					),
 					array(
