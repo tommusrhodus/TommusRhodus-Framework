@@ -70,10 +70,13 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 			$output = '
 				<div class="card '. $custom_css_class .'">
 
-					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'';
 
-					<div class="card-body py-3">'. do_shortcode( $content ) .'</div>
+					if( $content ) {
+						$output .= '<div class="card-body py-3">'. do_shortcode( $content ) .'</div>';
+					}
 
+					$output .= '
 					<div class="card-footer">
 						<div class="d-flex align-items-center justify-content-between">
 							<a href="'. esc_attr( $link_output ) .'">'. $title .'</a>
@@ -82,6 +85,28 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 					</div>
 
 				</div>
+			';
+		
+		} elseif( 'image_and_text_card_link' == $layout ){
+		
+			$output = '
+				<a href="'. esc_attr( $link_output ) .'"" class="card hover-effect'. $custom_css_class .'">
+
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'';
+
+					if( $content ) {
+						$output .= '<div class="card-body py-3 text-dark">'. do_shortcode( $content ) .'</div>';
+					}
+
+					$output .= '
+					<div class="card-footer text-dark">
+						<div class="d-flex align-items-center justify-content-between">
+							'. $title .'
+							<i class="material-icons text-dark">keyboard_arrow_right</i>
+						</div>
+					</div>
+
+				</a>
 			';
 		
 		} elseif( 'image_background_and_text_overlay' == $layout ){
@@ -124,7 +149,8 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 						"value"      => array(
 							'Image and Link (No Content)'  					=> 'image',
 							'Text and Link (No Image)'     					=> 'text',
-							'Image, Text and Link'     	   					=> 'image_and_text',							
+							'Image, Text and Link'     	   					=> 'image_and_text',	
+							'Image, Text and Link Whole Cart'				=> 'image_and_text_card_link',						
 							'Image Background, Text Overlay and Link'		=> 'image_background_and_text_overlay'
 						)
 					),

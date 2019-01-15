@@ -191,6 +191,23 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 				$output .= '</a>';
 			}
 		
+		} elseif( 'card-left-arrow-right' == $layout ){
+
+			$output = '
+				<a href="'. esc_url( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-fill '. $custom_css_class .'">
+					<div class="d-flex align-items-center">';
+						if( $image ) {
+							$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'd-block mr-3 icon' ) );
+						} else {
+							$output .= '<i class="'. $icon .' d-block mr-3 icon"></i>';
+						}
+						$output .= '
+						<span class="mb-0 h6 mb-0">'. do_shortcode( $content ) .'</span>
+					</div>
+					<i class="material-icons d-block">keyboard_arrow_right</i>
+				</a>
+			';
+		
 		}
 		
 		return $output;
@@ -253,7 +270,8 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode_vc' ) )){
 			    			'Card with Icon Top'       			=> 'card-top',
 			    			'Card with Icon Top Centered'		=> 'card-top-centered',
 			    			'Inline Icon with Heading' 			=> 'inline',
-			    			'Inline Large Icon with Heading'	=> 'inline-large-icon'
+			    			'Inline Large Icon with Heading'	=> 'inline-large-icon',
+			    			'Card with Icon Left + Arrow Right'	=> 'card-left-arrow-right',
 			    		)
 			    	),
 			    	array(

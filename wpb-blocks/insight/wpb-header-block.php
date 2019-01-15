@@ -219,6 +219,23 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				</section>
 			';
 		
+		} elseif( 'standard-fullheight-text' == $layout ){
+		
+			$output = '
+				<section class="header-3 p-0">
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
+					<div class="container">
+						<div class="row no-gutters justify-content-center justify-content-md-start">
+							<div class="col-10 col-md-8 col-lg-7 col-xl-6 bg-white spacer-y-4 height-md-50 height-lg-70">
+								<div class="px-4">
+							 		'. do_shortcode( $content ) .'
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			';
+		
 		}
 		
 		return $output;
@@ -287,7 +304,8 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 			    			'60% Text & 40% Image'             				   	   		=> '60-text-40-image',
 			    			'Standard Header Boxed Text Left'                      		=> 'standard-boxed-text',			    			
 			    			'Header with Inline Video'                             		=> 'inline-video',			    			
-			    			'Centered Header with Gradient Background & Modal Video'	=> 'gradient-modal-video',
+			    			'Centered Header with Gradient Background & Modal Video'	=> 'gradient-modal-video',			    			
+			    			'Standard Header Fullheight Text Left'                      => 'standard-fullheight-text',
 			    		)
 			    	),		    	
 			    	array(
