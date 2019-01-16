@@ -145,6 +145,44 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			}
 	
 			
+		} elseif( 'top-centered' == $layout ){
+
+			if( $link ) {
+
+				$output = '
+					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' flex-fill hover-effect">
+						<div class="text-center">
+							<div class="card-body py-4">';
+								if( $image ) {
+									$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-large flex-shrink-0 text-primary mb-2' ) );
+								} else {
+									$output .= '<i class="'. $icon .' insight-large flex-shrink-0 text-primary mb-2"></i>';
+								}						
+								$output .= '						
+								<div class="text-dark">'. do_shortcode( $content ) .'</div>
+							</div>
+						</div>
+					</a>
+				';
+
+			} else {
+
+				$output = '
+					<div class="'. $custom_css_class .' text-center">
+						<div class="card-body py-4">';
+							if( $image ) {
+								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-large flex-shrink-0 text-primary mb-2' ) );
+							} else {
+								$output .= '<i class="'. $icon .' insight-large flex-shrink-0 text-primary mb-2"></i>';
+							}						
+							$output .= '						
+							<div class="text-dark">'. do_shortcode( $content ) .'</div>
+						</div>
+					</div>
+				';
+			}
+	
+			
 		} elseif( 'inline' == $layout ){
 
 			if( $link ) {
@@ -269,9 +307,10 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode_vc' ) )){
 			    			'Card with Icon Left'      			=> 'card-left',
 			    			'Card with Icon Top'       			=> 'card-top',
 			    			'Card with Icon Top Centered'		=> 'card-top-centered',
+			    			'Card with Icon Left + Arrow Right'	=> 'card-left-arrow-right',
+			    			'Icon Top Centered'					=> 'top-centered',
 			    			'Inline Icon with Heading' 			=> 'inline',
 			    			'Inline Large Icon with Heading'	=> 'inline-large-icon',
-			    			'Card with Icon Left + Arrow Right'	=> 'card-left-arrow-right',
 			    		)
 			    	),
 			    	array(
