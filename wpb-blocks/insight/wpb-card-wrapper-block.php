@@ -15,16 +15,29 @@ if(!( function_exists( 'tommusrhodus_card_wrapper_shortcode' ) )){
 		extract( 
 			shortcode_atts( 
 				array(
+					'layout'           => 'normal',
 					'custom_css_class' => ''
 				), $atts 
 			) 
 		);
+
+		if( 'normal' == $layout ){
 		
-		$output = '
-			<div class="card justify-content-center flex-grow-1 '. $custom_css_class .'">
-				<div class="card-body py-4 flex-grow-0">'. do_shortcode( $content ) .'</div>
-			</div>
-		';
+			$output = '
+				<div class="card justify-content-center flex-grow-1 '. $custom_css_class .'">
+					<div class="card-body py-4 flex-grow-0">'. do_shortcode( $content ) .'</div>
+				</div>
+			';
+
+		} elseif( 'large_padding' == $layout ){
+		
+			$output = '
+				<div class="card justify-content-center p-lg-4 p-3 mb-lg-0 '. $custom_css_class .'">
+					<div class="card-body py-3 flex-grow-0">'. do_shortcode( $content ) .'</div>
+				</div>
+			';
+
+		}
 		
 		return $output;
 		
@@ -51,9 +64,19 @@ if(!( function_exists( 'tommusrhodus_card_wrapper_shortcode_vc' ) )){
 				"category"                => __( 'Insight WP Theme', 'tommusrhodus' ),
 				'as_parent'               => array( 'except' => 'tommusrhodus_tabs_content' ),
 				'content_element'         => true,
-				'show_settings_on_create' => false,
+				'show_settings_on_create' => true,
 				"js_view"                 => 'VcColumnView',
-				"params"                  => array()
+				"params"                  => array(
+					array(
+						"type"       => "dropdown",
+						"heading"    => __( "Card Type", 'tommusrhodus' ),
+						"param_name" => "layout",
+						"value"      => array(
+							'Normal'  										=> 'normal',
+							'Large Padding'  	   							=> 'large_padding',
+						)
+					),
+				)
 			) 
 		);
 	}

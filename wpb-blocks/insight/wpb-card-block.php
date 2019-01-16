@@ -37,7 +37,7 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 				<a href="'. esc_attr( $link_output ) .'" class="card hover-effect '. $custom_css_class .'">
 					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img-top' ) ) .'
 					<div class="card-body">
-						<div class="d-flex justify-content-between align-items-center">
+						<div class="d-flex justify-content-between align-items-center text-dark">
 							<h6 class="mb-0">'. $title .'</h6>
 							<i class="material-icons text-dark">keyboard_arrow_right</i>
 						</div>
@@ -117,6 +117,21 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 				</a>
 			';
 		
+		} elseif( 'image_left_and_text_card_link' == $layout ){
+		
+			$output = '
+				<a href="'. esc_attr( $link_output ) .'" class="card row no-gutters flex-column flex-md-row flex-fill hover-effect '. $custom_css_class .'">
+					<div class="flex-column col-md-4">
+						'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img flex-grow-1 h-100' ) ) .'					
+					</div>
+					<div class="card-body d-flex align-items-center col-md-8 px-3">
+						<div>
+							<span class="h5 mb-0">'. do_shortcode( $content ) .'</span>
+						</div>
+					</div>
+				</a>
+			';
+		
 		}		
 		
 		return $output;
@@ -150,7 +165,8 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 							'Image and Link (No Content)'  					=> 'image',
 							'Text and Link (No Image)'     					=> 'text',
 							'Image, Text and Link'     	   					=> 'image_and_text',	
-							'Image, Text and Link Whole Cart'				=> 'image_and_text_card_link',						
+							'Image, Text and Link Whole Cart'				=> 'image_and_text_card_link',							
+							'Image Left, Text and Link Whole Cart'			=> 'image_left_and_text_card_link',						
 							'Image Background, Text Overlay and Link'		=> 'image_background_and_text_overlay'
 						)
 					),

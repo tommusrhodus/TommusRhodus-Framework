@@ -39,7 +39,7 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 	
 		$output = '
 			<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-fill '. esc_attr($custom_css_class) .'">
-			    <div class="d-flex align-items-center">
+			    <div class="d-flex align-items-center remove-p-margin">
 			      	<i class="'. $icon .' insight-large d-block mr-3 icon"></i>
 			      	<span class="mb-0 h6 mb-0">'. htmlspecialchars_decode($title) .'</span>
 			    </div>
@@ -52,7 +52,7 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 		$output = '
 			<a class="list-group-item list-group-item-action d-flex align-items-center w-100 flex-fill '. esc_attr($custom_css_class) .'" href="#">
 				<div class="d-flex align-items-center">
-					<div class="py-2 px-3 mr-2 text-center">
+					<div class="py-2 px-3 mr-2 text-center remove-p-margin">
 						'. wpautop(do_shortcode(htmlspecialchars_decode($content))) .'
 					</div>
 					<span class="mb-0 h6 text-primary">'. htmlspecialchars_decode($title) .'</span>
