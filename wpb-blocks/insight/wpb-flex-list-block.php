@@ -33,12 +33,19 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 		) 
 	);
 
+	$link_output = '#';
+
+	if( function_exists( 'vc_build_link' ) ){
+		$built_link  = vc_build_link( $link );
+		$link_output = $built_link['url'];
+	}
+
 	$output = false;
 		
 	if( 'icon_title' == $layout ){
 	
 		$output = '
-			<a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-fill '. esc_attr($custom_css_class) .'">
+			<a href="'. esc_attr( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-fill '. esc_attr($custom_css_class) .'">
 			    <div class="d-flex align-items-center remove-p-margin">
 			      	<i class="'. $icon .' insight-large d-block mr-3 icon"></i>
 			      	<span class="mb-0 h6 mb-0">'. htmlspecialchars_decode($title) .'</span>
@@ -50,13 +57,24 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 	} elseif( 'text_title' == $layout ){
 
 		$output = '
-			<a class="list-group-item list-group-item-action d-flex align-items-center w-100 flex-fill '. esc_attr($custom_css_class) .'" href="#">
+			<a class="list-group-item list-group-item-action d-flex align-items-center w-100 flex-fill '. esc_attr($custom_css_class) .'" href="'. esc_attr( $link_output ) .'">
 				<div class="d-flex align-items-center">
 					<div class="py-2 px-3 mr-2 text-center remove-p-margin">
 						'. wpautop(do_shortcode(htmlspecialchars_decode($content))) .'
 					</div>
 					<span class="mb-0 h6 text-primary">'. htmlspecialchars_decode($title) .'</span>
 				</div>
+			</a>
+		';
+
+	} elseif( 'title_arrow' == $layout ){
+
+		$output = '
+			<a href="'. esc_attr( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mb-lg-0 '. esc_attr($custom_css_class) .'">
+				<div class="d-flex align-items-center">
+					<span class="mb-0 text-primary py-1 font-weight-bold">'. htmlspecialchars_decode($title) .'</span>
+				</div>
+				<i class="material-icons d-block">keyboard_arrow_right</i>
 			</a>
 		';
 
@@ -114,8 +132,9 @@ function tommusrhodus_flex_list_content_shortcode_vc() {
 					"heading"    => __( "Item Type", 'tommusrhodus' ),
 					"param_name" => "layout",
 					"value"      => array(
-						'Icon Left and Title'  								=> 'icon_title',
-						'Text Left and TItle'     							=> 'text_title',
+						'Icon Left and Title Right'  								=> 'icon_title',
+						'Text Left and Title Right'     							=> 'text_title',
+						'Title Left and Arrow Right'     							=> 'title_arrow',
 					)
 				),
 				array(
@@ -136,6 +155,11 @@ function tommusrhodus_flex_list_content_shortcode_vc() {
 	            	"heading" => esc_html__("Block Content", 'tommusrhodus'),
 	            	"param_name" => "content"
 	            ),
+	            array(
+					"type"        => "vc_link",
+					"heading"     => __( "Link", 'tommusrhodus' ),
+					"param_name"  => "link"
+				),
 	            array(
 	            	"type" => "textfield",
 	            	"heading" => esc_html__("Extra CSS Class Name", 'tommusrhodus'),

@@ -16,51 +16,96 @@ if(!( function_exists( 'tommusrhodus_carousel_shortcode' ) )){
 		extract( 
 			shortcode_atts( 
 				array(
-					'image'           => '',
-					'custom_css_class' => ''
+					'image'           	=> '',
+					'layout'           	=> 'large_images',
+					'custom_css_class' 	=> ''
 				), $atts 
 			) 
 		);
 		
 		$output          = '';
 		$images_exploded = explode( ',', $image );
+
+		if( 'large_images' == $layout ) {
 		
-		if( is_array( $images_exploded ) ){
+			if( is_array( $images_exploded ) ) {
 
-			$output = '<div data-flickity="{ &quot;cellAlign&quot;: &quot;center&quot;, &quot;autoPlay&quot;: true, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }" class="controls-light slider-highlight-selected '. $custom_css_class .'">';
-				
-			foreach( $images_exploded as $slide ){
+				$output = '<div data-flickity="{ &quot;cellAlign&quot;: &quot;center&quot;, &quot;autoPlay&quot;: true, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }" class="controls-light slider-highlight-selected '. $custom_css_class .'">';
+					
+				foreach( $images_exploded as $slide ){
 
-				$image = get_post( $slide );
-				if( !empty( $image->post_excerpt ) ) {
-					$image_caption = $image->post_excerpt;
-				} else {
-					$image_caption = '';
-				}
-				if( !empty( $image->post_content ) ) {
-					$image_desc = $image->post_content;
-				} else {
-					$image_desc = '';
-				}
+					$image = get_post( $slide );
+					if( !empty( $image->post_excerpt ) ) {
+						$image_caption = $image->post_excerpt;
+					} else {
+						$image_caption = '';
+					}
+					if( !empty( $image->post_content ) ) {
+						$image_desc = $image->post_content;
+					} else {
+						$image_desc = '';
+					}
 
-				$output .= '
-					<div class="col-9 col-md-5 col-lg-4">
-						<a href="' . esc_url( $image_caption ) . '" class="card bg-transparent hover-effect shadow-sm">
-							'. wp_get_attachment_image( $slide, 'full', '', array( 'class' => 'card-img-top' ) ) .'
-							<div class="card-body bg-white">
-								<div class="d-flex justify-content-between align-items-center text-dark">
-									<h6 class="mb-0">' . wp_kses_post( $image_desc ) . '</h6>
-									<i class="material-icons text-dark">keyboard_arrow_right</i>
+					$output .= '
+						<div class="col-9 col-md-5 col-lg-4">
+							<a href="' . esc_url( $image_caption ) . '" class="card bg-transparent hover-effect shadow-sm">
+								'. wp_get_attachment_image( $slide, 'full', '', array( 'class' => 'card-img-top' ) ) .'
+								<div class="card-body bg-white">
+									<div class="d-flex justify-content-between align-items-center text-dark">
+										<h6 class="mb-0">' . wp_kses_post( $image_desc ) . '</h6>
+										<i class="material-icons text-dark">keyboard_arrow_right</i>
+									</div>
 								</div>
-							</div>
-						</a>
-					</div>
-	        	';
-				
+							</a>
+						</div>
+		        	';
+					
+				}
+					
+				$output .= '</div>';
+			
 			}
-				
-			$output .= '</div>';
+
+		} elseif( 'small_images' == $layout ) {
 		
+			if( is_array( $images_exploded ) ) {
+
+				$output = '<div data-flickity="{ &quot;groupCells&quot;: 1, &quot;cellAlign&quot;: &quot;center&quot;, &quot;autoPlay&quot;: 1500, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }" class="controls-light slider-highlight-selected '. $custom_css_class .'">';
+					
+				foreach( $images_exploded as $slide ){
+
+					$image = get_post( $slide );
+					if( !empty( $image->post_excerpt ) ) {
+						$image_caption = $image->post_excerpt;
+					} else {
+						$image_caption = '';
+					}
+					if( !empty( $image->post_content ) ) {
+						$image_desc = $image->post_content;
+					} else {
+						$image_desc = '';
+					}
+
+					$output .= '
+						<div class="col-5 col-md-3 col-lg-3 col-xl-2 px-1">
+							<a href="' . esc_url( $image_caption ) . '" class="card bg-transparent hover-effect shadow-sm">
+								'. wp_get_attachment_image( $slide, 'full', '', array( 'class' => 'card-img-top' ) ) .'
+								<div class="card-body bg-white">
+									<div class="d-flex justify-content-between align-items-center text-dark">
+										<h6 class="mb-0">' . wp_kses_post( $image_desc ) . '</h6>
+										<i class="material-icons text-dark">keyboard_arrow_right</i>
+									</div>
+								</div>
+							</a>
+						</div>
+		        	';
+					
+				}
+					
+				$output .= '</div>';
+			
+			}
+
 		}
 		
 		return $output;
@@ -82,10 +127,19 @@ if(!( function_exists( 'tommusrhodus_carousel_shortcode_vc' ) )){
 		vc_map( 
 			array(
 				"icon"     => 'tommusrhodus-vc-block',
-				"name"     => __( "Carousel", 'tommusrhodus' ),
+				"name"     => __( "Image Carousel", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_carousel",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),
 				"params"   => array(
+					array(
+						"type"       => "dropdown",
+						"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
+						"param_name" => "layout",
+						"value"      => array(
+							'Large Images'  					=> 'large_images',
+							'Small Images'     					=> 'small_images',
+						)
+					),
 					array(
 						"type"        => "attach_images",
 						"heading"     => __( "Carousel Images", 'tommusrhodus' ),

@@ -71,6 +71,42 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 
 			}
 		
+		} if( 'card-left-small-padding' == $layout ){
+
+			if( $link ) {
+
+				$output = '
+					<a href="'. esc_url( $link_output ) .'" class="card card-body shadow flex-row align-items-center '. $custom_css_class .'">
+						<div class="icon-rounded bg-success mr-3 flex-shrink-0">';
+							if( $image ) {
+								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
+							} else {
+								$output .= '<i class="'. $icon .' text-white"></i>';
+							}						
+							$output .= '
+						</div>
+						<span class="h2 mb-0 text-dark">'. do_shortcode( $content ) .'</span>
+					</a>
+				';
+
+			} else {
+
+				$output = '
+					<div class="card card-body shadow flex-row align-items-center '. $custom_css_class .'">
+						<div class="icon-rounded bg-success mr-3 flex-shrink-0">';
+							if( $image ) {
+								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
+							} else {
+								$output .= '<i class="'. $icon .' text-white"></i>';
+							}						
+							$output .= '
+						</div>
+						<span class="h2 mb-0 text-dark">'. do_shortcode( $content ) .'</span>
+					</div>
+				';
+
+			}
+		
 		} elseif( 'card-top' == $layout ){
 
 			if( $link ) {
@@ -279,7 +315,22 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode_vc' ) )){
 			    'base'                    => 'tommusrhodus_text_icon',
 			    'description'             => __( 'Create fancy images & text', 'tommusrhodus' ),
 			    "category"                => __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
-			    'params'                  => array(
+			    'params'                  => array(			    	
+			    	array(
+			    		"type"       => "dropdown",
+			    		"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
+			    		"param_name" => "layout",
+			    		"value"      => array(
+			    			'Card with Icon Left'      				=> 'card-left',
+			    			'Card with Icon Left, Small Padding'	=> 'card-left-small-padding',
+			    			'Card with Icon Top'       				=> 'card-top',
+			    			'Card with Icon Top Centered'			=> 'card-top-centered',
+			    			'Card with Icon Left + Arrow Right'		=> 'card-left-arrow-right',
+			    			'Icon Top Centered'						=> 'top-centered',
+			    			'Inline Icon with Heading' 				=> 'inline',
+			    			'Inline Large Icon with Heading'		=> 'inline-large-icon',
+			    		)
+			    	),
 			    	array(
 			    		"type"        => "textarea_html",
 			    		"heading"     => __( "Block Content", 'tommusrhodus' ),
@@ -299,20 +350,6 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode_vc' ) )){
 						"value" => $icons,
 						'description' => 'Type "none" or leave blank to hide icons.'
 					),
-			    	array(
-			    		"type"       => "dropdown",
-			    		"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
-			    		"param_name" => "layout",
-			    		"value"      => array(
-			    			'Card with Icon Left'      			=> 'card-left',
-			    			'Card with Icon Top'       			=> 'card-top',
-			    			'Card with Icon Top Centered'		=> 'card-top-centered',
-			    			'Card with Icon Left + Arrow Right'	=> 'card-left-arrow-right',
-			    			'Icon Top Centered'					=> 'top-centered',
-			    			'Inline Icon with Heading' 			=> 'inline',
-			    			'Inline Large Icon with Heading'	=> 'inline-large-icon',
-			    		)
-			    	),
 			    	array(
 						"type"        => "vc_link",
 						"heading"     => __( "Link", 'tommusrhodus' ),
