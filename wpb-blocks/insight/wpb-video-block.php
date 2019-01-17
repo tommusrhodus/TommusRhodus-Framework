@@ -15,9 +15,10 @@ if(!( function_exists( 'tommusrhodus_video_shortcode' ) )){
 		extract( 
 			shortcode_atts( 
 				array(
-					'image'            => '',
-					'embed'            => '',
-					'custom_css_class' => ''
+					'image'            	=> '',
+					'embed'            	=> '',					
+					'layout'			=> 'text_left_video_right',
+					'custom_css_class' 	=> ''
 				), $atts 
 			) 
 		);
@@ -40,24 +41,58 @@ if(!( function_exists( 'tommusrhodus_video_shortcode' ) )){
 			}
 		
 		}
+
+		if( 'text_left_video_right' == $layout ) {
 		
-		$output = '
-			<div class="row justify-content-around '. $custom_css_class .'">
-				
-				<div class="col-lg-5 align-self-center mb-3 mb-lg-0">
-					<div class="pr-lg-4">'. do_shortcode( $content ) .'</div>
-				</div>
-				
-				<div class="col-lg-6">
-					<div class="video-cover rounded">
-						'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'bg-image' ) ) .'
-						<div class="video-play-icon"></div>
-						<div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
+			$output = '
+				<div class="row justify-content-around '. $custom_css_class .'">
+					
+					<div class="col-lg-5 align-self-center mb-3 mb-lg-0">
+						<div class="pr-lg-4">'. do_shortcode( $content ) .'</div>
 					</div>
+					
+					<div class="col-lg-6">
+						<div class="video-cover rounded">
+							'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'bg-image' ) ) .'
+							<div class="video-play-icon"></div>
+							<div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
+						</div>
+					</div>
+					
 				</div>
-				
-			</div>
-		';
+			';
+
+		} elseif( 'text_right_video_left' == $layout ) {
+		
+			$output = '
+				<div class="row justify-content-around '. $custom_css_class .'">
+					
+					<div class="col-lg-6">
+						<div class="video-cover rounded">
+							'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'bg-image' ) ) .'
+							<div class="video-play-icon"></div>
+							<div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
+						</div>
+					</div>
+
+					<div class="col-lg-5 align-self-center mb-3 mb-lg-0">
+						<div class="pr-lg-4">'. do_shortcode( $content ) .'</div>
+					</div>				
+					
+				</div>
+			';
+
+		} elseif( 'embed_only' == $layout ) {
+		
+			$output = '
+				<div class="video-cover rounded">
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'bg-image' ) ) .'
+					<div class="video-play-icon"></div>
+					<div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
+				</div>	
+			';
+
+		}
 		
 		return $output;
 		
@@ -83,20 +118,30 @@ if(!( function_exists( 'tommusrhodus_video_shortcode_vc' ) )){
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),
 				"params"   => array(
 					array(
-						"type"        => "textarea_html",
-						"heading"     => __( "Block Content", 'tommusrhodus' ),
-						"param_name"  => "content"
-					),
+			    		"type"       => "dropdown",
+			    		"heading"    => __( "Video Display Type", 'tommusrhodus' ),
+			    		"param_name" => "layout",
+			    		"value"      => array(
+			    			'Text Left, Video Right'                            				=> 'text_left_video_right',
+			    			'Text Right, Video Left'                            				=> 'text_right_video_left',
+			    			'Video Embed Only'                            						=> 'embed_only',
+			    		)
+			    	),	
+			    	array(
+						"type"        => "textfield",
+						"heading"     => __( "Video Embed", 'tommusrhodus' ),
+						"param_name"  => "embed",
+						'description' => __( 'Enter link to video <a href="http://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F">(Note: read more about available formats at WordPress codex page).</a>', 'tommusrhodus' )
+					),					
 					array(
 						"type"        => "attach_image",
 						"heading"     => __( "Video Still Image", 'tommusrhodus' ),
 						"param_name"  => "image"
 					),
 					array(
-						"type"        => "textfield",
-						"heading"     => __( "Video Embed", 'tommusrhodus' ),
-						"param_name"  => "embed",
-						'description' => __( 'Enter link to video <a href="http://codex.wordpress.org/Embeds#Okay.2C_So_What_Sites_Can_I_Embed_From.3F">(Note: read more about available formats at WordPress codex page).</a>', 'tommusrhodus' )
+						"type"        => "textarea_html",
+						"heading"     => __( "Block Content", 'tommusrhodus' ),
+						"param_name"  => "content"
 					),
 					array(
 						"type"        => "textfield",
