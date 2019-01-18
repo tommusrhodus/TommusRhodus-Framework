@@ -24,17 +24,21 @@ if(!( function_exists( 'tommusrhodus_searchform_shortcode' ) )){
 
 		ob_start();
 
-		get_template_part( 'inc/content' , 'large-searchform' );
+		echo '<div class="'. $custom_css_class .'">';
 
-		if( !empty( $searches )) {
+			get_template_part( 'inc/content' , 'large-searchform' );
 
-			echo '<ul class="list-unstyled d-flex flex-wrap mt-2 mb-0">';
-				foreach ( $searches as $key => $value ) {
-					echo '<li class="mr-2 mb-2 mb-lg-0"><a href="' . esc_url( home_url( '/?s=' ) ) . str_replace( ' ', '+', $value ) . '" class="btn btn-sm btn-light">' . wp_kses_post( $value ) . '</a></li>';
-				}
-			echo '</ul>';
-			
-		}
+			if( !empty( $searches )) {
+
+				echo '<ul class="list-unstyled d-flex flex-wrap mt-2 mb-0">';
+					foreach ( $searches as $key => $value ) {
+						echo '<li class="mr-2 mb-2 mb-lg-0"><a href="' . esc_url( home_url( '/?s=' ) ) . str_replace( ' ', '+', $value ) . '" class="btn btn-sm btn-light">' . wp_kses_post( $value ) . '</a></li>';
+					}
+				echo '</ul>';
+				
+			}
+
+		echo '</div>';
 
 		$output = ob_get_contents();
 		ob_end_clean();

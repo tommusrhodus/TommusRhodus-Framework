@@ -45,6 +45,22 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				</div>
 			';
 			
+		} elseif( 'standard-gradient' == $layout ){
+			
+			$output = '
+				<div class="p-0 bg-gradient '. $custom_css_class .'">
+					
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image position-md-absolute '. $opacity ) ) .'
+				
+					<div class="container spacer-y-5">
+						<div class="row">
+							<div class="col-md-6 col-lg-5">'. do_shortcode( $content ) .'</div>
+						</div>
+					</div>
+				
+				</div>
+			';
+			
 		} elseif( 'standard-right' == $layout ){
 			
 			$output = '
@@ -118,7 +134,25 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				</section>
 			';
 		
-		} elseif( 'gradient-alt' == $layout ){
+		} elseif( 'gradient-no-breadcrumbs' == $layout ){
+		
+			$output = '
+				<section class="bg-gradient-2">
+					
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
+					
+					<div class="container height-lg-50">
+						<div class="row justify-content-center text-center">
+							<div class="col-lg-10 col-xl-9">
+								'. do_shortcode( $content ) .'
+							</div>
+						</div>
+					</div>
+					
+				</section>
+			';
+		
+		} elseif( 'gradient-alt-no-breadcrumbs' == $layout ){
 		
 			$output = '
 				<section class="height-70 bg-gradient">
@@ -314,11 +348,13 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 			    		"param_name" => "layout",
 			    		"value"      => array(
 			    			'Standard Header Text Left'                            				=> 'standard',
-			    			'Standard Header Text Right'                           				=> 'standard-right',
+			    			'Standard Header Text Right'                           				=> 'standard-right',			    			
+			    			'Standard Header Text Left with Gradient Background'   				=> 'standard-gradient',
 			    			'Header with Colour Overlay & Breadcrumbs'             				=> 'breadcrumbs',
 			    			'Header with Colour Overlay & Breadcrumbs (Dark Text)' 				=> 'breadcrumbs-dark',
 			    			'Centered Header with Gradient Background'             				=> 'gradient',
-			    			'Centered Header with Alt Gradient Background (No Breadcrumbs)'		=> 'gradient-alt',
+			    			'Centered Header with Gradient Background (No Breadcrumbs)'			=> 'gradient-no-breadcrumbs',
+			    			'Centered Header with Alt Gradient Background (No Breadcrumbs)'		=> 'gradient-alt-no-breadcrumbs',
 			    			'Half Text & Half Image'             				   				=> 'half-text-half-image',
 			    			'60% Text & 40% Image'             				   	   				=> '60-text-40-image',
 			    			'Standard Header Boxed Text Left'                      				=> 'standard-boxed-text',			    			

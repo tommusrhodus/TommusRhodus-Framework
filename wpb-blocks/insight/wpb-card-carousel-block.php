@@ -24,6 +24,10 @@ function tommusrhodus_card_carousel_shortcode( $atts, $content = null ) {
 
 		$output = '<div data-flickity="{ &quot;groupCells&quot;: 1, &quot;cellAlign&quot;: &quot;center&quot;, &quot;autoPlay&quot;: 1500, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }" class="controls-light slider-highlight-selected">'. do_shortcode($content) .'</div>';
 
+	} elseif( 'medium_images' == $carousel_layout ) {
+
+		$output = '<div data-flickity="{ &quot;cellAlign&quot;: &quot;center&quot;, &quot;autoPlay&quot;: true, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }" class="controls-light slider-highlight-selected">'. do_shortcode($content) .'</div>';
+
 	}
 
 	return $output;
@@ -44,6 +48,7 @@ function tommusrhodus_card_carousel_content_shortcode( $atts, $content = null, $
 				'layout' 			=> 'card-top',
 				'icon' 				=> '',
 				'link' 				=> '',
+				'image'				=> '',
 				'custom_css_class' 	=> ''
 			), $atts 
 		) 
@@ -60,6 +65,8 @@ function tommusrhodus_card_carousel_content_shortcode( $atts, $content = null, $
 		$column_class = 'col-9 col-md-5 col-lg-4';
 	} elseif( 'small_images' == $carousel_layout ) {
 		$column_class = 'col-5 col-md-3 col-lg-3 col-xl-2 px-1';
+	} elseif( 'medium_images' == $carousel_layout ) {
+		$column_class = 'col-6 col-md-4 col-lg-3 pt-3';
 	} 
 		
 	if( 'card-top' == $layout ){
@@ -123,6 +130,35 @@ function tommusrhodus_card_carousel_content_shortcode( $atts, $content = null, $
 			';
 		}
 
+	} elseif( 'image-text-overlay' == $layout ){
+
+		if( $link ) {
+
+			$output = '
+				<div class="'. esc_attr( $column_class ) .'">
+					<a href="'. esc_url( $link_output ) .'" class="card bg-gradient-3 text-center justify-content-center align-items-center hover-effect shadow">
+						'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img opacity-90' ) ) .'
+			            <div class="card-img-overlay">
+			              	<span class="mb-0 h5 text-white">'. do_shortcode( $content ) .'</span>
+			            </div>
+		          	</a>
+				</div>
+			';
+
+		} else {
+
+			$output = '
+				<div class="'. esc_attr( $column_class ) .'">
+					<div class="card bg-gradient-3 text-center justify-content-center align-items-center hover-effect shadow">
+						'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img opacity-90' ) ) .'
+			            <div class="card-img-overlay">
+			              	<span class="mb-0 h5 text-white">'. do_shortcode( $content ) .'</span>
+			            </div>
+		          	</div>
+				</div>
+			';
+		}
+
 	}
 
 	return $output;
@@ -149,6 +185,7 @@ function tommusrhodus_card_carousel_shortcode_vc() {
 					"value"      => array(
 						'Large Images'  					=> 'large_images',
 						'Small Images'     					=> 'small_images',
+						'Medium Images'     				=> 'medium_images',
 					)
 				),
 		    	array(
@@ -186,8 +223,9 @@ function tommusrhodus_card_carousel_content_shortcode_vc() {
 		    		"heading"    => __( "Card Display Type", 'tommusrhodus' ),
 		    		"param_name" => "layout",
 		    		"value"      => array(
-		    			'Card with Icon Top'       				=> 'card-top',
-		    			'Card with Icon Top Centered'			=> 'card-top-centered',
+		    			'Card with Icon Top and Text'       				=> 'card-top',
+		    			'Card with Icon Top and Text, Centered'				=> 'card-top-centered',		    			
+		    			'Image with Text Overlay'							=> 'image-text-overlay',
 		    		)
 		    	),
 				array(
@@ -196,6 +234,11 @@ function tommusrhodus_card_carousel_content_shortcode_vc() {
 					"param_name" => "icon",
 					"value" => $icons,
 					'description' => 'Type "none" or leave blank to hide icons.'
+				),
+				array(
+					"type"        => "attach_image",
+					"heading"     => __( "Card Image", 'tommusrhodus' ),
+					"param_name"  => "image"
 				),
 		    	array(
 		    		"type" => "textfield",

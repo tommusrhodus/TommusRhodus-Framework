@@ -44,8 +44,9 @@ if(!( function_exists( 'tommusrhodus_team_shortcode' ) )){
 		if( is_single() && isset( $post->ID ) ){
 			$query_args['post__not_in']	= array( $post->ID );
 		}
+
 		
-		if( !$filter == 'all' ){
+		if( 'all' !== $filter  ) {
 			
 			//Check for WPML
 			if( has_filter( 'wpml_object_id' ) ){
