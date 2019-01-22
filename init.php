@@ -127,6 +127,9 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			// Process WPBakery Blocks
 			add_action( 'after_setup_theme', array( $this, 'process_wpb_blocks' ), 25 );
 			
+			// Process Elementor Blocks
+			add_action( 'elementor/widgets/widgets_registered', array( $this, 'process_elementor_blocks' ), 25 );
+			
 			// Next, let's process the custom post types
 			add_action( 'init', array( $this, 'process_custom_post_types' ), 15 );
 			
@@ -406,6 +409,35 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 					foreach( $this->theme_support['wpb_blocks']['blocks'] as $block ){
 						include( $this->path . 'wpb-blocks/'. trailingslashit( $this->theme_support['wpb_blocks']['theme_name'] ) . $block .'.php' );
 					}
+				}
+				
+			}
+			
+		}
+		
+		/**
+		 * process_elementor_blocks()
+		 * 
+		 * Loops through our registered elementor blocks from theme support, functionality of each block
+		 * is contained within the included file.
+		 * 
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 */
+		public function process_elementor_blocks(){
+
+			// Check that this theme actually has wpb blocks, and then ensure we have a theme name set
+			if( isset( $this->theme_support['elementor_blocks'] ) && isset( $this->theme_support['elementor_blocks']['theme_name'] ) ){
+				
+				// Grab blocks and loop over them
+				if( is_array( $this->theme_support['elementor_blocks']['blocks'] ) ){
+				
+					include( $this->path . 'elementor-blocks/'. trailingslashit( $this->theme_support['elementor_blocks']['theme_name'] ) . 'functions.php' );
+				
+					foreach( $this->theme_support['elementor_blocks']['blocks'] as $block ){
+						include( $this->path . 'elementor-blocks/'. trailingslashit( $this->theme_support['elementor_blocks']['theme_name'] ) . $block .'.php' );
+					}
+					
 				}
 				
 			}
