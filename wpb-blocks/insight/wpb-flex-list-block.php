@@ -28,7 +28,8 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 				'title' => '',
 				'layout' => 'icon_title',
 				'icon' => '',
-				'custom_css_class' => ''
+				'custom_css_class' => '',
+				'image' 		   => ''
 			), $atts 
 		) 
 	);
@@ -73,6 +74,23 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 			<a href="'. esc_attr( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mb-lg-0 '. esc_attr($custom_css_class) .'">
 				<div class="d-flex align-items-center">
 					<span class="mb-0 text-primary py-1 font-weight-bold">'. htmlspecialchars_decode($title) .'</span>
+				</div>
+				<i class="material-icons d-block">keyboard_arrow_right</i>
+			</a>
+		';
+
+	}  elseif( 'icon_title_arrow' == $layout ){
+
+		$output = '
+			<a href="'. esc_attr( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+				<div class="d-flex align-items-center">';
+					if( $image ) {
+						$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'd-block mr-3 icon icon-sm avatar' ) );
+					} else {
+						$output .= '<i class="'. $icon .' d-block mr-3 icon icon-sm text-primary"></i>';
+					}						
+					$output .= '
+				  	<span class="mb-0 h6">'. htmlspecialchars_decode($title) .'</span>
 				</div>
 				<i class="material-icons d-block">keyboard_arrow_right</i>
 			</a>
@@ -135,6 +153,7 @@ function tommusrhodus_flex_list_content_shortcode_vc() {
 						'Icon Left and Title Right'  								=> 'icon_title',
 						'Text Left and Title Right'     							=> 'text_title',
 						'Title Left and Arrow Right'     							=> 'title_arrow',
+						'Icon/Image & Title Left, Arrow Right'						=> 'icon_title_arrow',
 					)
 				),
 				array(
@@ -155,6 +174,12 @@ function tommusrhodus_flex_list_content_shortcode_vc() {
 	            	"heading" => esc_html__("Block Content", 'tommusrhodus'),
 	            	"param_name" => "content"
 	            ),
+	            array(
+		    		"type"       => "attach_image",
+		    		"heading"    => __( "Icon Image", 'tommusrhodus' ),
+		    		"param_name" => "image",
+		    		"description" => __( 'Will override icon font if an image is set - Only used in the "Icon/Image & Title Left, Arrow Right" layout.', 'tommusrhodus' ),
+		    	),
 	            array(
 					"type"        => "vc_link",
 					"heading"     => __( "Link", 'tommusrhodus' ),

@@ -29,7 +29,7 @@ if(!( function_exists( 'tommusrhodus_header_slider_shortcode' ) )){
 		$image = explode(',', $image);
 		$header_height = ( '' == $height ) ? '40' : $height;
 		
-		$output = '<section class="controls-inside p-0 controls-light bg-dark" data-flickity="{ &quot;cellAlign&quot;: &quot;left&quot;, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }">'. do_shortcode(htmlspecialchars_decode($content)) .'</section>';
+		$output = '<section class="controls-inside p-0 controls-light bg-dark '. $custom_css_class .'" data-flickity="{ &quot;cellAlign&quot;: &quot;left&quot;, &quot;contain&quot;: true, &quot;imagesLoaded&quot;: true, &quot;wrapAround&quot;: true }">'. do_shortcode(htmlspecialchars_decode($content)) .'</section>';
 
 		return $output;
 	}

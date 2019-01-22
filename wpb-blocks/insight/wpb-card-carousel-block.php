@@ -159,6 +159,35 @@ function tommusrhodus_card_carousel_content_shortcode( $atts, $content = null, $
 			';
 		}
 
+	} elseif( 'image-text-overlay-alt' == $layout ){
+
+		if( $link ) {
+
+			$output = '
+				<div class="'. esc_attr( $column_class ) .'">
+					<a href="'. esc_url( $link_output ) .'" class="card bg-gradient text-center justify-content-center align-items-center hover-effect shadow">
+						'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img opacity-90' ) ) .'
+			            <div class="card-img-overlay">
+			              	<span class="mb-0 h5 text-white">'. do_shortcode( $content ) .'</span>
+			            </div>
+		          	</a>
+				</div>
+			';
+
+		} else {
+
+			$output = '
+				<div class="'. esc_attr( $column_class ) .'">
+					<div class="card bg-gradient-3 text-center justify-content-center align-items-center hover-effect shadow">
+						'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img opacity-90' ) ) .'
+			            <div class="card-img-overlay">
+			              	<span class="mb-0 h5 text-white">'. do_shortcode( $content ) .'</span>
+			            </div>
+		          	</div>
+				</div>
+			';
+		}
+
 	}
 
 	return $output;
@@ -225,7 +254,8 @@ function tommusrhodus_card_carousel_content_shortcode_vc() {
 		    		"value"      => array(
 		    			'Card with Icon Top and Text'       				=> 'card-top',
 		    			'Card with Icon Top and Text, Centered'				=> 'card-top-centered',		    			
-		    			'Image with Text Overlay'							=> 'image-text-overlay',
+		    			'Image with Text Overlay'							=> 'image-text-overlay',	    			
+		    			'Image with Text Overlay, Alt Gradient'				=> 'image-text-overlay-alt',
 		    		)
 		    	),
 				array(
