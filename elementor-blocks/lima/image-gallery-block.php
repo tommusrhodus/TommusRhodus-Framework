@@ -37,7 +37,7 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 			'gallery_style',
 			[
 				'label'   => __( 'Gallery Style', 'plugin-domain' ),
-				'type'    => \Elementor\Controls_Manager::SELECT,
+				'type'    => Controls_Manager::SELECT,
 				'default' => 'hero-slider',
 				'options' => [
 					'hero-slider'   => esc_html__( 'Hero Slider', 'plugin-domain' ),
@@ -96,4 +96,4 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 }
 
 // Register our new widget
-\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Image_Gallery_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Image_Gallery_Block() );

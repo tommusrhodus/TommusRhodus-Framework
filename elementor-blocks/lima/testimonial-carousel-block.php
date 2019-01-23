@@ -4,7 +4,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_tommusrhodus_Testimonial_Carousel_Block extends \Elementor\Widget_Base {
+class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 
 	//Return Class Name
 	public function get_name() {
@@ -24,20 +24,6 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends \Elementor\Widget_B
 	public function get_categories() {
 		return [ 'lima-elements' ];
 	}
-	
-	/**
-	 * Whether the reload preview is required or not.
-	 *
-	 * Used to determine whether the reload preview is required.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return bool Whether the reload preview is required.
-	 */
-	public function is_reload_preview_required() {
-		return true;
-	}
 
 	protected function _register_controls() {
 
@@ -45,29 +31,39 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends \Elementor\Widget_B
 			'content_section',
 			[
 				'label' => __( 'Content', 'lima' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		$repeater = new \Elementor\Repeater();
+		$repeater = new Repeater();
 
 		$repeater->add_control(
 			'list_content', [
-				'label' => __( 'Content', 'lima' ),
-				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => '',
+				'label'      => __( 'Content', 'lima' ),
+				'type'       => Controls_Manager::TEXT,
+				'default'    => '',
+				'show_label' => false,
+			]
+		);
+		
+		$repeater->add_control(
+			'list_name', [
+				'label'      => __( 'Author', 'lima' ),
+				'type'       => Controls_Manager::TEXT,
+				'default'    => '',
 				'show_label' => false,
 			]
 		);
 
 		$this->add_control(
 			'list', [
-				'label' => __( 'Testimonials', 'lima' ),
-				'type' => \Elementor\Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
+				'label'   => __( 'Testimonials', 'lima' ),
+				'type'    => Controls_Manager::REPEATER,
+				'fields'  => $repeater->get_controls(),
 				'default' => [
 					[
 						'list_content' => __( 'Item content. Click the edit button to change this text.', 'lima' ),
+						'list_name'    => __( 'Author', 'lima' ),
 					]
 				],
 				'title_field' => __( 'Testimonial Content', 'lima' ),
@@ -79,31 +75,43 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends \Elementor\Widget_B
 	}
 
 	protected function render() {
+	
 		$settings = $this->get_settings_for_display();
 
 		if ( $settings['list'] ) {
-			echo '<div class="column col-6 offset-3 text-center"><div class="slider owl-carousel" data-dots="true" data-margin="50">';
+			echo '<div class="testimonials slider owl-carousel controls_outside" data-items="1" data-dots="true">';
 			foreach (  $settings['list'] as $item ) {
-				echo '<div class="item">' . $item['list_content'] . '</div>';
+				echo '
+					<div class="item">
+						<div class="testimonial_title">'. $item['list_content'] .'</div>
+						<div class="testimonial_author">'. $item['list_name'] .'</div>
+					</div>
+				';
 			}
-			echo '</div></div>';
+			echo '</div>';
 		}
+		
 	}
 
 	protected function _content_template() {
 		?>
+		
 		<# if ( settings.list.length ) { #>
-		<div class="column col-6 offset-3 text-center">
-			<div class="slider owl-carousel" data-dots="true" data-margin="50">
+		
+			<div class="testimonials slider owl-carousel controls_outside" data-items="1" data-dots="true">
 				<# _.each( settings.list, function( item ) { #>
-					<div class="item">{{{ item.list_content }}}</div>
+					<div class="item">
+						<div class="testimonial_title">{{{ item.list_content }}}</div>
+						<div class="testimonial_author">{{{ item.list_name }}}</div>
+					</div>
 				<# }); #>
 			</div>
-		</div>
+		
 		<# } #>
+		
 		<?php
 	}
 }
 
 // Register our new widget
-\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Testimonial_Carousel_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Testimonial_Carousel_Block() );

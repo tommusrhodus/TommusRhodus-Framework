@@ -173,4 +173,4 @@ class Widget_tommusrhodus_Portfolio_Block extends Widget_Base {
 }
 
 // Register our new widget
-\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Portfolio_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Portfolio_Block() );

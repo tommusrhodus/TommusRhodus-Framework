@@ -142,4 +142,4 @@ class Widget_tommusrhodus_Page_Heading_Block extends Widget_Base {
 }
 
 // Register our new widget
-\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Page_Heading_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Page_Heading_Block() );
