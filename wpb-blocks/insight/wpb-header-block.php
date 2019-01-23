@@ -17,7 +17,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				array(
 					'image'            		=> '',
 					'layout'           		=> 'standard',
-					'opacity'		   		=> '',
+					'opacity'		   		=> '50',
 					'video_cover_image' 	=> '',					
 					'video_url'        		=> '',
 					'custom_css_class' 		=> ''
