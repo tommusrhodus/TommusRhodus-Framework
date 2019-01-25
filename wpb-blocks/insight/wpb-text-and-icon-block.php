@@ -71,7 +71,45 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 
 			}
 		
-		} if( 'card-left-small-padding' == $layout ){
+		} elseif( 'icon-left' == $layout ){
+
+			if( $link ) {
+
+				$output = '
+					<a href="'. esc_url( $link_output ) .'" class="flex-fill hover-effect '. $custom_css_class .'">
+						<div>
+							<div class="d-flex">';
+								if( $image ) {
+									$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
+								} else {
+									$output .= '<i class="'. $icon .' insight-large mr-sm-3 flex-shrink-0 text-primary"></i>';
+								}						
+								$output .= '
+								<div class="text-dark">'. do_shortcode( $content ) .'</div>
+							</div>
+						</div>
+					</a>
+				';
+
+			} else {
+
+				$output = '
+					<div class="'. $custom_css_class .'">
+						<div class="d-flex">';
+							if( $image ) {
+								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
+							} else {
+								$output .= '<i class="'. $icon .' insight-large mr-sm-3 flex-shrink-0 text-primary"></i>';
+							}						
+							$output .= '
+							<div class="text-dark">'. do_shortcode( $content ) .'</div>
+						</div>
+					</div>
+				';
+
+			}
+		
+		} elseif( 'card-left-small-padding' == $layout ){
 
 			if( $link ) {
 
@@ -395,7 +433,8 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode_vc' ) )){
 			    			'Card with Icon Left, Small Padding'	=> 'card-left-small-padding',
 			    			'Card with Icon Top'       				=> 'card-top',
 			    			'Card with Icon Top, Centered'			=> 'card-top-centered',
-			    			'Card with Icon Left + Arrow Right'		=> 'card-left-arrow-right',
+			    			'Card with Icon Left + Arrow Right'		=> 'card-left-arrow-right',			    			
+			    			'Icon Left, No Background'      		=> 'icon-left',
 			    			'Icon Top Centered'						=> 'top-centered',
 			    			'Icon Top Centered, No Padding'			=> 'top-centered-no-padding',
 			    			'Inline Icon with Heading' 				=> 'inline',
