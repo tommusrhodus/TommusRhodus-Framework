@@ -132,7 +132,25 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 				</a>
 			';
 		
-		}		
+		} elseif( 'image_background_and_text_overlay_static' == $layout ){
+		
+			$output = '				
+				<a href="'. esc_attr( $link_output ) .'" class="card bg-dark ext-center justify-content-center align-items-center">
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img opacity-80' ) ) .'<div class="card-img-overlay"><span class="mb-0 h5 text-white">'. do_shortcode( $content ) .'</span></div>
+				</a>
+			';
+		
+		} elseif( 'image_background_and_text_overlay_static_upper_left' == $layout ){
+		
+			$output = '
+				<a href="'. esc_attr( $link_output ) .'" class="card bg-dark">
+					'. wp_get_attachment_image( $image, 'large', 0, array( 'class' => 'card-img opacity-90' ) ) .'<div class="card-img-overlay"><span class="mb-0 h5 text-white">'. do_shortcode( $content ) .'</span></div>
+				</a>
+			';
+		
+		} 		
+
+
 		
 		return $output;
 		
@@ -162,12 +180,14 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 						"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
 						"param_name" => "layout",
 						"value"      => array(
-							'Image and Link (No Content)'  					=> 'image',
-							'Text and Link (No Image)'     					=> 'text',
-							'Image, Text and Link'     	   					=> 'image_and_text',	
-							'Image, Text and Link Whole Cart'				=> 'image_and_text_card_link',							
-							'Image Left, Text and Link Whole Cart'			=> 'image_left_and_text_card_link',						
-							'Image Background, Text Overlay and Link'		=> 'image_background_and_text_overlay'
+							'Image and Link (No Content)'  						=> 'image',
+							'Text and Link (No Image)'     						=> 'text',
+							'Image, Text and Link'     	   						=> 'image_and_text',	
+							'Image, Text and Link Whole Cart'					=> 'image_and_text_card_link',							
+							'Image Left, Text and Link Whole Cart'				=> 'image_left_and_text_card_link',						
+							'Image Background, Text Overlay Hover and Link'		=> 'image_background_and_text_overlay',						
+							'Image Background, Text Overlay Static'				=> 'image_background_and_text_overlay_static',						
+							'Image Background, Text Overlay Static Upper Left'	=> 'image_background_and_text_overlay_static_upper_left'
 						)
 					),
 					array(
