@@ -332,6 +332,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 			    		"value" => array(
 			    			'50%' => '50',
 			    			'90%' => '90',
+			    			'100%' => '100',
 			    			'80%' => '80',
 			    			'70%' => '70',
 			    			'60%' => '60',			    			
