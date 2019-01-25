@@ -409,9 +409,13 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 				
 				// Grab blocks and loop over them
 				if( is_array( $this->theme_support['wpb_blocks']['blocks'] ) ){
+				
+					include( $this->path . 'wpb-blocks/'. trailingslashit( $this->theme_support['wpb_blocks']['theme_name'] ) . 'functions.php' );
+					
 					foreach( $this->theme_support['wpb_blocks']['blocks'] as $block ){
 						include( $this->path . 'wpb-blocks/'. trailingslashit( $this->theme_support['wpb_blocks']['theme_name'] ) . $block .'.php' );
 					}
+					
 				}
 				
 			}
