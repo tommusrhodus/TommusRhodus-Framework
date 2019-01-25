@@ -185,7 +185,7 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 							'Image, Text and Link'     	   						=> 'image_and_text',	
 							'Image, Text and Link Whole Cart'					=> 'image_and_text_card_link',							
 							'Image Left, Text and Link Whole Cart'				=> 'image_left_and_text_card_link',						
-							'Image Background, Text Overlay Hover and Link'		=> 'image_background_and_text_overlay',						
+							'Image Background, Text Overlay and Link'		=> 'image_background_and_text_overlay',						
 							'Image Background, Text Overlay Static'				=> 'image_background_and_text_overlay_static',						
 							'Image Background, Text Overlay Static Upper Left'	=> 'image_background_and_text_overlay_static_upper_left'
 						)
