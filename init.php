@@ -133,6 +133,9 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			// Next, let's process the custom post types
 			add_action( 'init', array( $this, 'process_custom_post_types' ), 15 );
 			
+			// Second, process custom widgets
+			add_action( 'widgets_init', array( $this, 'process_widgets' ), 10 );
+			
 			// Third, process the custom taxonomies
 			add_action( 'init', array( $this, 'process_custom_post_taxonomies' ), 20 );
 
@@ -438,6 +441,31 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 						include( $this->path . 'elementor-blocks/'. trailingslashit( $this->theme_support['elementor_blocks']['theme_name'] ) . $block .'.php' );
 					}
 					
+				}
+				
+			}
+			
+		}
+		
+		/**
+		 * process_widgets()
+		 * 
+		 * Loops through our registered wpb blocks from theme support, functionality of each block
+		 * is contained within the included file.
+		 * 
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 */
+		public function process_widgets(){
+
+			// Check that this theme actually has wpb blocks, and then ensure we have a theme name set
+			if( isset( $this->theme_support['widgets'] ) && isset( $this->theme_support['widgets']['theme_name'] ) ){
+				
+				// Grab blocks and loop over them
+				if( is_array( $this->theme_support['widgets']['widgets'] ) ){
+					foreach( $this->theme_support['widgets']['widgets'] as $block ){
+						include( $this->path . 'widgets/'. trailingslashit( $this->theme_support['widgets']['theme_name'] ) . $block .'.php' );
+					}
 				}
 				
 			}
