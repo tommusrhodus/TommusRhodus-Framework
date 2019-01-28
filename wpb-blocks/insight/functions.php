@@ -70,7 +70,7 @@ if( !( function_exists('tommusrhodus_vc_alter_class_field_desc') ) && function_e
  * vc_map runs before custom post types and taxonomies are created, so this function is used
  * to add custom taxonomy selectors to VC blocks, a little annoying, but works perfectly.
  */
-if(!( function_exists('tommusrhodus_vc_add_att') )){
+if( !( function_exists('tommusrhodus_vc_add_att') ) && function_exists('vc_set_as_theme') ){
 	function tommusrhodus_vc_add_attr(){
 		
 		/**
