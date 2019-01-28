@@ -71,6 +71,44 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 
 			}
 		
+		} if( 'card-left-no-bg' == $layout ){
+
+			if( $link ) {
+
+				$output = '
+					<a href="'. esc_url( $link_output ) .'" class="d-flex mb-3'. $custom_css_class .'">
+						<div>
+							<div class="d-sm-flex">';
+								if( $image ) {
+									$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
+								} else {
+									$output .= '<i class="'. $icon .' insight-large mr-sm-3 flex-shrink-0 text-primary"></i>';
+								}						
+								$output .= '
+								<div class="text-dark">'. do_shortcode( $content ) .'</div>
+							</div>
+						</div>
+					</a>
+				';
+
+			} else {
+
+				$output = '
+					<div class="d-flex mb-3 '. $custom_css_class .'">
+						<div class="d-sm-flex">';
+							if( $image ) {
+								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
+							} else {
+								$output .= '<i class="'. $icon .' insight-large mr-sm-3 flex-shrink-0 text-primary"></i>';
+							}						
+							$output .= '
+							<div class="text-dark">'. do_shortcode( $content ) .'</div>
+						</div>
+					</div>
+				';
+
+			}
+		
 		} elseif( 'icon-left' == $layout ){
 
 			if( $link ) {
@@ -431,6 +469,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode_vc' ) )){
 			    		"value"      => array(
 			    			'Card with Icon Left'      				=> 'card-left',
 			    			'Card with Icon Left, Small Padding'	=> 'card-left-small-padding',
+			    			'Card with Icon Left, No Background'	=> 'card-left-no-bg',
 			    			'Card with Icon Top'       				=> 'card-top',
 			    			'Card with Icon Top, Centered'			=> 'card-top-centered',
 			    			'Card with Icon Left + Arrow Right'		=> 'card-left-arrow-right',			    			

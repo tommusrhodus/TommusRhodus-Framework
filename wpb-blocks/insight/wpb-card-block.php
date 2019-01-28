@@ -65,6 +65,26 @@ if(!( function_exists( 'tommusrhodus_card_shortcode' ) )){
 				</div>
 			';
 		
+		} elseif( 'text-dark-bg' == $layout ){
+		
+			$output = '
+				<div class="card bg-dark '. $custom_css_class .'">';
+
+				if( $content ) {
+					$output .= '<div class="card-body pb-5 pt-4">'. do_shortcode( $content ) .'</div>';					
+				}					
+
+				$output .= '
+					<div class="card-footer bg-dark '. $custom_css_class .'">
+						<div class="d-flex align-items-center justify-content-between">
+							<a href="'. esc_attr( $link_output ) .'">'. $title .'</a>
+							<i class="material-icons">keyboard_arrow_right</i>
+						</div>
+					</div>
+					
+				</div>
+			';
+		
 		} elseif( 'image_and_text' == $layout ){
 		
 			$output = '
@@ -182,10 +202,11 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 						"value"      => array(
 							'Image and Link (No Content)'  						=> 'image',
 							'Text and Link (No Image)'     						=> 'text',
+							'Text and Link, Dark Background (No Image)'			=> 'text-dark-bg',
 							'Image, Text and Link'     	   						=> 'image_and_text',	
 							'Image, Text and Link Whole Cart'					=> 'image_and_text_card_link',							
 							'Image Left, Text and Link Whole Cart'				=> 'image_left_and_text_card_link',						
-							'Image Background, Text Overlay and Link'		=> 'image_background_and_text_overlay',						
+							'Image Background, Text Overlay and Link'			=> 'image_background_and_text_overlay',						
 							'Image Background, Text Overlay Static'				=> 'image_background_and_text_overlay_static',						
 							'Image Background, Text Overlay Static Upper Left'	=> 'image_background_and_text_overlay_static_upper_left'
 						)
