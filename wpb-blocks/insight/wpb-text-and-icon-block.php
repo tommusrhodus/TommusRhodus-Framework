@@ -38,7 +38,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			if( $link ) {
 
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="card flex-fill hover-effect '. $custom_css_class .'">
+					<a href="'. esc_url( $link_output ) .'" class="card flex-fill hover-effect '. $custom_css_class .' '. $layout .'">
 						<div>
 							<div class="card-body d-sm-flex py-4">';
 								if( $image ) {
@@ -56,7 +56,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="card '. $custom_css_class .'">
+					<div class="card '. $custom_css_class .' '. $layout .'">
 						<div class="card-body d-sm-flex py-4">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
@@ -76,7 +76,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			if( $link ) {
 
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="d-flex mb-3'. $custom_css_class .'">
+					<a href="'. esc_url( $link_output ) .'" class="d-flex mb-3 '. $custom_css_class .' '. $layout .'">
 						<div>
 							<div class="d-sm-flex">';
 								if( $image ) {
@@ -94,7 +94,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="d-flex mb-3 '. $custom_css_class .'">
+					<div class="d-flex mb-3 '. $custom_css_class .' '. $layout .'">
 						<div class="d-sm-flex">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
@@ -114,7 +114,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			if( $link ) {
 
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="flex-fill hover-effect '. $custom_css_class .'">
+					<a href="'. esc_url( $link_output ) .'" class="flex-fill hover-effect '. $custom_css_class .' '. $layout .'">
 						<div>
 							<div class="d-flex">';
 								if( $image ) {
@@ -132,7 +132,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="'. $custom_css_class .'">
+					<div class="'. $custom_css_class .' '. $layout .'">
 						<div class="d-flex">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
@@ -152,7 +152,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			if( $link ) {
 
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="card card-body shadow flex-row align-items-center '. $custom_css_class .'">
+					<a href="'. esc_url( $link_output ) .'" class="card card-body shadow flex-row align-items-center '. $custom_css_class .' '. $layout .'">
 						<div class="icon-rounded bg-success mr-3 flex-shrink-0">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
@@ -168,7 +168,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="card card-body shadow flex-row align-items-center '. $custom_css_class .'">
+					<div class="card card-body shadow flex-row align-items-center '. $custom_css_class .' '. $layout .'">
 						<div class="icon-rounded bg-success mr-3 flex-shrink-0">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon' ) );
@@ -187,7 +187,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 
 			if( $link ) {
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' card flex-fill hover-effect">
+					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' card flex-fill hover-effect '. $layout .'">
 						<div>
 							<div class="card-body py-4">';
 								if( $image ) {
@@ -204,7 +204,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="'. $custom_css_class .' card">
+					<div class="'. $custom_css_class .' card '. $layout .'">
 						<div class="card-body py-4">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-large flex-shrink-0 text-primary mb-2' ) );
@@ -224,7 +224,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			if( $link ) {
 
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' card flex-fill hover-effect">
+					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' card flex-fill hover-effect '. $layout .'">
 						<div class="text-center">
 							<div class="card-body py-4">';
 								if( $image ) {
@@ -242,7 +242,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="'. $custom_css_class .' card text-center">
+					<div class="'. $custom_css_class .' card text-center '. $layout .'">
 						<div class="card-body py-4">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-large flex-shrink-0 text-primary mb-2' ) );
@@ -262,7 +262,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			if( $link ) {
 
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' flex-fill hover-effect">
+					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' flex-fill hover-effect '. $layout .'">
 						<div class="text-center">
 							<div class="card-body py-4">';
 								if( $image ) {
@@ -280,7 +280,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="'. $custom_css_class .' text-center">
+					<div class="'. $custom_css_class .' text-center '. $layout .'">
 						<div class="card-body py-4">';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-large flex-shrink-0 text-primary mb-2' ) );
@@ -300,7 +300,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			if( $link ) {
 
 				$output = '
-					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' flex-fill hover-effect">
+					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' flex-fill hover-effect '. $layout .'">
 						<div class="text-center">
 							<div>';
 								if( $image ) {
@@ -318,7 +318,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			} else {
 
 				$output = '
-					<div class="'. $custom_css_class .' text-center">
+					<div class="'. $custom_css_class .' text-center '. $layout .'">
 						<div>';
 							if( $image ) {
 								$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-large flex-shrink-0 text-primary mb-2' ) );
@@ -340,7 +340,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			}
 			
 			$output = '
-				<ul class="list-unstyled">
+				<ul class="list-unstyled '. $layout .'">
 					<li class="d-flex align-items-center my-2">';
 						if( $image ) {
 							$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-medium mr-3 text-primary' ) ) .'<div class="text-dark">'. do_shortcode( $content ) .'</div>';
@@ -363,7 +363,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 			}
 			
 			$output = '
-				<ul class="list-unstyled">
+				<ul class="list-unstyled '. $layout .'">
 					<li class="d-flex align-items-center my-2">';
 						if( $image ) {
 							$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'insight-large mr-sm-3 flex-shrink-0 text-primary' ) ) .'<div class="text-dark">'. do_shortcode( $content ) .'</div>';
@@ -382,7 +382,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 		} elseif( 'card-left-arrow-right' == $layout ){
 
 			$output = '
-				<a href="'. esc_url( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-fill '. $custom_css_class .'">
+				<a href="'. esc_url( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-fill '. $custom_css_class .' '. $layout .'">
 					<div class="d-flex align-items-center">';
 						if( $image ) {
 							$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'd-block mr-3 icon' ) );
@@ -399,7 +399,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 		} elseif( 'card-large-icon' == $layout ){
 
 			$output = '
-				<a href="'. esc_url( $link_output ) .'" class="card text-center flex-fill hover-effect large-icon-card '. $custom_css_class .'">
+				<a href="'. esc_url( $link_output ) .'" class="card text-center flex-fill hover-effect large-icon-card '. $custom_css_class .' '. $layout .'">
 				  <div class="card-body d-flex flex-column align-items-center justify-content-center py-2">';
 						if( $image ) {
 							$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon-lg' ) );
@@ -415,7 +415,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 		} elseif( 'card-large-icon-dark' == $layout ){
 
 			$output = '
-				<a href="'. esc_url( $link_output ) .'" class="card text-center flex-fill bg-dark hover-effect large-icon-card '. $custom_css_class .'">
+				<a href="'. esc_url( $link_output ) .'" class="card text-center flex-fill bg-dark hover-effect large-icon-card '. $custom_css_class .' '. $layout .'">
 				  <div class="card-body d-flex flex-column align-items-center justify-content-center py-2">';
 						if( $image ) {
 							$output .= wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'icon mt-2 mb-3 icon-lg text-white' ) );
