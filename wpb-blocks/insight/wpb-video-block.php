@@ -31,7 +31,7 @@ if(!( function_exists( 'tommusrhodus_video_shortcode' ) )){
 			if( !$result ){
 			
 				// Cache is empty, resolve oEmbed
-				$result = wp_oembed_get( $embed );
+				$result = wp_oembed_get( $embed, array( 'video-block' => 'true' ) );
 				
 				// Cache 4 hours for standard and 5 min for failed
 				$ttl = $result ? 14400 : 300;
