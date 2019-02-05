@@ -108,7 +108,7 @@ function tommusrhodus_card_carousel_content_shortcode( $atts, $content = null, $
 					<a href="'. esc_url( $link_output ) .'" class="'. $custom_css_class .' card flex-fill hover-effect">
 						<div class="text-center">
 							<div class="card-body py-4 text-center">
-								<i class="'. $icon .' insight-large flex-shrink-0 text-primary mb-2"></i>
+								<i class="'. $icon .' insight-v-large flex-shrink-0 text-primary mb-2"></i>
 								<div class="text-dark">'. do_shortcode( $content ) .'</div>
 							</div>
 						</div>
@@ -122,7 +122,7 @@ function tommusrhodus_card_carousel_content_shortcode( $atts, $content = null, $
 				<div class="'. esc_attr( $column_class ) .'">
 					<div class="'. $custom_css_class .' card text-center">
 						<div class="card-body py-4 text-center">
-							<i class="'. $icon .' insight-large flex-shrink-0 text-primary mb-2"></i>
+							<i class="'. $icon .' insight-v-large flex-shrink-0 text-primary mb-2"></i>
 							<div class="text-dark">'. do_shortcode( $content ) .'</div>
 						</div>
 					</div>

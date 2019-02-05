@@ -47,7 +47,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 									$output .= '<i class="'. $icon .' insight-large mr-sm-3 flex-shrink-0 text-primary"></i>';
 								}						
 								$output .= '
-								<div class="text-dark">'. do_shortcode( $content ) .'</div>
+								<div>'. do_shortcode( $content ) .'</div>
 							</div>
 						</div>
 					</a>
@@ -64,7 +64,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 								$output .= '<i class="'. $icon .' insight-large mr-sm-3 flex-shrink-0 text-primary"></i>';
 							}						
 							$output .= '
-							<div class="text-dark">'. do_shortcode( $content ) .'</div>
+							<div>'. do_shortcode( $content ) .'</div>
 						</div>
 					</div>
 				';
@@ -309,7 +309,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 									$output .= '<i class="'. $icon .' insight-large flex-shrink-0 text-primary mb-2"></i>';
 								}						
 								$output .= '						
-								<div class="text-dark">'. do_shortcode( $content ) .'</div>
+								<div>'. do_shortcode( $content ) .'</div>
 							</div>
 						</div>
 					</a>
@@ -326,7 +326,7 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode' ) )){
 								$output .= '<i class="'. $icon .' insight-large flex-shrink-0 text-primary mb-2"></i>';
 							}						
 							$output .= '						
-							<div class="text-dark">'. do_shortcode( $content ) .'</div>
+							<div>'. do_shortcode( $content ) .'</div>
 						</div>
 					</div>
 				';
