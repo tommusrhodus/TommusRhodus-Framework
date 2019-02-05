@@ -34,8 +34,19 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 		);
 		
 		$this->add_control(
-			'image',
-			[
+			'layout', [
+				'label'   => __( 'Card Layout', 'plugin-domain' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'text-outside-card',
+				'options' => [
+					'text-outside-card' => esc_html__( 'Image Top, Text Outside Card Below', 'wingman' ),
+					'text-inside-card'  => esc_html__( 'Image Top, Text Inside Card Below', 'wingman' )
+				],
+			]
+		);
+		
+		$this->add_control(
+			'image', [
 				'label'      => __( 'Card Image', 'plugin-domain' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
@@ -77,33 +88,61 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
 		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
 		
-		echo '
-			<ul class="row feature-list feature-list-sm">
-				<li class="col-12">
-				
-					<a '. $link .' class="card">
-						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'img-fluid rounded' ) ) .'
-					</a>
+		if( 'text-inside-card' == $settings['layout'] ){
+		
+			echo '
+				<div class="card card-lg">
+				    <a '. $link .'>
+				        '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'card-img-top' ) ) .'
+				    </a>
+				    <div class="card-body">'. $settings['content'] .'</div>
+				</div>
+			';
+		
+		} else {
+		
+			echo '
+				<ul class="row feature-list feature-list-sm">
+					<li class="col-12">
 					
-					'. $settings['content'] .'
-					
-				</li>
-			</ul>
-		';
+						<a '. $link .' class="card">
+							'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'img-fluid rounded' ) ) .'
+						</a>
+						
+						'. $settings['content'] .'
+						
+					</li>
+				</ul>
+			';
+		
+		}
 		
 	}
 
 	protected function _content_template() {
 		?>
 		
-		<ul class="row feature-list feature-list-sm">
-			<li class="col-12">
-				<a href="{{ settings.url.url }}" class="card">
-					<img src="{{ settings.image.url }}" alt="" class="img-fluid rounded">
-				</a>
-				{{{ settings.content }}}
-			</li>
-		</ul>
+		<# if ( 'text-inside-card' == settings.layout ) { #>
+		
+			<div class="card card-lg">
+			    <a href="{{ settings.url.url }}">
+			        <img src="{{ settings.image.url }}" alt="" class="card-img-top">
+			    </a>
+			    <div class="card-body">{{{ settings.content }}}</div>
+			</div>
+		
+		<# } else { #>
+		
+			<ul class="row feature-list feature-list-sm">
+				<li class="col-12">
+					<a href="{{ settings.url.url }}" class="card">
+						<img src="{{ settings.image.url }}" alt="" class="img-fluid rounded">
+					</a>
+					{{{ settings.content }}}
+				</li>
+			</ul>
+		
+		<# } #>
 		
 		<?php
 	}

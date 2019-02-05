@@ -64,8 +64,8 @@ class Widget_tommusrhodus_Page_Heading_Block extends Widget_Base {
 		
 		$this->add_control(
 			'icon', [
-				'label' => __( 'Social Icons', 'plugin-domain' ),
-				'type' => \Elementor\Controls_Manager::ICON,
+				'label'   => __( 'Social Icons', 'plugin-domain' ),
+				'type'    => Controls_Manager::ICON,
 				'default' => 'fa fa-rocket',
 			]
 		);
