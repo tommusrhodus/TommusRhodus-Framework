@@ -277,8 +277,8 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				<section class="height-100 bg-gradient-2">
 					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
 					<div class="container">
-						<div class="row text-center">
-							<div class="col">
+						<div class="row justify-content-center text-center">
+							<div class="col-xl-9 col-lg-11">
 								<a class="video-play-icon video-play-icon-lg" data-fancybox="" href="'. esc_url( $video_url ) .'"></a>
 								'. do_shortcode( $content ) .'
 							</div>
