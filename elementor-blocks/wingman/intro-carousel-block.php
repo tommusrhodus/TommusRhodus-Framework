@@ -146,14 +146,14 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 									<?php
 										$target   = $item['item_url']['is_external'] ? ' target="_blank"' : '';
 										$nofollow = $item['item_url']['nofollow']    ? ' rel="nofollow"'  : '';
-										$link     = 'href="'. $item['item_url']['url'] . '"' . $target . $nofollow;
+										$link     = 'href="'. esc_url( $item['item_url']['url'] ) .'"' . $target . $nofollow;
 									?>
 									
 				                    <div class="carousel-cell col-11">
 				                        <div class="card card-sm bg-gradient border-0">
 											
 				                            <a <?php echo $link; ?>>
-												<?php echo  wp_get_attachment_image( $item['item_image']['id'], 'large', 0, array( 'class' => 'card-image-top' ) ); ?>
+												<?php echo wp_get_attachment_image( $item['item_image']['id'], 'large', 0, array( 'class' => 'card-image-top' ) ); ?>
 				                            </a>
 											
 				                            <div class="card-footer d-flex justify-content-between bg-white">
