@@ -288,6 +288,21 @@ if(!( function_exists( 'tommusrhodus_header_shortcode' ) )){
 				</section>
 			';
 		
+		} elseif( 'gradient-fullheight-no-breadcrumbs' == $layout ){
+		
+			$output = '
+				<section class="height-100 bg-gradient">
+					'. wp_get_attachment_image( $image, 'full', 0, array( 'class' => 'bg-image '. $opacity ) ) .'
+					<div class="container">
+						<div class="row justify-content-center text-center">
+							<div class="col-lg-9 col-md-11">
+								'. do_shortcode( $content ) .'
+							</div>
+						</div>
+					</div>
+				</section>
+			';
+		
 		}
 		
 		return $output;
@@ -348,20 +363,21 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 			    		"heading"    => __( "Image & Text Display Type", 'tommusrhodus' ),
 			    		"param_name" => "layout",
 			    		"value"      => array(
-			    			'Standard Header Text Left'                            				=> 'standard',
-			    			'Standard Header Text Right'                           				=> 'standard-right',			    			
-			    			'Standard Header Text Left with Gradient Background'   				=> 'standard-gradient',
-			    			'Header with Colour Overlay & Breadcrumbs'             				=> 'breadcrumbs',
-			    			'Header with Colour Overlay & Breadcrumbs (Dark Text)' 				=> 'breadcrumbs-dark',
-			    			'Centered Header with Gradient Background'             				=> 'gradient',
-			    			'Centered Header with Gradient Background (No Breadcrumbs)'			=> 'gradient-no-breadcrumbs',
-			    			'Centered Header with Alt Gradient Background (No Breadcrumbs)'		=> 'gradient-alt-no-breadcrumbs',
-			    			'Half Text & Half Image'             				   				=> 'half-text-half-image',
-			    			'60% Text & 40% Image'             				   	   				=> '60-text-40-image',
-			    			'Standard Header Boxed Text Left'                      				=> 'standard-boxed-text',			    			
-			    			'Header with Inline Video'                             				=> 'inline-video',			    			
-			    			'Centered Header with Gradient Background & Modal Video'			=> 'gradient-modal-video',			    			
-			    			'Standard Header Fullheight Text Left'                      		=> 'standard-fullheight-text',
+			    			'Standard Header Text Left'                            						=> 'standard',
+			    			'Standard Header Text Right'                           						=> 'standard-right',			    			
+			    			'Standard Header Text Left with Gradient Background'   						=> 'standard-gradient',
+			    			'Header with Colour Overlay & Breadcrumbs'             						=> 'breadcrumbs',
+			    			'Header with Colour Overlay & Breadcrumbs (Dark Text)' 						=> 'breadcrumbs-dark',
+			    			'Centered Header with Gradient Background'             						=> 'gradient',
+			    			'Centered Header with Gradient Background (No Breadcrumbs)'					=> 'gradient-no-breadcrumbs',
+			    			'Centered Header with Alt Gradient Background (No Breadcrumbs)'				=> 'gradient-alt-no-breadcrumbs',
+			    			'Half Text & Half Image'             				   						=> 'half-text-half-image',
+			    			'60% Text & 40% Image'             				   	   						=> '60-text-40-image',
+			    			'Standard Header Boxed Text Left'                      						=> 'standard-boxed-text',			    			
+			    			'Header with Inline Video'                             						=> 'inline-video',			    			
+			    			'Centered Header with Gradient Background & Modal Video'					=> 'gradient-modal-video',			    			
+			    			'Standard Header Fullheight Text Left'                      				=> 'standard-fullheight-text',    			
+			    			'Centered Header Fullheight with Gradient Background (No Breadcrumbs)'		=> 'gradient-fullheight-no-breadcrumbs',
 			    		)
 			    	),		    	
 			    	array(
