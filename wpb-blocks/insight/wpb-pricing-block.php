@@ -23,7 +23,7 @@ if(!( function_exists( 'tommusrhodus_pricing_shortcode' ) )){
 		);
 		
 		$output = '
-			<div class="card py-3 px-xl-3 '. $custom_css_class .'">
+			<div class="card py-3 px-xl-3 '. $custom_css_class .' pricing-card">
 				<div class="card-body">
 					<span class="h6 d-block">'. $title .'</span>
 					<span class="d-block display-4 mb-2">'. $price .'</span>
