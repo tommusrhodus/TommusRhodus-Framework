@@ -29,14 +29,14 @@ class Widget_tommusrhodus_Image_Link_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Page Heading', 'lima' ),
+				'label' => esc_html__( 'Image Link', 'lima' ),
 			]
 		);
 		
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => __( 'Choose Image', 'tr-framework' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),

@@ -43,13 +43,13 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Page Heading', 'wingman' ),
+				'label' => esc_html__( 'Page Heading', 'tr-framework' ),
 			]
 		);
 		
 		$this->add_control(
 			'image', [
-				'label'      => __( 'Video Cover Image', 'plugin-domain' ),
+				'label'      => __( 'Video Cover Image', 'tr-framework' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -59,7 +59,7 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 		
 		$this->add_control(
 			'video', [
-				'label'       => __( 'Video URL', 'wingman' ),
+				'label'       => __( 'Video URL', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
 				'label_block' => true

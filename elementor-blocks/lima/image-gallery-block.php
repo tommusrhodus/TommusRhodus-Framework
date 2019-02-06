@@ -36,13 +36,13 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 		$this->add_control(
 			'gallery_style',
 			[
-				'label'   => __( 'Gallery Style', 'plugin-domain' ),
+				'label'   => __( 'Gallery Style', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'hero-slider',
 				'options' => [
-					'hero-slider'   => esc_html__( 'Hero Slider', 'plugin-domain' ),
-					'hero-carousel' => esc_html__( 'Hero Carousel', 'plugin-domain' ),
-					'masonry'       => esc_html__( 'Masonry Gallery', 'plugin-domain' )
+					'hero-slider'   => esc_html__( 'Hero Slider', 'tr-framework' ),
+					'hero-carousel' => esc_html__( 'Hero Carousel', 'tr-framework' ),
+					'masonry'       => esc_html__( 'Masonry Gallery', 'tr-framework' )
 				],
 			]
 		);

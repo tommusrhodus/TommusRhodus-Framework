@@ -29,19 +29,19 @@ class Widget_tommusrhodus_Services_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Page Heading', 'lima' ),
+				'label' => esc_html__( 'Services', 'lima' ),
 			]
 		);
 
 		$this->add_control(
 			'layout',
 			[
-				'label'   => __( 'Layout', 'plugin-domain' ),
+				'label'   => __( 'Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'left',
 				'options' => [
-					'left'   => esc_html__( 'Image Left / Content Right', 'plugin-domain' ),
-					'right'  => esc_html__( 'Image Right / Content Left', 'plugin-domain' )
+					'left'   => esc_html__( 'Image Left / Content Right', 'tr-framework' ),
+					'right'  => esc_html__( 'Image Right / Content Left', 'tr-framework' )
 				],
 			]
 		);
@@ -49,7 +49,7 @@ class Widget_tommusrhodus_Services_Block extends Widget_Base {
 		$this->add_control(
 			'image',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => __( 'Choose Image', 'tr-framework' ),
 				'type' => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -60,7 +60,7 @@ class Widget_tommusrhodus_Services_Block extends Widget_Base {
 		$this->add_control(
 			'content',
 			[
-				'label'       => __( 'Content', 'plugin-domain' ),
+				'label'       => __( 'Content', 'tr-framework' ),
 				'type'        => Controls_Manager::WYSIWYG,
 				'default'     => ''
 			]

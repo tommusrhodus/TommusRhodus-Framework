@@ -35,7 +35,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		
 		$this->add_control(
 			'icon', [
-				'label'   => __( 'Icon', 'plugin-domain' ),
+				'label'   => __( 'Icon', 'tr-framework' ),
 				'type'    => Controls_Manager::ICON,
 				'default' => 'fa fa-rocket',
 			]
@@ -44,7 +44,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		$this->add_control(
 			'content',
 			[
-				'label'       => __( 'Content', 'plugin-domain' ),
+				'label'       => __( 'Content', 'tr-framework' ),
 				'type'        => Controls_Manager::WYSIWYG,
 				'default'     => ''
 			]

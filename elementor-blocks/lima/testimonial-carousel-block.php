@@ -28,8 +28,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 	protected function _register_controls() {
 
 		$this->start_controls_section(
-			'content_section',
-			[
+			'content_section', [
 				'label' => __( 'Content', 'lima' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
@@ -42,7 +41,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 				'label'      => __( 'Content', 'lima' ),
 				'type'       => Controls_Manager::TEXT,
 				'default'    => '',
-				'show_label' => false,
+				'label_block' => true
 			]
 		);
 		
@@ -51,7 +50,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 				'label'      => __( 'Author', 'lima' ),
 				'type'       => Controls_Manager::TEXT,
 				'default'    => '',
-				'show_label' => false,
+				'label_block' => true
 			]
 		);
 

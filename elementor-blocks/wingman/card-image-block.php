@@ -35,7 +35,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 		
 		$this->add_control(
 			'layout', [
-				'label'   => __( 'Card Layout', 'plugin-domain' ),
+				'label'   => __( 'Card Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'text-outside-card',
 				'options' => [
@@ -47,7 +47,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 		
 		$this->add_control(
 			'image', [
-				'label'      => __( 'Card Image', 'plugin-domain' ),
+				'label'      => __( 'Card Image', 'tr-framework' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
@@ -71,7 +71,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 		$this->add_control(
 			'content',
 			[
-				'label'       => __( 'Content', 'plugin-domain' ),
+				'label'       => __( 'Content', 'tr-framework' ),
 				'type'        => Controls_Manager::WYSIWYG,
 				'default'     => ''
 			]

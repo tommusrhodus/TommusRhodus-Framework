@@ -52,7 +52,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 		$this->add_control(
 			'content',
 			[
-				'label'       => __( 'Content', 'plugin-domain' ),
+				'label'       => __( 'Content', 'tr-framework' ),
 				'type'        => Controls_Manager::WYSIWYG,
 				'default'     => ''
 			]
@@ -95,7 +95,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 		$repeater->add_control(
 			'item_image',
 			[
-				'label'      => __( 'Carousel Item Image', 'plugin-domain' ),
+				'label'      => __( 'Carousel Item Image', 'tr-framework' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
