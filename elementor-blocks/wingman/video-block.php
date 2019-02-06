@@ -43,7 +43,7 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Page Heading', 'tr-framework' ),
+				'label' => esc_html__( 'Video Block', 'tr-framework' ),
 			]
 		);
 		

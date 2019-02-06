@@ -29,7 +29,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Page Heading', 'wingman' ),
+				'label' => esc_html__( 'Icon & Text Content', 'wingman' ),
 			]
 		);
 		

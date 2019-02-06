@@ -29,7 +29,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Page Heading', 'wingman' ),
+				'label' => esc_html__( 'Image Card Content', 'wingman' ),
 			]
 		);
 		
