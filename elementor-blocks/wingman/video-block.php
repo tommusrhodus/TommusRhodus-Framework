@@ -13,7 +13,7 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Video Block', 'wingman' );
+		return esc_html__( 'Video Block', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -73,6 +73,7 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
+		$result   = false;
 		
 		if( $settings['video'] ){
 					

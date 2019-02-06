@@ -13,7 +13,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Intro Carousel', 'wingman' );
+		return esc_html__( 'Intro Carousel', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -44,7 +44,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			[
-				'label' => __( 'Main Content', 'wingman' ),
+				'label' => __( 'Main Content', 'tr-framework' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -63,7 +63,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 		$this->start_controls_section(
 			'carousel_items_section',
 			[
-				'label' => __( 'Carousel Items', 'wingman' ),
+				'label' => __( 'Carousel Items', 'tr-framework' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -72,7 +72,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'item_title', [
-				'label'       => __( 'Carousel Item Title', 'wingman' ),
+				'label'       => __( 'Carousel Item Title', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
 				'label_block' => true
@@ -105,17 +105,17 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 
 		$this->add_control(
 			'list', [
-				'label'   => __( 'Carousel Items', 'wingman' ),
+				'label'   => __( 'Carousel Items', 'tr-framework' ),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => [
 					[
-						'item_title' => __( 'Carousel Item Title', 'wingman' ),
-						'item_url'   => __( 'Carousel Item URL', 'wingman' ),
-						'item_image' => __( 'Carousel Item Image', 'wingman' )
+						'item_title' => __( 'Carousel Item Title', 'tr-framework' ),
+						'item_url'   => __( 'Carousel Item URL', 'tr-framework' ),
+						'item_image' => __( 'Carousel Item Image', 'tr-framework' )
 					]
 				],
-				'title_field' => __( 'Carousel Item', 'wingman' ),
+				'title_field' => __( 'Carousel Item', 'tr-framework' ),
 			]
 		);
 

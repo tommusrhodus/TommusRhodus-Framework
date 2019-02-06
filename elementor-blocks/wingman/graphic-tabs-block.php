@@ -13,7 +13,7 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Graphic Tabs', 'wingman' );
+		return esc_html__( 'Graphic Tabs', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -42,9 +42,29 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 	protected function _register_controls() {
 		
 		$this->start_controls_section(
-			'carousel_items_section',
-			[
-				'label' => __( 'Tabs Items', 'wingman' ),
+			'layout_section', [
+				'label' => __( 'Tabs Layout', 'tr-framework' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			]
+		);
+		
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Tabs Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'non-numbered',
+				'options' => [
+					'non-numbered' => esc_html__( 'Non-Numbered Tabs', 'tr-framework' ),
+					'numbered'     => esc_html__( 'Numbered Tabs', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->end_controls_section();
+		
+		$this->start_controls_section(
+			'carousel_items_section', [
+				'label' => __( 'Tabs Items', 'tr-framework' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -53,7 +73,7 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'item_title', [
-				'label'       => __( 'Tab Title', 'wingman' ),
+				'label'       => __( 'Tab Title', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
 				'label_block' => true
@@ -83,17 +103,17 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 
 		$this->add_control(
 			'list', [
-				'label'   => __( 'Carousel Items', 'wingman' ),
+				'label'   => __( 'Carousel Items', 'tr-framework' ),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => [
 					[
-						'item_title' => __( 'Tab Title', 'wingman' ),
-						'item_text'  => __( 'Tab Text', 'wingman' ),
-						'item_image' => __( 'Tab Image', 'wingman' )
+						'item_title' => __( 'Tab Title', 'tr-framework' ),
+						'item_text'  => __( 'Tab Text', 'tr-framework' ),
+						'item_image' => __( 'Tab Image', 'tr-framework' )
 					]
 				],
-				'title_field' => __( 'Tab Item', 'wingman' ),
+				'title_field' => __( 'Tab Item', 'tr-framework' ),
 			]
 		);
 
@@ -113,28 +133,62 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 				
 			    <div class="col-12 col-md-6 col-lg-5 order-md-2">
 					
-			        <ul class="nav" id="myTab" role="tablist">
-						
-						<?php foreach( $settings['list'] as $item ) : ?>
+					<?php if( 'non-numbered' == $settings['layout'] ) : ?>
+					
+				        <ul class="nav" id="myTab" role="tablist">
 							
-							<?php 
-								$i++; 
-								$class    = ( 1 == $i ) ? 'active' : false;
-								$selected = ( 1 == $i ) ? 'true' : 'false';
-							?>
+							<?php foreach( $settings['list'] as $item ) : ?>
+								
+								<?php 
+									$i++; 
+									$class    = ( 1 == $i ) ? 'active' : false;
+									$selected = ( 1 == $i ) ? 'true' : 'false';
+								?>
+								
+					            <li>
+					                <div class="<?php echo $class; ?> card" id="tab-<?php echo $i; ?>" data-toggle="tab" href="#tab-content-<?php echo $i; ?>" role="tab" aria-controls="home" aria-selected="<?php echo $selected; ?>">
+					                    <div class="card-body">
+					                        <h5><?php echo $item['item_title']; ?></h5>
+					                        <?php echo wpautop( $item['item_text'] ); ?>
+					                    </div>
+					                </div>
+					            </li>
 							
-				            <li>
-				                <div class="<?php echo $class; ?> card" id="tab-<?php echo $i; ?>" data-toggle="tab" href="#tab-content-<?php echo $i; ?>" role="tab" aria-controls="home" aria-selected="<?php echo $selected; ?>">
-				                    <div class="card-body">
-				                        <h5><?php echo $item['item_title']; ?></h5>
-				                        <?php echo wpautop( $item['item_text'] ); ?>
-				                    </div>
-				                </div>
-				            </li>
-						
-						<?php endforeach; ?>
-						
-			        </ul>
+							<?php endforeach; ?>
+							
+				        </ul>
+					
+					<?php else : ?>
+					
+						<ul class="nav nav-cards" role="tablist">
+							
+							<?php foreach( $settings['list'] as $item ) : ?>
+								
+								<?php 
+									$i++; 
+									$class    = ( 1 == $i ) ? 'active' : false;
+									$selected = ( 1 == $i ) ? 'true' : 'false';
+								?>
+								
+							    <li>
+							        <div class="<?php echo $class; ?> card" id="tab-<?php echo $i; ?>" data-toggle="tab" href="#tab-content-<?php echo $i; ?>" role="tab" aria-controls="home" aria-selected="<?php echo $selected; ?>">
+							            <div class="card-body">
+											<div class="media align-items-center">
+											    <div class="step-circle mr-4"><?php echo $i; ?></div>
+											    <div class="media-body">
+													<h5><?php echo $item['item_title']; ?></h5>
+													<?php echo wpautop( $item['item_text'] ); ?>
+												</div>
+											</div>
+							            </div>
+							        </div>
+							    </li>
+							
+							<?php endforeach; ?>
+							
+						</ul>
+					
+					<?php endif; ?>
 					
 			    </div>
 	

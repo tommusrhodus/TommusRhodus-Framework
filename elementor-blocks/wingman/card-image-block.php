@@ -13,7 +13,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Image Card', 'wingman' );
+		return esc_html__( 'Image Card', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -29,7 +29,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Image Card Content', 'wingman' ),
+				'label' => esc_html__( 'Image Card Content', 'tr-framework' ),
 			]
 		);
 		
@@ -39,8 +39,8 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'text-outside-card',
 				'options' => [
-					'text-outside-card' => esc_html__( 'Image Top, Text Outside Card Below', 'wingman' ),
-					'text-inside-card'  => esc_html__( 'Image Top, Text Inside Card Below', 'wingman' )
+					'text-outside-card' => esc_html__( 'Image Top, Text Outside Card Below', 'tr-framework' ),
+					'text-inside-card'  => esc_html__( 'Image Top, Text Inside Card Below', 'tr-framework' )
 				],
 			]
 		);

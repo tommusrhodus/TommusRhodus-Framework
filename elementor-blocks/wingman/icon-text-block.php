@@ -13,7 +13,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Icon & Text', 'wingman' );
+		return esc_html__( 'Icon & Text', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -26,10 +26,39 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 	}
 
 	protected function _register_controls() {
-
+		
 		$this->start_controls_section(
-			'section_my_custom', [
-				'label' => esc_html__( 'Icon & Text Content', 'wingman' ),
+			'layout_section', [
+				'label' => __( 'Icon Styling', 'tr-framework' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			]
+		);
+		
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Tabs Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'tiny',
+				'options' => [
+					'tiny'  => esc_html__( 'Tiny Side Icon', 'tr-framework' ),
+					'large' => esc_html__( 'Large Top Icon', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->add_control(
+			'color', [
+				'label'   => __( 'Icon Color', 'tr-framework' ),
+				'type'    => Controls_Manager::COLOR,
+				'default' => '',
+			]
+		);
+		
+		$this->end_controls_section();
+		
+		$this->start_controls_section(
+			'section_content', [
+				'label' => esc_html__( 'Icon & Text Content', 'tr-framework' ),
 			]
 		);
 		
@@ -58,30 +87,58 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		
 		$settings = $this->get_settings_for_display();
 		
-		echo '
-			<ul class="feature-list feature-list-sm">
-				<li>
-				    <div class="media">
-				        <i class="'. esc_attr( $settings['icon'] ).' mr-2"></i>
-				        <div class="media-body">'. $settings['content'] .'</div>
-				    </div>
-				</li>
-			</ul>
-		';
+		if( 'tiny' == $settings['layout'] ){
+		
+			echo '
+				<ul class="feature-list feature-list-sm">
+					<li>
+					    <div class="media">
+					        <i class="'. esc_attr( $settings['icon'] ).' mr-2" style="color: '. $settings['color'] .';"></i>
+					        <div class="media-body">'. $settings['content'] .'</div>
+					    </div>
+					</li>
+				</ul>
+			';
+		
+		} else {
+		
+			echo '
+				<ul class="feature-list">
+				    <li>
+				        <i class="'. esc_attr( $settings['icon'] ).' h1" style="color: '. $settings['color'] .';"></i>
+				        '. $settings['content'] .'
+				    </li>
+				</ul>
+			';
+		
+		}
 		
 	}
 
 	protected function _content_template() {
 		?>
 		
-		<ul class="feature-list feature-list-sm">
-			<li>
-			    <div class="media">
-			        <i class="{{ settings.icon }} mr-2"></i>
-			        <div class="media-body">{{{ settings.content }}}</div>
-			    </div>
-			</li>
-		</ul>
+		<# if ( 'tiny' == settings.layout ) { #>
+		
+			<ul class="feature-list feature-list-sm">
+				<li>
+				    <div class="media">
+				        <i class="{{ settings.icon }} mr-2" style="color: {{ settings.color }};"></i>
+				        <div class="media-body">{{{ settings.content }}}</div>
+				    </div>
+				</li>
+			</ul>
+		
+		<# } else { #>
+		
+			<ul class="feature-list">
+			    <li>
+			        <i class="{{ settings.icon }} h1" style="color: {{ settings.color }};"></i>
+			        {{{ settings.content }}}
+			    </li>
+			</ul>
+		
+		<# } #>
 		
 		<?php
 	}
