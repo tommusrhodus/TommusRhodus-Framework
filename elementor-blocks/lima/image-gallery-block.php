@@ -13,7 +13,7 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Image Gallery', 'lima' );
+		return esc_html__( 'Image Gallery', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -29,7 +29,7 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Gallery', 'lima' ),
+				'label' => esc_html__( 'Gallery', 'tr-framework' ),
 			]
 		);
 		
@@ -86,7 +86,7 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 		
 		<div class="section page_title_section">
 			<div class="container">
-				<div class="page_title"><?php esc_html_e( 'Your gallery will show here with style: ', 'lima' ); ?>{{{ settings.gallery_style }}}</div>
+				<div class="page_title"><?php esc_html_e( 'Your gallery will show here with style: ', 'tr-framework' ); ?>{{{ settings.gallery_style }}}</div>
 			</div>
 		</div>
 		

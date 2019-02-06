@@ -57,7 +57,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 		
 		$this->add_control(
 			'url', [
-				'label'         => esc_html__( 'Card Image URL', 'lima' ),
+				'label'         => esc_html__( 'Card Image URL', 'tr-framework' ),
 				'type'          => Controls_Manager::URL,
 				'show_external' => true,
 				'default' => [

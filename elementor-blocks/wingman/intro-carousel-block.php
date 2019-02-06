@@ -81,7 +81,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 		
 		$repeater->add_control(
 			'item_url', [
-				'label'         => esc_html__( 'Carousel Item URL', 'lima' ),
+				'label'         => esc_html__( 'Carousel Item URL', 'tr-framework' ),
 				'type'          => Controls_Manager::URL,
 				'show_external' => true,
 				'default' => [

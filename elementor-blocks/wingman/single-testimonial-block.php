@@ -26,9 +26,30 @@ class Widget_TommusRhodus_Single_Testimonial_Block extends Widget_Base {
 	}
 
 	protected function _register_controls() {
-
+		
 		$this->start_controls_section(
-			'section_my_custom', [
+			'layout_section', [
+				'label' => __( 'Testimonial Layout', 'tr-framework' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			]
+		);
+		
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Tabs Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'large',
+				'options' => [
+					'large'  => esc_html__( 'Large Font', 'tr-framework' ),
+					'small'  => esc_html__( 'Small Font', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->end_controls_section();
+		
+		$this->start_controls_section(
+			'section_content', [
 				'label' => esc_html__( 'Testimonial Content', 'tr-framework' ),
 			]
 		);
@@ -71,36 +92,74 @@ class Widget_TommusRhodus_Single_Testimonial_Block extends Widget_Base {
 		
 		$settings = $this->get_settings_for_display();
 		
-		echo '
-			<div class="row justify-content-center">
-			    <div class="col-12 col-lg-10">
-			        <div class="media">
-			        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
-			            <div class="media-body">
-			                <p class="h2">'. $settings['testimonial'] .'</p>
-			                <span>'. $settings['author'] .'</span>
-			            </div>
-			        </div>
-			    </div>
-			</div>
-		';
+		if( 'large' == $settings['layout'] ){
+		
+			echo '
+				<div class="row justify-content-center">
+				    <div class="col-12 col-lg-10">
+				        <div class="media">
+				        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+				            <div class="media-body">
+				                <p class="h2">'. $settings['testimonial'] .'</p>
+				                <span>'. $settings['author'] .'</span>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			';
+		
+		} else {
+			
+			echo '
+				<div class="row justify-content-center">
+				    <div class="col-12 col-lg-10">
+				        <div class="media">
+				        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
+				            <div class="media-body">
+				                <p class="mb-1">'. $settings['testimonial'] .'</p>
+				                <small>'. $settings['author'] .'</small>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			';
+			
+		}
 		
 	}
 
 	protected function _content_template() {
 		?>
 		
-		<div class="row justify-content-center">
-		    <div class="col-12 col-lg-10">
-		        <div class="media">
-					<img src="{{ settings.image.url }}" alt="" class="avatar avatar-lg">
-		            <div class="media-body">
-		                <p class="h2">{{{ settings.testimonial }}}</p>
-		                <span>{{{ settings.author }}}</span>
-		            </div>
-		        </div>
-		    </div>
-		</div>
+		<# if ( 'large' == settings.layout ) { #>
+		
+			<div class="row justify-content-center">
+			    <div class="col-12 col-lg-10">
+			        <div class="media">
+						<img src="{{ settings.image.url }}" alt="" class="avatar avatar-lg">
+			            <div class="media-body">
+			                <p class="h2">{{{ settings.testimonial }}}</p>
+			                <span>{{{ settings.author }}}</span>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		
+		<# } else { #>
+		
+			<div class="row justify-content-center">
+			    <div class="col-12 col-lg-10">
+			        <div class="media">
+						<img src="{{ settings.image.url }}" alt="" class="avatar">
+			            <div class="media-body">
+			                <p class="mb-1">{{{ settings.testimonial }}}</p>
+			                <small>{{{ settings.author }}}</small>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		
+		<# } #>
 		
 		<?php
 	}

@@ -13,7 +13,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Testimonial Carousel', 'lima' );
+		return esc_html__( 'Testimonial Carousel', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -29,7 +29,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'content_section', [
-				'label' => __( 'Content', 'lima' ),
+				'label' => __( 'Content', 'tr-framework' ),
 				'tab' => Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -38,7 +38,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'list_content', [
-				'label'      => __( 'Content', 'lima' ),
+				'label'      => __( 'Content', 'tr-framework' ),
 				'type'       => Controls_Manager::TEXT,
 				'default'    => '',
 				'label_block' => true
@@ -47,7 +47,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 		
 		$repeater->add_control(
 			'list_name', [
-				'label'      => __( 'Author', 'lima' ),
+				'label'      => __( 'Author', 'tr-framework' ),
 				'type'       => Controls_Manager::TEXT,
 				'default'    => '',
 				'label_block' => true
@@ -56,16 +56,16 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends Widget_Base {
 
 		$this->add_control(
 			'list', [
-				'label'   => __( 'Testimonials', 'lima' ),
+				'label'   => __( 'Testimonials', 'tr-framework' ),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => [
 					[
-						'list_content' => __( 'Item content. Click the edit button to change this text.', 'lima' ),
-						'list_name'    => __( 'Author', 'lima' ),
+						'list_content' => __( 'Item content. Click the edit button to change this text.', 'tr-framework' ),
+						'list_name'    => __( 'Author', 'tr-framework' ),
 					]
 				],
-				'title_field' => __( 'Testimonial Content', 'lima' ),
+				'title_field' => __( 'Testimonial Content', 'tr-framework' ),
 			]
 		);
 

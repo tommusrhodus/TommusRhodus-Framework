@@ -13,7 +13,7 @@ class Widget_tommusrhodus_Page_Heading_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Page Heading', 'lima' );
+		return esc_html__( 'Page Heading', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -29,13 +29,13 @@ class Widget_tommusrhodus_Page_Heading_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Page Heading', 'lima' ),
+				'label' => esc_html__( 'Page Heading', 'tr-framework' ),
 			]
 		);
 
 		$this->add_control(
 			'heading_text', [
-				'label' => esc_html__( 'Heading Text', 'lima' ),
+				'label' => esc_html__( 'Heading Text', 'tr-framework' ),
 				'type' => Controls_Manager::TEXT,
 				'rows' => 10,
 			]
@@ -43,7 +43,7 @@ class Widget_tommusrhodus_Page_Heading_Block extends Widget_Base {
 		
 		$this->add_control(
 			'button_text', [
-				'label' => esc_html__( 'Button Text', 'lima' ),
+				'label' => esc_html__( 'Button Text', 'tr-framework' ),
 				'type' => Controls_Manager::TEXT,
 				'rows' => 10,
 			]
@@ -51,7 +51,7 @@ class Widget_tommusrhodus_Page_Heading_Block extends Widget_Base {
 		
 		$this->add_control(
 			'button_url', [
-				'label' => esc_html__( 'Button URL', 'lima' ),
+				'label' => esc_html__( 'Button URL', 'tr-framework' ),
 				'type' => Controls_Manager::URL,
 				'show_external' => true,
 				'default' => [

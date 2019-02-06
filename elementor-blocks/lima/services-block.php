@@ -13,7 +13,7 @@ class Widget_tommusrhodus_Services_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Services', 'lima' );
+		return esc_html__( 'Services', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -29,7 +29,7 @@ class Widget_tommusrhodus_Services_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Services', 'lima' ),
+				'label' => esc_html__( 'Services', 'tr-framework' ),
 			]
 		);
 

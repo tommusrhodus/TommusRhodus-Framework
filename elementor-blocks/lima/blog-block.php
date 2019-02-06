@@ -13,7 +13,7 @@ class Widget_tommusrhodus_Blog_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Blog Posts', 'lima' );
+		return esc_html__( 'Blog Posts', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -43,13 +43,13 @@ class Widget_tommusrhodus_Blog_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Blog Posts', 'lima' ),
+				'label' => esc_html__( 'Blog Posts', 'tr-framework' ),
 			]
 		);
 
 		$this->add_control(
 			'posts_per_page', [
-				'label'   => esc_html__( 'Number of Posts', 'lima' ),
+				'label'   => esc_html__( 'Number of Posts', 'tr-framework' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => '6'
 			]

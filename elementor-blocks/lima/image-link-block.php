@@ -13,7 +13,7 @@ class Widget_tommusrhodus_Image_Link_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Image & Link', 'lima' );
+		return esc_html__( 'Image & Link', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -29,7 +29,7 @@ class Widget_tommusrhodus_Image_Link_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Image Link', 'lima' ),
+				'label' => esc_html__( 'Image Link', 'tr-framework' ),
 			]
 		);
 		
@@ -46,7 +46,7 @@ class Widget_tommusrhodus_Image_Link_Block extends Widget_Base {
 		
 		$this->add_control(
 			'heading', [
-				'label' => esc_html__( 'Heading', 'lima' ),
+				'label' => esc_html__( 'Heading', 'tr-framework' ),
 				'type' => Controls_Manager::TEXT,
 				'rows' => 10,
 			]
@@ -54,7 +54,7 @@ class Widget_tommusrhodus_Image_Link_Block extends Widget_Base {
 		
 		$this->add_control(
 			'link_text', [
-				'label' => esc_html__( 'Link Text', 'lima' ),
+				'label' => esc_html__( 'Link Text', 'tr-framework' ),
 				'type' => Controls_Manager::TEXT,
 				'rows' => 10,
 			]
@@ -62,7 +62,7 @@ class Widget_tommusrhodus_Image_Link_Block extends Widget_Base {
 		
 		$this->add_control(
 			'button_url', [
-				'label' => esc_html__( 'Block Link URL', 'lima' ),
+				'label' => esc_html__( 'Block Link URL', 'tr-framework' ),
 				'type' => Controls_Manager::URL,
 				'show_external' => true,
 				'default' => [

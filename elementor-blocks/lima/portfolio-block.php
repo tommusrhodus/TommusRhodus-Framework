@@ -13,7 +13,7 @@ class Widget_tommusrhodus_Portfolio_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Portfolio Posts', 'lima' );
+		return esc_html__( 'Portfolio Posts', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -43,13 +43,13 @@ class Widget_tommusrhodus_Portfolio_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Portfolio Posts', 'lima' ),
+				'label' => esc_html__( 'Portfolio Posts', 'tr-framework' ),
 			]
 		);
 
 		$this->add_control(
 			'posts_per_page', [
-				'label'   => esc_html__( 'Number of Posts', 'lima' ),
+				'label'   => esc_html__( 'Number of Posts', 'tr-framework' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => '6'
 			]
@@ -57,7 +57,7 @@ class Widget_tommusrhodus_Portfolio_Block extends Widget_Base {
 		
 		$this->add_control(
 			'layout', [
-				'label'   => esc_html__( 'Portfolio Layout', 'lima' ),
+				'label'   => esc_html__( 'Portfolio Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'metro',
 				'options' => tommusrhodus_get_portfolio_layouts(),
@@ -85,7 +85,7 @@ class Widget_tommusrhodus_Portfolio_Block extends Widget_Base {
 		
 			$this->add_control(
 				'filter', [
-					'label'   => esc_html__( 'Portfolio Category', 'lima' ),
+					'label'   => esc_html__( 'Portfolio Category', 'tr-framework' ),
 					'type'    => Controls_Manager::SELECT,
 					'default' => 'all',
 					'options' => $final_portfolio_cats,
