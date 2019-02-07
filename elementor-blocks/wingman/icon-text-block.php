@@ -42,7 +42,9 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'options' => [
 					'tiny'      => esc_html__( 'Tiny Side Icon', 'tr-framework' ),
 					'tiny-card' => esc_html__( 'Tiny Side Icon [Boxed]', 'tr-framework' ),
-					'large'     => esc_html__( 'Large Top Icon', 'tr-framework' )
+					'large'     => esc_html__( 'Large Top Icon', 'tr-framework' ),
+					'huge'      => esc_html__( 'Huge Top Icon [Centred]', 'tr-framework' ),
+					'huge-card' => esc_html__( 'Huge Top Icon [Boxed]', 'tr-framework' )
 				],
 			]
 		);
@@ -55,6 +57,14 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			]
 		);
 		
+		$this->add_control(
+			'icon', [
+				'label'   => __( 'Icon', 'tr-framework' ),
+				'type'    => Controls_Manager::ICON,
+				'default' => 'fa fa-rocket',
+			]
+		);
+		
 		$this->end_controls_section();
 		
 		$this->start_controls_section(
@@ -64,10 +74,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		);
 		
 		$this->add_control(
-			'icon', [
-				'label'   => __( 'Icon', 'tr-framework' ),
-				'type'    => Controls_Manager::ICON,
-				'default' => 'fa fa-rocket',
+			'url', [
+				'label'         => esc_html__( 'Icon Card URL', 'tr-framework' ),
+				'type'          => Controls_Manager::URL,
+				'show_external' => true,
+				'default' => [
+					'url'         => '#',
+					'is_external' => false,
+					'nofollow'    => false,
+				],
 			]
 		);
 
@@ -87,6 +102,9 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
+		$target   = $settings['url']['is_external'] ? ' target="_blank"' : '';
+		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
+		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
 		
 		if( 'tiny' == $settings['layout'] ){
 		
@@ -116,6 +134,30 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				</div>
 			';
 			
+		} elseif( 'huge' == $settings['layout'] ) {
+		
+			echo '
+				<div class="text-center">
+					<i class="'. esc_attr( $settings['icon'] ).' display-3" style="color: '. $settings['color'] .';"></i>
+					'. $settings['content'] .'
+				</div>
+			';
+		
+		} elseif( 'huge-card' == $settings['layout'] ) {
+		
+			echo '
+				<ul class="feature-list feature-list-sm">
+				    <li>
+				        <a '. $link .' class="card card-lg">
+				            <div class="card-header card-header-borderless py-5 text-center">
+				                <i class="'. esc_attr( $settings['icon'] ).' display-2" style="color: '. $settings['color'] .';"></i>
+				            </div>
+				            <div class="card-body text-body">'. $settings['content'] .'</div>
+				        </a>
+				    </li>
+				</ul>
+			';
+		
 		} else {
 		
 			echo '
@@ -157,7 +199,27 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 					</li>
 				</ul>
 			</div>
+			
+		<# } else if ( 'huge' == settings.layout ) { #>
 		
+			<div class="text-center">
+				<i class="{{ settings.icon }} display-3" style="color: {{ settings.color }};"></i>
+				{{{ settings.content }}}
+			</div>
+			
+		<# } else if ( 'huge-card' == settings.layout ) { #>
+			
+			<ul class="feature-list feature-list-sm">
+			    <li>
+			        <a href="{{ settings.url.url }}" class="card card-lg">
+			            <div class="card-header card-header-borderless py-5 text-center">
+			                <i class="{{ settings.icon }} display-2" style="color: {{ settings.color }};"></i>
+			            </div>
+			            <div class="card-body text-body">{{{ settings.content }}}</div>
+			        </a>
+			    </li>
+			</ul>
+			
 		<# } else { #>
 		
 			<ul class="feature-list">

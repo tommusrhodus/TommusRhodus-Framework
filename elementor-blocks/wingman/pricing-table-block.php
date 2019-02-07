@@ -151,10 +151,11 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 		
 		$this->add_control(
 			'button_class', [
-				'label'   => __( 'Button Skin', 'tr-framework' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'btn-success',
-				'options' => [
+				'label'       => __( 'Button Skin', 'tr-framework' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'btn-success',
+				'label_block' => true,
+				'options'     => [
 					'btn-success'         => esc_html__( 'Primary Color', 'tr-framework' ),
 					'btn-outline-primary' => esc_html__( 'Outline', 'tr-framework' )
 				],

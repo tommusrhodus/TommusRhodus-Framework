@@ -4,7 +4,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_tommusrhodus_video_Block extends Widget_Base {
+class Widget_TommusRhodus_Video_Block extends Widget_Base {
 	
 	//Return Class Name
 	public function get_name() {
@@ -151,4 +151,4 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 }
 
 // Register our new widget
-Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_video_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Video_Block() );

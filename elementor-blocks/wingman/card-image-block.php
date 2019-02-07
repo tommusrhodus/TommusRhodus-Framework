@@ -41,7 +41,8 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 				'default' => 'text-outside-card',
 				'options' => [
 					'text-outside-card' => esc_html__( 'Image Top, Text Outside Card Below', 'tr-framework' ),
-					'text-inside-card'  => esc_html__( 'Image Top, Text Inside Card Below', 'tr-framework' )
+					'text-inside-card'  => esc_html__( 'Image Top, Text Inside Card Below', 'tr-framework' ),
+					'left-image'        => esc_html__( 'Image Left, Text Right', 'tr-framework' ),
 				],
 			]
 		);
@@ -108,6 +109,21 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 				</div>
 			';
 		
+		} elseif( 'left-image' == $settings['layout'] ){
+		
+			echo '
+				<ul class="feature-list feature-list-lg">
+				    <li>
+				        <div class="media align-items-center">
+				        	<a '. $link .'>
+				        	    '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg mr-4' ) ) .'
+				        	</a>
+				            <div class="media-body">'. $settings['content'] .'</div>
+				        </div>
+				    </li>
+				</ul>
+			';
+		
 		} else {
 		
 			echo '
@@ -139,7 +155,20 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 			    </a>
 			    <div class="card-body">{{{ settings.content }}}</div>
 			</div>
-		
+			
+		<# } else if ( 'left-image' == settings.layout ) { #>
+			
+			<ul class="feature-list feature-list-lg">
+			    <li>
+			        <div class="media align-items-center">
+			        	<a href="{{ settings.url.url }}">
+							<img src="{{ settings.image.url }}" alt="" class="avatar avatar-lg mr-4">
+			        	</a>
+			            <div class="media-body">{{{ settings.content }}}</div>
+			        </div>
+			    </li>
+			</ul>
+			
 		<# } else { #>
 		
 			<ul class="row feature-list feature-list-sm">
