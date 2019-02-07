@@ -52,7 +52,7 @@ class Widget_TommusRhodus_Video_Block extends Widget_Base {
 			'layout', [
 				'label'   => __( 'Video Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'blog',
+				'default' => 'block',
 				'options' => [
 					'block' => esc_html__( 'Block with Background Image', 'tr-framework' ),
 					'modal' => esc_html__( 'Modal with No Image', 'tr-framework' )

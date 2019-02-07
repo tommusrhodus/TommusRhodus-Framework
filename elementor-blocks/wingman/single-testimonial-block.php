@@ -36,11 +36,12 @@ class Widget_TommusRhodus_Single_Testimonial_Block extends Widget_Base {
 		
 		$this->add_control(
 			'layout', [
-				'label'   => __( 'Tabs Layout', 'tr-framework' ),
+				'label'   => __( 'Testimonial Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'large',
 				'options' => [
 					'large'  => esc_html__( 'Large Font', 'tr-framework' ),
+					'medium' => esc_html__( 'Medium Font', 'tr-framework' ),
 					'small'  => esc_html__( 'Small Font', 'tr-framework' )
 				],
 			]
@@ -95,33 +96,37 @@ class Widget_TommusRhodus_Single_Testimonial_Block extends Widget_Base {
 		if( 'large' == $settings['layout'] ){
 		
 			echo '
-				<div class="row justify-content-center">
-				    <div class="col-12 col-lg-10">
-				        <div class="media">
-				        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
-				            <div class="media-body">
-				                <p class="h2">'. $settings['testimonial'] .'</p>
-				                <span>'. $settings['author'] .'</span>
-				            </div>
-				        </div>
-				    </div>
-				</div>
+		        <div class="media justify-content-center">
+		        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+		            <div class="media-body">
+		                <p class="h2">'. $settings['testimonial'] .'</p>
+		                <span>'. $settings['author'] .'</span>
+		            </div>
+		        </div>
+			';
+		
+		} elseif( 'medium' == $settings['layout'] ){
+		
+			echo '
+		        <div class="media justify-content-center">
+		        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+		            <div class="media-body">
+		                <p class="h3 mb-2">'. $settings['testimonial'] .'</p>
+		                <span>'. $settings['author'] .'</span>
+		            </div>
+		        </div>
 			';
 		
 		} else {
 			
 			echo '
-				<div class="row justify-content-center">
-				    <div class="col-12 col-lg-10">
-				        <div class="media">
-				        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
-				            <div class="media-body">
-				                <p class="mb-1">'. $settings['testimonial'] .'</p>
-				                <small>'. $settings['author'] .'</small>
-				            </div>
-				        </div>
-				    </div>
-				</div>
+		        <div class="media justify-content-center">
+		        	 '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
+		            <div class="media-body">
+		                <p class="mb-1">'. $settings['testimonial'] .'</p>
+		                <small>'. $settings['author'] .'</small>
+		            </div>
+		        </div>
 			';
 			
 		}
@@ -133,31 +138,33 @@ class Widget_TommusRhodus_Single_Testimonial_Block extends Widget_Base {
 		
 		<# if ( 'large' == settings.layout ) { #>
 		
-			<div class="row justify-content-center">
-			    <div class="col-12 col-lg-10">
-			        <div class="media">
-						<img src="{{ settings.image.url }}" alt="" class="avatar avatar-lg">
-			            <div class="media-body">
-			                <p class="h2">{{{ settings.testimonial }}}</p>
-			                <span>{{{ settings.author }}}</span>
-			            </div>
-			        </div>
+	        <div class="media justify-content-center">
+				<img src="{{ settings.image.url }}" alt="" class="avatar avatar-lg">
+	            <div class="media-body">
+	                <p class="h2">{{{ settings.testimonial }}}</p>
+	                <span>{{{ settings.author }}}</span>
+	            </div>
+	        </div>
+			
+		<# } else if ( 'medium' == settings.layout ) { #>
+			
+			<div class="media justify-content-center">
+				<img src="{{ settings.image.url }}" alt="" class="avatar avatar-lg">
+			    <div class="media-body">
+			        <p class="h3 mb-2">{{{ settings.testimonial }}}</p>
+			        <span>{{{ settings.author }}}</span>
 			    </div>
 			</div>
 		
 		<# } else { #>
 		
-			<div class="row justify-content-center">
-			    <div class="col-12 col-lg-10">
-			        <div class="media">
-						<img src="{{ settings.image.url }}" alt="" class="avatar">
-			            <div class="media-body">
-			                <p class="mb-1">{{{ settings.testimonial }}}</p>
-			                <small>{{{ settings.author }}}</small>
-			            </div>
-			        </div>
-			    </div>
-			</div>
+	        <div class="media justify-content-center">
+				<img src="{{ settings.image.url }}" alt="" class="avatar">
+	            <div class="media-body">
+	                <p class="mb-1">{{{ settings.testimonial }}}</p>
+	                <small>{{{ settings.author }}}</small>
+	            </div>
+	        </div>
 		
 		<# } #>
 		

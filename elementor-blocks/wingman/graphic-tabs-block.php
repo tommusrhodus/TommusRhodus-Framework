@@ -93,7 +93,7 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 		$repeater->add_control(
 			'item_image',
 			[
-				'label'      => __( 'Carousel Item Image', 'tr-framework' ),
+				'label'      => __( 'Tab Image', 'tr-framework' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),

@@ -4,16 +4,16 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_TommusRhodus_Clients_Block extends Widget_Base {
+class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 	
 	//Return Class Name
 	public function get_name() {
-		return 'tommusrhodus-clients-block';
+		return 'tommusrhodus-blog-block';
 	}
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Clients Posts', 'tr-framework' );
+		return esc_html__( 'Blog Posts', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -40,25 +40,7 @@ class Widget_TommusRhodus_Clients_Block extends Widget_Base {
 	}
 
 	protected function _register_controls() {
-		
-		$this->start_controls_section(
-			'layout_section', [
-				'label' => __( 'Clients Feed Layout', 'tr-framework' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			]
-		);
-		
-		$this->add_control(
-			'layout', [
-				'label'   => __( 'Clients Feed Layout', 'tr-framework' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'small',
-				'options' => array_flip( tommusrhodus_get_client_layouts() ),
-			]
-		);
-		
-		$this->end_controls_section();
-		
+
 		$this->start_controls_section(
 			'section_my_custom', [
 				'label' => esc_html__( 'Clients Posts', 'tr-framework' ),
@@ -69,7 +51,7 @@ class Widget_TommusRhodus_Clients_Block extends Widget_Base {
 			'posts_per_page', [
 				'label'   => esc_html__( 'Number of Posts', 'tr-framework' ),
 				'type'    => Controls_Manager::NUMBER,
-				'default' => '4'
+				'default' => '3'
 			]
 		);
 		
@@ -94,7 +76,7 @@ class Widget_TommusRhodus_Clients_Block extends Widget_Base {
 		 * Setup post query
 		 */
 		$query_args = array(
-			'post_type'      => 'client',
+			'post_type'      => 'post',
 			'post_status'    => 'publish',
 			'posts_per_page' => $settings['posts_per_page'],
 			'paged'          => $paged
@@ -104,7 +86,7 @@ class Widget_TommusRhodus_Clients_Block extends Widget_Base {
 		$old_post  = $post;
 		$wp_query  = new \WP_Query( $query_args );
 
-		get_template_part( 'loop/loop-client', $settings['layout'] );
+		get_template_part( 'loop/loop-post' );
 
 		wp_reset_postdata();
 		$wp_query = $old_query;
@@ -115,4 +97,4 @@ class Widget_TommusRhodus_Clients_Block extends Widget_Base {
 }
 
 // Register our new widget
-Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Clients_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Blog_Block() );

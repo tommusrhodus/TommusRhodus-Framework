@@ -36,7 +36,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		
 		$this->add_control(
 			'layout', [
-				'label'   => __( 'Tabs Layout', 'tr-framework' ),
+				'label'   => __( 'Icon & Text Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [
