@@ -40,8 +40,9 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [
-					'tiny'  => esc_html__( 'Tiny Side Icon', 'tr-framework' ),
-					'large' => esc_html__( 'Large Top Icon', 'tr-framework' )
+					'tiny'      => esc_html__( 'Tiny Side Icon', 'tr-framework' ),
+					'tiny-card' => esc_html__( 'Tiny Side Icon [Boxed]', 'tr-framework' ),
+					'large'     => esc_html__( 'Large Top Icon', 'tr-framework' )
 				],
 			]
 		);
@@ -100,6 +101,21 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				</ul>
 			';
 		
+		} elseif( 'tiny-card' == $settings['layout'] ) {
+			
+			echo '
+				<div class="card">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+						    <div class="media">
+						        <i class="'. esc_attr( $settings['icon'] ).' mr-2" style="color: '. $settings['color'] .';"></i>
+						        <div class="media-body">'. $settings['content'] .'</div>
+						    </div>
+						</li>
+					</ul>
+				</div>
+			';
+			
 		} else {
 		
 			echo '
@@ -128,6 +144,19 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				    </div>
 				</li>
 			</ul>
+			
+		<# } else if ( 'tiny-card' == settings.layout ) { #>
+		
+			<div class="card">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+					    <div class="media">
+					        <i class="{{ settings.icon }} mr-2" style="color: {{ settings.color }};"></i>
+					        <div class="media-body">{{{ settings.content }}}</div>
+					    </div>
+					</li>
+				</ul>
+			</div>
 		
 		<# } else { #>
 		

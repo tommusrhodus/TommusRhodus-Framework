@@ -40,7 +40,28 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 	}
 
 	protected function _register_controls() {
-
+		
+		$this->start_controls_section(
+			'layout_section', [
+				'label' => __( 'Video Block Layout', 'tr-framework' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			]
+		);
+		
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Video Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'blog',
+				'options' => [
+					'block' => esc_html__( 'Block with Background Image', 'tr-framework' ),
+					'modal' => esc_html__( 'Modal with No Image', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->end_controls_section();
+		
 		$this->start_controls_section(
 			'section_my_custom', [
 				'label' => esc_html__( 'Video Block', 'tr-framework' ),
@@ -72,8 +93,9 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 
 	protected function render() {
 		
-		$settings = $this->get_settings_for_display();
-		$result   = false;
+		$settings  = $this->get_settings_for_display();
+		$result    = false;
+		$cache_key = false;
 		
 		if( $settings['video'] ){
 					
@@ -94,21 +116,37 @@ class Widget_tommusrhodus_video_Block extends Widget_Base {
 		
 		}
 		
-		echo '
-			<div class="video-cover rounded">
-			    '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'bg-image' ) ) .'
-			    <div class="video-play-icon">
-			        <i class="icon-controller-play"></i>
-			    </div>
-			    <div class="embed-responsive embed-responsive-16by9">
-			        '. $result .'
-			    </div>
-			</div>
-		';
+		if( 'block' == $settings['layout'] ){
+		
+			echo '
+				<div class="video-cover rounded">
+				    '. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'bg-image' ) ) .'
+				    <div class="video-play-icon">
+				        <i class="icon-controller-play"></i>
+				    </div>
+				    <div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
+				</div>
+			';
+		
+		} else {
+		
+			echo '
+				<div class="video-play-icon" data-toggle="modal" data-target="#video-'. esc_attr( $cache_key ) .'">
+				    <i class="icon-controller-play"></i>
+				</div>
+				
+				<div class="modal fade" id="video-'. esc_attr( $cache_key ) .'" tabindex="-1" aria-labelledby="video-modal-label" aria-hidden="true">
+				    <div class="modal-dialog modal-lg modal-center-viewport">
+				        <div class="modal-content">
+				            <div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
+				        </div>
+				    </div>
+				</div>
+			';
+		
+		}
 		
 	}
-
-	protected function _content_template() {}
 
 }
 

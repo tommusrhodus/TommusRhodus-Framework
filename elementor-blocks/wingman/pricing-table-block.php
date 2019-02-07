@@ -41,7 +41,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 				'default' => 'bg-dark',
 				'options' => [
 					'bg-dark'  => esc_html__( 'Dark Background', 'tr-framework' ),
-					'bg-light' => esc_html__( 'Light Background', 'tr-framework' )
+					'bg-white' => esc_html__( 'Light Background', 'tr-framework' )
 				],
 			]
 		);

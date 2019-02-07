@@ -26,10 +26,11 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 	}
 
 	protected function _register_controls() {
-
+		
 		$this->start_controls_section(
-			'section_my_custom', [
-				'label' => esc_html__( 'Image Card Content', 'tr-framework' ),
+			'layout_section', [
+				'label' => __( 'Image Card Layout', 'tr-framework' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
 		
@@ -45,6 +46,14 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 			]
 		);
 		
+		$this->end_controls_section();
+		
+		$this->start_controls_section(
+			'section_my_custom', [
+				'label' => esc_html__( 'Image Card Content', 'tr-framework' ),
+			]
+		);
+
 		$this->add_control(
 			'image', [
 				'label'      => __( 'Card Image', 'tr-framework' ),
