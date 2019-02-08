@@ -4,7 +4,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_tommusrhodus_card_image_Block extends Widget_Base {
+class Widget_TommusRhodus_Card_Image_Block extends Widget_Base {
 	
 	//Return Class Name
 	public function get_name() {
@@ -123,7 +123,7 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 				    </li>
 				</ul>
 			';
-		
+			
 		} else {
 		
 			echo '
@@ -188,4 +188,4 @@ class Widget_tommusrhodus_card_image_Block extends Widget_Base {
 }
 
 // Register our new widget
-Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_card_image_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Card_Image_Block() );
