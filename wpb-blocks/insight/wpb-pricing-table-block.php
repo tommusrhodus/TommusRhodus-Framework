@@ -50,7 +50,7 @@ if(!( function_exists( 'tommusrhodus_pricing_table_shortcode' ) )){
 							
 						</div>
 						
-						'. do_shortcode( wpautop( $content ) ) .'
+						'. do_shortcode( $content ) .'
 						
 					</div>
 					

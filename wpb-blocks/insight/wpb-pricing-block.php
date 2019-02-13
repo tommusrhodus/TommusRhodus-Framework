@@ -27,7 +27,7 @@ if(!( function_exists( 'tommusrhodus_pricing_shortcode' ) )){
 				<div class="card-body">
 					<span class="h6 d-block">'. $title .'</span>
 					<span class="d-block display-4 mb-2">'. $price .'</span>
-					'. do_shortcode( wpautop( $content ) ) .'
+					'. do_shortcode( $content ) .'
 				</div>
 			</div>
 		';
