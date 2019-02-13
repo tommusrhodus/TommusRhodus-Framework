@@ -34,14 +34,14 @@ function tommusrhodus_accordion_content_shortcode( $atts, $content = null ) {
 	$output = '
 	    <li class="list-group-item '. esc_attr($custom_css_class) .'">
 	        <div class="d-flex justify-content-between align-items-center">
-	            <a class="d-flex align-items-center flex-fill" href="#" data-toggle="collapse" data-target="#'. htmlspecialchars_decode(sanitize_title($title)) .'">
-	                <span class="mb-0 text-primary py-1 font-weight-bold">'. htmlspecialchars_decode($title) .'</span>
+	            <a class="d-flex align-items-center flex-fill" href="#" data-toggle="collapse" data-target="#'. sanitize_title($title) .'">
+	                <span class="mb-0 text-primary py-1 font-weight-bold">'. $title .'</span>
 	            </a>
 	            <i class="material-icons d-block text-dark">keyboard_arrow_right</i>
 	        </div>
-	        <div id="'. htmlspecialchars_decode(sanitize_title($title)) .'" class="collapse text-dark">
+	        <div id="'. sanitize_title($title) .'" class="collapse text-dark">
 	            <div class="py-1">
-	                '. wpautop(do_shortcode(htmlspecialchars_decode($content))) .'
+	                '. do_shortcode($content) .'
 	            </div>
 	        </div>
 	    </li>

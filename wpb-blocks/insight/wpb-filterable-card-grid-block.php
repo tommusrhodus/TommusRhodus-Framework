@@ -40,7 +40,7 @@ if(!( function_exists( 'tommusrhodus_filterable_card_grid_shortcode' ) )){
 				        </div>
         			</div>
 	        		<div class="row isotope hover-effect" data-isotope-id="pages">
-	        			'. do_shortcode(htmlspecialchars_decode($content)) .'
+	        			'. do_shortcode($content) .'
 	        		</div>
 	        	</div>
         	</section>';

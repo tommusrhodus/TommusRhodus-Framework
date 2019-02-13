@@ -50,7 +50,7 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 			<a href="'. esc_attr( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center flex-fill '. esc_attr($custom_css_class) .'">
 			    <div class="d-flex align-items-center remove-p-margin">
 			      	<i class="'. $icon .' insight-large d-block mr-3 icon"></i>
-			      	<span class="mb-0 h6 mb-0">'. htmlspecialchars_decode($title) .'</span>
+			      	<span class="mb-0 h6 mb-0">'. $title .'</span>
 			    </div>
 			    <i class="material-icons d-block">keyboard_arrow_right</i>
 		  	</a>
@@ -62,9 +62,9 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 			<a class="list-group-item list-group-item-action d-flex align-items-center w-100 flex-fill '. esc_attr($custom_css_class) .'" href="'. esc_attr( $link_output ) .'">
 				<div class="d-flex align-items-center">
 					<div class="py-2 px-3 mr-2 text-center remove-p-margin">
-						'. wpautop(do_shortcode(htmlspecialchars_decode($content))) .'
+						'. do_shortcode($content) .'
 					</div>
-					<span class="mb-0 h6 text-primary">'. htmlspecialchars_decode($title) .'</span>
+					<span class="mb-0 h6 text-primary">'. $title .'</span>
 				</div>
 			</a>
 		';
@@ -74,7 +74,7 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 		$output = '
 			<a href="'. esc_attr( $link_output ) .'" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center mb-lg-0 '. esc_attr($custom_css_class) .'">
 				<div class="d-flex align-items-center">
-					<span class="mb-0 text-primary py-1 font-weight-bold">'. htmlspecialchars_decode($title) .'</span>
+					<span class="mb-0 text-primary py-1 font-weight-bold">'. $title .'</span>
 				</div>
 				<i class="material-icons d-block">keyboard_arrow_right</i>
 			</a>
@@ -91,7 +91,7 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 						$output .= '<i class="'. $icon .' d-block mr-3 icon icon-sm text-primary"></i>';
 					}						
 					$output .= '
-				  	<span class="mb-0 h6">'. htmlspecialchars_decode($title) .'</span>
+				  	<span class="mb-0 h6">'. $title .'</span>
 				</div>
 				<i class="material-icons d-block">keyboard_arrow_right</i>
 			</a>
