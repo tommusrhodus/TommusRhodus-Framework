@@ -25,11 +25,12 @@ function tommusrhodus_flex_list_content_shortcode( $atts, $content = null ) {
 	extract( 
 		shortcode_atts( 
 			array(
-				'title' => '',
-				'layout' => 'icon_title',
-				'icon' => '',
-				'custom_css_class' => '',
-				'image' 		   => ''
+				'title' 			=> '',
+				'layout' 			=> 'icon_title',
+				'icon' 				=> '',
+				'custom_css_class' 	=> '',
+				'image' 		   	=> '',
+				'link' 		   		=> ''
 			), $atts 
 		) 
 	);
