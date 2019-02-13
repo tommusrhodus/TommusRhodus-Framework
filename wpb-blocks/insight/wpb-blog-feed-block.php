@@ -84,8 +84,10 @@ function tommusrhodus_post_shortcode( $atts ) {
 		$query_args['category__not_in']	= array($featured_category);
 	} else {
 		$featured = get_category_by_slug( get_theme_mod( 'post_archive_featured_posts_category' ) );
-		$featured_category = $featured->term_id;
-		$query_args['category__not_in']	= $featured;
+		if($featured) {
+			$featured_category = $featured->term_id;
+			$query_args['category__not_in']	= $featured;
+		}
 	}
 	
 	$old_query = $wp_query;
