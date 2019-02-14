@@ -79,9 +79,9 @@ function tommusrhodus_post_shortcode( $atts ) {
 	}
 
 	if (!( $featured_category == 'all' )) {
-		$featured_category = get_category_by_slug( $featured_category );
-		$featured_category = $featured_category->term_id;
-		$query_args['category__not_in']	= array($featured_category);
+		$featured_category_id = get_category_by_slug( $featured_category );
+		$featured_category_id = $featured_category->term_id;
+		$query_args['category__not_in']	= array($featured_category_id);
 	} else {
 		$featured = get_category_by_slug( get_theme_mod( 'post_archive_featured_posts_category' ) );
 		if($featured) {
