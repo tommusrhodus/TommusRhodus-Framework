@@ -92,11 +92,11 @@ if(!( function_exists( 'tommusrhodus_header_image_grid_shortcode_vc' ) )){
 		
 		vc_map( 
 			array(
-				"icon"                    => 'tommusrhodus-vc-block',
+				"icon"                    => 'insight-vc-block',
 			    'name'                    => __( 'Header Image Grid' , 'tommusrhodus' ),
 			    'base'                    => 'tommusrhodus_header_image_grid',
 			    'description'             => __( 'Create fancy images & text', 'tommusrhodus' ),
-			    "category"                => __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+			    "category"                => __( 'Insight WP Theme', 'tommusrhodus' ),
 			    'params'                  => array(
 			    	array(
 			    		"type"       	=> "attach_images",

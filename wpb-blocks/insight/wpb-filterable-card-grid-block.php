@@ -149,10 +149,10 @@ function tommusrhodus_filterable_card_grid_shortcode_vc() {
 
 	vc_map( 
 		array(
-			"icon" 						=> 'tommusrhodus-vc-block',
+			"icon" 						=> 'insight-vc-block',
 			"name" 						=> __( 'Filterable Card Grid' , 'tommusrhodus' ),
 			"base" 						=> "tommusrhodus_filterable_card_grid",
-			"category" 					=> __( 'Tommusrhodus WP Theme', 'tommusrhodus' ),
+			"category" 					=> __( 'Insight WP Theme', 'tommusrhodus' ),
 			'as_parent'               	=> array('only' => 'tommusrhodus_filterable_card_grid_content'),
 			'content_element'         	=> true,
 			'show_settings_on_create' 	=> false,
@@ -175,11 +175,11 @@ add_action( 'vc_before_init', 'tommusrhodus_filterable_card_grid_shortcode_vc' )
 function tommusrhodus_filterable_card_grid_content_shortcode_vc() {
 	vc_map( 
 		array(
-			"icon" 					=> 'tommusrhodus-vc-block',
+			"icon" 					=> 'insight-vc-block',
 		    'name'            		=> __( 'Filterable Card' , 'tommusrhodus' ),
 		    'base'            		=> 'tommusrhodus_filterable_card_grid_content',
 		    'description'     		=> __( 'A simple grid of cards which can be filtered.', 'tommusrhodus' ),
-		    "category" 				=> __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+		    "category" 				=> __( 'Insight WP Theme', 'tommusrhodus' ),
 		    'content_element' 		=> true,
 		    'as_child'        		=> array('only' => 'tommusrhodus_filterable_card_grid'),
 		    'params'          => array(

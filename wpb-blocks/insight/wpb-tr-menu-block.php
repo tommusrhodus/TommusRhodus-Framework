@@ -37,7 +37,7 @@ if(!( function_exists( 'tommusrhodus_tommusrhodus_nav_menu_shortcode_vc' ) )){
 	function tommusrhodus_tommusrhodus_nav_menu_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Menu Widget", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_nav_menu",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

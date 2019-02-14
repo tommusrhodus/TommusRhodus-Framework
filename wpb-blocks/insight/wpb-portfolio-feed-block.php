@@ -103,10 +103,10 @@ add_shortcode( 'tommusrhodus_portfolio_feed', 'tommusrhodus_portfolio_feed_short
 function tommusrhodus_portfolio_feed_shortcode_vc() {
 	vc_map( 
 		array(
-			"icon" => 'tommusrhodus-vc-block',
+			"icon" => 'insight-vc-block',
 			"name" => esc_html__("Portfolio Feed", 'tommusrhodus'),
 			"base" => "tommusrhodus_portfolio_feed",
-			"category" => esc_html__('tommusrhodus WP Theme', 'tommusrhodus'),
+			"category" => esc_html__('Insight WP Theme', 'tommusrhodus'),
 			'description' => 'Show post posts with layout options.',
 			"params" => array(
 				array(

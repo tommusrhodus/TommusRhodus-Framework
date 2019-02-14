@@ -456,11 +456,11 @@ if(!( function_exists( 'tommusrhodus_text_icon_shortcode_vc' ) )){
 		
 		vc_map( 
 			array(
-				"icon"                    => 'tommusrhodus-vc-block',
+				"icon"     				  => 'insight-vc-block',
 			    'name'                    => __( 'Text + Icon' , 'tommusrhodus' ),
 			    'base'                    => 'tommusrhodus_text_icon',
 			    'description'             => __( 'Create fancy images & text', 'tommusrhodus' ),
-			    "category"                => __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+			    "category"                => __( 'Insight WP Theme', 'tommusrhodus' ),
 			    'params'                  => array(			    	
 			    	array(
 			    		"type"       => "dropdown",

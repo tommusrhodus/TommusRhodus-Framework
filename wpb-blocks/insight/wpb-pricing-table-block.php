@@ -80,7 +80,7 @@ if(!( function_exists( 'tommusrhodus_pricing_table_shortcode_vc' ) )){
 	function tommusrhodus_pricing_table_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Pricing Table", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_pricing_table",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

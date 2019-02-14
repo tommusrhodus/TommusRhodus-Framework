@@ -341,7 +341,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 		
 		vc_map( 
 			array(
-				"icon"                    => 'tommusrhodus-vc-block',
+				"icon"                    => 'insight-vc-block',
 			    'name'                    => __( 'Header' , 'tommusrhodus' ),
 			    'base'                    => 'tommusrhodus_header',
 			    'description'             => __( 'Create fancy images & text', 'tommusrhodus' ),
@@ -349,7 +349,7 @@ if(!( function_exists( 'tommusrhodus_header_shortcode_vc' ) )){
 			    'content_element'         => true,
 			    'show_settings_on_create' => true,
 			    "js_view"                 => 'VcColumnView',
-			    "category"                => __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+			    "category"                => __( 'Insight WP Theme', 'tommusrhodus' ),
 			    'params'                  => array(
 			    	array(
 			    		"type"       => "attach_image",

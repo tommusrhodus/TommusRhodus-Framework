@@ -49,7 +49,7 @@ if(!( function_exists( 'tommusrhodus_countdown_shortcode_vc' ) )){
 	function tommusrhodus_countdown_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Countdown Timer", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_countdown",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

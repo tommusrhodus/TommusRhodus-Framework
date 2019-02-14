@@ -61,7 +61,7 @@ if(!( function_exists( 'tommusrhodus_searchform_shortcode_vc' ) )){
 	function tommusrhodus_searchform_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Search Form", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_searchform",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

@@ -58,7 +58,7 @@ if(!( function_exists( 'tommusrhodus_card_wrapper_shortcode_vc' ) )){
 	function tommusrhodus_card_wrapper_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"                    => 'tommusrhodus-vc-block',
+				"icon"                    => 'insight-vc-block',
 				"name"                    => __( "Card Wrapper", 'tommusrhodus' ),
 				"base"                    => "tommusrhodus_card_wrapper",
 				"category"                => __( 'Insight WP Theme', 'tommusrhodus' ),

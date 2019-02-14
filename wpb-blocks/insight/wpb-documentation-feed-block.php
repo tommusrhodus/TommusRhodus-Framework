@@ -103,10 +103,10 @@ add_shortcode( 'tommusrhodus_documentation_feed', 'tommusrhodus_documentation_fe
 function tommusrhodus_documentation_feed_shortcode_vc() {
 	vc_map( 
 		array(
-			"icon" => 'tommusrhodus-vc-block',
+			"icon" => 'insight-vc-block',
 			"name" => esc_html__("Documention Feed", 'tommusrhodus'),
 			"base" => "tommusrhodus_documentation_feed",
-			"category" => esc_html__('Tommusrhodus WP Theme', 'tommusrhodus'),
+			"category" => esc_html__('Insight WP Theme', 'tommusrhodus'),
 			'description' => 'Show a list of articles.',
 			"params" => array(
 				array(

@@ -190,7 +190,7 @@ if(!( function_exists( 'tommusrhodus_card_shortcode_vc' ) )){
 	function tommusrhodus_card_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Link Card", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_card",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

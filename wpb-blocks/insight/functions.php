@@ -54,7 +54,7 @@ if( !( function_exists('tommusrhodus_vc_alter_class_field_desc') ) && function_e
 	        	"type"        => "textfield",
 	    		"heading"     => __( "Extra class name", 'tommusrhodus' ),
 	            'param_name' => 'el_class',
-	            'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS, or you can use one of the themes pre-defined classes - <strong>bg-white</strong>, <strong>bg-gradient</strong>, <strong>o-hidden</strong>, <strong>spacer-y-4</strong>', 'tommusrhodus' ),
+	            'description' => __( 'Style particular content element differently - add a class name and refer to it in custom CSS, or you can use one of the themes pre-defined classes - <strong>bg-dark</strong>, <strong>bg-white</strong>, <strong>bg-gradient</strong>, <strong>bg-gradient-1</strong>, <strong>bg-gradient-2</strong>', 'tommusrhodus' ),
 	        ),      
 	     
 	    );

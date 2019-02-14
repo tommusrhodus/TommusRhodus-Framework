@@ -126,7 +126,7 @@ if(!( function_exists( 'tommusrhodus_carousel_shortcode_vc' ) )){
 	function tommusrhodus_carousel_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Image Carousel", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_carousel",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

@@ -37,7 +37,7 @@ if(!( function_exists( 'tommusrhodus_breadcrumbs_shortcode_vc' ) )){
 	function tommusrhodus_breadcrumbs_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Breadcrumbs", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_breadcrumbs",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

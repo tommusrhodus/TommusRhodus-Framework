@@ -111,10 +111,10 @@ if(!( function_exists( 'tommusrhodus_testimonial_shortcode_vc' ) )){
 	
 		vc_map( 
 			array(
-				"icon"        => 'tommusrhodus-vc-block',
+				"icon"        => 'insight-vc-block',
 				"name"        => __( "Testimonials", 'tommusrhodus' ),
 				"base"        => "tommusrhodus_testimonial",
-				"category"    => __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+				"category"    => __( 'Insight WP Theme', 'tommusrhodus' ),
 				'description' => 'Show testimonial posts with layout options.',
 				"params"      => array(
 					array(

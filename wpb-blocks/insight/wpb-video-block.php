@@ -112,7 +112,7 @@ if(!( function_exists( 'tommusrhodus_video_shortcode_vc' ) )){
 	function tommusrhodus_video_shortcode_vc(){
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Video", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_video",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

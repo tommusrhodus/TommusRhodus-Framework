@@ -119,10 +119,10 @@ add_shortcode( 'tommusrhodus_post', 'tommusrhodus_post_shortcode' );
 function tommusrhodus_post_shortcode_vc() {
 	vc_map( 
 		array(
-			"icon" => 'tommusrhodus-vc-block',
+			"icon" => 'insight-vc-block',
 			"name" => esc_html__("Blog Feed", 'tommusrhodus'),
 			"base" => "tommusrhodus_post",
-			"category" => esc_html__('tommusrhodus WP Theme', 'tommusrhodus'),
+			"category" => esc_html__('Insight WP Theme', 'tommusrhodus'),
 			'description' => 'Show post posts with layout options.',
 			"params" => array(
 				array(

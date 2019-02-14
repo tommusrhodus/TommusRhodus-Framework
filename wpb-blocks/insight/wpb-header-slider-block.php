@@ -79,10 +79,10 @@ function tommusrhodus_header_slider_shortcode_vc() {
 
 	vc_map( 
 		array(
-			"icon" 						=> 'tommusrhodus-vc-block',
+			"icon" 						=> 'insight-vc-block',
 			"name" 						=> __( 'Header Slider' , 'tommusrhodus' ),
 			"base" 						=> "tommusrhodus_header_slider",
-			"category" 					=> __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+			"category" 					=> __( 'Insight WP Theme', 'tommusrhodus' ),
 			'as_parent'               	=> array('only' => 'tommusrhodus_header_slider_content'),
 			'content_element'         	=> true,
 			'show_settings_on_create' 	=> true,
@@ -111,11 +111,11 @@ add_action( 'vc_before_init', 'tommusrhodus_header_slider_shortcode_vc' );
 function tommusrhodus_header_slider_content_shortcode_vc() {
 	vc_map( 
 		array(
-			"icon" 					=> 'tommusrhodus-vc-block',
+			"icon" 					=> 'insight-vc-block',
 		    'name'            		=> __( 'Header Slider Content' , 'tommusrhodus' ),
 		    'base'            		=> 'tommusrhodus_header_slider_content',
 		    'description'     		=> __( 'A slide for the header slider.', 'tommusrhodus' ),
-		    "category" 				=> __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+		    "category" 				=> __( 'Insight WP Theme', 'tommusrhodus' ),
 		    'content_element' 		=> true,
 		    'as_child'        		=> array('only' => 'tommusrhodus_header_slider'),
 		    'params'          => array(

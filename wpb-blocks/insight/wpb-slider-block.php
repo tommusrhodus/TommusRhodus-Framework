@@ -64,7 +64,7 @@ if(!( function_exists( 'tommusrhodus_slider_shortcode_vc' ) )){
 	
 		vc_map( 
 			array(
-				"icon"     => 'tommusrhodus-vc-block',
+				"icon"     => 'insight-vc-block',
 				"name"     => __( "Slider", 'tommusrhodus' ),
 				"base"     => "tommusrhodus_slider",
 				"category" => __( 'Insight WP Theme', 'tommusrhodus' ),

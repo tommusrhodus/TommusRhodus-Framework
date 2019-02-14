@@ -112,10 +112,10 @@ if(!( function_exists( 'tommusrhodus_team_shortcode_vc' ) )){
 	
 		vc_map( 
 			array(
-				"icon"        => 'tommusrhodus-vc-block',
+				"icon"        => 'insight-vc-block',
 				"name"        => __( "Team Feeds", 'tommusrhodus' ),
 				"base"        => "tommusrhodus_team",
-				"category"    => __( 'tommusrhodus WP Theme', 'tommusrhodus' ),
+				"category"    => __( 'Insight WP Theme', 'tommusrhodus' ),
 				'description' => 'Show team posts with layout options.',
 				"params"      => array(
 					array(
