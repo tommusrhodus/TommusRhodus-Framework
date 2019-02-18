@@ -122,7 +122,10 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		public function __construct(){
 			
 			// First, grab the theme support for tommusrhodus-framework for us to process afterward
-			add_action( 'after_setup_theme', array( $this, 'gather_theme_support' ), 20 );
+			add_action( 'after_setup_theme', array( $this, 'gather_theme_support' ), 10 );
+			
+			// Next, let's process the custom post types
+			add_action( 'after_setup_theme', array( $this, 'process_gutenberg_blocks' ), 15 );
 			
 			// Process WPBakery Blocks
 			add_action( 'after_setup_theme', array( $this, 'process_wpb_blocks' ), 25 );
@@ -391,6 +394,31 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			// Register the taxonomy
 			register_taxonomy( $type, $filtered_args['for_post_types'], $filtered_args );
 			    
+		}
+		
+		/**
+		 * process_gutenberg_blocks()
+		 * 
+		 * Loops through our registered gutenberg blocks from theme support, functionality of each block
+		 * is contained within the included file.
+		 * 
+		 * @since 1.0.0
+		 * @blame Tom Rhodes
+		 */
+		public function process_gutenberg_blocks(){
+		
+			// Check that this theme actually has gutenberg blocks, and then ensure we have a theme name set
+			if( isset( $this->theme_support['gutenberg_blocks'] ) && isset( $this->theme_support['gutenberg_blocks']['theme_name'] ) ){
+				
+				// Grab blocks and loop over them
+				if( is_array( $this->theme_support['gutenberg_blocks']['blocks'] ) ){
+					foreach( $this->theme_support['gutenberg_blocks']['blocks'] as $block ){
+						include( $this->path . 'gutenberg-blocks/'. trailingslashit( $this->theme_support['gutenberg_blocks']['theme_name'] ) . $block .'.php' );
+					}
+				}
+				
+			}
+			
 		}
 		
 		/**
