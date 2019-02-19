@@ -12,7 +12,7 @@ function tommusrhodus_flex_list_shortcode( $atts, $content = null ) {
 		) 
 	);
 	
-	$output = '<ul class="list-group d-flex flex-fill '. esc_attr($custom_css_class) .'">'. do_shortcode($content) .'</ul>';
+	$output = '<div class="list-group d-flex flex-fill '. esc_attr($custom_css_class) .'">'. do_shortcode($content) .'</div>';
 
 	return $output;
 }

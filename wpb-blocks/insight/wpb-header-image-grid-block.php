@@ -22,23 +22,22 @@ if(!( function_exists( 'tommusrhodus_header_image_grid_shortcode' ) )){
 		);
 
 		$image = explode( ',', $image );
-		
-		$output = false;
-		
+
 		$output = '
 		    <section class="bg-gradient height-70 o-hidden">
 		      <div class="w-100 position-absolute demo-pages">
 		        <div class="row">';
-
+		
 		        foreach ( $image as $id ) {
-
-		        	$image = get_post( $id );
+		
+		        	$image         = get_post( $id );
 					$image_caption = $image->post_excerpt;
-
+					$url           = ( empty( $image_caption ) ) ? '#' : $image_caption;
+		
 					if( $image_caption ) {
 			        	$output .= '
 							<div class="col-6 col-md-4 col-lg-3 mb-3">
-								<a href="' . esc_url( $image_caption ) . '">
+								<a href="' . esc_url( $url ) . '">
 									'. wp_get_attachment_image( $id, 'full', '', array( 'class' => 'rounded' ) ) .'
 								</a>
 							</div>
@@ -52,19 +51,17 @@ if(!( function_exists( 'tommusrhodus_header_image_grid_shortcode' ) )){
 							</div>
 			        	';				
 					}
-
+		
 		        }
-
-		        $output .= '
+		
+		$output .= '
 		        </div>
 		      </div>
 		      <div class="container">
 		        <div class="row justify-content-center">
 		          <div class="col-xl-6 col-lg-7 col-md-9">
 		            <div class="card shadow-lg text-dark">
-		              <div class="card-body p-4 p-md-5">
-		                '. do_shortcode( $content ) .'
-		              </div>
+		              <div class="card-body p-4 p-md-5">'. do_shortcode( $content ) .'</div>
 		            </div>
 		          </div>
 		        </div>
