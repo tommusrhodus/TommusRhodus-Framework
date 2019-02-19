@@ -70,7 +70,6 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 		echo '<div class="gallery" data-cols="'. $settings['columns'] .'" data-margin="0" data-ratio="1:1">';
 		
 		foreach ($settings['gallery'] as $image) {
-			var_dump($image['id']);
 			$image_url = wp_get_attachment_url( $image['id'] );
 			echo '<div class="entry" data-bg="'. esc_url( $image_url ) .'"></div>';
 		}
