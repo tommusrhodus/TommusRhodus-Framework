@@ -79,25 +79,17 @@ class Widget_TommusRhodus_Clients_Block extends Widget_Base {
 
 	protected function render() {
 		
-		global $wp_query;
-		global $post;
+		global $wp_query, $post;
 
 		$settings = $this->get_settings_for_display();
 		
-		if( is_front_page() ) { 
-			$paged = ( get_query_var( 'page' ) )  ? get_query_var( 'page' )  : 1; 
-		} else { 
-			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; 
-		}
-
 		/**
 		 * Setup post query
 		 */
 		$query_args = array(
 			'post_type'      => 'client',
 			'post_status'    => 'publish',
-			'posts_per_page' => $settings['posts_per_page'],
-			'paged'          => $paged
+			'posts_per_page' => $settings['posts_per_page']
 		);
 		
 		$old_query = $wp_query;
