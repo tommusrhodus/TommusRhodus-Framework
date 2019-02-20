@@ -4,16 +4,16 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
+class Widget_tommusrhodus_Image_Slider_Block extends Widget_Base {
 	
 	//Return Class Name
 	public function get_name() {
-		return 'tommusrhodus-image-gallery-block';
+		return 'tommusrhodus-image-slider-block';
 	}
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Image Gallery', 'tr-framework' );
+		return esc_html__( 'Image Slider', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -29,21 +29,7 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Gallery', 'tr-framework' ),
-			]
-		);
-		
-		$this->add_control(
-			'columns',
-			[
-				'label'   => __( 'Number of Columns', 'tr-framework' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => '5',
-				'options' => [
-					'5'   => esc_html__( '5 Columns', 'tr-framework' ),
-					'4'   => esc_html__( '3 Columns', 'tr-framework' ),
-					'3'   => esc_html__( '3 Columns', 'tr-framework' ),
-				],
+				'label' => esc_html__( 'Slider', 'tr-framework' ),
 			]
 		);
 		
@@ -67,11 +53,14 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 
 		$settings = $this->get_settings_for_display();
 
-		echo '<div class="gallery" data-cols="'. $settings['columns'] .'" data-margin="0" data-ratio="1:1">';
+		echo '<div class="slider owl-carousel" data-items="1" data-arrows="true" data-dots="false">';
 		
 		foreach ($settings['gallery'] as $image) {
+
 			$image_url = wp_get_attachment_url( $image['id'] );
-			echo '<div class="entry" data-bg="'. esc_url( $image_url ) .'"></div>';
+			$image_alt = get_post_meta( $image['id'], '_wp_attachment_image_alt', true );
+			echo '<div class="item"><img src="'. esc_url( $image_url ) .'" alt="'. $image_alt .'"></div>';
+
 		}
 
 		echo '</div>';
@@ -83,7 +72,7 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 		
 		<div class="section page_title_section">
 			<div class="container">
-				<div class="page_title"><?php esc_html_e( 'Your images will appear here.', 'tr-framework' ); ?></div>
+				<div class="page_title"><?php esc_html_e( 'Your slider will appear here.', 'tr-framework' ); ?></div>
 			</div>
 		</div>
 		
@@ -93,4 +82,4 @@ class Widget_tommusrhodus_Image_Gallery_Block extends Widget_Base {
 }
 
 // Register our new widget
-Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Image_Gallery_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Image_Slider_Block() );
