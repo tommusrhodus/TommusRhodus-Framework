@@ -60,7 +60,7 @@ class Widget_TommusRhodus_Card_Image_Block extends Widget_Base {
 				'label'      => __( 'Card Image', 'tr-framework' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
-					'url' => Utils::get_placeholder_image_src(),
+					'url' => '',
 				],
 			]
 		);
