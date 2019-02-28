@@ -67,7 +67,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		/**
 		 * Instance.
 		 *
-		 * An global instance of the class. Used to retrieve the instance
+		 * A global instance of the class. Used to retrieve the instance
 		 * to use on other files/plugins/themes.
 		 *
 		 * @since 1.0.0
@@ -144,6 +144,9 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 
 			// Process Theme Options
 			add_action( 'customize_register', array( $this, 'process_options' ), 15 );
+			
+			// Process Theme Skin
+			add_action( 'customize_save_after', array( $this, 'process_skin' ), 15 );
 
 		}
 		
@@ -500,6 +503,15 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 					}
 				}
 				
+			}
+			
+		}
+		
+		public function process_skin(){
+		
+			// Check that this theme actually has wpb blocks, and then ensure we have a theme name set
+			if( isset( $this->theme_support['skin-builder'] ) && isset( $this->theme_support['skin-builder']['theme_name'] ) ){
+				include( $this->path . 'skin-builder/skin.php' );
 			}
 			
 		}
