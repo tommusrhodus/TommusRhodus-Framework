@@ -131,7 +131,7 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			add_action( 'after_setup_theme', array( $this, 'process_wpb_blocks' ), 25 );
 			
 			// Process Elementor Blocks
-			add_action( 'elementor/widgets/widgets_registered', array( $this, 'process_elementor_blocks' ), 25 );
+			add_action( 'init', array( $this, 'process_elementor_functions' ), 25 );
 			
 			// Next, let's process the custom post types
 			add_action( 'init', array( $this, 'process_custom_post_types' ), 15 );
@@ -450,6 +450,27 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			
 		}
 		
+		public function process_elementor_functions(){
+			
+			// Check that this theme actually has elementor blocks, and then ensure we have a theme name set
+			if( isset( $this->theme_support['elementor_blocks'] ) && isset( $this->theme_support['elementor_blocks']['theme_name'] ) ){
+				
+				// Check we have blocks registered
+				if( is_array( $this->theme_support['elementor_blocks']['blocks'] ) ){
+					
+					// Include our elementor functions on the init hook
+					include( $this->path . 'elementor-blocks/'. trailingslashit( $this->theme_support['elementor_blocks']['theme_name'] ) . 'functions.php' );
+					
+					// Register our widgets to the correct hook
+					add_action( 'elementor/widgets/widgets_registered', array( $this, 'process_elementor_blocks' ), 25 );
+					
+				}
+				
+			}
+
+		}
+		
+		
 		/**
 		 * process_elementor_blocks()
 		 * 
@@ -461,18 +482,14 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 		 */
 		public function process_elementor_blocks(){
 
-			// Check that this theme actually has wpb blocks, and then ensure we have a theme name set
+			// Check that this theme actually has elementor blocks, and then ensure we have a theme name set
 			if( isset( $this->theme_support['elementor_blocks'] ) && isset( $this->theme_support['elementor_blocks']['theme_name'] ) ){
 				
 				// Grab blocks and loop over them
 				if( is_array( $this->theme_support['elementor_blocks']['blocks'] ) ){
-				
-					include( $this->path . 'elementor-blocks/'. trailingslashit( $this->theme_support['elementor_blocks']['theme_name'] ) . 'functions.php' );
-				
 					foreach( $this->theme_support['elementor_blocks']['blocks'] as $block ){
 						include( $this->path . 'elementor-blocks/'. trailingslashit( $this->theme_support['elementor_blocks']['theme_name'] ) . $block .'.php' );
 					}
-					
 				}
 				
 			}
