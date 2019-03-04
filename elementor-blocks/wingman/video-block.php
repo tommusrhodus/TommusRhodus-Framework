@@ -54,8 +54,9 @@ class Widget_TommusRhodus_Video_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'block',
 				'options' => [
-					'block' => esc_html__( 'Block with Background Image', 'tr-framework' ),
-					'modal' => esc_html__( 'Modal with No Image', 'tr-framework' )
+					'block' 		=> esc_html__( 'Block with Background Image', 'tr-framework' ),
+					'modal' 		=> esc_html__( 'Modal with No Image', 'tr-framework' ),
+					'button_modal' 	=> esc_html__( 'Button Modal with No Image', 'tr-framework' )
 				],
 			]
 		);
@@ -83,6 +84,16 @@ class Widget_TommusRhodus_Video_Block extends Widget_Base {
 				'label'       => __( 'Video URL', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
+				'label_block' => true
+			]
+		);
+
+		$this->add_control(
+			'button_label',
+			[
+				'label'       => __( 'Button Label', 'tr-framework' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'Play Trailer',
 				'label_block' => true
 			]
 		);
@@ -128,12 +139,28 @@ class Widget_TommusRhodus_Video_Block extends Widget_Base {
 				</div>
 			';
 		
-		} else {
+		} elseif( 'modal' == $settings['layout'] ){
 		
 			echo '
 				<div class="video-play-icon" data-toggle="modal" data-target="#video-'. esc_attr( $cache_key ) .'">
 				    <i class="icon-controller-play"></i>
 				</div>
+				
+				<div class="modal fade" id="video-'. esc_attr( $cache_key ) .'" tabindex="-1" aria-labelledby="video-modal-label" aria-hidden="true">
+				    <div class="modal-dialog modal-lg modal-center-viewport">
+				        <div class="modal-content">
+				            <div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
+				        </div>
+				    </div>
+				</div>
+			';
+		
+		} elseif( 'button_modal' == $settings['layout'] ){
+		
+			echo '
+				<a href="#" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#video-'. esc_attr( $cache_key ) .'">
+					<i class="icon-controller-play"></i> '. $settings['button_label'] .'
+				</a>
 				
 				<div class="modal fade" id="video-'. esc_attr( $cache_key ) .'" tabindex="-1" aria-labelledby="video-modal-label" aria-hidden="true">
 				    <div class="modal-dialog modal-lg modal-center-viewport">
