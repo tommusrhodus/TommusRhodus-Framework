@@ -22,7 +22,7 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends \Elementor\Widget_B
 	}
 	
 	public function get_categories() {
-		return [ 'custom-elements' ];
+		return [ 'omio-elements' ];
 	}
 	
 	/**

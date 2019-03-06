@@ -22,7 +22,7 @@ class Widget_tommusrhodus_Page_Heading_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'custom-elements' ];
+		return [ 'omio-elements' ];
 	}
 	
 	/**
