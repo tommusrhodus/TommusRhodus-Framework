@@ -166,3 +166,6 @@ class Widget_tommusrhodus_Blog_Block extends Widget_Base {
 	public function render_plain_content( $instance = [] ) {}
 
 }
+
+// Register our new widget
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Blog_Block() );

@@ -105,3 +105,6 @@ class Widget_tommusrhodus_Testimonial_Carousel_Block extends \Elementor\Widget_B
 		<?php
 	}
 }
+
+// Register our new widget
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_tommusrhodus_Testimonial_Carousel_Block() );
