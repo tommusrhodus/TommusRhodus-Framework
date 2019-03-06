@@ -1,6 +1,6 @@
 <?php
 
-if(!( class_exists('tommusrhodus_register_tommusrhodus_menu') )){
+if(!( class_exists('TommusRhodus_Nav_Menu_Widget') )){
 
 	class TommusRhodus_Nav_Menu_Widget extends WP_Widget {
 
