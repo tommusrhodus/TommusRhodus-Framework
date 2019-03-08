@@ -28,8 +28,21 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 	protected function _register_controls() {
 		
 		$this->start_controls_section(
-			'section_content', [
-				'label' => esc_html__( 'Content', 'tr-framework' ),
+			'section_layout', [
+				'label' => esc_html__( 'Layout', 'tr-framework' ),
+			]
+		);
+		
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Hero Header', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'standard',
+				'label_block' => true,
+				'options' => [
+					'standard'         => esc_html__( 'Standard', 'tr-framework' ),
+					'image-background' => esc_html__( 'Image Background', 'tr-framework' )
+				],
 			]
 		);
 		
@@ -40,6 +53,24 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				'default'     => 'none',
 				'options'     => tommusrhodus_get_divider_layouts(),
 				'label_block' => true
+			]
+		);
+		
+		$this->end_controls_section();
+		
+		$this->start_controls_section(
+			'section_content', [
+				'label' => esc_html__( 'Content', 'tr-framework' ),
+			]
+		);
+		
+		$this->add_control(
+			'image', [
+				'label'      => __( 'Image', 'tr-framework' ),
+				'type'       => Controls_Manager::MEDIA,
+				'default' => [
+					'url' => '',
+				],
 			]
 		);
 		
@@ -72,6 +103,8 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
+		
+		if( 'standard' == $settings['layout'] ){
 		
 		echo '
 			<section class="bg-primary-alt header-inner o-hidden">
@@ -127,6 +160,31 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 		}
 			
 		echo '</section>';
+		
+		} else {
+			
+			echo '
+				<section class="bg-dark text-light header-inner p-0 jarallax o-hidden" data-overlay data-jarallax data-speed="0.2">
+					
+					'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'jarallax-img opacity-30' ) ) .'
+			      
+			      <div class="container py-0 layer-2">
+			        <div class="row my-3">
+			          <div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
+			        </div>
+			        <div class="row my-4 my-md-6" data-aos="fade-up">
+			          <div class="col-lg-9 col-xl-8">'. $settings['content'] .'</div>
+			        </div>
+			      </div>
+			';
+			
+			if(!( 'none' == $settings['divider'] )){	
+				echo tommusrhodus_svg_dividers_pluck( $settings['divider'], '' );		
+			}
+				
+			echo '</section>';
+			
+		}
 		
 	}
 
