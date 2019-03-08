@@ -62,6 +62,12 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 		$title      = $settings['item_title'];
 		$attr_title = sanitize_title_with_dashes( $title );
 		
+		$user_selected_animation = (bool) $settings['_animation'];
+		
+		if( !$user_selected_animation ){
+			echo '<div data-aos="fade-up" data-aos-delay="NaN">';
+		}
+		
 		echo '
 			<div class="card mb-2 card-sm card-body hover-shadow-sm">
 			
@@ -80,6 +86,10 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 				</div>
 			</div>
 		';
+		
+		if( !$user_selected_animation ){
+			echo '</div>';
+		}
 
 	}
 	
@@ -88,7 +98,7 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 		
 			<# var $title = <?php echo rand( 0, 30000 ); ?>; #>
 			
-			<div class="card mb-2 card-sm card-body hover-shadow-sm" data-aos="fade-up" data-aos-delay="NaN">
+			<div class="card mb-2 card-sm card-body hover-shadow-sm">
 			
 				<div data-target="#{{ $title }}" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{ $title }}">
 					<span class="h6 mb-0">{{{ settings.item_title }}}</span>

@@ -36,6 +36,18 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 		
 		$this->add_control(
 			'layout', [
+				'label'   => __( 'Pricing Table Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'standard',
+				'options' => [
+					'standard'      => esc_html__( 'Standard', 'tr-framework' ),
+					'compact'       => esc_html__( 'Compact', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->add_control(
+			'skin', [
 				'label'   => __( 'Skin', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'standard',
@@ -123,11 +135,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 				'label'   => __( 'Pricing Table Details', 'tr-framework' ),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
-				'default' => [
-					[
-						'item_title' => __( 'Pricing Table Detail', 'tr-framework' )
-					]
-				],
+				'default' => [],
 				'title_field' => __( 'Pricing Table Detail', 'tr-framework' ),
 			]
 		);
@@ -182,13 +190,49 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
+
 		$target   = $settings['url']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
 		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
 		
-		echo '
-			<div data-aos="fade-up" data-aos-delay="NaN">
-				<div class="card card-body align-items-center '. $settings['layout'] .'">
+		$user_selected_animation = (bool) $settings['_animation'];
+		
+		if( !$user_selected_animation ){
+			echo '<div data-aos="fade-up" data-aos-delay="NaN">';
+		}
+		
+		if( 'compact' == $settings['layout'] ){
+			
+			echo '			
+				<div class="card card-body justify-content-center text-center '. $settings['skin'] .'">
+				
+					<div class="text-muted"><span>'. $settings['description_title'] .'</span></div>
+				
+					<div class="d-flex justify-content-center my-3">
+						<span class="h3 pt-1 mr-1">'. $settings['currency'] .'</span>
+						<span class="display-3">'. $settings['price'] .'</span>
+					</div>
+					
+					<div class="text-small text-muted js-pricing-charge-description">'. $settings['small_text'] .'</div>
+					
+					<ul class="text-center list-unstyled my-2 my-md-4">
+			';
+			
+			foreach( $settings['list'] as $item ){
+				echo '<li class="py-1">'. $item['item_title'] .'</li>';
+			}
+			
+			echo '</ul>
+				
+					<a '. $link .' class="btn btn-lg mt-3 '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
+				
+				</div>
+			';
+		
+		} else {
+		
+			echo '
+				<div class="card card-body align-items-center '. $settings['skin'] .'">
 					
 					<span class="badge badge-top badge-dark">'. $settings['description_title'] .'</span>
 					
@@ -204,28 +248,58 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 					<span class="text-small text-muted">'. $settings['small_text'] .'</span>
 
 			        <ul class="text-center list-unstyled my-2 my-md-4">
-		';
-		
-		foreach( $settings['list'] as $item ){
-			echo '<li class="py-1">'. $item['item_title'] .'</li>';
-		}
-        
-		echo '
+			';
+			
+			foreach( $settings['list'] as $item ){
+				echo '<li class="py-1">'. $item['item_title'] .'</li>';
+			}
+	        
+			echo '
 					</ul>
 					
 			        <a '. $link .' class="btn '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
 			        
 			    </div>
-			</div>
-		';
+			';
+		
+		}
+		
+		if( !$user_selected_animation ){
+			echo '</div>';
+		}
 		
 	}
 
 	protected function _content_template() {
 		?>
+
+			<# if ( 'compact' == settings.layout ) { #>
+				
+				<div class="card card-body justify-content-center text-center {{ settings.skin }}">
+					
+					<div class="text-muted"><span>{{{ settings.description_title }}}</span></div>
+				
+					<div class="d-flex justify-content-center my-3">
+						<span class="h3 pt-1 mr-1">{{{ settings.currency }}}</span>
+						<span class="display-3">{{{ settings.price }}}</span>
+					</div>
+					
+					<div class="text-small text-muted js-pricing-charge-description">{{{ settings.small_text }}}</div>
+					
+					<ul class="text-center list-unstyled my-2 my-md-4">
+						<# _.each( settings.list, function( item ) { #>
+							<li class="py-1">{{{ item.item_title }}}</li>
+						<# }); #>
+						
+					</ul>
+				
+					<a href="#" class="btn btn-lg mt-3 {{ settings.button_class }}">{{{ settings.button_text }}}</a>
+				
+				</div>
 			
-			<div>
-				<div class="card card-body align-items-center {{ settings.layout }}">
+			<# } else { #>
+				
+				<div class="card card-body align-items-center {{ settings.skin }}">
 					
 					<span class="badge badge-top badge-dark">{{{ settings.description_title }}}</span>
 					
@@ -250,7 +324,8 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			        <a href="#" class="btn {{ settings.button_class }}">{{{ settings.button_text }}}</a>
 			        
 			    </div>
-			</div>
+					
+			<# } #>
 		
 		<?php
 	}

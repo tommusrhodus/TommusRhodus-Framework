@@ -100,8 +100,14 @@ class Widget_TommusRhodus_Single_Testimonial_Block extends Widget_Base {
 		
 		$settings = $this->get_settings_for_display();
 		
+		$user_selected_animation = (bool) $settings['_animation'];
+		
+		if( !$user_selected_animation ){
+			echo '<div data-aos="fade-up" data-aos-delay="NaN">';
+		}
+		
 		echo '
-			<div class="d-flex" data-aos="fade-up" data-aos-delay="NaN">
+			<div class="d-flex">
 			  <div class="card card-body shadow-sm">
 			  
 			    <div class="d-flex mb-3">
@@ -145,6 +151,10 @@ class Widget_TommusRhodus_Single_Testimonial_Block extends Widget_Base {
 			  </div>
 			</div>
 		';
+		
+		if( !$user_selected_animation ){
+			echo '</div>';
+		}
 		
 	}
 
