@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
+		return [ 'leap-elements' ];
 	}
 
 	protected function _register_controls() {
@@ -38,10 +38,10 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			'layout', [
 				'label'   => __( 'Skin', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'bg-dark',
+				'default' => 'standard',
 				'options' => [
-					'bg-dark'  => esc_html__( 'Dark Background', 'tr-framework' ),
-					'bg-white' => esc_html__( 'Light Background', 'tr-framework' )
+					'standard'  => esc_html__( 'Standard Background', 'tr-framework' ),
+					'shadow-3d' => esc_html__( 'Shadow Background', 'tr-framework' )
 				],
 			]
 		);
@@ -94,7 +94,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			'description_title', [
 				'label'       => __( 'Description Title', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => 'Includes:',
+				'default'     => '',
 				'label_block' => true
 			]
 		);
@@ -153,10 +153,10 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			'button_class', [
 				'label'       => __( 'Button Skin', 'tr-framework' ),
 				'type'        => Controls_Manager::SELECT,
-				'default'     => 'btn-success',
+				'default'     => 'btn-outline-primary',
 				'label_block' => true,
 				'options'     => [
-					'btn-success'         => esc_html__( 'Primary Color', 'tr-framework' ),
+					'btn-primary'         => esc_html__( 'Primary Color', 'tr-framework' ),
 					'btn-outline-primary' => esc_html__( 'Outline', 'tr-framework' )
 				],
 			]
@@ -187,22 +187,34 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
 		
 		echo '
-			<div class="card pricing card-lg '. $settings['layout'] .'">
-			    <div class="card-body">
-			        <h5>'. $settings['title'] .'</h5>
-			        <span class="display-3">'. $settings['currency'] . $settings['price'] .'</span>
-			        <span class="text-small">'. $settings['small_text'] .'</span>
-			        <span class="h6">'. $settings['description_title'] .'</span>
-			        <ul class="list-unstyled">
+			<div data-aos="fade-up" data-aos-delay="NaN">
+				<div class="card card-body align-items-center '. $settings['layout'] .'">
+					
+					<span class="badge badge-top badge-dark">'. $settings['description_title'] .'</span>
+					
+					<div class="pt-md-2">
+						<h4>'. $settings['title'] .'</h4>
+					</div>
+					
+					<div class="d-flex align-items-start pb-md-2">
+						<span class="h3">'. $settings['currency'] .'</span>
+						<span class="display-4">'. $settings['price'] .'</span>
+					</div>
+					
+					<span class="text-small text-muted">'. $settings['small_text'] .'</span>
+
+			        <ul class="text-center list-unstyled my-2 my-md-4">
 		';
 		
 		foreach( $settings['list'] as $item ){
-			echo '<li>'. $item['item_title'] .'</li>';
+			echo '<li class="py-1">'. $item['item_title'] .'</li>';
 		}
         
 		echo '
 					</ul>
-			        <a '. $link .' class="btn btn-lg '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
+					
+			        <a '. $link .' class="btn '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
+			        
 			    </div>
 			</div>
 		';
@@ -211,21 +223,32 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 
 	protected function _content_template() {
 		?>
-		
-			<div class="card pricing card-lg {{ settings.layout }}">
-			    <div class="card-body">
-			        <h5>{{{ settings.title }}}</h5>
-			        <span class="display-3">{{{ settings.currency }}}{{{ settings.price }}}</span>
-			        <span class="text-small">{{{ settings.small_text }}}</span>
-			        <span class="h6">{{{ settings.description_title }}}</span>
-			        <ul class="list-unstyled">
-						
-						<# _.each( settings.list, function( item ) { #>
-							<li>{{{ item.item_title }}}</li>
-						<# }); #>
+			
+			<div>
+				<div class="card card-body align-items-center {{ settings.layout }}">
+					
+					<span class="badge badge-top badge-dark">{{{ settings.description_title }}}</span>
+					
+					<div class="pt-md-2">
+						<h4>{{{ settings.title }}}</h4>
+					</div>
+					
+					<div class="d-flex align-items-start pb-md-2">
+						<span class="h3">{{{ settings.currency }}}</span>
+						<span class="display-4">{{{ settings.price }}}</span>
+					</div>
+					
+					<span class="text-small text-muted">{{{ settings.small_text }}}</span>
 
+			        <ul class="text-center list-unstyled my-2 my-md-4">
+						<# _.each( settings.list, function( item ) { #>
+							<li class="py-1">{{{ item.item_title }}}</li>
+						<# }); #>
+						
 					</ul>
-			        <a href="{{ settings.url.url }}" class="btn btn-lg {{ settings.button_class }}">{{{ settings.button_text }}}</a>
+					
+			        <a href="#" class="btn {{ settings.button_class }}">{{{ settings.button_text }}}</a>
+			        
 			    </div>
 			</div>
 		
