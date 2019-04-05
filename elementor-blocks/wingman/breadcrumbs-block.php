@@ -24,7 +24,7 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 	public function get_categories() {
 		return [ 'wingman-elements' ];
 	}
-	
+
 	/**
 	 * Whether the reload preview is required or not.
 	 *
@@ -39,10 +39,37 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 		return true;
 	}
 
-	protected function _register_controls() {}
+	protected function _register_controls() {
+
+		$this->start_controls_section(
+			'section_my_custom', [
+				'label' => esc_html__( 'Colour Options', 'tr-framework' ),
+			]
+		);
+
+		$this->add_control(
+			'text_colour', [
+				'label'   => __( 'Select a Colour', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'text-white',
+				'options' => [
+					'text-white' 			=> esc_html__( 'White Text', 'tr-framework' ),
+					'text-primary'  		=> esc_html__( 'Primary Colour Text', 'tr-framework' ),
+					'text-secondary'        => esc_html__( 'Secondary Colour Text', 'tr-framework' ),
+					'text-dark'        		=> esc_html__( 'Dark Text', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->end_controls_section();
+
+	}
 
 	protected function render() {
-		echo tommusrhodus_breadcrumbs( 'text-white' );
+
+		$settings = $this->get_settings_for_display();
+		echo tommusrhodus_breadcrumbs( $settings['text_colour'] );
+		
 	}
 
 }
