@@ -35,7 +35,7 @@ class Widget_TommusRhodus_Video_Lightbox_Block extends Widget_Base {
 
 		$this->add_control(
 			'video_url', [
-				'label' => esc_html__( 'Video Embed/MP4 URL', 'tr-framework' ),
+				'label' => esc_html__( 'Youtube/Vimeo Embed/MP4 URL', 'tr-framework' ),
 				'type' => Controls_Manager::TEXT,
 				'rows' => 10,
 			]
