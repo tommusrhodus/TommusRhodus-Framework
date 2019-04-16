@@ -587,3 +587,10 @@ if( !function_exists( 'TommusRhodus_Framework' ) ){
 		return TommusRhodus_Framework::instance();
 	}
 }
+
+/* Disable Elementor's getting started redirect as its interupting merlin setup */
+add_action( 'admin_init', function() {
+	if ( did_action( 'elementor/loaded' ) ) {
+		remove_action( 'admin_init', [ \Elementor\Plugin::$instance->admin, 'maybe_redirect_to_getting_started' ] );
+	}
+}, 1 );
