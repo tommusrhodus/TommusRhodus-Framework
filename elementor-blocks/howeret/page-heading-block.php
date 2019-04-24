@@ -68,7 +68,7 @@ class Widget_TommusRhodus_Page_Heading_Block extends Widget_Base {
 					<div class="headline_content">
 						<h1 class="headline_title">
 							<span class="reveal_content">
-								<span class="reveal">'. $settings['content'] .'</span>
+								<div class="reveal">'. $settings['content'] .'</div>
 							</span>
 						</h1>
 					</div>
