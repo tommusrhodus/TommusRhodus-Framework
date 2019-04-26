@@ -146,12 +146,12 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 								?>
 								
 					            <li>
-					                <div class="<?php echo $class; ?> card" id="tab-<?php echo $i; ?>" data-toggle="tab" href="#tab-content-<?php echo $i; ?>" role="tab" aria-controls="home" aria-selected="<?php echo $selected; ?>">
+					                <a class="<?php echo $class; ?> card" id="tab-<?php echo $i; ?>" data-toggle="tab" href="#tab-content-<?php echo $i; ?>" role="tab" aria-controls="home" aria-selected="<?php echo $selected; ?>">
 					                    <div class="card-body">
 					                        <h5><?php echo $item['item_title']; ?></h5>
 					                        <?php echo wpautop( $item['item_text'] ); ?>
 					                    </div>
-					                </div>
+					                </a>
 					            </li>
 							
 							<?php endforeach; ?>
