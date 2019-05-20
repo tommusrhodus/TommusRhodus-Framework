@@ -42,6 +42,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				'options' => [
 					'basic'          	=> esc_html__( 'Basic', 'tr-framework' ),
 					'icon-1'         	=> esc_html__( 'Icon 1', 'tr-framework' ),
+					'icon-1-dark'		=> esc_html__( 'Icon 1 Dark BG', 'tr-framework' ),
 					'icon-2'         	=> esc_html__( 'Icon 2', 'tr-framework' ),
 					'icon-3'         	=> esc_html__( 'Icon 3', 'tr-framework' ),
 					'icon-4'         	=> esc_html__( 'Icon 4', 'tr-framework' ),
@@ -151,6 +152,15 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			echo '
 				<div class="card card-body">
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon-round mb-3 mb-md-4 bg-primary' ) .'					
+					'. $settings['content'] .'
+				</div>
+			';
+
+		} elseif( 'icon-1-dark' == $settings['layout'] ) {
+
+			echo '
+				<div class="card card-body bg-primary text-light">
 					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon-round mb-3 mb-md-4 bg-primary' ) .'					
 					'. $settings['content'] .'
 				</div>
