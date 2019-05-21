@@ -123,10 +123,23 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'item_title', [
-				'label'       => __( 'Carousel Item Title', 'tr-framework' ),
+				'label'       => __( 'Detail Text', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'Unlimited projects',
 				'label_block' => true
+			]
+		);
+
+		$repeater->add_control(
+			'detail_style', [
+				'label'   => __( 'Strikethrough Detail?', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'basic',
+				'label_block' => true,
+				'options' => [
+					'basic'          				=> esc_html__( 'Basic Text', 'tr-framework' ),
+					'text-strikethrough'			=> esc_html__( 'Strikethrough Text', 'tr-framework' ),
+				],
 			]
 		);
 
@@ -138,7 +151,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 				'default' => [],
 				'title_field' => __( 'Pricing Table Detail', 'tr-framework' ),
 			]
-		);
+		);		
 
 		$this->end_controls_section();
 		
@@ -219,7 +232,13 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			';
 			
 			foreach( $settings['list'] as $item ){
-				echo '<li class="py-1">'. $item['item_title'] .'</li>';
+
+				if( 'text-strikethrough' == $item['detail_style'] ) {
+					echo '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>';
+				} else {
+					echo '<li class="py-1">'. $item['item_title'] .'</li>';
+				}
+				
 			}
 			
 			echo '</ul>
@@ -251,7 +270,13 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			';
 			
 			foreach( $settings['list'] as $item ){
-				echo '<li class="py-1">'. $item['item_title'] .'</li>';
+
+				if( 'text-strikethrough' == $item['detail_style'] ) {
+					echo '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>';
+				} else {
+					echo '<li class="py-1">'. $item['item_title'] .'</li>';
+				}
+
 			}
 	        
 			echo '
@@ -288,7 +313,11 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 					
 					<ul class="text-center list-unstyled my-2 my-md-4">
 						<# _.each( settings.list, function( item ) { #>
-							<li class="py-1">{{{ item.item_title }}}</li>
+							<# if ( 'text-strikethrough' == item.detail_style ) { #>
+								<li class="py-1"><li class="py-1"><span class="text-muted text-strikethrough">{{{ item.item_title }}}</li></span>
+							<# } else { #>
+								<li class="py-1">{{{ item.item_title }}}</li>
+							<# } #>
 						<# }); #>
 						
 					</ul>
@@ -316,9 +345,12 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 
 			        <ul class="text-center list-unstyled my-2 my-md-4">
 						<# _.each( settings.list, function( item ) { #>
-							<li class="py-1">{{{ item.item_title }}}</li>
-						<# }); #>
-						
+							<# if ( 'text-strikethrough' == item.detail_style ) { #>
+								<li class="py-1"><li class="py-1"><span class="text-muted text-strikethrough">{{{ item.item_title }}}</li></span>
+							<# } else { #>
+								<li class="py-1">{{{ item.item_title }}}</li>
+							<# } #>
+						<# }); #>						
 					</ul>
 					
 			        <a href="#" class="btn {{ settings.button_class }}">{{{ settings.button_text }}}</a>

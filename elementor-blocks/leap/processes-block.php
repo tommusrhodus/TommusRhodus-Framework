@@ -172,6 +172,60 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 			
 	}
 
+	protected function _content_template() {
+		?>
+
+			<# if ( 'vertical-alt' == settings.layout ) { #>
+				
+				<div class="row o-hidden o-lg-visible"><div class="col d-flex flex-column align-items-center"><ol class="process-vertical">
+				
+				<# _.each( settings.list, function( item ) { #>
+					<li data-aos="fade-left">
+						<div class="process-circle bg-primary"></div>
+						<div>
+							<span class="text-small text-muted">{{{ item.item_title }}}</span>
+							<h5 class="mb-0">{{{ item.item_description }}}</h5>
+						</div>
+					</li>
+				<# }); #>
+				
+				</ol></div></div>				
+					
+			<# } else if ( 'vertical' == settings.layout ) { #>
+
+				<div class="row">
+
+				<# _.each( settings.list, function( item ) { #>
+					<div class="d-flex mb-4" data-aos="fade-up" data-aos-delay="NaN">
+						<div class="process-circle {{{ item.icon_bg }}}"></div>
+						<div class="ml-3">						
+							<h5>{{{ item.item_title }}}</h5>
+							{{{ item.item_description }}}
+						</div>
+					</div>
+				<# }); #>
+
+				</div>
+
+			<# } else if ( 'basic' == settings.layout ) { #>
+
+				<div class="row">
+
+				<# _.each( settings.list, function( item ) { #>
+					<div class="col-md-4" data-aos="fade-left">
+						<div class="process-circle {{{ item.icon_bg }}} mb-3"></div>
+						<h4>{{{ item.item_title }}}</h4>
+			            {{{ item.item_description }}}
+					</div>
+				<# }); #>
+
+				</div>
+
+			<# } #>
+		
+		<?php
+	}
+
 }
 
 // Register our new widget
