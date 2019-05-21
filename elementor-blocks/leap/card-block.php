@@ -202,8 +202,9 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			echo '
 				<div class="card card-icon-3 card-body justify-content-between">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon-round mb-3 mb-md-4 bg-primary' ) .'
-			 
+					<div class="icon-round mb-3 mb-md-4 bg-primary">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+				 	</div>
 					<span class="badge badge-primary">'. $settings['badge_label'] .'</span>
 					<div>
 						<h3>'. $settings['title'] .'</h3>
@@ -218,9 +219,9 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 				echo '
 					<a '. $link .' class="card card-sm card-body flex-row align-items-center hover-shadow-3d">					
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'] ) .'
-	             	
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary' ) .'	             	
 	                  	<div class="ml-3">
+	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 		                    '. $settings['content'] .'
 	                  	</div>
 	                </a>
@@ -230,9 +231,9 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 				echo '
 					<div class="card card-sm card-body flex-row align-items-center">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'] ) .'
-	             	
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary' ) .'	             	
 	                  	<div class="ml-3">
+	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 		                    '. $settings['content'] .'
 	                  	</div>
 	                </div>
@@ -244,9 +245,9 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			echo '
 				<a '. $link .' class="card card-sm card-body flex-row align-items-center hover-bg-primary-2 hover-shadow-3d">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2' ) .'
-             	
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2' ) .'             	
                   	<div class="ml-3">
+                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 	                    '. $settings['content'] .'
                   	</div>
                 </a>
@@ -297,7 +298,6 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 	                    		'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md' ) .'
 	                    	</div>
 		                     '. $settings['content'] .'
-	                    	<a '. $link .'>'. $settings['badge_label'] .'</a>
 	                  	</div>
 	                </div>
 				';

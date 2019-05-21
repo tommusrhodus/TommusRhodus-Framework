@@ -64,6 +64,19 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'show_pagination', [
+				'label'   => __( 'Show Pagination?', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'hide',
+				'options' => [
+					'hide'          	=> esc_html__( 'Hide Pagination', 'tr-framework' ),
+					'show'         		=> esc_html__( 'Show Pagination', 'tr-framework' ),
+				],
+			]
+		);
+
+
 		// Category Selector
 		if( taxonomy_exists('category') ){
 		
@@ -105,9 +118,10 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 		extract( 
 			shortcode_atts( 
 				array(
-					'posts_per_page' => '6',
-					'filter'		 => 'all',
-					'layout'		 => 'card'
+					'posts_per_page' 	=> '6',
+					'filter'		 	=> 'all',
+					'layout'		 	=> 'card',
+					'show_pagination'	=> 'hide'
 				), $this->get_settings()
 			) 
 		);
@@ -159,6 +173,7 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 		$old_query = $wp_query;
 		$old_post  = $post;
 		$wp_query  = new \WP_Query( $query_args );
+		$wp_query->{"show_pagination"} =  $show_pagination;	
 
 		get_template_part( 'loop/loop-post', $layout );
 
