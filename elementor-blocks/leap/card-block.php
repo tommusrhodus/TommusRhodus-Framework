@@ -152,7 +152,10 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			echo '
 				<div class="card card-body">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon-round mb-3 mb-md-4 bg-primary' ) .'					
+					<div class="icon-round mb-3 mb-md-4 bg-primary">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'	
+					</div>			
+					<h4>'. $settings['title'] .'</h4>	
 					'. $settings['content'] .'
 				</div>
 			';
@@ -161,7 +164,10 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			echo '
 				<div class="card card-body bg-primary text-light">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon-round mb-3 mb-md-4 bg-primary' ) .'					
+					<div class="icon-round mb-3 mb-md-4 icon bg-white">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-white' ) .'	
+					</div>				
+					<h4>'. $settings['title'] .'</h4>	
 					'. $settings['content'] .'
 				</div>
 			';
@@ -171,8 +177,10 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 			if( !empty( $settings['url']['url'] ) ) {
 
 				echo '
-					<a '. $link .' class="card card-icon-2 card-body justify-content-between">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon-round mb-3 mb-md-4 bg-primary' ) .'
+					<a '. $link .' class="card card-icon-2 card-body justify-content-between shadow-3d hover-bg-primary-3">
+						<div class="icon-round mb-3 mb-md-4 icon bg-primary-2">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+						</div>
 						<h5 class="mb-0">'. $settings['title'] .'</h5>
 					</a>
 				';
@@ -181,7 +189,9 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 				echo '
 					<div class="card card-icon-2 card-body justify-content-between">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon-round mb-3 mb-md-4 bg-primary' ) .'
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
+						</div>
 						<h5 class="mb-0">'. $settings['title'] .'</h5>
 					</div>
 				';
@@ -313,11 +323,11 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 			echo '
 				<div class="card card-body">
                   	<div class="d-flex mb-3">
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon' ) .'
+                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
                   	</div>
                   	<div class="my-md-2 flex-grow-1">
 	                    <h4>'. $settings['title'] .'</h4>
