@@ -106,40 +106,21 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 		
 		$settings                = $this->get_settings_for_display();
 		$user_selected_animation = (bool) $settings['_animation'];
+		$item_text               = '"'. rtrim( implode('","', array_column( $settings['list'], 'item_text' ) ), ',"' ) .'"';
 
 		if( 'basic' == $settings['layout'] ) {
 
 			echo "
 				<span>". $settings['prefix'] ."</span>
-        		<span data-typed-text data-loop='true' data-type-speed='45' data-strings='[";
-        		$numItems = count($settings['list']);
-				$i = 0;
-        		foreach( $settings['list'] as $item ){
-        			if(++$i === $numItems) {
-						echo '"'. $item['item_text'] .'"';
-        			} else {
-        				echo '"'. $item['item_text'] .'",';
-        			}        			
-        		}
-        		echo "]'></span>
+        		<span data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span>
         	";
 
 		} elseif( 'highlight' == $settings['layout'] ) {
-
+			
 			echo "
 				<span class='h3'>". $settings['prefix'] ."</span>
 	            <div class='highlight'>
-	              	<span data-typed-text data-loop='true' data-type-speed='45' data-strings='[";
-	        		$numItems = count($settings['list']);
-					$i = 0;
-	        		foreach( $settings['list'] as $item ){
-	        			if(++$i === $numItems) {
-							echo '"'. $item['item_text'] .'"';
-	        			} else {
-	        				echo '"'. $item['item_text'] .'",';
-	        			}        			
-	        		}
-	        		echo "]'></span>
+	              	<span class='h3' data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span>
 	            </div>
 			";
 
