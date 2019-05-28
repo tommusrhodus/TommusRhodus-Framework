@@ -120,7 +120,7 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 			      	foreach( $settings['list'] as $item ){
 
 						echo '
-							<div class="carousel-cell mx-3">
+							<div class="carousel-cell">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'w-100' ) ) .'
 							</div>
 						';
@@ -138,7 +138,7 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 			      	foreach( $settings['list'] as $item ){
 
 						echo '
-							<div class="carousel-cell mx-3">
+							<div class="carousel-cell py-5">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'bg-image opacity-50' ) ) .'
 								<div class="container">
 									<div class="row justify-content-center min-vh-70 align-items-center">
