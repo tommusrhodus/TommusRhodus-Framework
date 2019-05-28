@@ -43,6 +43,7 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 					'inline'          		=> esc_html__( 'Inline Slider', 'tr-framework' ),
 					'fullwidth'         	=> esc_html__( 'Fullwidth Slider', 'tr-framework' ),
 					'fullwidth_text'		=> esc_html__( 'Fullwidth with Text', 'tr-framework' ),
+					'phone'					=> esc_html__( 'Phone Slider', 'tr-framework' ),
 				],
 			]
 		);
@@ -130,6 +131,7 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 			      echo '
 			    </section>
 			';
+
 		} elseif( 'fullwidth_text' == $settings['layout'] ) {
 
 			echo '
@@ -157,8 +159,31 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 			      echo '
 			    </section>
 			';
+
+		} elseif( 'phone' == $settings['layout'] ) {
+
+			echo '
+				<div class="slider-phone">
+					<img src="'. get_template_directory_uri() .'/style/img/iphone-xr.svg" alt="Phone" class="col-9 col-md-5 col-lg-4 col-xl-3">
+						<div data-flickity=\'{ "imagesLoaded": true, "wrapAround": true }\'>';
+
+						foreach( $settings['list'] as $item ){
+
+							echo '
+								<div class="carousel-cell col-9 col-md-5 col-lg-4 col-xl-3 mx-4">
+									'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+								</div>
+							';
+
+						}
+
+						echo '
+					</div>
+				</div>
+			';
+			
 		}
-		
+
 	}
 
 }

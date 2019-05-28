@@ -13,7 +13,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Twitter Slider', 'tr-framework' );
+		return esc_html__( 'Twitter Feed', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
