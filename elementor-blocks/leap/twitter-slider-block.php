@@ -139,13 +139,57 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 	protected function _content_template() {
 		?>
 		
-		<div data-twitter-fetcher data-username="{{ settings.twitter_username }}" data-twitter-flickity=\'{"wrapAround": true, "autoPlay":true}\' class="col-lg-10 col-xl-9 text-center">
-			<div class="carousel-cell">
-				<div class="user mb-3"></div>
-				<span class="h3 tweet d-block"></span>
-				<span class="text-small timePosted"></span>
+		<# if ( 'slider' == settings.layout ) { #>
+
+			<div data-twitter-fetcher data-username="{{ settings.twitter_username }}" data-twitter-flickity='{"wrapAround": true, "autoPlay":true}' class="col-lg-10 col-xl-9 text-center">
+				<div class="carousel-cell">
+					<div class="user mb-3"></div>
+					<span class="h3 tweet d-block"></span>
+					<span class="text-small timePosted"></span>
+				</div>
 			</div>
-		</div>
+
+		<# } else if ( 'slider_widget' == settings.layout ) { #>
+
+			<div data-twitter-flickity='{"wrapAround": true, "autoPlay": false, "prevNextButtons": false, "adaptiveHeight": true}' data-twitter-fetcher data-username="{{ settings.twitter_username }}">
+				<div class="carousel-cell">
+					<div class="tweet mb-2"></div>
+					<div class="d-flex align-items-center">
+						<?php echo tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon icon-sm mr-2 opacity-30' ); ?>
+						<div class="timePosted text-small"></div>
+					</div>
+				</div>
+			</div>
+
+		<# } else if ( 'cards_1' == settings.layout ) { #>
+
+			<div class="row" data-twitter-fetcher data-username="{{ settings.twitter_username }}" data-twitter-isotope data-sort-ascending="true">
+				<div class="col-md-4" data-isotope-item>
+					<div class="card card-body align-items-start">
+						<?php echo tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon mb-3 bg-primary' ); ?>
+						<p class="tweet w-100"></p>
+						<span class="text-small timePosted"></span>
+					</div>
+				</div>
+			</div>
+
+		<# } else if ( 'cards_2' == settings.layout ) { #>
+
+			<div class="row" data-twitter-fetcher data-username="{{ settings.twitter_username }}" data-twitter-isotope data-sort-ascending="true">
+				<div class="col-md-6" data-isotope-item>
+					<div class="card card-body flex-row">
+						<div class="icon-round icon-round-sm bg-primary">
+							<?php echo tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon bg-primary' ); ?>
+						</div>
+						<div class="ml-3">
+							<p class="tweet"></p>
+							<span class="text-small timePosted"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<# } #>
 		
 		<?php
 	}
