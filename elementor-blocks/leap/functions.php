@@ -63,3 +63,21 @@ add_action( 'elementor/frontend/section/before_render', function( $element ) {
 	}
 	
 });
+
+/**
+ * Login Shortcode
+ */
+if(!( function_exists('tommusrhodus_login_shortcode') )) {
+	function tommusrhodus_login_shortcode( $atts ) {
+		$find = array(
+			'button button-primary'
+		);
+		
+		$replace = array(
+			'btn-block btn btn-primary'
+		);
+		
+		return str_replace($find, $replace, wp_login_form( array( 'echo' => false ) ));
+	}
+	add_shortcode( 'leap_login', 'tommusrhodus_login_shortcode' );
+}
