@@ -171,7 +171,7 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 								?>
 								
 							    <li>
-							        <div class="<?php echo $class; ?> card" id="tab-<?php echo $i; ?>" data-toggle="tab" href="#tab-content-<?php echo $i; ?>" role="tab" aria-controls="home" aria-selected="<?php echo $selected; ?>">
+							        <a class="<?php echo $class; ?> card" id="tab-<?php echo $i; ?>" data-toggle="tab" href="#tab-content-<?php echo $i; ?>" role="tab" aria-controls="tab-<?php echo $i; ?>" aria-selected="<?php echo $selected; ?>">
 							            <div class="card-body">
 											<div class="media align-items-center">
 											    <div class="step-circle mr-4"><?php echo $i; ?></div>
@@ -181,7 +181,7 @@ class Widget_TommusRhodus_Graphic_Tabs_Block extends Widget_Base {
 												</div>
 											</div>
 							            </div>
-							        </div>
+							        </a>
 							    </li>
 							
 							<?php endforeach; ?>

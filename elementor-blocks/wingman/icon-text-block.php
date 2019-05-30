@@ -104,7 +104,8 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		$target   = $settings['url']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
-		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
+		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;		
+		$color 	  = 'style="color: '. $settings['color'] .';"'   ? ''  : '';
 		
 		if( 'tiny' == $settings['layout'] ){
 		
@@ -112,7 +113,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				<ul class="feature-list feature-list-sm">
 					<li>
 					    <div class="media">
-					        <i class="'. esc_attr( $settings['icon'] ).' mr-2" style="color: '. $settings['color'] .';"></i>
+					        <i class="'. esc_attr( $settings['icon'] ).' mr-2" '. $color  .'></i>
 					        <div class="media-body">'. $settings['content'] .'</div>
 					    </div>
 					</li>
@@ -126,7 +127,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
 						    <div class="media">
-						        <i class="'. esc_attr( $settings['icon'] ).' mr-2" style="color: '. $settings['color'] .';"></i>
+						        <i class="'. esc_attr( $settings['icon'] ).' mr-2" '. $color  .'></i>
 						        <div class="media-body">'. $settings['content'] .'</div>
 						    </div>
 						</li>
@@ -138,7 +139,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		
 			echo '
 				<div class="text-center">
-					<i class="'. esc_attr( $settings['icon'] ).' display-3" style="color: '. $settings['color'] .';"></i>
+					<i class="'. esc_attr( $settings['icon'] ).' display-3" '. $color  .'></i>
 					'. $settings['content'] .'
 				</div>
 			';
@@ -150,7 +151,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				    <li>
 				        <a '. $link .' class="card card-lg">
 				            <div class="card-header card-header-borderless py-5 text-center">
-				                <i class="'. esc_attr( $settings['icon'] ).' display-2" style="color: '. $settings['color'] .';"></i>
+				                <i class="'. esc_attr( $settings['icon'] ).' display-2" '. $color  .'></i>
 				            </div>
 				            <div class="card-body text-body">'. $settings['content'] .'</div>
 				        </a>
@@ -163,7 +164,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			echo '
 				<ul class="feature-list">
 				    <li>
-				        <i class="'. esc_attr( $settings['icon'] ).' h1" style="color: '. $settings['color'] .';"></i>
+				        <i class="'. esc_attr( $settings['icon'] ).' h1" '. $color  .'></i>
 				        '. $settings['content'] .'
 				    </li>
 				</ul>
