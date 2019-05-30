@@ -1,14 +1,14 @@
 <?php
 
-if(!( class_exists('TommusRhodus_Popular_Widget') )){
-	class TommusRhodus_Popular_Widget extends WP_Widget {
+if(!( class_exists('TommusRhodus_Recent_Widget') )){
+	class TommusRhodus_Recent_Widget extends WP_Widget {
 		
 		public function __construct() {
 			$widget_ops = array(
-				'description'                 => __( 'Add a post feed your sidebar.' ),
+				'description'                 => __( 'Add a recent post feed your sidebar.' ),
 				'customize_selective_refresh' => true,
 			);
-			parent::__construct( 'tommusrhodus_popular_posts', __( 'TommusRhodus Popular Posts' ), $widget_ops );
+			parent::__construct( 'tommusrhodus_recent_posts', __( 'TommusRhodus Recent Posts' ), $widget_ops );
 		}
 		
 		function widget($args, $instance)
@@ -27,9 +27,6 @@ if(!( class_exists('TommusRhodus_Popular_Widget') )){
 			    		$widget_query = new WP_Query(
 			    			array(
 			    				'post_type' => 'post',
-			    				'orderby' => 'comment_count',
-			    				'order' => 'DESC',
-			    				'posts_per_page' => $instance['amount']
 			    			)
 			    		);
 			    		if( $widget_query->have_posts() ) : while ( $widget_query->have_posts() ): $widget_query->the_post(); 
@@ -84,7 +81,7 @@ if(!( class_exists('TommusRhodus_Popular_Widget') )){
 	
 		function form($instance)
 		{
-			$defaults = array('title' => 'Popular Posts', 'amount' => '3');
+			$defaults = array('title' => 'Recent Posts', 'amount' => '3');
 			$instance = wp_parse_args((array) $instance, $defaults); ?>
 			
 			<p>
@@ -99,9 +96,9 @@ if(!( class_exists('TommusRhodus_Popular_Widget') )){
 		}
 	}
 
-	function tommusrhodus_register_tommusrhodus_popular(){
-	     register_widget( 'TommusRhodus_Popular_Widget' );
+	function tommusrhodus_register_tommusrhodus_recent(){
+	     register_widget( 'TommusRhodus_Recent_Widget' );
 	}
-	add_action( 'widgets_init', 'tommusrhodus_register_tommusrhodus_popular', 20);
+	add_action( 'widgets_init', 'tommusrhodus_register_tommusrhodus_recent', 20);
 
 }
