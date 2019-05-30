@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Card_link_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
+		return [ 'uptime-elements' ];
 	}
 
 	protected function _register_controls() {

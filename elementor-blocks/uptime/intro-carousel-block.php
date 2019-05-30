@@ -22,7 +22,7 @@ class Widget_tommusrhodus_intro_Carousel_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
+		return [ 'uptime-elements' ];
 	}
 	
 	/**
