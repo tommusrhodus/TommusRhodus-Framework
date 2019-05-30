@@ -146,7 +146,7 @@ class Widget_TommusRhodus_Video_Block extends Widget_Base {
 				    <i class="icon-controller-play"></i>
 				</div>
 				
-				<div class="modal fade" id="video-'. esc_attr( $cache_key ) .'" tabindex="-1" aria-labelledby="video-modal-label" aria-hidden="true">
+				<div class="modal fade" id="video-'. esc_attr( $cache_key ) .'" tabindex="-1" aria-hidden="true">
 				    <div class="modal-dialog modal-lg modal-center-viewport">
 				        <div class="modal-content">
 				            <div class="embed-responsive embed-responsive-16by9">'. $result .'</div>
@@ -162,7 +162,7 @@ class Widget_TommusRhodus_Video_Block extends Widget_Base {
 					<i class="icon-controller-play"></i> '. $settings['button_label'] .'
 				</a>
 				
-				<div class="modal fade" id="video-'. esc_attr( $cache_key ) .'" tabindex="-1" aria-labelledby="video-modal-label" aria-hidden="true">
+				<div class="modal fade" id="video-'. esc_attr( $cache_key ) .'" tabindex="-1" aria-hidden="true">
 				    <div class="modal-dialog modal-lg modal-center-viewport">
 				        <div class="modal-content">
 				            <div class="embed-responsive embed-responsive-16by9">'. $result .'</div>

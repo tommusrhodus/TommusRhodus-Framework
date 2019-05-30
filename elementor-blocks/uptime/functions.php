@@ -3,9 +3,9 @@
 function tommusrhodus_framework_add_elementor_widget_categories( $elements_manager ) {
 	
 	$elements_manager->add_category(
-		'uptime-elements',
+		'wingman-elements',
 		array(
-			'title' => 'Uptime Elements'
+			'title' => 'Wingman Elements'
 		)
 	);
 

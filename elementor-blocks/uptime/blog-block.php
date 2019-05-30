@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'uptime-elements' ];
+		return [ 'wingman-elements' ];
 	}
 	
 	/**

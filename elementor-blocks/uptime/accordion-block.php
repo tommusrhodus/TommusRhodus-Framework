@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'uptime-elements' ];
+		return [ 'wingman-elements' ];
 	}
 	
 	/**
@@ -108,7 +108,7 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 							$class    = ( 1 == $i ) ? 'show' : false;
 						?>
 						
-				        <a data-toggle="collapse" data-parent="#accordion-1" href="#accordion-panel-<?php echo $i; ?>" aria-expanded="<?php echo $selected; ?>" aria-controls="accordion-<?php echo $i; ?>">
+				        <a data-toggle="collapse" data-parent="#accordion-1" href="#accordion-panel-<?php echo $i; ?>" aria-expanded="<?php echo $selected; ?>" aria-controls="accordion-panel-<?php echo $i; ?>">
 				            <h5><?php echo $item['item_title']; ?></h5>
 				            <i class="h5 icon-chevron-small-right"></i>
 				        </a>
