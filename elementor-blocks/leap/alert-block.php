@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Alert_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-alert';
 	}
 	
 	public function get_categories() {

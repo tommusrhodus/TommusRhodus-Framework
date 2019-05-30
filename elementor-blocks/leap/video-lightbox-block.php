@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Video_Lightbox_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-play';
 	}
 	
 	public function get_categories() {

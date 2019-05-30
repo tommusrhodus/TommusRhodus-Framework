@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-post';
+		return 'eicon-product-breadcrumbs';
 	}
 	
 	public function get_categories() {

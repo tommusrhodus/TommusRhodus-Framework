@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-countdown';
 	}
 	
 	public function get_categories() {

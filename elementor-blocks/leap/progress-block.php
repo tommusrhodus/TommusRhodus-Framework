@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Progress_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-skill-bar';
 	}
 	
 	public function get_categories() {

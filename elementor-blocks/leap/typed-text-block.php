@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-type-tool';
 	}
 	
 	public function get_categories() {

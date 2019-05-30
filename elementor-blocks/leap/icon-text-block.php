@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-icon-box';
 	}
 	
 	public function get_categories() {

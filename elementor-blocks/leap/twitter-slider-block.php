@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-twitter-embed';
 	}
 	
 	public function get_categories() {
