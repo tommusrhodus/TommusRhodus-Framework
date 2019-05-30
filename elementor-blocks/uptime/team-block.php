@@ -4,16 +4,16 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
+class Widget_TommusRhodus_Team_Block extends Widget_Base {
 	
 	//Return Class Name
 	public function get_name() {
-		return 'tommusrhodus-breadcrumbs-block';
+		return 'tommusrhodus-team-block';
 	}
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Breadcrumbs', 'tr-framework' );
+		return esc_html__( 'Team Posts', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -22,9 +22,9 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
+		return [ 'uptime-elements' ];
 	}
-
+	
 	/**
 	 * Whether the reload preview is required or not.
 	 *
@@ -43,21 +43,15 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Colour Options', 'tr-framework' ),
+				'label' => esc_html__( 'Team Posts', 'tr-framework' ),
 			]
 		);
 
 		$this->add_control(
-			'text_colour', [
-				'label'   => __( 'Select a Colour', 'tr-framework' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'text-white',
-				'options' => [
-					'text-white' 			=> esc_html__( 'White Text', 'tr-framework' ),
-					'text-primary'  		=> esc_html__( 'Primary Colour Text', 'tr-framework' ),
-					'text-secondary'        => esc_html__( 'Secondary Colour Text', 'tr-framework' ),
-					'text-dark'        		=> esc_html__( 'Dark Text', 'tr-framework' )
-				],
+			'posts_per_page', [
+				'label'   => esc_html__( 'Number of Posts', 'tr-framework' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => '3'
 			]
 		);
 		
@@ -66,13 +60,33 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 	}
 
 	protected function render() {
-
-		$settings = $this->get_settings_for_display();
-		echo tommusrhodus_breadcrumbs( $settings['text_colour'] );
 		
+		global $wp_query, $post;
+		
+		$settings = $this->get_settings_for_display();
+
+		/**
+		 * Setup post query
+		 */
+		$query_args = array(
+			'post_type'      => 'team',
+			'post_status'    => 'publish',
+			'posts_per_page' => $settings['posts_per_page']
+		);
+		
+		$old_query = $wp_query;
+		$old_post  = $post;
+		$wp_query  = new \WP_Query( $query_args );
+
+		get_template_part( 'loop/loop', 'team' );
+
+		wp_reset_postdata();
+		$wp_query = $old_query;
+		$post     = $old_post;
+
 	}
 
 }
 
 // Register our new widget
-Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Breadcrumbs_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Team_Block() );
