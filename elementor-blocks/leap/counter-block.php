@@ -13,12 +13,12 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'eicon-number-field', 'tr-framework' );
+		return esc_html__( 'Counter', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-number-field';
 	}
 	
 	public function get_categories() {
