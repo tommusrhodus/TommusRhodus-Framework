@@ -54,7 +54,8 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [
-					'tiny'      => esc_html__( 'Tiny Side Icon', 'tr-framework' )
+					'tiny'      => esc_html__( 'Tiny Side Icon', 'tr-framework' ),					
+					'medium'      => esc_html__( 'Medium Side Icon', 'tr-framework' )
 				],
 			]
 		);
@@ -65,6 +66,18 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => '0',
 				'options' => array_keys( tommusrhodus_get_svg_icons() ),
+			]
+		);
+
+		$this->add_control(
+			'icon_colour', [
+				'label'   => __( 'Icon Colour', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'bg-primary',
+				'options' => [
+					'bg-primary'      => esc_html__( 'Primary Colour', 'tr-framework' ),					
+					'bg-white'        => esc_html__( 'White', 'tr-framework' )
+				],
 			]
 		);
 		
@@ -102,8 +115,17 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			
 			echo '
 				<div class="d-flex mb-3 mb-md-0">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md bg-primary' ) .'
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] ) .'
 				  <div class="ml-3">'. $settings['content'] .'</div>
+				</div>
+			';
+		
+		} elseif( 'medium' == $settings['layout'] ){
+			
+			echo '
+				<div class="d-flex align-items-center my-2">
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg '. $settings['icon_colour'] ) .'
+					<span class="h6 mb-0 ml-2">'. $settings['content'] .'</span>
 				</div>
 			';
 		
