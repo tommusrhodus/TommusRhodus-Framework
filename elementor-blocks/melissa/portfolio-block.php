@@ -59,7 +59,7 @@ class Widget_tommusrhodus_Portfolio_Block extends Widget_Base {
 			'layout', [
 				'label'   => esc_html__( 'Portfolio Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'metro',
+				'default' => 'grid',
 				'options' => tommusrhodus_get_portfolio_layouts(),
 			]
 		);
