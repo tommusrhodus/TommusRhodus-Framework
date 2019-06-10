@@ -43,7 +43,7 @@ class Widget_tommusrhodus_Portfolio_Filters_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Portfolio Filters', 'tr-framework' ),
+				'label' => esc_html__( 'Portfolio Filters - NOTE, for use with the Hover, Milan & Berlin layouts only', 'tr-framework' ),
 			]
 		);
 		
