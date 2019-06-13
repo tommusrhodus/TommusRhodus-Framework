@@ -84,9 +84,6 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
-		$url      =  wp_get_attachment_image_src( $settings['image']['id'], 'full' );
-		$url2     =  wp_get_attachment_image_src( $settings['image2']['id'], 'full' );
-		$url3     =  wp_get_attachment_image_src( $settings['image3']['id'], 'full' );
 		
 		echo '
 		<div class="arrows-inside highlight-selected mb-6" data-flickity=\'{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true }\'>';
