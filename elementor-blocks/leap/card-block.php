@@ -45,6 +45,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'icon-1-dark'		=> esc_html__( 'Icon 1 Dark BG', 'tr-framework' ),
 					'icon-2'         	=> esc_html__( 'Icon 2', 'tr-framework' ),
 					'icon-3'         	=> esc_html__( 'Icon 3', 'tr-framework' ),
+					'icon-3-tilted'		=> esc_html__( 'Icon 3 Tilted', 'tr-framework' ),
 					'icon-4'         	=> esc_html__( 'Icon 4', 'tr-framework' ),
 					'icon-4-hover'		=> esc_html__( 'Icon 4 + Hover Effect', 'tr-framework' ),
 					'customer-1'		=> esc_html__( 'Customer 1', 'tr-framework' ),
@@ -198,10 +199,25 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			}
 			
-		}  elseif( 'icon-3' == $settings['layout'] ) {
+		} elseif( 'icon-3' == $settings['layout'] ) {
 
 			echo '
 				<div class="card card-icon-3 card-body justify-content-between">
+					<div class="icon-round mb-3 mb-md-4 bg-primary">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+				 	</div>
+					<span class="badge badge-primary">'. $settings['badge_label'] .'</span>
+					<div>
+						<h3>'. $settings['title'] .'</h3>
+						'. $settings['content'] .'
+					</div>
+				</div>
+			';
+
+		} elseif( 'icon-3-tilted' == $settings['layout'] ) {
+
+			echo '
+				<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
 					<div class="icon-round mb-3 mb-md-4 bg-primary">
 						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
 				 	</div>
