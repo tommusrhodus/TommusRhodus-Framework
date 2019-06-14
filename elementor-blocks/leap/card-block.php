@@ -40,22 +40,24 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				'default' => 'basic',
 				'label_block' => true,
 				'options' => [
-					'basic'          			=> esc_html__( 'Basic', 'tr-framework' ),
-					'icon-1'         			=> esc_html__( 'Icon 1', 'tr-framework' ),
-					'icon-1-dark'				=> esc_html__( 'Icon 1 Dark BG', 'tr-framework' ),
-					'icon-2'         			=> esc_html__( 'Icon 2', 'tr-framework' ),
-					'icon-3'         			=> esc_html__( 'Icon 3', 'tr-framework' ),
-					'icon-3-tilted'				=> esc_html__( 'Icon 3 Tilted', 'tr-framework' ),
-					'icon-4'         			=> esc_html__( 'Icon 4', 'tr-framework' ),
-					'icon-4-hover'				=> esc_html__( 'Icon 4 + Hover Effect', 'tr-framework' ),
-					'customer-1'				=> esc_html__( 'Customer 1', 'tr-framework' ),
-					'customer-2'				=> esc_html__( 'Customer 2', 'tr-framework' ),
-					'customer-3'				=> esc_html__( 'Customer 3', 'tr-framework' ),
-					'customer-4'				=> esc_html__( 'Customer 4', 'tr-framework' ),
-					'customer-5'				=> esc_html__( 'Customer 5', 'tr-framework' ),
-					'customer-7'				=> esc_html__( 'Customer 7', 'tr-framework' ),
-					'customer-8'				=> esc_html__( 'Customer 8', 'tr-framework' ),
-					'large-image-and-text'		=> esc_html__( 'Large Image + Text', 'tr-framework' ),
+					'basic'          					=> esc_html__( 'Basic', 'tr-framework' ),
+					'icon-1'         					=> esc_html__( 'Icon 1', 'tr-framework' ),
+					'icon-1-dark'						=> esc_html__( 'Icon 1 Dark BG', 'tr-framework' ),
+					'icon-2'         					=> esc_html__( 'Icon 2', 'tr-framework' ),
+					'icon-3'         					=> esc_html__( 'Icon 3', 'tr-framework' ),
+					'icon-3-tilted'						=> esc_html__( 'Icon 3 Tilted', 'tr-framework' ),
+					'icon-4'         					=> esc_html__( 'Icon 4', 'tr-framework' ),
+					'icon-4-hover'						=> esc_html__( 'Icon 4 + Hover Effect', 'tr-framework' ),
+					'customer-1'						=> esc_html__( 'Customer 1', 'tr-framework' ),
+					'customer-2'						=> esc_html__( 'Customer 2', 'tr-framework' ),
+					'customer-3'						=> esc_html__( 'Customer 3', 'tr-framework' ),
+					'customer-4'						=> esc_html__( 'Customer 4', 'tr-framework' ),
+					'customer-5'						=> esc_html__( 'Customer 5', 'tr-framework' ),
+					'customer-7'						=> esc_html__( 'Customer 7', 'tr-framework' ),
+					'customer-8'						=> esc_html__( 'Customer 8', 'tr-framework' ),
+					'large-image-and-text'				=> esc_html__( 'Large Image + Text', 'tr-framework' ),
+					'large-image-and-text-overlay'		=> esc_html__( 'Large Image + Text Overlay', 'tr-framework' ),
+					'event'								=> esc_html__( 'Event', 'tr-framework' ),
 				],
 			]
 		);
@@ -125,6 +127,28 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'is_external' => false,
 					'nofollow'    => false,
 				],
+			]
+		);
+
+
+		$this->add_control(
+			'event_date_1',
+			[
+				'label'       => __( 'Event Date (Event Layout Only)', 'tr-framework' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '24',
+				'label_block' => true
+			]
+		);
+
+
+		$this->add_control(
+			'event_date_2',
+			[
+				'label'       => __( 'Event Month (Event Layout Only)', 'tr-framework' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'JUN',
+				'label_block' => true
 			]
 		);
 
@@ -432,6 +456,39 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 						'. $settings['content'] .'
 					</a>
 				</div>
+			';
+
+		} elseif( 'large-image-and-text-overlay' == $settings['layout'] ) {
+
+			echo '
+				<div>
+					<a '. $link .' class="card position-relative text-light border-0 d-flex justify-content-end overlay">
+						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'rounded width-100' ) ) .'
+						<div class="position-absolute p-3 layer-2">
+							'. $settings['content'] .'
+						</div>
+					</a>
+				</div>
+			';
+
+		} elseif( 'event' == $settings['layout'] ) {
+
+			echo '
+				<a class="card hover-shadow-sm" '. $link .'>
+					'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'card-img-top' ) ) .'
+					<div class="card-body d-flex flex-column">
+						<div class="d-flex">
+							<div>
+								<div class="h4 mb-0 text-danger">'. $settings['event_date_1'] .'</div>
+								<div class="h4 mb-0 text-uppercase">'. $settings['event_date_2'] .'</div>
+							</div>
+							<div class="ml-3">
+								 <div class="badge badge-primary mb-3">'. $settings['badge_label'] .'</div>
+								'. $settings['content'] .'
+							</div>
+						</div>
+					</div>
+				</a>
 			';
 
 		}
