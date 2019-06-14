@@ -40,7 +40,8 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 				'default' => 'card-3',
 				'label_block' => true,
 				'options' => [
-					'card-3'          		=> esc_html__( 'Card Carousel 3', 'tr-framework' ),
+					'card-3'          		=> esc_html__( 'Single Card Carousel', 'tr-framework' ),
+					'fullwidth'          	=> esc_html__( 'Fullwidth Carousel', 'tr-framework' ),
 				],
 			]
 		);
@@ -128,6 +129,35 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 				                  	</div>
 				                </div>
 			             	 </div>
+						';
+
+					}
+
+					echo '
+				</div>
+			';
+		
+		} elseif( 'fullwidth' == $settings['layout'] ) {
+
+			echo '
+				 <div class="controls-light arrows-inside highlight-selected mb-6" data-flickity=\'{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true }\'>';
+
+					foreach( $settings['list'] as $item ){
+
+						echo '
+							<div class="carousel-cell col-xl-3 col-lg-4 col-md-5 col-9 pb-1">
+								<div class="card card-body">
+									<div class="mb-3 mb-md-4">
+										'. wp_get_attachment_image( $item['image']['id'], 'Thumbnail', 0, array( 'class' => 'round avatar avatar-lg' ) ) .'
+									</div>
+									<div class="flex-grow-1 pt-md-3">
+										'. do_shortcode( $item['content'] ) .'
+									</div>
+									<div class="avatar-author d-block">
+										'. do_shortcode( $item['author'] ) .'										
+									</div>
+								</div>
+        					</div>
 						';
 
 					}

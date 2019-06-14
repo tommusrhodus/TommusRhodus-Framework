@@ -40,21 +40,22 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				'default' => 'basic',
 				'label_block' => true,
 				'options' => [
-					'basic'          	=> esc_html__( 'Basic', 'tr-framework' ),
-					'icon-1'         	=> esc_html__( 'Icon 1', 'tr-framework' ),
-					'icon-1-dark'		=> esc_html__( 'Icon 1 Dark BG', 'tr-framework' ),
-					'icon-2'         	=> esc_html__( 'Icon 2', 'tr-framework' ),
-					'icon-3'         	=> esc_html__( 'Icon 3', 'tr-framework' ),
-					'icon-3-tilted'		=> esc_html__( 'Icon 3 Tilted', 'tr-framework' ),
-					'icon-4'         	=> esc_html__( 'Icon 4', 'tr-framework' ),
-					'icon-4-hover'		=> esc_html__( 'Icon 4 + Hover Effect', 'tr-framework' ),
-					'customer-1'		=> esc_html__( 'Customer 1', 'tr-framework' ),
-					'customer-2'		=> esc_html__( 'Customer 2', 'tr-framework' ),
-					'customer-3'		=> esc_html__( 'Customer 3', 'tr-framework' ),
-					'customer-4'		=> esc_html__( 'Customer 4', 'tr-framework' ),
-					'customer-5'		=> esc_html__( 'Customer 5', 'tr-framework' ),
-					'customer-7'		=> esc_html__( 'Customer 7', 'tr-framework' ),
-					'customer-8'		=> esc_html__( 'Customer 8', 'tr-framework' ),
+					'basic'          			=> esc_html__( 'Basic', 'tr-framework' ),
+					'icon-1'         			=> esc_html__( 'Icon 1', 'tr-framework' ),
+					'icon-1-dark'				=> esc_html__( 'Icon 1 Dark BG', 'tr-framework' ),
+					'icon-2'         			=> esc_html__( 'Icon 2', 'tr-framework' ),
+					'icon-3'         			=> esc_html__( 'Icon 3', 'tr-framework' ),
+					'icon-3-tilted'				=> esc_html__( 'Icon 3 Tilted', 'tr-framework' ),
+					'icon-4'         			=> esc_html__( 'Icon 4', 'tr-framework' ),
+					'icon-4-hover'				=> esc_html__( 'Icon 4 + Hover Effect', 'tr-framework' ),
+					'customer-1'				=> esc_html__( 'Customer 1', 'tr-framework' ),
+					'customer-2'				=> esc_html__( 'Customer 2', 'tr-framework' ),
+					'customer-3'				=> esc_html__( 'Customer 3', 'tr-framework' ),
+					'customer-4'				=> esc_html__( 'Customer 4', 'tr-framework' ),
+					'customer-5'				=> esc_html__( 'Customer 5', 'tr-framework' ),
+					'customer-7'				=> esc_html__( 'Customer 7', 'tr-framework' ),
+					'customer-8'				=> esc_html__( 'Customer 8', 'tr-framework' ),
+					'large-image-and-text'		=> esc_html__( 'Large Image + Text', 'tr-framework' ),
 				],
 			]
 		);
@@ -418,6 +419,19 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 						<p class="lead mb-0 text-primary font-weight-bold">'. $settings['badge_label'] .'</p>
 					</div>
 				</a>
+			';
+
+		} elseif( 'large-image-and-text' == $settings['layout'] ) {
+
+			echo '
+				<div>
+					<a '. $link .'>
+						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'rounded mb-3' ) ) .'
+					</a>
+					<a '. $link .'>
+						'. $settings['content'] .'
+					</a>
+				</div>
 			';
 
 		}
