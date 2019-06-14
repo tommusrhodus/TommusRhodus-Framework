@@ -44,6 +44,7 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 					'image-background' => esc_html__( 'Image Background', 'tr-framework' ),
 					'dark-background' => esc_html__( 'Dark Background', 'tr-framework' ),
 					'dark-background-alert' => esc_html__( 'Dark Background + Alert', 'tr-framework' ),
+					'dark-background-image-bottom' => esc_html__( 'Dark Background + Image Bottom', 'tr-framework' ),
 					'fullscreen' => esc_html__( 'Fullscreen', 'tr-framework' )
 				],
 			]
@@ -327,6 +328,40 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 
 				        </div>
 			      	</div>
+			';
+			
+			if(!( 'none' == $settings['divider'] )){	
+				echo tommusrhodus_svg_dividers_pluck( $settings['divider'], '' );		
+			}
+				
+			echo '</section>';
+			
+		} elseif( 'dark-background-image-bottom' == $settings['layout'] ) {
+			
+			echo '
+				<section class="bg-primary-3 text-light text-center has-divider header-desktop-app">
+					<div class="container">
+						<div class="row justify-content-center content-area">
+							<div class="col-xl-7 col-lg-8 col-md-9">
+								'. $settings['content'] .'
+							</div>
+						</div>';
+
+						if( $settings['image']['id'] ) {
+
+
+							echo '
+							<div class="row justify-content-center mt-6" data-aos="fade-up" data-delay="100">
+								<div class="col-lg-10">
+									'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'rounded shadow-lg' ) ) .'
+								</div>
+							</div>
+							';
+
+						}
+
+						echo '		
+					</div>
 			';
 			
 			if(!( 'none' == $settings['divider'] )){	

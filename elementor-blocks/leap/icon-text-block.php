@@ -55,7 +55,8 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'default' => 'tiny',
 				'options' => [
 					'tiny'      => esc_html__( 'Tiny Side Icon', 'tr-framework' ),					
-					'medium'      => esc_html__( 'Medium Side Icon', 'tr-framework' )
+					'medium'      => esc_html__( 'Medium Side Icon', 'tr-framework' ),					
+					'icon-top'      => esc_html__( 'Icon Top', 'tr-framework' )
 				],
 			]
 		);
@@ -126,6 +127,17 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				<div class="d-flex align-items-center my-2">
 					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg '. $settings['icon_colour'] ) .'
 					<span class="h6 mb-0 ml-2">'. $settings['content'] .'</span>
+				</div>
+			';
+		
+		} elseif( 'icon-top' == $settings['layout'] ){
+			
+			echo '
+				<div>
+					<div class="icon-round '. $settings['icon_colour'] .' mx-auto mb-4">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+					</div>
+					'. $settings['content'] .'
 				</div>
 			';
 		
