@@ -44,6 +44,10 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'icon-1'         					=> esc_html__( 'Icon 1', 'tr-framework' ),
 					'icon-1-dark'						=> esc_html__( 'Icon 1 Dark BG', 'tr-framework' ),
 					'icon-2'         					=> esc_html__( 'Icon 2', 'tr-framework' ),
+					'icon-2-tited-hover'				=> esc_html__( 'Icon 2 Tilted on Hover', 'tr-framework' ),
+					'icon-2-tited-hover-primary'		=> esc_html__( 'Icon 2 Tilted on Hover Primary BG', 'tr-framework' ),
+					'icon-2-tited-hover-primary-2'		=> esc_html__( 'Icon 2 Tilted on Hover Primary 2 BG', 'tr-framework' ),
+					'icon-2-tited-hover-primary-3'		=> esc_html__( 'Icon 2 Tilted on Hover Primary 3 BG', 'tr-framework' ),
 					'icon-3'         					=> esc_html__( 'Icon 3', 'tr-framework' ),
 					'icon-3-tilted'						=> esc_html__( 'Icon 3 Tilted', 'tr-framework' ),
 					'icon-4'         					=> esc_html__( 'Icon 4', 'tr-framework' ),
@@ -58,6 +62,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'large-image-and-text'				=> esc_html__( 'Large Image + Text', 'tr-framework' ),
 					'large-image-and-text-overlay'		=> esc_html__( 'Large Image + Text Overlay', 'tr-framework' ),
 					'event'								=> esc_html__( 'Event', 'tr-framework' ),
+					'event-2'							=> esc_html__( 'Event 2', 'tr-framework' ),
 				],
 			]
 		);
@@ -217,6 +222,110 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					<div class="card card-icon-2 card-body justify-content-between">
 						<div class="icon-round mb-3 mb-md-4 bg-primary">
 							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</div>
+				';
+
+			}
+			
+		} elseif( 'icon-2-tited-hover' == $settings['layout'] ) {
+
+			if( !empty( $settings['url']['url'] ) ) {
+
+				echo '
+					<a '. $link .' class="card card-icon-2 card-body justify-content-between hover-shadow-3d">
+						<div class="icon-round mb-3 mb-md-4 icon bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</a>
+				';
+
+			} else {
+
+				echo '
+					<div class="card card-icon-2 card-body justify-content-between hover-shadow-3d">
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</div>
+				';
+
+			}
+			
+		} elseif( 'icon-2-tited-hover-primary' == $settings['layout'] ) {
+
+			if( !empty( $settings['url']['url'] ) ) {
+
+				echo '
+					<a '. $link .' class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary text-light">
+						<div class="icon-round mb-3 mb-md-4 icon bg-white">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-white' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</a>
+				';
+
+			} else {
+
+				echo '
+					<div class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary text-light">
+						<div class="icon-round mb-3 mb-md-4 icon bg-white">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-white' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</div>
+				';
+
+			}
+			
+		} elseif( 'icon-2-tited-hover-primary-2' == $settings['layout'] ) {
+
+			if( !empty( $settings['url']['url'] ) ) {
+
+				echo '
+					<a '. $link .' class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-2 text-light">
+						<div class="icon-round mb-3 mb-md-4 icon bg-white">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-white' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</a>
+				';
+
+			} else {
+
+				echo '
+					<div class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-2 text-light">
+						<div class="icon-round mb-3 mb-md-4 icon bg-white">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-white' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</div>
+				';
+
+			}
+			
+		} elseif( 'icon-2-tited-hover-primary-3' == $settings['layout'] ) {
+
+			if( !empty( $settings['url']['url'] ) ) {
+
+				echo '
+					<a '. $link .' class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-3 text-light">
+						<div class="icon-round mb-3 mb-md-4 icon bg-white">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-white' ) .'
+						</div>
+						<h5 class="mb-0">'. $settings['title'] .'</h5>
+					</a>
+				';
+
+			} else {
+
+				echo '
+					<div class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-3 text-light">
+						<div class="icon-round mb-3 mb-md-4 icon bg-white">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-white' ) .'
 						</div>
 						<h5 class="mb-0">'. $settings['title'] .'</h5>
 					</div>
@@ -489,6 +598,21 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 						</div>
 					</div>
 				</a>
+			';
+
+		} elseif( 'event-2' == $settings['layout'] ) {
+
+			echo '
+				<div>
+       				<a '. $link .'">
+       				 	'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'rounded' ) ) .'
+        			</a>
+    				<div class="my-3">
+          				<span class="badge badge-primary-2">'. $settings['badge_label'] .'</span>
+        			</div>
+        			<h3>'. $settings['title'] .'</h3>
+        			'. $settings['content'] .'
+      			</div>
 			';
 
 		}
