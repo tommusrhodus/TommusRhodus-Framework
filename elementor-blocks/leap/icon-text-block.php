@@ -54,9 +54,10 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [
-					'tiny'      => esc_html__( 'Tiny Side Icon', 'tr-framework' ),					
-					'medium'      => esc_html__( 'Medium Side Icon', 'tr-framework' ),					
-					'icon-top'      => esc_html__( 'Icon Top', 'tr-framework' )
+					'tiny'      		=> esc_html__( 'Tiny Side Icon', 'tr-framework' ),					
+					'medium'      		=> esc_html__( 'Medium Side Icon', 'tr-framework' ),					
+					'icon-top'      	=> esc_html__( 'Icon Top', 'tr-framework' ),					
+					'icon-top-small'	=> esc_html__( 'Small Icon Top', 'tr-framework' )
 				],
 			]
 		);
@@ -137,6 +138,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 					<div class="icon-round '. $settings['icon_colour'] .' mx-auto mb-4">
 						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
 					</div>
+					'. $settings['content'] .'
+				</div>
+			';
+		
+		} elseif( 'icon-top-small' == $settings['layout'] ){
+			
+			echo '
+				<div>
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] ) .'	
 					'. $settings['content'] .'
 				</div>
 			';
