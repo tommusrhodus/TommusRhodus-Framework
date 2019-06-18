@@ -56,6 +56,7 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 				'options' => [
 					'basic'          	=> esc_html__( 'Basic', 'tr-framework' ),
 					'labels'         	=> esc_html__( 'Labels', 'tr-framework' ),
+					'basic_labelled'   	=> esc_html__( 'Basic + Labels', 'tr-framework' ),
 				],
 			]
 		);
@@ -136,6 +137,37 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 						</div>
 						<div data-elapsed style="display: none;">
 						  <h1>'. $settings['fallback_text'] .'</h1>
+						</div>
+					</div>
+				';
+
+			} elseif( 'basic_labelled' == $settings['layout'] ) {
+
+				echo '
+					<div class="col-12 mb-4" data-countdown-date="'. $settings['date'] .'" data-detailed>
+						<div data-active class="row text-center">
+							<div class="col">
+								<span class="h1 text-primary mb-2" data-days data-format="%D">13</span>
+								<span class="h6 mb-0" data-days-label></span>
+							</div>
+
+							<div class="col">
+								<span class="h1 text-primary mb-2" data-hours>06</span>
+								<span class="h6 mb-0" data-hours-label></span>
+							</div>
+
+							<div class="col">
+								<span class="h1 text-primary mb-2" data-minutes>51</span>
+								<span class="h6 mb-0" data-minutes-label></span>
+							</div>
+
+							<div class="col">
+								<span class="h1 text-primary mb-2" data-seconds>20</span>
+								<span class="h6 mb-0" data-seconds-label></span>
+							</div>
+						</div>
+						<div data-elapsed style="display: none;">
+						  	<h1>'. $settings['fallback_text'] .'</h1>
 						</div>
 					</div>
 				';

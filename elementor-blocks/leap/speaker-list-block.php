@@ -90,23 +90,31 @@ class Widget_TommusRhodus_Speaker_List_Block extends Widget_Base {
 
 	protected function render() {
 		
-		$settings                = $this->get_settings_for_display();
-		$target   = $settings['speaker_link_url']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['speaker_link_url']['nofollow']    ? ' rel="nofollow"'  : '';
-		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
-		$user_selected_animation = (bool) $settings['_animation'];
+		$settings                	= $this->get_settings_for_display();		
+		$user_selected_animation 	= (bool) $settings['_animation'];
 		
 		echo '
 			 <div class="row">';
 
 				foreach( $settings['list'] as $item ){
 
+					$target   					= $item['speaker_link_url']['is_external'] ? ' target="_blank"' : '';
+					$nofollow 					= $item['speaker_link_url']['nofollow']    ? ' rel="nofollow"'  : '';
+					$link     					= 'href="'. esc_url( $item['speaker_link_url']['url'] ) .'"' . $target . $nofollow;
+
 					echo '
 						<div class="col-sm-6 col-lg-4 d-flex align-items-center mb-5" data-aos="fade-up" data-aos-delay="100">
 							'. wp_get_attachment_image( $item['image']['id'], 'thumbnail', 0, array( 'class' => 'avatar avatar-xlg mr-3' ) ) .'
 							<div>
-								<h5 class="mb-0">'. $item['speaker_name'] .'</h5>
-								<a '. $link .'>'. $item['speaker_link_text'] .'</a>
+								<h5 class="mb-0">'. $item['speaker_name'] .'</h5>';
+
+								if( !empty( $item['speaker_link_url']['url'] ) ) { 
+									echo '<a '. $link .'>'. $item['speaker_link_text'] .'</a>';
+								} else {
+									echo '<span>'. $item['speaker_link_text'] .'</span>';
+								}
+
+								echo '
 							</div>
 						</div>
 					';

@@ -50,6 +50,8 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'icon-2-tited-hover-primary-3'		=> esc_html__( 'Icon 2 Tilted on Hover Primary 3 BG', 'tr-framework' ),
 					'icon-3'         					=> esc_html__( 'Icon 3', 'tr-framework' ),
 					'icon-3-tilted'						=> esc_html__( 'Icon 3 Tilted', 'tr-framework' ),
+					'icon-3-tilted-primary-2'			=> esc_html__( 'Icon 3 Tilted Primary 2', 'tr-framework' ),
+					'icon-3-tilted-primary-3'			=> esc_html__( 'Icon 3 Tilted Primary 3', 'tr-framework' ),
 					'icon-4'         					=> esc_html__( 'Icon 4', 'tr-framework' ),
 					'icon-4-hover'						=> esc_html__( 'Icon 4 + Hover Effect', 'tr-framework' ),
 					'customer-1'						=> esc_html__( 'Customer 1', 'tr-framework' ),
@@ -355,7 +357,37 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					<div class="icon-round mb-3 mb-md-4 bg-primary">
 						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
 				 	</div>
-					<span class="badge badge-primary">'. $settings['badge_label'] .'</span>
+					<span class="badge badge-primary text-light">'. $settings['badge_label'] .'</span>
+					<div>
+						<h3>'. $settings['title'] .'</h3>
+						'. $settings['content'] .'
+					</div>
+				</div>
+			';
+
+		} elseif( 'icon-3-tilted-primary-2' == $settings['layout'] ) {
+
+			echo '
+				<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+					<div class="icon-round mb-3 mb-md-4 bg-primary-2">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
+				 	</div>
+					<span class="badge bg-primary-2 text-light">'. $settings['badge_label'] .'</span>
+					<div>
+						<h3>'. $settings['title'] .'</h3>
+						'. $settings['content'] .'
+					</div>
+				</div>
+			';
+
+		} elseif( 'icon-3-tilted-primary-3' == $settings['layout'] ) {
+
+			echo '
+				<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+					<div class="icon-round mb-3 mb-md-4 bg-primary-3">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-3' ) .'
+				 	</div>
+					<span class="badge bg-primary-3 text-light">'. $settings['badge_label'] .'</span>
 					<div>
 						<h3>'. $settings['title'] .'</h3>
 						'. $settings['content'] .'
