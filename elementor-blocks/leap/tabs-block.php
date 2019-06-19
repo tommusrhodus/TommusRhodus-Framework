@@ -33,6 +33,19 @@ class Widget_TommusRhodus_Tabs_Block extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'vertical',
+				'label_block' => true,
+				'options' => [
+					'vertical'          	=> esc_html__( 'Vertical Tabs', 'tr-framework' ),
+					'regular'         		=> esc_html__( 'Regular Tabs', 'tr-framework' ),
+				],
+			]
+		);
+
 		$repeater = new Repeater();
 
 		$repeater->add_control(
@@ -79,49 +92,106 @@ class Widget_TommusRhodus_Tabs_Block extends Widget_Base {
 		$settings                	= $this->get_settings_for_display();		
 		$user_selected_animation 	= (bool) $settings['_animation'];
 		
-		echo '
+		if( 'vertical' == $settings['layout'] ) {
 
-			<div class="row">
-			  	<div class="col-lg-3 col-md-4 mb-4 mb-md-0">
-			    	<ul class="nav flex-column" role="tablist">';
+			echo '
 
-			    		$i = 0;
+				<div class="row">
+				  	<div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+				    	<ul class="nav flex-column" role="tablist">';
 
-			    		foreach( $settings['list'] as $item ){
+				    		$i = 0;
 
-			    			echo '
-					      		<li class="nav-item">
-					        		<a class="nav-link btn btn-light p-2 text-left '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" aria-selected="true" role="tab">
-					        			'. tommusrhodus_svg_icons_pluck( $item['icon'], 'icon bg-primary' ) .'
-					          		'. $item['title'] .'</a>
-					     		 </li>';
+				    		foreach( $settings['list'] as $item ){
 
-					     	$i++;
-			     		}
+				    			echo '
+						      		<li class="nav-item">
+						        		<a class="nav-link btn btn-light p-2 text-left '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" aria-selected="true" role="tab">
+						        			'. tommusrhodus_svg_icons_pluck( $item['icon'], 'icon bg-primary' ) .'
+						          		'. $item['title'] .'</a>
+						     		 </li>';
 
-			     		echo '
-			    	</ul>
-			  	</div>
-			  	<div class="col mb-lg-n7 layer-2">
-			    	<div class="tab-content">';
+						     	$i++;
+				     		}
 
-			    		$i = 0;
+				     		echo '
+				    	</ul>
+				  	</div>
+				  	<div class="col mb-lg-n7 layer-2">
+				    	<div class="tab-content">';
 
-			    		foreach( $settings['list'] as $item ){
+				    		$i = 0;
 
-			    			echo '
-					      		<div class="tab-pane fade show '; if( 0 == $i ) { echo 'active'; } echo '" id="'. sanitize_title( $item['title'] ) .'" role="tabpanel" aria-labelledby="'. sanitize_title( $item['title'] ) .'">
-					      			'. $item['content'] .'
-					      		</div>';
+				    		foreach( $settings['list'] as $item ){
 
-					      	$i++;
-			      		}
+				    			echo '
+						      		<div class="tab-pane fade show '; if( 0 == $i ) { echo 'active'; } echo '" id="'. sanitize_title( $item['title'] ) .'" role="tabpanel" aria-labelledby="'. sanitize_title( $item['title'] ) .'">
+						      			'. $item['content'] .'
+						      		</div>';
 
-			      		echo '
-			    	</div>
-			  	</div>
-			</div>
-		';
+						      	$i++;
+				      		}
+
+				      		echo '
+				    	</div>
+				  	</div>
+				</div>
+			';
+
+		} elseif( 'regular' == $settings['layout'] ) {
+
+			echo '
+				<div class="row justify-content-center mb-5">
+          			<div>
+            			<ul class="nav justify-content-center" role="tablist">';
+
+				    		$i = 0;
+
+				    		foreach( $settings['list'] as $item ){
+
+				    			echo '
+						      		<li class="nav-item mx-1">
+						      			<a class="nav-link '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" role="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" aria-selected="true">
+						                  <div class="icon-round icon-round-sm bg-primary">
+						                  	'. tommusrhodus_svg_icons_pluck( $item['icon'], 'icon bg-primary' ) .'
+						                  </div>
+						                  	
+						                  	'. $item['title'] .'</a>
+						                </a>
+						     		 </li>';
+
+						     	$i++;
+				     		}
+
+				     		echo '
+				    	</ul>
+				  	</div>
+			  	 	<div class="row justify-content-center">
+          				<div>
+            				<div class="tab-content">';
+
+					    		$i = 0;
+
+					    		foreach( $settings['list'] as $item ){
+
+					    			echo '
+							      		<div class="tab-pane fade show '; if( 0 == $i ) { echo 'active'; } echo '" id="'. sanitize_title( $item['title'] ) .'" role="tabpanel" aria-labelledby="'. sanitize_title( $item['title'] ) .'">
+							      			'. $item['content'] .'
+							      		</div>';
+
+							      	$i++;
+					      		}
+
+					      		echo '
+					      		
+				      		</div>
+				    	</div>
+				  	</div>
+				</div>
+			';
+
+		}
+
 
 	}
 
