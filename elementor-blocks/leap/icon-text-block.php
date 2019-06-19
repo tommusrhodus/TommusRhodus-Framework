@@ -54,6 +54,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [
+					'extra-tiny'      	=> esc_html__( 'Smallest Side Icon', 'tr-framework' ),
 					'tiny'      		=> esc_html__( 'Tiny Side Icon', 'tr-framework' ),					
 					'medium'      		=> esc_html__( 'Medium Side Icon', 'tr-framework' ),				
 					'round'      		=> esc_html__( 'Round Side Icon', 'tr-framework' ),					
@@ -162,6 +163,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 					<div>
 						'. $settings['content'] .'
 					</div>
+				</div>
+			';
+		
+		} elseif( 'extra-tiny' == $settings['layout'] ){
+			
+			echo '
+				<div class="d-flex mb-3 mb-md-0">
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+				  <div class="ml-3">'. $settings['content'] .'</div>
 				</div>
 			';
 		

@@ -178,7 +178,7 @@ class Widget_TommusRhodus_Maps_Block extends Widget_Base {
 		$user_selected_animation = (bool) $settings['_animation'];
 
 		if( 'yes' == $settings['show_zoom'] ) {
-			$zoom = 'data-zoom-controls="RIGHT_BOTTOM"';
+			$zoom = 'data-decimal-places="2"';
 		} else {
 			$zoom = '';
 		}		
