@@ -54,8 +54,9 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 				'default' => 'basic',
 				'label_block' => true,
 				'options' => [
-					'basic'          	=> esc_html__( 'Basic', 'tr-framework' ),
-					'highlight'         => esc_html__( 'Highlight', 'tr-framework' ),
+					'basic'          		=> esc_html__( 'Basic', 'tr-framework' ),
+					'highlight'         	=> esc_html__( 'Highlight', 'tr-framework' ),
+					'highlight-large'		=> esc_html__( 'Highlight Large', 'tr-framework' ),
 				],
 			]
 		);
@@ -122,6 +123,19 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 	            <div class='highlight'>
 	              	<span class='h3' data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span>
 	            </div>
+			";
+
+		}
+
+		elseif( 'highlight-large' == $settings['layout'] ) {
+			
+			echo "
+				<div class='h1'>
+				  	<span>". $settings['prefix'] ."</span>
+				  	<div class='highlight'>
+				  		<span class='h1' data-typed-text data-loop='true' data-type-speed='65' data-strings='[". $item_text ."]'></span>
+				  	</div>
+				</div>
 			";
 
 		}	
