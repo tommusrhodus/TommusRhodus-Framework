@@ -41,6 +41,7 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 				'label_block' => true,
 				'options' => [
 					'card-3'          		=> esc_html__( 'Single Card Carousel', 'tr-framework' ),
+					'card-3-nav'          	=> esc_html__( 'Single Card with Nav Button Carousel', 'tr-framework' ),
 					'fullwidth'          	=> esc_html__( 'Fullwidth Carousel', 'tr-framework' ),
 				],
 			]
@@ -129,6 +130,33 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 				                  	</div>
 				                </div>
 			             	 </div>
+						';
+
+					}
+
+					echo '
+				</div>
+			';
+		
+		} elseif( 'card-3-nav' == $settings['layout'] ) {
+
+			echo '
+				 <div data-flickity=\'{ "imagesLoaded": true, "wrapAround": true }\'>';
+
+					foreach( $settings['list'] as $item ){
+
+						echo '
+							<div class="carousel-cell mx-md-4">
+								<div class="card card-body flex-row py-4">
+									'. wp_get_attachment_image( $item['image']['id'], 'Thumbnail', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+									<div class="ml-3">
+										'. do_shortcode( $item['content'] ) .'
+										<div class="avatar-author d-block">
+											'. do_shortcode( $item['author'] ) .'
+										</div>
+									</div>
+								</div>
+             				</div>
 						';
 
 					}
