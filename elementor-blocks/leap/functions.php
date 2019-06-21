@@ -83,7 +83,7 @@ if(!( function_exists('tommusrhodus_login_shortcode') )) {
 }
 
 /**
- * Login Shortcode
+ * Stars Shortcode
  */
 if(!( function_exists('tommusrhodus_stars_shortcode') )) {
 	function tommusrhodus_stars_shortcode( $atts ) {
@@ -108,4 +108,104 @@ if(!( function_exists('tommusrhodus_stars_shortcode') )) {
 	 
 	}
 	add_shortcode( 'leap_stars', 'tommusrhodus_stars_shortcode' );
+}
+
+/**
+ * Video Lightbox Shortcode
+ */
+if(!( function_exists('tommusrhodus_video_lightbox_button_shortcode') )) {
+	function tommusrhodus_video_lightbox_button_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'media_url' 	=> '',
+	        	'button_style'	=> 'icon',
+	        	'button_label'	=> 'Watch the video'
+	    	), 
+    	$atts );
+
+    	if( 'button' == $values['button_style'] ) {
+
+			$output = '
+				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="d-flex align-items-center">
+					<span class="btn btn-primary btn-round btn-sm">
+						'. tommusrhodus_svg_icons_pluck( 'Play', 'icon' ) .'
+					</span>
+					<span class="text-small ml-2">'. $values['button_label'] .'</span>
+				</a>';
+
+    	} else {
+
+			$output = '
+				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="btn btn-xlg btn-primary btn-round mx-auto mb-4 aos-init aos-animate" data-aos="fade-up">
+		    		'. tommusrhodus_svg_icons_pluck( 'Play', 'icon' ) .'
+		    	</a>';
+
+    	}
+
+	    
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_video_lightbox_button', 'tommusrhodus_video_lightbox_button_shortcode' );
+}
+
+/**
+ * Icon Button Shortcode
+ */
+if(!( function_exists('tommusrhodus_icon_button_shortcode') )) {
+	function tommusrhodus_icon_button_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'url' 		=> '#',
+	        	'target' 	=> '_self',
+	        	'label' 	=> 'App Store',
+	        	'icon_name' => 'Apple icon',
+	        	'button_style' => '',
+	    	), 
+    	$atts );
+
+    	if( 'large' == $values['button_style'] ) {
+
+ 			$output = '<a href="'. esc_url( $values['url'] ) .'" class="class="btn btn-lg btn-primary mx-sm-2 mb-3 mb-sm-0"">
+            	'. tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon' ) .'
+            	<span>'. $values['label'] .'</span>
+          	</a>';
+
+    	} else {
+
+ 			$output = '<a href="'. esc_url( $values['url'] ) .'" class="btn btn-primary">
+            	'. tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon' ) .'
+            	<span>'. $values['label'] .'</span>
+          	</a>';
+
+    	}	   
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_icon_button', 'tommusrhodus_icon_button_shortcode' );
+}
+
+/**
+ * Icon Shortcode
+ */
+if(!( function_exists('tommusrhodus_icon_shortcode') )) {
+	function tommusrhodus_icon_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'icon_name' => 'Apple icon',
+	        	'class' => '',
+	    	), 
+    	$atts );
+
+	    $output = tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon ' . $values['class'] );
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_icon', 'tommusrhodus_icon_shortcode' );
 }
