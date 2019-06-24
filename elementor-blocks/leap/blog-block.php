@@ -131,6 +131,11 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 		} else { 
 			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; 
 		}
+
+		if( 'featured' == $layout ) {
+			$posts_per_page = '5';
+		}
+
 		/**
 		 * Setup post query
 		 */
