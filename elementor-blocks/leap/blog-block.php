@@ -126,6 +126,7 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 			shortcode_atts( 
 				array(
 					'posts_per_page' 	=> '6',
+					'posts_offset' 		=> '0',
 					'filter'		 	=> 'all',
 					'layout'		 	=> 'card',
 					'show_pagination'	=> 'hide'

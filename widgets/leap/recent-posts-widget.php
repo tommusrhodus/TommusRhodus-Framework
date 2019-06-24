@@ -27,6 +27,7 @@ if(!( class_exists('TommusRhodus_Recent_Widget') )){
 			    		$widget_query = new WP_Query(
 			    			array(
 			    				'post_type' => 'post',
+			    				'posts_per_page' => $instance['amount']
 			    			)
 			    		);
 			    		if( $widget_query->have_posts() ) : while ( $widget_query->have_posts() ): $widget_query->the_post(); 
@@ -35,22 +36,24 @@ if(!( class_exists('TommusRhodus_Recent_Widget') )){
 			    	  	<?php $categories = get_the_category(); ?>
 
 						<li class="row row-tight">
-							<a href="<?php the_permalink(); ?>" class="col-3">
+							<a href="<?php the_permalink(); ?>" class="col-3 col-md-4">
 								<?php the_post_thumbnail( 'thumbnail', array( 'class' => 'rounded' ) ); ?>
 							</a>
-							<div class="col">
-								<a href="<?php the_permalink(); ?>">
-									<h6 class="mb-1"><?php the_title(); ?></h6>
-								</a>
-								<div class="text-small">
-									<?php
-										if( is_array( $categories ) ){
-											foreach( $categories as $cat ){
-												echo '<a href="'. esc_url( get_category_link( $cat->term_id ) ) .'">'. $cat->name . '</a>';
+							<div class="col d-flex flex-column justify-content-between">
+								<div>
+									<a href="<?php the_permalink(); ?>">
+										<h6 class="mb-1"><?php the_title(); ?></h6>
+									</a>
+									<div class="d-flex text-small">
+										<?php
+											if( is_array( $categories ) ){
+												foreach( $categories as $cat ){
+													echo '<a href="'. esc_url( get_category_link( $cat->term_id ) ) .'">'. $cat->name . '</a>';
+												}
 											}
-										}
-									?>
-									<span class="text-muted ml-1"><?php the_time( get_option('date_format') ); ?></span>
+										?>
+										<span class="text-muted ml-1"><?php the_time( get_option('date_format') ); ?></span>
+									</div>
 								</div>
 							</div>
 						</li>
