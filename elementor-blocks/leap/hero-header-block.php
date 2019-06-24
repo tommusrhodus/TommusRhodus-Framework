@@ -40,12 +40,13 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				'default' => 'standard',
 				'label_block' => true,
 				'options' => [
-					'standard'         => esc_html__( 'Standard', 'tr-framework' ),
-					'image-background' => esc_html__( 'Image Background', 'tr-framework' ),
-					'dark-background' => esc_html__( 'Dark Background', 'tr-framework' ),
-					'dark-background-alert' => esc_html__( 'Dark Background + Alert', 'tr-framework' ),
-					'dark-background-image-bottom' => esc_html__( 'Dark Background + Image Bottom', 'tr-framework' ),
-					'fullscreen' => esc_html__( 'Fullscreen', 'tr-framework' )
+					'standard'         						=> esc_html__( 'Standard', 'tr-framework' ),
+					'image-background' 						=> esc_html__( 'Image Background', 'tr-framework' ),
+					'dark-background' 						=> esc_html__( 'Dark Background', 'tr-framework' ),
+					'dark-background-alert' 				=> esc_html__( 'Dark Background + Alert', 'tr-framework' ),
+					'dark-background-image-bottom' 			=> esc_html__( 'Dark Background + Image Bottom', 'tr-framework' ),
+					'fullscreen' 							=> esc_html__( 'Fullscreen', 'tr-framework' ),
+					'centered-bg-primary-3-background'		=> esc_html__( 'Primary 3 Background, Centered Text', 'tr-framework' )
 				],
 			]
 		);
@@ -402,6 +403,26 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 						}
 
 						echo '		
+					</div>
+			';
+			
+			if(!( 'none' == $settings['divider'] )){	
+				echo tommusrhodus_svg_dividers_pluck( $settings['divider'], '' );		
+			}
+				
+			echo '</section>';
+			
+		} elseif( 'centered-bg-primary-3-background' == $settings['layout'] ) {
+			
+			echo '
+				<section class="bg-primary-3 has-divider text-light">
+	
+					<div class="container pb-6">
+						<div class="row justify-content-center text-center">
+							<div class="col-xl-8 col-lg-9 col-md-10">								
+								'. $settings['content'] .'								
+							</div>
+						</div>
 					</div>
 			';
 			
