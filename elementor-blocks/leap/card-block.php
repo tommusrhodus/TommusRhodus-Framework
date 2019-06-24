@@ -54,6 +54,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'icon-3-tilted-primary-2'			=> esc_html__( 'Icon 3 Tilted Primary 2', 'tr-framework' ),
 					'icon-3-tilted-primary-3'			=> esc_html__( 'Icon 3 Tilted Primary 3', 'tr-framework' ),
 					'icon-4'         					=> esc_html__( 'Icon 4', 'tr-framework' ),
+					'icon-4-primary-2'         			=> esc_html__( 'Icon 4 Primary 2', 'tr-framework' ),
 					'icon-4-hover'						=> esc_html__( 'Icon 4 + Hover Effect', 'tr-framework' ),
 					'customer-1'						=> esc_html__( 'Customer 1', 'tr-framework' ),
 					'customer-2'						=> esc_html__( 'Customer 2', 'tr-framework' ),
@@ -430,6 +431,34 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				echo '
 					<div class="card card-sm card-body flex-row align-items-center">
 						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary' ) .'	             	
+	                  	<div class="ml-3">
+	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
+		                    '. $settings['content'] .'
+	                  	</div>
+	                </div>
+				';
+
+			} 
+
+		} elseif( 'icon-4-primary-2' == $settings['layout'] ) {
+
+			if( !empty( $settings['url']['url'] ) ) {
+
+				echo '
+					<a '. $link .' class="card card-sm card-body flex-row align-items-center hover-shadow-3d">					
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2' ) .'	             	
+	                  	<div class="ml-3">
+	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
+		                    '. $settings['content'] .'
+	                  	</div>
+	                </a>
+				';
+
+			} else {
+
+				echo '
+					<div class="card card-sm card-body flex-row align-items-center">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2' ) .'	             	
 	                  	<div class="ml-3">
 	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 		                    '. $settings['content'] .'

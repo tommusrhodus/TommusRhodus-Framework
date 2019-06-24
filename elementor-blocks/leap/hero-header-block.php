@@ -59,6 +59,17 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				'label_block' => true
 			]
 		);
+
+		$this->add_control(
+			'show_breadcrumbs', [
+				'label' 		=> __( 'Show Breadcrumbs Where Applicable?', 'tr-framework' ),
+				'type' 			=> Controls_Manager::SWITCHER,
+				'label_on' 		=> __( 'Show', 'tr-framework' ),
+				'label_off' 	=> __( 'Hide', 'tr-framework' ),
+				'return_value' 	=> 'yes',
+				'default' 		=> 'yes',
+			]
+		);
 		
 		$this->end_controls_section();
 		
@@ -121,12 +132,19 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 			echo '
 				<section class="bg-primary-alt header-inner o-hidden">
 				
-					<div class="container">
-					
-						<div class="row my-3">
-							<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
-						</div>
+					<div class="container">';
+
+						if( 'yes' == $settings['show_breadcrumbs'] || !empty( $settings['show_breadcrumbs'] ) ) {
+
+							echo '
+								<div class="row my-3">
+									<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
+								</div>
+							';
+
+						}
 						
+						echo '
 						<div class="row py-6 text-center justify-content-center align-items-center">
 							<div class="col-xl-8 col-lg-10">'. $settings['content'] .'</div>
 						</div>
@@ -176,12 +194,19 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 			echo '
 				<section class="bg-primary-3 header-inner p-0 jarallax position-relative o-hidden" data-overlay>
 				
-					<div class="container py-0 layer-2">
+					<div class="container py-0 layer-2">';
 
-						<div class="row my-3 text-light">
-							<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
-						</div>
+						if( 'yes' == $settings['show_breadcrumbs'] || !empty( $settings['show_breadcrumbs'] ) ) {
+
+							echo '
+								<div class="row my-3 text-light">
+									<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
+								</div>
+							';
+
+						}
 						
+						echo '						
 						<div class="row my-4 my-md-6 text-light" data-aos="fade-up">
 							<div class="col-lg-9 col-xl-6">'. $settings['content'] .'</div>
 						</div>
@@ -202,12 +227,19 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 			echo '
 				<section class="bg-primary-3 header-inner p-0 jarallax position-relative o-hidden" data-overlay>
 				
-					<div class="container py-0 layer-2">
+					<div class="container py-0 layer-2">';
 
-						<div class="row my-3 text-light">
-							<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
-						</div>
+						if( 'yes' == $settings['show_breadcrumbs'] || !empty( $settings['show_breadcrumbs'] ) ) {
+
+							echo '
+								<div class="row my-3 text-light">
+									<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
+								</div>
+							';
+
+						}
 						
+						echo '
 						<div class="row my-4 my-md-6 text-light" data-aos="fade-up">
 							<div class="col-lg-9 col-xl-6">'. $settings['content'] .'</div>
 						</div>
@@ -246,10 +278,19 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 					
 					'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'jarallax-img opacity-30' ) ) .'
 			      
-					<div class="container py-0 layer-2">
-						<div class="row my-3">
-							<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
-						</div>
+					<div class="container py-0 layer-2">';
+
+						if( 'yes' == $settings['show_breadcrumbs'] || !empty( $settings['show_breadcrumbs'] ) ) {
+
+							echo '
+								<div class="row my-3">
+									<div class="col">'. get_tommusrhodus_breadcrumbs() .'</div>
+								</div>
+							';
+
+						}
+						
+						echo '
 						<div class="row my-4 my-md-6" data-aos="fade-up">
 							<div class="col-lg-9 col-xl-8">'. $settings['content'] .'</div>
 						</div>

@@ -169,7 +169,7 @@ if(!( function_exists('tommusrhodus_icon_button_shortcode') )) {
 
     	if( 'large' == $values['button_style'] ) {
 
- 			$output = '<a href="'. esc_url( $values['url'] ) .'" class="class="btn btn-lg btn-primary mx-sm-2 mb-3 mb-sm-0"">
+ 			$output = '<a href="'. esc_url( $values['url'] ) .'" class="btn btn-lg btn-primary mx-sm-2 mb-3 mb-sm-0"">
             	'. tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon' ) .'
             	<span>'. $values['label'] .'</span>
           	</a>';
