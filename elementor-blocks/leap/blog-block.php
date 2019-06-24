@@ -76,6 +76,13 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'posts_offset', [
+				'label'   => esc_html__( 'Post Offset', 'tr-framework' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => '0'
+			]
+		);
 
 		// Category Selector
 		if( taxonomy_exists('category') ){
@@ -143,7 +150,8 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 			'post_type'      => 'post',
 			'post_status'    => 'publish',
 			'posts_per_page' => $posts_per_page,
-			'paged'          => $paged
+			'paged'          => $paged,
+			'offset'		 => $posts_offset
 		);
 		if(!( $filter == 'all' )) {
 			
