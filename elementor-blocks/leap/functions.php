@@ -209,3 +209,25 @@ if(!( function_exists('tommusrhodus_icon_shortcode') )) {
 	}
 	add_shortcode( 'leap_icon', 'tommusrhodus_icon_shortcode' );
 }
+
+/**
+ * Icon Shortcode
+ */
+if(!( function_exists('tommusrhodus_counter_shortcode') )) {
+	function tommusrhodus_counter_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'start' => '1000',
+	        	'end' => '5000',
+	        	'counter_suffix' => '+',
+	    	), 
+    	$atts );
+
+	    $output = '<h4 class="display-1 d-block mb-1" data-countup data-start="'. $values['start'] .'" data-end="'. $values['end'] .'" data-duration="3" data-grouping="true" data-suffix="'. $values['counter_suffix'] .'"></h4>';
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_counter', 'tommusrhodus_counter_shortcode' );
+}
