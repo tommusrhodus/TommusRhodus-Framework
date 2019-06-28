@@ -56,7 +56,9 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 				'options' => [
 					'basic'          	=> esc_html__( 'Basic', 'tr-framework' ),
 					'labels'         	=> esc_html__( 'Labels', 'tr-framework' ),
+					'labels_2'         	=> esc_html__( 'Labels 2', 'tr-framework' ),
 					'basic_labelled'   	=> esc_html__( 'Basic + Labels', 'tr-framework' ),
+					'basic_labelled_2'	=> esc_html__( 'Basic + Labels 2', 'tr-framework' ),
 				],
 			]
 		);
@@ -141,6 +143,52 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 					</div>
 				';
 
+			} elseif( 'labels_2' == $settings['layout'] ) {
+
+				echo '
+					<div class="col-12" data-countdown-date="'. $settings['date'] .'" data-detailed>
+						<div data-active class="row text-center">
+							<div class="col-md">
+								<div class="card card-body" data-aos="fade-up" data-aos-delay="100">
+									<span class="h1 text-primary mb-2" data-weeks data-format="%w"></span>
+									<span class="h6 mb-0 text-dark" data-weeks-label></span>
+								</div>
+							</div>
+
+							<div class="col-md">
+								<div class="card card-body" data-aos="fade-up" data-aos-delay="200">
+									<span class="h1 text-primary mb-2" data-days data-format="%d"></span>
+									<span class="h6 mb-0 text-dark" data-days-label></span>
+								</div>
+							</div>
+
+							<div class="col-md">
+								<div class="card card-body" data-aos="fade-up" data-aos-delay="300">
+									<span class="h1 text-primary mb-2" data-hours></span>
+									<span class="h6 mb-0 text-dark" data-hours-label></span>
+								</div>
+							</div>
+
+							<div class="col-md">
+								<div class="card card-body" data-aos="fade-up" data-aos-delay="400">
+									<span class="h1 text-primary mb-2" data-minutes></span>
+									<span class="h6 mb-0 text-dark" data-minutes-label></span>
+								</div>
+							</div>
+
+							<div class="col-md">
+								<div class="card card-body" data-aos="fade-up" data-aos-delay="500">
+									<span class="h1 text-primary mb-2" data-seconds></span>
+									<span class="h6 mb-0 text-dark" data-seconds-label></span>
+								</div>
+							</div>
+						</div>
+						<div data-elapsed style="display: none;">
+							<h4>'. $settings['fallback_text'] .'</h4>
+						</div>
+					</div>
+				';
+
 			} elseif( 'basic_labelled' == $settings['layout'] ) {
 
 				echo '
@@ -168,6 +216,48 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 						</div>
 						<div data-elapsed style="display: none;">
 						  	<h1>'. $settings['fallback_text'] .'</h1>
+						</div>
+					</div>
+				';
+
+			} elseif( 'basic_labelled_2' == $settings['layout'] ) {
+
+				echo '
+					<div class="col" data-detailed data-countdown-date="'. $settings['date'] .'">
+						<div data-active class="row text-center">
+							<div class="col">
+								<div data-aos="fade-up" data-aos-delay="100">
+									<div class="display-4 mb-2" data-weeks data-format="%w"></div>
+									<span class="h6 mb-0" data-weeks-label></span>
+								</div>
+							</div>
+							<div class="col">
+								<div data-aos="fade-up" data-aos-delay="200">
+									<div class="display-4 mb-2" data-days data-format="%d"></div>
+									<span class="h6 mb-0" data-days-label></span>
+								</div>
+							</div>
+							<div class="col">
+								<div data-aos="fade-up" data-aos-delay="300">
+									<div class="display-4 mb-2" data-hours></div>
+									<span class="h6 mb-0" data-hours-label></span>
+								</div>
+							</div>
+							<div class="col">
+								<div data-aos="fade-up" data-aos-delay="400">
+									<div class="display-4 mb-2" data-minutes></div>
+									<span class="h6 mb-0" data-minutes-label></span>
+								</div>
+							</div>
+							<div class="col">
+								<div data-aos="fade-up" data-aos-delay="500">
+									<div class="display-4 mb-2" data-seconds></div>
+									<span class="h6 mb-0" data-seconds-label></span>
+								</div>
+							</div>
+						</div>
+						<div data-elapsed style="display: none;">
+							<h4>'. $settings['fallback_text'] .'</h4>
 						</div>
 					</div>
 				';
