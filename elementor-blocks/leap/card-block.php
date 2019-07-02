@@ -342,7 +342,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				echo '
 					<div class="card card-icon-2 card-body justify-content-between hover-shadow-3d">
 						<div class="icon-round mb-3 mb-md-4 bg-primary">
-							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
 						</div>
 						<h5 class="mb-0">'. $settings['title'] .'</h5>
 					</div>
