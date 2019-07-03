@@ -86,7 +86,7 @@ class Widget_TommusRhodus_Iphone_Screenshot_Block extends Widget_Base {
 		} elseif( '2' == $settings['layout'] ) {
 
 			echo '
-				<div class="col-8 col-md">
+				<div class="col-md">
 					<div class="mobile-screenshot rotate-left layer-2">
 						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0 ) .'
 					  	<img src="'. get_template_directory_uri() .'/style/img/iphone-xr.svg" alt="iPhone">
