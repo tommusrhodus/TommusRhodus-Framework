@@ -29,7 +29,7 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 		
 		$this->start_controls_section(
 			'carousel_items_section', [
-				'label' => __( 'Accordion Items', 'tr-framework' ),
+				'label' => __( 'Accordion Item', 'tr-framework' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);

@@ -226,17 +226,6 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 		
 	}
 
-	protected function _content_template() {
-		?>
-		
-		<div class="mb-lg-0">
-			<span class="display-4 text-primary d-block">{{{ settings.finish }}}</span>
-			<span class="h6">{{{ settings.title }}}</span>
-		</div>
-		
-		<?php
-	}
-
 }
 
 // Register our new widget

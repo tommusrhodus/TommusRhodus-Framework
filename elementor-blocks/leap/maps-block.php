@@ -203,7 +203,7 @@ class Widget_TommusRhodus_Maps_Block extends Widget_Base {
 		} elseif( 'basic_shadow' == $settings['layout'] ) {
 
 			echo '
-				<div class="min-vh-50 w-100 rounded" data-marker-image="'. $settings['marker_image']['url'] .'" data-maps-api-key="'. $settings['api_key'] .'" data-address="'. $settings['address'] .'" data-map-zoom="'. $settings['zoom']['size'] .'" '. $zoom .'>
+				<div class="min-vh-50 w-100 rounded shadow-3d" data-marker-image="'. $settings['marker_image']['url'] .'" data-maps-api-key="'. $settings['api_key'] .'" data-address="'. $settings['address'] .'" data-map-zoom="'. $settings['zoom']['size'] .'" '. $zoom .'>
 					<div class="map-marker" data-address="'. $settings['address'] .'">
 						<div class="info-window" data-max-width="400">
 							<div class="container">
@@ -219,7 +219,7 @@ class Widget_TommusRhodus_Maps_Block extends Widget_Base {
 		} elseif( 'styled' == $settings['layout'] ) {
 
 			echo '
-				<div class="min-vh-50 w-100 rounded shadow-3d" data-marker-image="'. $settings['marker_image']['url'] .'" data-maps-api-key="'. $settings['api_key'] .'" data-latlong="'. $settings['latlong'] .'" data-map-zoom="'. $settings['zoom']['size'] .'" '. $zoom .'>
+				<div class="min-vh-50 w-100 rounded" data-marker-image="'. $settings['marker_image']['url'] .'" data-maps-api-key="'. $settings['api_key'] .'" data-latlong="'. $settings['latlong'] .'" data-map-zoom="'. $settings['zoom']['size'] .'" '. $zoom .'>
 					<div class="map-marker" data-latlong="'. $settings['latlong'] .'">
 						<div class="info-window" data-max-width="400">
 							<div class="container">

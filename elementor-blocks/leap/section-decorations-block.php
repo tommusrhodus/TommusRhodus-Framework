@@ -47,7 +47,7 @@ class Widget_TommusRhodus_Decorations_Block extends Widget_Base {
 			'layout', [
 				'label'   => __( 'Choose a Decoration', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'inline',
+				'default' => 'blob_bottom_left',
 				'label_block' => true,
 				'options' => [
 					'blob_bottom_left'		=> esc_html__( 'Blob, Positon Bottom Left', 'tr-framework' ),
@@ -224,6 +224,14 @@ class Widget_TommusRhodus_Decorations_Block extends Widget_Base {
 		';
 
 
+	}
+
+	protected function _content_template() {
+		?>
+			
+			<div class="text-center">Decorations will appear on live page</div>
+		
+		<?php
 	}
 
 }
