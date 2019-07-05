@@ -174,14 +174,6 @@ class Widget_TommusRhodus_Inner_Decorations_Block extends Widget_Base {
 
 	}
 
-	protected function _content_template() {
-		?>
-			
-			<div class="text-center">Decorations will appear on live page</div>
-		
-		<?php
-	}
-
 }
 
 // Register our new widget
