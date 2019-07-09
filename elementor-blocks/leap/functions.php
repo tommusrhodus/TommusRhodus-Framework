@@ -80,11 +80,18 @@ add_filter('elementor/shapes/additional_shapes', function( $additional_shapes ){
 		'path' => get_template_directory() . '/style/img/dividers/divider-2.svg',
 	];
 
-	$additional_shapes['curve'] = [
-		'title' => _x('Curve', 'Shapes', 'elementor'),
+	$additional_shapes['curve-2'] = [
+		'title' => _x('Curve 2', 'Shapes', 'elementor'),
 		'has_negative' => true,
 		'url' => get_template_directory_uri() . '/style/img/dividers/divider-3.svg',
 		'path' => get_template_directory() . '/style/img/dividers/divider-3.svg',
+	];
+
+	$additional_shapes['curve-2-flipped'] = [
+		'title' => _x('Curve 2 Flipped', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-3-flipped.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-3-flipped.svg',
 	];
 
 	$additional_shapes['slope'] = [
