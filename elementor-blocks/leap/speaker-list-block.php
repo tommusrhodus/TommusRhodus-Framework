@@ -96,6 +96,7 @@ class Widget_TommusRhodus_Speaker_List_Block extends Widget_Base {
 		echo '
 			 <div class="row">';
 
+			 	$i = 1;
 				foreach( $settings['list'] as $item ){
 
 					$target   					= $item['speaker_link_url']['is_external'] ? ' target="_blank"' : '';
@@ -103,7 +104,7 @@ class Widget_TommusRhodus_Speaker_List_Block extends Widget_Base {
 					$link     					= 'href="'. esc_url( $item['speaker_link_url']['url'] ) .'"' . $target . $nofollow;
 
 					echo '
-						<div class="col-sm-6 col-lg-4 d-flex align-items-center mb-5" data-aos="fade-up" data-aos-delay="100">
+						<div class="col-sm-6 col-lg-4 d-flex align-items-center mb-5" data-aos="fade-up" data-aos-delay="'. esc_attr( $i ) .'00">
 							'. wp_get_attachment_image( $item['image']['id'], 'thumbnail', 0, array( 'class' => 'avatar avatar-xlg mr-3' ) ) .'
 							<div>
 								<h5 class="mb-0">'. $item['speaker_name'] .'</h5>';
@@ -118,6 +119,8 @@ class Widget_TommusRhodus_Speaker_List_Block extends Widget_Base {
 							</div>
 						</div>
 					';
+
+					$i++;
 
 				}
 
