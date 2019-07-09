@@ -47,10 +47,15 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'item_link', [
-				'label'       => __( 'Link Image to URL?', 'tr-framework' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => '#',
-				'label_block' => true
+				'label' => __( 'Link Image to URL?', 'tr-framework' ),
+				'type' => \Elementor\Controls_Manager::URL,
+				'placeholder' => __( '#', 'tr-framework' ),
+				'show_external' => true,
+				'default' => [
+					'url' => '',
+					'is_external' => true,
+					'nofollow' => true,
+				],
 			]
 		);
 
