@@ -64,6 +64,47 @@ add_action( 'elementor/frontend/section/before_render', function( $element ) {
 	
 });
 
+add_filter('elementor/shapes/additional_shapes', function( $additional_shapes ){
+
+	$additional_shapes['ramp'] = [
+		'title' => _x('Ramp', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-1.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-1.svg',
+	];
+
+	$additional_shapes['half-pipe'] = [
+		'title' => _x('Half Pipe', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-2.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-2.svg',
+	];
+
+	$additional_shapes['curve'] = [
+		'title' => _x('Curve', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-3.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-3.svg',
+	];
+
+	$additional_shapes['slope'] = [
+		'title' => _x('Slope', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-4.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-4.svg',
+	];
+
+	$additional_shapes['fan'] = [
+		'title' => _x('Fan', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-5.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-5.svg',
+	];
+
+	return $additional_shapes;
+
+});
+
 /**
  * Login Shortcode
  */
