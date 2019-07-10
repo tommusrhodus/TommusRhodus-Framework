@@ -115,6 +115,7 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 		$settings                = $this->get_settings_for_display();
 		$user_selected_animation = (bool) $settings['_animation'];
 		$animation               = ( $user_selected_animation ) ? false : 'data-aos="fade-left"';
+		$i 						 = 1;
 		
 		if( 'vertical-alt' == $settings['layout'] ) {
 
@@ -122,7 +123,7 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 			
 			foreach( $settings['list'] as $item ){
 				echo '
-					<li '. $animation .'>
+					<li data-aos="fade-left" data-aos-delay="'. $i .'00">
 						<div class="process-circle '. $item['icon_bg'] .'"></div>
 						<div>
 							<span class="text-small text-muted">'. $item['item_title'] .'</span>
@@ -130,6 +131,7 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 						</div>
 					</li>
 				';
+				$i++;
 			}
 			
 			echo '</ol></div></div>';
@@ -140,7 +142,7 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 			
 			foreach( $settings['list'] as $item ){
 				echo '
-					<div class="d-flex mb-4" data-aos="fade-up" data-aos-delay="NaN">
+					<div class="d-flex mb-4" data-aos="fade-up" data-aos-delay="'. $i .'00">
 						<div class="process-circle '. $item['icon_bg'] .'"></div>
 						<div class="ml-3">						
 							<h5>'. $item['item_title'] .'</h5>
@@ -148,6 +150,7 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 						</div>
 					</div>
 				';
+				$i++;
 			}
 			
 			echo '</div>';
@@ -158,12 +161,13 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 			
 			foreach( $settings['list'] as $item ){
 				echo '
-					<div class="col-md-4" '. $animation .'>
+					<div class="col-md-4" data-aos="fade-up" data-aos-delay="'. $i .'00">
 						<div class="process-circle '. $item['icon_bg'] .' mb-3"></div>
 						<h4>'. $item['item_title'] .'</h4>
 			            '. $item['item_description'] .'
 					</div>
 				';
+				$i++;
 			}
 			
 			echo '</div>';
