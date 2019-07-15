@@ -3,9 +3,9 @@
 function tommusrhodus_framework_add_elementor_widget_categories( $elements_manager ) {
 	
 	$elements_manager->add_category(
-		'leap-elements',
+		'uptime-elements',
 		array(
-			'title' => 'Leap Elements'
+			'title' => 'Uptime Elements'
 		)
 	);
 
@@ -127,7 +127,7 @@ if(!( function_exists('tommusrhodus_login_shortcode') )) {
 		
 		return str_replace($find, $replace, wp_login_form( array( 'echo' => false ) ));
 	}
-	add_shortcode( 'leap_login', 'tommusrhodus_login_shortcode' );
+	add_shortcode( 'uptime_login', 'tommusrhodus_login_shortcode' );
 }
 
 /**
@@ -155,7 +155,7 @@ if(!( function_exists('tommusrhodus_stars_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'leap_stars', 'tommusrhodus_stars_shortcode' );
+	add_shortcode( 'uptime_stars', 'tommusrhodus_stars_shortcode' );
 }
 
 /**
@@ -196,7 +196,7 @@ if(!( function_exists('tommusrhodus_video_lightbox_button_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'leap_video_lightbox_button', 'tommusrhodus_video_lightbox_button_shortcode' );
+	add_shortcode( 'uptime_video_lightbox_button', 'tommusrhodus_video_lightbox_button_shortcode' );
 }
 
 /**
@@ -234,7 +234,7 @@ if(!( function_exists('tommusrhodus_icon_button_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'leap_icon_button', 'tommusrhodus_icon_button_shortcode' );
+	add_shortcode( 'uptime_icon_button', 'tommusrhodus_icon_button_shortcode' );
 }
 
 /**
@@ -255,7 +255,7 @@ if(!( function_exists('tommusrhodus_icon_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'leap_icon', 'tommusrhodus_icon_shortcode' );
+	add_shortcode( 'uptime_icon', 'tommusrhodus_icon_shortcode' );
 }
 
 /**
@@ -277,5 +277,5 @@ if(!( function_exists('tommusrhodus_counter_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'leap_counter', 'tommusrhodus_counter_shortcode' );
+	add_shortcode( 'uptime_counter', 'tommusrhodus_counter_shortcode' );
 }

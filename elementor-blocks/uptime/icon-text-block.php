@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'uptime-elements' ];
 	}
 	
 	/**

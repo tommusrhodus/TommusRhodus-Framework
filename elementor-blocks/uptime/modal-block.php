@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'uptime-elements' ];
 	}
 
 	protected function _register_controls() {

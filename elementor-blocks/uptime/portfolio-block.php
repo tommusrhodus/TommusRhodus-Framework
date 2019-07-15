@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'uptime-elements' ];
 	}
 	
 	/**

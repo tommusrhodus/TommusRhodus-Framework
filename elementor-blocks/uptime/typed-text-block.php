@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'uptime-elements' ];
 	}
 
 	/**
@@ -65,7 +65,7 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 			'prefix', [
 				'label'       => __( 'Prefix Text', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => 'Use Leap To',
+				'default'     => 'Use Uptime To',
 				'label_block' => true
 			]
 		);	
