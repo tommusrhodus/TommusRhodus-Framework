@@ -421,6 +421,28 @@ class Widget_TommusRhodus_Decorations_Block extends Widget_Base {
 			</div>
 		';
 
+		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
+
+ 	 		<script>
+				jQuery(document).ready(function(){
+
+					jQuery('section.elementor-element .decoration-wrapper-block:first-of-type').each(function(){
+						var currentSection = jQuery(this).closest('section.elementor-element');
+						jQuery(this).closest('section.elementor-element').find('.elementor-element:not(.elementor-widget-tommusrhodus-decorations-block)').addClass('layer-2');
+						jQuery(this).closest('section.elementor-element').addClass('o-hidden').append(this);
+						jQuery(this).siblings('.cloned-decoration-wrapper').remove();
+						jQuery(this).appendTo(jQuery(this).closest('section.elementor-element') ).addClass('cloned-decoration-wrapper');
+						jQuery('.cloned-decoration-wrapper').replaceWith(this);
+						jQuery(currentSection).find('.decoration-wrapper-block:not(.cloned-decoration-wrapper)').empty();
+
+					});
+
+				});
+ 	 		</script>
+
+		<?php 
+		}
+
 
 	}
 

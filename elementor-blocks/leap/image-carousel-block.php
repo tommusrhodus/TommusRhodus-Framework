@@ -91,13 +91,13 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		
 		echo '
-		<div class="arrows-inside highlight-selected mb-6" data-flickity=\'{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true }\'>';
+			<div class="arrows-inside highlight-selected mb-6" data-flickity=\'{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true }\'>';
 
 			foreach( $settings['list'] as $item ) {
 
 				echo '
 					<div class="carousel-cell col-lg-4 col-md-5 col-9 px-2 py-3">
-						<a href="'. esc_url( $item['item_link'] ) .'" target="'. $item['item_link_target'] .'">
+						<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
 							'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'rounded shadow-3d hover-shadow-3d border' ) ) .'
 						</a>
 					</div>
@@ -108,6 +108,21 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 			echo '
 			</div>		
 		';
+
+		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
+
+ 	 		<script>
+				jQuery(document).ready(function(){
+
+					jQuery( '[data-flickity]' ).each(function(){
+						jQuery(this).flickity();
+					});
+
+				});
+ 	 		</script>
+
+		<?php 
+		}
 		
 	}
 

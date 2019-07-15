@@ -184,6 +184,21 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 			
 		}
 
+		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
+
+ 	 		<script>
+				jQuery(document).ready(function(){
+
+					jQuery( '[data-flickity]' ).each(function(){
+						jQuery(this).flickity();
+					});
+
+				});
+ 	 		</script>
+
+		<?php 
+		}
+
 	}
 
 }

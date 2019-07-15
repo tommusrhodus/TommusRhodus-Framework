@@ -183,6 +183,20 @@ class Widget_TommusRhodus_Inner_Decorations_Block extends Widget_Base {
 
 		}
 
+		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
+
+ 	 		<script>
+				jQuery(document).ready(function(){
+
+					jQuery('.decoration-block').each(function(){
+						jQuery(this).closest('.elementor-element').siblings().addClass('layer-2');	
+					});
+
+				});
+ 	 		</script>
+
+		<?php 
+		}
 
 	}
 

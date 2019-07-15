@@ -195,6 +195,21 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 		$wp_query = $old_query;
 		$post     = $old_post;
 
+		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
+
+ 	 		<script>
+				jQuery(document).ready(function(){
+
+					jQuery( '[data-flickity]' ).each(function(){
+						jQuery(this).flickity();
+					});
+
+				});
+ 	 		</script>
+
+		<?php 
+		}
+
 	}
 
 }
