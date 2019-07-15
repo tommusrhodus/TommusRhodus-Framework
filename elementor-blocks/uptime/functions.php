@@ -3,357 +3,279 @@
 function tommusrhodus_framework_add_elementor_widget_categories( $elements_manager ) {
 	
 	$elements_manager->add_category(
-		'wingman-elements',
+		'leap-elements',
 		array(
-			'title' => 'Wingman Elements'
+			'title' => 'Leap Elements'
 		)
 	);
 
 }
 add_action( 'elementor/elements/categories_registered', 'tommusrhodus_framework_add_elementor_widget_categories', 10, 1 );
 
-function tommusrhodus_framework_add_elementor_custom_icons( $controls_registry ) {
-	
-	// Append new icons
-	$new_icons = array(
-		'icon-add-to-list' => 'add-to-list',
-		'icon-add-user' => 'add-user',
-		'icon-address' => 'address',
-		'icon-adjust' => 'adjust',
-		'icon-air' => 'air',
-		'icon-aircraft-landing' => 'aircraft-landing',
-		'icon-aircraft-take-off' => 'aircraft-take-off',
-		'icon-aircraft' => 'aircraft',
-		'icon-align-bottom' => 'align-bottom',
-		'icon-align-horizontal-middle' => 'align-horizontal-middle',
-		'icon-align-left' => 'align-left',
-		'icon-align-right' => 'align-right',
-		'icon-align-top' => 'align-top',
-		'icon-align-vertical-middle' => 'align-vertical-middle',
-		'icon-archive' => 'archive',
-		'icon-area-graph' => 'area-graph',
-		'icon-arrow-bold-down' => 'arrow-bold-down',
-		'icon-arrow-bold-left' => 'arrow-bold-left',
-		'icon-arrow-bold-right' => 'arrow-bold-right',
-		'icon-arrow-bold-up' => 'arrow-bold-up',
-		'icon-arrow-down' => 'arrow-down',
-		'icon-arrow-left' => 'arrow-left',
-		'icon-arrow-long-down' => 'arrow-long-down',
-		'icon-arrow-long-left' => 'arrow-long-left',
-		'icon-arrow-long-right' => 'arrow-long-right',
-		'icon-arrow-long-up' => 'arrow-long-up',
-		'icon-arrow-right' => 'arrow-right',
-		'icon-arrow-up' => 'arrow-up',
-		'icon-arrow-with-circle-down' => 'arrow-with-circle-down',
-		'icon-arrow-with-circle-left' => 'arrow-with-circle-left',
-		'icon-arrow-with-circle-right' => 'arrow-with-circle-right',
-		'icon-arrow-with-circle-up' => 'arrow-with-circle-up',
-		'icon-attachment' => 'attachment',
-		'icon-awareness-ribbon' => 'awareness-ribbon',
-		'icon-back-in-time' => 'back-in-time',
-		'icon-back' => 'back',
-		'icon-bar-graph' => 'bar-graph',
-		'icon-battery' => 'battery',
-		'icon-beamed-note' => 'beamed-note',
-		'icon-bell' => 'bell',
-		'icon-blackboard' => 'blackboard',
-		'icon-block' => 'block',
-		'icon-book' => 'book',
-		'icon-bookmark' => 'bookmark',
-		'icon-bookmarks' => 'bookmarks',
-		'icon-bowl' => 'bowl',
-		'icon-box' => 'box',
-		'icon-briefcase' => 'briefcase',
-		'icon-browser' => 'browser',
-		'icon-brush' => 'brush',
-		'icon-bucket' => 'bucket',
-		'icon-bug' => 'bug',
-		'icon-cake' => 'cake',
-		'icon-calculator' => 'calculator',
-		'icon-calendar' => 'calendar',
-		'icon-camera' => 'camera',
-		'icon-ccw' => 'ccw',
-		'icon-chat' => 'chat',
-		'icon-check' => 'check',
-		'icon-chevron-down' => 'chevron-down',
-		'icon-chevron-left' => 'chevron-left',
-		'icon-chevron-right' => 'chevron-right',
-		'icon-chevron-small-down' => 'chevron-small-down',
-		'icon-chevron-small-left' => 'chevron-small-left',
-		'icon-chevron-small-right' => 'chevron-small-right',
-		'icon-chevron-small-up' => 'chevron-small-up',
-		'icon-chevron-thin-down' => 'chevron-thin-down',
-		'icon-chevron-thin-left' => 'chevron-thin-left',
-		'icon-chevron-thin-right' => 'chevron-thin-right',
-		'icon-chevron-thin-up' => 'chevron-thin-up',
-		'icon-chevron-up' => 'chevron-up',
-		'icon-chevron-with-circle-down' => 'chevron-with-circle-down',
-		'icon-chevron-with-circle-left' => 'chevron-with-circle-left',
-		'icon-chevron-with-circle-right' => 'chevron-with-circle-right',
-		'icon-chevron-with-circle-up' => 'chevron-with-circle-up',
-		'icon-circle-with-cross' => 'circle-with-cross',
-		'icon-circle-with-minus' => 'circle-with-minus',
-		'icon-circle-with-plus' => 'circle-with-plus',
-		'icon-circle' => 'circle',
-		'icon-circular-graph' => 'circular-graph',
-		'icon-clapperboard' => 'clapperboard',
-		'icon-classic-computer' => 'classic-computer',
-		'icon-clipboard' => 'clipboard',
-		'icon-clock' => 'clock',
-		'icon-cloud' => 'cloud',
-		'icon-code' => 'code',
-		'icon-cog' => 'cog',
-		'icon-colours' => 'colours',
-		'icon-compass' => 'compass',
-		'icon-controller-fast-backward' => 'controller-fast-backward',
-		'icon-controller-fast-forward' => 'controller-fast-forward',
-		'icon-controller-jump-to-start' => 'controller-jump-to-start',
-		'icon-controller-next' => 'controller-next',
-		'icon-controller-paus' => 'controller-paus',
-		'icon-controller-play' => 'controller-play',
-		'icon-controller-record' => 'controller-record',
-		'icon-controller-stop' => 'controller-stop',
-		'icon-controller-volume' => 'controller-volume',
-		'icon-copy' => 'copy',
-		'icon-creative-commons-attribution' => 'creative-commons-attribution',
-		'icon-creative-commons-noderivs' => 'creative-commons-noderivs',
-		'icon-creative-commons-noncommercial-eu' => 'creative-commons-noncommercial-eu',
-		'icon-creative-commons-noncommercial-us' => 'creative-commons-noncommercial-us',
-		'icon-creative-commons-public-domain' => 'creative-commons-public-domain',
-		'icon-creative-commons-remix' => 'creative-commons-remix',
-		'icon-creative-commons-share' => 'creative-commons-share',
-		'icon-creative-commons-sharealike' => 'creative-commons-sharealike',
-		'icon-creative-commons' => 'creative-commons',
-		'icon-credit-card' => 'credit-card',
-		'icon-credit' => 'credit',
-		'icon-crop' => 'crop',
-		'icon-cross' => 'cross',
-		'icon-cup' => 'cup',
-		'icon-cw' => 'cw',
-		'icon-cycle' => 'cycle',
-		'icon-database' => 'database',
-		'icon-dial-pad' => 'dial-pad',
-		'icon-direction' => 'direction',
-		'icon-document-landscape' => 'document-landscape',
-		'icon-document' => 'document',
-		'icon-documents' => 'documents',
-		'icon-dot-single' => 'dot-single',
-		'icon-dots-three-horizontal' => 'dots-three-horizontal',
-		'icon-dots-three-vertical' => 'dots-three-vertical',
-		'icon-dots-two-horizontal' => 'dots-two-horizontal',
-		'icon-dots-two-vertical' => 'dots-two-vertical',
-		'icon-download' => 'download',
-		'icon-drink' => 'drink',
-		'icon-drive' => 'drive',
-		'icon-drop' => 'drop',
-		'icon-edit' => 'edit',
-		'icon-email' => 'email',
-		'icon-emoji-flirt' => 'emoji-flirt',
-		'icon-emoji-happy' => 'emoji-happy',
-		'icon-emoji-neutral' => 'emoji-neutral',
-		'icon-emoji-sad' => 'emoji-sad',
-		'icon-erase' => 'erase',
-		'icon-eraser' => 'eraser',
-		'icon-export' => 'export',
-		'icon-eye-with-line' => 'eye-with-line',
-		'icon-eye' => 'eye',
-		'icon-feather' => 'feather',
-		'icon-fingerprint' => 'fingerprint',
-		'icon-flag' => 'flag',
-		'icon-flash' => 'flash',
-		'icon-flashlight' => 'flashlight',
-		'icon-flat-brush' => 'flat-brush',
-		'icon-flow-branch' => 'flow-branch',
-		'icon-flow-cascade' => 'flow-cascade',
-		'icon-flow-line' => 'flow-line',
-		'icon-flow-parallel' => 'flow-parallel',
-		'icon-flow-tree' => 'flow-tree',
-		'icon-flower' => 'flower',
-		'icon-folder-images' => 'folder-images',
-		'icon-folder-music' => 'folder-music',
-		'icon-folder-video' => 'folder-video',
-		'icon-folder' => 'folder',
-		'icon-forward' => 'forward',
-		'icon-funnel' => 'funnel',
-		'icon-game-controller' => 'game-controller',
-		'icon-gauge' => 'gauge',
-		'icon-globe' => 'globe',
-		'icon-graduation-cap' => 'graduation-cap',
-		'icon-grid' => 'grid',
-		'icon-hair-cross' => 'hair-cross',
-		'icon-hand' => 'hand',
-		'icon-heart-outlined' => 'heart-outlined',
-		'icon-heart' => 'heart',
-		'icon-help-with-circle' => 'help-with-circle',
-		'icon-help' => 'help',
-		'icon-home' => 'home',
-		'icon-hour-glass' => 'hour-glass',
-		'icon-image-inverted' => 'image-inverted',
-		'icon-image' => 'image',
-		'icon-images' => 'images',
-		'icon-inbox' => 'inbox',
-		'icon-infinity' => 'infinity',
-		'icon-info-with-circle' => 'info-with-circle',
-		'icon-info' => 'info',
-		'icon-install' => 'install',
-		'icon-key' => 'key',
-		'icon-keyboard' => 'keyboard',
-		'icon-lab-flask' => 'lab-flask',
-		'icon-landline' => 'landline',
-		'icon-language' => 'language',
-		'icon-laptop' => 'laptop',
-		'icon-layers' => 'layers',
-		'icon-leaf' => 'leaf',
-		'icon-level-down' => 'level-down',
-		'icon-level-up' => 'level-up',
-		'icon-lifebuoy' => 'lifebuoy',
-		'icon-light-bulb' => 'light-bulb',
-		'icon-light-down' => 'light-down',
-		'icon-light-up' => 'light-up',
-		'icon-line-graph' => 'line-graph',
-		'icon-link' => 'link',
-		'icon-list' => 'list',
-		'icon-location-pin' => 'location-pin',
-		'icon-location' => 'location',
-		'icon-lock-open' => 'lock-open',
-		'icon-lock' => 'lock',
-		'icon-log-out' => 'log-out',
-		'icon-login' => 'login',
-		'icon-loop' => 'loop',
-		'icon-magnet' => 'magnet',
-		'icon-magnifying-glass' => 'magnifying-glass',
-		'icon-mail' => 'mail',
-		'icon-man' => 'man',
-		'icon-map' => 'map',
-		'icon-mask' => 'mask',
-		'icon-medal' => 'medal',
-		'icon-megaphone' => 'megaphone',
-		'icon-menu' => 'menu',
-		'icon-merge' => 'merge',
-		'icon-message' => 'message',
-		'icon-mic' => 'mic',
-		'icon-minus' => 'minus',
-		'icon-mobile' => 'mobile',
-		'icon-modern-mic' => 'modern-mic',
-		'icon-moon' => 'moon',
-		'icon-mouse-pointer' => 'mouse-pointer',
-		'icon-mouse' => 'mouse',
-		'icon-music' => 'music',
-		'icon-network' => 'network',
-		'icon-new-message' => 'new-message',
-		'icon-new' => 'new',
-		'icon-news' => 'news',
-		'icon-newsletter' => 'newsletter',
-		'icon-note' => 'note',
-		'icon-notification' => 'notification',
-		'icon-notifications-off' => 'notifications-off',
-		'icon-old-mobile' => 'old-mobile',
-		'icon-old-phone' => 'old-phone',
-		'icon-open-book' => 'open-book',
-		'icon-palette' => 'palette',
-		'icon-paper-plane' => 'paper-plane',
-		'icon-pencil' => 'pencil',
-		'icon-phone' => 'phone',
-		'icon-pie-chart' => 'pie-chart',
-		'icon-pin' => 'pin',
-		'icon-plus' => 'plus',
-		'icon-popup' => 'popup',
-		'icon-power-plug' => 'power-plug',
-		'icon-price-ribbon' => 'price-ribbon',
-		'icon-price-tag' => 'price-tag',
-		'icon-print' => 'print',
-		'icon-progress-empty' => 'progress-empty',
-		'icon-progress-full' => 'progress-full',
-		'icon-progress-one' => 'progress-one',
-		'icon-progress-two' => 'progress-two',
-		'icon-publish' => 'publish',
-		'icon-quote' => 'quote',
-		'icon-radio' => 'radio',
-		'icon-remove-user' => 'remove-user',
-		'icon-reply-all' => 'reply-all',
-		'icon-reply' => 'reply',
-		'icon-resize-100%' => 'resize-100%',
-		'icon-resize-full-screen' => 'resize-full-screen',
-		'icon-retweet' => 'retweet',
-		'icon-rocket' => 'rocket',
-		'icon-round-brush' => 'round-brush',
-		'icon-rss' => 'rss',
-		'icon-ruler' => 'ruler',
-		'icon-save' => 'save',
-		'icon-scissors' => 'scissors',
-		'icon-select-arrows' => 'select-arrows',
-		'icon-share-alternative' => 'share-alternative',
-		'icon-share' => 'share',
-		'icon-shareable' => 'shareable',
-		'icon-shield' => 'shield',
-		'icon-shop' => 'shop',
-		'icon-shopping-bag' => 'shopping-bag',
-		'icon-shopping-basket' => 'shopping-basket',
-		'icon-shopping-cart' => 'shopping-cart',
-		'icon-shuffle' => 'shuffle',
-		'icon-signal' => 'signal',
-		'icon-sound-mix' => 'sound-mix',
-		'icon-sound-mute' => 'sound-mute',
-		'icon-sound' => 'sound',
-		'icon-sports-club' => 'sports-club',
-		'icon-spreadsheet' => 'spreadsheet',
-		'icon-squared-cross' => 'squared-cross',
-		'icon-squared-minus' => 'squared-minus',
-		'icon-squared-plus' => 'squared-plus',
-		'icon-star-outlined' => 'star-outlined',
-		'icon-star' => 'star',
-		'icon-stopwatch' => 'stopwatch',
-		'icon-suitcase' => 'suitcase',
-		'icon-swap' => 'swap',
-		'icon-sweden' => 'sweden',
-		'icon-switch' => 'switch',
-		'icon-tablet-mobile-combo' => 'tablet-mobile-combo',
-		'icon-tablet' => 'tablet',
-		'icon-tag' => 'tag',
-		'icon-text-document-inverted' => 'text-document-inverted',
-		'icon-text-document' => 'text-document',
-		'icon-text' => 'text',
-		'icon-thermometer' => 'thermometer',
-		'icon-thumbs-down' => 'thumbs-down',
-		'icon-thumbs-up' => 'thumbs-up',
-		'icon-thunder-cloud' => 'thunder-cloud',
-		'icon-ticket' => 'ticket',
-		'icon-time-slot' => 'time-slot',
-		'icon-tools' => 'tools',
-		'icon-traffic-cone' => 'traffic-cone',
-		'icon-trash' => 'trash',
-		'icon-tree' => 'tree',
-		'icon-triangle-down' => 'triangle-down',
-		'icon-triangle-left' => 'triangle-left',
-		'icon-triangle-right' => 'triangle-right',
-		'icon-triangle-up' => 'triangle-up',
-		'icon-trophy' => 'trophy',
-		'icon-tv' => 'tv',
-		'icon-typing' => 'typing',
-		'icon-uninstall' => 'uninstall',
-		'icon-unread' => 'unread',
-		'icon-untag' => 'untag',
-		'icon-upload-to-cloud' => 'upload-to-cloud',
-		'icon-upload' => 'upload',
-		'icon-user' => 'user',
-		'icon-users' => 'users',
-		'icon-v-card' => 'v-card',
-		'icon-video-camera' => 'video-camera',
-		'icon-video' => 'video',
-		'icon-vinyl' => 'vinyl',
-		'icon-voicemail' => 'voicemail',
-		'icon-wallet' => 'wallet',
-		'icon-warning' => 'warning',
-		'icon-water' => 'water'
+/**
+ * Add option for parallax settings to Sections
+ */
+add_action('elementor/element/section/section_typo/after_section_end', function( $section, $args ) {
+	$section->start_controls_section(
+		'section_custom_class',
+		[
+			'label' => __( 'Parallax', 'tr-framework' ),
+			'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+		]
 	);
 
-	$elementor_icons = $controls_registry->get_control( 'icon' )->get_settings( 'options' );
-	$icons           = array_merge( $new_icons, $elementor_icons );
+	$section->add_control(
+		'enable_parallax',
+		[
+			'label'        => __( 'Add Parallax Effect?', 'tr-framework' ),
+			'type'         => Elementor\Controls_Manager::SWITCHER,
+			'return_value' => 'yes',
+			'default' => 'no',
+		]
+	);
+
+	$section->end_controls_section();
+}, 10, 2 );
+
+/**
+ * Render if parallax is enabled
+ */
+add_action( 'elementor/frontend/section/before_render', function( $element ) {
+	// Make sure we are in a section element
+	if( 'section' !== $element->get_name() ) {
+		return;
+	}
+
+	$settings = $element->get_settings();
+
+	if( 'yes' == $settings['enable_parallax'] && !empty( $settings['background_video_link'] ) ) {
+
+		$element->add_render_attribute( '_wrapper', 'data-jarallax-video', $settings['background_video_link'] );
+		$element->add_render_attribute( '_wrapper', 'data-speed', "0.5");
+		$element->add_render_attribute( '_wrapper', 'class', 'jarallax' );	
+
+	} elseif( 'yes' == $settings['enable_parallax'] ) {
+
+		$element->add_render_attribute( '_wrapper', 'data-jarallax' );
+		$element->add_render_attribute( '_wrapper', 'data-speed', "0.5");
+		$element->add_render_attribute( '_wrapper', 'class', 'jarallax' );	
+
+	}
 	
-	// Sort alphabetical
-	asort( $icons );
-	
-	$controls_registry->get_control( 'icon' )->set_settings( 'options', $icons );
-	
+});
+
+add_filter('elementor/shapes/additional_shapes', function( $additional_shapes ){
+
+	$additional_shapes['ramp'] = [
+		'title' => _x('Ramp', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-1.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-1.svg',
+	];
+
+	$additional_shapes['half-pipe'] = [
+		'title' => _x('Half Pipe', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-2.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-2.svg',
+	];
+
+	$additional_shapes['curve-2'] = [
+		'title' => _x('Curve 2', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-3.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-3.svg',
+	];
+
+	$additional_shapes['curve-2-flipped'] = [
+		'title' => _x('Curve 2 Flipped', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-3-flipped.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-3-flipped.svg',
+	];
+
+	$additional_shapes['slope'] = [
+		'title' => _x('Slope', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-4.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-4.svg',
+	];
+
+	$additional_shapes['fan'] = [
+		'title' => _x('Fan', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-5.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-5.svg',
+	];
+
+	return $additional_shapes;
+
+});
+
+/**
+ * Login Shortcode
+ */
+if(!( function_exists('tommusrhodus_login_shortcode') )) {
+	function tommusrhodus_login_shortcode( $atts ) {
+		$find = array(
+			'button button-primary'
+		);
+		
+		$replace = array(
+			'btn-block btn btn-primary'
+		);
+		
+		return str_replace($find, $replace, wp_login_form( array( 'echo' => false ) ));
+	}
+	add_shortcode( 'leap_login', 'tommusrhodus_login_shortcode' );
 }
-add_action( 'elementor/controls/controls_registered', 'tommusrhodus_framework_add_elementor_custom_icons', 10, 1 );
+
+/**
+ * Stars Shortcode
+ */
+if(!( function_exists('tommusrhodus_stars_shortcode') )) {
+	function tommusrhodus_stars_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'number_of_stars' => '5',
+	    	), 
+    	$atts );
+
+	    $icon = '<svg class="icon bg-warning" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3616 17.7407L8.27722 19.888C7.78838 20.145 7.18375 19.957 6.92675 19.4682C6.82441 19.2735 6.7891 19.0505 6.82627 18.8338L7.60632 14.2858L4.30199 11.0648C3.90651 10.6793 3.89841 10.0462 4.28391 9.65073C4.43742 9.49325 4.63856 9.39076 4.8562 9.35913L9.42268 8.69559L11.4649 4.55766C11.7093 4.0624 12.3089 3.85906 12.8042 4.10349C13.0014 4.20082 13.161 4.36044 13.2583 4.55766L15.3005 8.69559L19.867 9.35913C20.4136 9.43855 20.7922 9.94599 20.7128 10.4925C20.6812 10.7102 20.5787 10.9113 20.4212 11.0648L17.1169 14.2858L17.8969 18.8338C17.9903 19.3781 17.6247 19.8951 17.0804 19.9884C16.8636 20.0256 16.6406 19.9903 16.446 19.888L12.3616 17.7407Z" fill="#212529"></path>
+                </svg>';
+
+	    $output = '<div class="d-flex mr-2">';
+
+	    	$output .= str_repeat( $icon, $values['number_of_stars']);
+
+	    $output .= '</div>';
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_stars', 'tommusrhodus_stars_shortcode' );
+}
+
+/**
+ * Video Lightbox Shortcode
+ */
+if(!( function_exists('tommusrhodus_video_lightbox_button_shortcode') )) {
+	function tommusrhodus_video_lightbox_button_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'media_url' 	=> '',
+	        	'button_style'	=> 'icon',
+	        	'button_label'	=> 'Watch the video'
+	    	), 
+    	$atts );
+
+    	if( 'button' == $values['button_style'] ) {
+
+			$output = '
+				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="d-flex align-items-center">
+					<span class="btn btn-primary btn-round btn-sm">
+						'. tommusrhodus_svg_icons_pluck( 'Play', 'icon' ) .'
+					</span>
+					<span class="text-small ml-2">'. $values['button_label'] .'</span>
+				</a>';
+
+    	} else {
+
+			$output = '
+				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="btn btn-xlg btn-primary btn-round mx-auto mb-4 aos-init aos-animate" data-aos="fade-up">
+		    		'. tommusrhodus_svg_icons_pluck( 'Play', 'icon' ) .'
+		    	</a>';
+
+    	}
+
+	    
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_video_lightbox_button', 'tommusrhodus_video_lightbox_button_shortcode' );
+}
+
+/**
+ * Icon Button Shortcode
+ */
+if(!( function_exists('tommusrhodus_icon_button_shortcode') )) {
+	function tommusrhodus_icon_button_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'url' 		=> '#',
+	        	'target' 	=> '_self',
+	        	'label' 	=> 'App Store',
+	        	'icon_name' => 'Apple icon',
+	        	'button_style' => '',
+	    	), 
+    	$atts );
+
+    	if( 'large' == $values['button_style'] ) {
+
+ 			$output = '<a href="'. esc_url( $values['url'] ) .'" class="btn btn-lg btn-primary mx-sm-2 mb-3 mb-sm-0"">
+            	'. tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon' ) .'
+            	<span>'. $values['label'] .'</span>
+          	</a>';
+
+    	} else {
+
+ 			$output = '<a href="'. esc_url( $values['url'] ) .'" class="btn btn-primary">
+            	'. tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon' ) .'
+            	<span>'. $values['label'] .'</span>
+          	</a>';
+
+    	}	   
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_icon_button', 'tommusrhodus_icon_button_shortcode' );
+}
+
+/**
+ * Icon Shortcode
+ */
+if(!( function_exists('tommusrhodus_icon_shortcode') )) {
+	function tommusrhodus_icon_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'icon_name' => 'Apple icon',
+	        	'class' => '',
+	    	), 
+    	$atts );
+
+	    $output = tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon ' . $values['class'] );
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_icon', 'tommusrhodus_icon_shortcode' );
+}
+
+/**
+ * Icon Shortcode
+ */
+if(!( function_exists('tommusrhodus_counter_shortcode') )) {
+	function tommusrhodus_counter_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'start' => '1000',
+	        	'end' => '5000',
+	        	'counter_suffix' => '+',
+	    	), 
+    	$atts );
+
+	    $output = '<h4 class="display-1 d-block mb-1" data-countup data-start="'. $values['start'] .'" data-end="'. $values['end'] .'" data-duration="3" data-grouping="true" data-suffix="'. $values['counter_suffix'] .'"></h4>';
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'leap_counter', 'tommusrhodus_counter_shortcode' );
+}

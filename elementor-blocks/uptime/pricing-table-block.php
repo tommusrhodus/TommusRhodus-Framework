@@ -18,11 +18,11 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-price-table';
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
+		return [ 'leap-elements' ];
 	}
 
 	protected function _register_controls() {
@@ -36,12 +36,24 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 		
 		$this->add_control(
 			'layout', [
+				'label'   => __( 'Pricing Table Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'standard',
+				'options' => [
+					'standard'      => esc_html__( 'Standard', 'tr-framework' ),
+					'compact'       => esc_html__( 'Compact', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->add_control(
+			'skin', [
 				'label'   => __( 'Skin', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'bg-dark',
+				'default' => 'standard',
 				'options' => [
-					'bg-dark'  => esc_html__( 'Dark Background', 'tr-framework' ),
-					'bg-white' => esc_html__( 'Light Background', 'tr-framework' )
+					'standard'  => esc_html__( 'Standard Background', 'tr-framework' ),
+					'shadow-3d' => esc_html__( 'Shadow Background', 'tr-framework' )
 				],
 			]
 		);
@@ -94,7 +106,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			'description_title', [
 				'label'       => __( 'Description Title', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => 'Includes:',
+				'default'     => '',
 				'label_block' => true
 			]
 		);
@@ -111,10 +123,23 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'item_title', [
-				'label'       => __( 'Carousel Item Title', 'tr-framework' ),
+				'label'       => __( 'Detail Text', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'Unlimited projects',
 				'label_block' => true
+			]
+		);
+
+		$repeater->add_control(
+			'detail_style', [
+				'label'   => __( 'Strikethrough Detail?', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'basic',
+				'label_block' => true,
+				'options' => [
+					'basic'          				=> esc_html__( 'Basic Text', 'tr-framework' ),
+					'text-strikethrough'			=> esc_html__( 'Strikethrough Text', 'tr-framework' ),
+				],
 			]
 		);
 
@@ -123,14 +148,10 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 				'label'   => __( 'Pricing Table Details', 'tr-framework' ),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
-				'default' => [
-					[
-						'item_title' => __( 'Pricing Table Detail', 'tr-framework' )
-					]
-				],
+				'default' => [],
 				'title_field' => __( 'Pricing Table Detail', 'tr-framework' ),
 			]
-		);
+		);		
 
 		$this->end_controls_section();
 		
@@ -153,10 +174,10 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			'button_class', [
 				'label'       => __( 'Button Skin', 'tr-framework' ),
 				'type'        => Controls_Manager::SELECT,
-				'default'     => 'btn-success',
+				'default'     => 'btn-outline-primary',
 				'label_block' => true,
 				'options'     => [
-					'btn-success'         => esc_html__( 'Primary Color', 'tr-framework' ),
+					'btn-primary'         => esc_html__( 'Primary Color', 'tr-framework' ),
 					'btn-outline-primary' => esc_html__( 'Outline', 'tr-framework' )
 				],
 			]
@@ -182,52 +203,161 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
+
 		$target   = $settings['url']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
 		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
 		
-		echo '
-			<div class="card pricing card-lg '. $settings['layout'] .'">
-			    <div class="card-body">
-			        <h5>'. $settings['title'] .'</h5>
-			        <span class="display-3">'. $settings['currency'] . $settings['price'] .'</span>
-			        <span class="text-small">'. $settings['small_text'] .'</span>
-			        <span class="h6">'. $settings['description_title'] .'</span>
-			        <ul class="list-unstyled">
-		';
+		$user_selected_animation = (bool) $settings['_animation'];
 		
-		foreach( $settings['list'] as $item ){
-			echo '<li>'. $item['item_title'] .'</li>';
+		if( !$user_selected_animation ){
+			echo '<div data-aos="fade-up" data-aos-delay="NaN">';
 		}
-        
-		echo '
+		
+		if( 'compact' == $settings['layout'] ){
+			
+			echo '			
+				<div class="card card-body justify-content-center text-center '. $settings['skin'] .'">
+				
+					<div class="text-muted"><span>'. $settings['description_title'] .'</span></div>
+				
+					<div class="d-flex justify-content-center my-3">
+						<span class="h3 pt-1 mr-1">'. $settings['currency'] .'</span>
+						<span class="display-3">'. $settings['price'] .'</span>
+					</div>
+					
+					<div class="text-small text-muted js-pricing-charge-description">'. $settings['small_text'] .'</div>
+					
+					<ul class="text-center list-unstyled my-2 my-md-4">
+			';
+			
+			foreach( $settings['list'] as $item ){
+
+				if( 'text-strikethrough' == $item['detail_style'] ) {
+					echo '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>';
+				} else {
+					echo '<li class="py-1">'. $item['item_title'] .'</li>';
+				}
+				
+			}
+			
+			echo '</ul>
+				
+					<a '. $link .' class="btn btn-lg mt-3 '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
+				
+				</div>
+			';
+		
+		} else {
+		
+			echo '
+				<div class="card card-body align-items-center '. $settings['skin'] .'">
+					
+					<span class="badge badge-top badge-dark">'. $settings['description_title'] .'</span>
+					
+					<div class="pt-md-2">
+						<h4>'. $settings['title'] .'</h4>
+					</div>
+					
+					<div class="d-flex align-items-start pb-md-2">
+						<span class="h3">'. $settings['currency'] .'</span>
+						<span class="display-4">'. $settings['price'] .'</span>
+					</div>
+					
+					<span class="text-small text-muted">'. $settings['small_text'] .'</span>
+
+			        <ul class="text-center list-unstyled my-2 my-md-4">
+			';
+			
+			foreach( $settings['list'] as $item ){
+
+				if( 'text-strikethrough' == $item['detail_style'] ) {
+					echo '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>';
+				} else {
+					echo '<li class="py-1">'. $item['item_title'] .'</li>';
+				}
+
+			}
+	        
+			echo '
 					</ul>
-			        <a '. $link .' class="btn btn-lg '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
+					
+			        <a '. $link .' class="btn '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
+			        
 			    </div>
-			</div>
-		';
+			';
+		
+		}
+		
+		if( !$user_selected_animation ){
+			echo '</div>';
+		}
 		
 	}
 
 	protected function _content_template() {
 		?>
-		
-			<div class="card pricing card-lg {{ settings.layout }}">
-			    <div class="card-body">
-			        <h5>{{{ settings.title }}}</h5>
-			        <span class="display-3">{{{ settings.currency }}}{{{ settings.price }}}</span>
-			        <span class="text-small">{{{ settings.small_text }}}</span>
-			        <span class="h6">{{{ settings.description_title }}}</span>
-			        <ul class="list-unstyled">
-						
-						<# _.each( settings.list, function( item ) { #>
-							<li>{{{ item.item_title }}}</li>
-						<# }); #>
 
+			<# if ( 'compact' == settings.layout ) { #>
+				
+				<div class="card card-body justify-content-center text-center {{ settings.skin }}">
+					
+					<div class="text-muted"><span>{{{ settings.description_title }}}</span></div>
+				
+					<div class="d-flex justify-content-center my-3">
+						<span class="h3 pt-1 mr-1">{{{ settings.currency }}}</span>
+						<span class="display-3">{{{ settings.price }}}</span>
+					</div>
+					
+					<div class="text-small text-muted js-pricing-charge-description">{{{ settings.small_text }}}</div>
+					
+					<ul class="text-center list-unstyled my-2 my-md-4">
+						<# _.each( settings.list, function( item ) { #>
+							<# if ( 'text-strikethrough' == item.detail_style ) { #>
+								<li class="py-1"><li class="py-1"><span class="text-muted text-strikethrough">{{{ item.item_title }}}</li></span>
+							<# } else { #>
+								<li class="py-1">{{{ item.item_title }}}</li>
+							<# } #>
+						<# }); #>
+						
 					</ul>
-			        <a href="{{ settings.url.url }}" class="btn btn-lg {{ settings.button_class }}">{{{ settings.button_text }}}</a>
+				
+					<a href="#" class="btn btn-lg mt-3 {{ settings.button_class }}">{{{ settings.button_text }}}</a>
+				
+				</div>
+			
+			<# } else { #>
+				
+				<div class="card card-body align-items-center {{ settings.skin }}">
+					
+					<span class="badge badge-top badge-dark">{{{ settings.description_title }}}</span>
+					
+					<div class="pt-md-2">
+						<h4>{{{ settings.title }}}</h4>
+					</div>
+					
+					<div class="d-flex align-items-start pb-md-2">
+						<span class="h3">{{{ settings.currency }}}</span>
+						<span class="display-4">{{{ settings.price }}}</span>
+					</div>
+					
+					<span class="text-small text-muted">{{{ settings.small_text }}}</span>
+
+			        <ul class="text-center list-unstyled my-2 my-md-4">
+						<# _.each( settings.list, function( item ) { #>
+							<# if ( 'text-strikethrough' == item.detail_style ) { #>
+								<li class="py-1"><li class="py-1"><span class="text-muted text-strikethrough">{{{ item.item_title }}}</li></span>
+							<# } else { #>
+								<li class="py-1">{{{ item.item_title }}}</li>
+							<# } #>
+						<# }); #>						
+					</ul>
+					
+			        <a href="#" class="btn {{ settings.button_class }}">{{{ settings.button_text }}}</a>
+			        
 			    </div>
-			</div>
+					
+			<# } #>
 		
 		<?php
 	}

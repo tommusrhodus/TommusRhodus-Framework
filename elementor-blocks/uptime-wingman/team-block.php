@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Team_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'uptime-elements' ];
 	}
 	
 	/**

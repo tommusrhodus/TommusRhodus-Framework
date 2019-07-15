@@ -18,39 +18,37 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-blockquote';
+		return 'eicon-accordion';
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
-	}
-	
-	/**
-	 * Whether the reload preview is required or not.
-	 *
-	 * Used to determine whether the reload preview is required.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 * @return bool Whether the reload preview is required.
-	 */
-	public function is_reload_preview_required() {
-		return true;
+		return [ 'leap-elements' ];
 	}
 
 	protected function _register_controls() {
 		
 		$this->start_controls_section(
 			'carousel_items_section', [
-				'label' => __( 'Accordion Items', 'tr-framework' ),
+				'label' => __( 'Accordion Item', 'tr-framework' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		$repeater = new Repeater();
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Panel Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'panel',
+				'label_block' => true,
+				'options' => [
+					'panel'          	=> esc_html__( 'Basic', 'tr-framework' ),
+					'inline'         	=> esc_html__( 'Inline', 'tr-framework' ),
+					'inline_open'		=> esc_html__( 'Inline Open', 'tr-framework' ),
+				],
+			]
+		);
 
-		$repeater->add_control(
+		$this->add_control(
 			'item_title', [
 				'label'       => __( 'Accordion Title', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
@@ -59,28 +57,12 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 			]
 		);
 		
-		$repeater->add_control(
-			'item_content',
-			[
+		$this->add_control(
+			'item_content', [
 				'label'       => __( 'Accordion Text', 'tr-framework' ),
-				'type'        => Controls_Manager::WYSIWYG,
+				'type'        => Controls_Manager::TEXTAREA,
 				'default'     => '',
 				'label_block' => true
-			]
-		);
-
-		$this->add_control(
-			'list', [
-				'label'   => __( 'Accordion Items', 'tr-framework' ),
-				'type'    => Controls_Manager::REPEATER,
-				'fields'  => $repeater->get_controls(),
-				'default' => [
-					[
-						'item_title'    => __( 'Accordion Title', 'tr-framework' ),
-						'item_content'  => __( 'Accordion Content', 'tr-framework' )
-					]
-				],
-				'title_field' => __( 'Accordion Item', 'tr-framework' ),
 			]
 		);
 
@@ -90,42 +72,133 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 
 	protected function render() {
 	
-		$settings = $this->get_settings_for_display();
-		$i = 0;
-	?>
+		$settings   = $this->get_settings_for_display();
+		$title      = $settings['item_title'];
+		$attr_title = sanitize_title_with_dashes( $title );
 		
-		<?php if( is_array( $settings['list'] ) ) : ?>
+		$user_selected_animation = (bool) $settings['_animation'];
 		
-			<div class="accordion" id="accordion-1" data-children=".accordion-item">
-				
-				<?php foreach( $settings['list'] as $item ) : ?>
-					
-				    <div class="accordion-item">
-						
-						<?php 
-							$i++; 
-							$selected = ( 1 == $i ) ? 'true' : 'false';
-							$class    = ( 1 == $i ) ? 'show' : false;
-						?>
-						
-				        <a data-toggle="collapse" data-parent="#accordion-1" href="#accordion-panel-<?php echo $i; ?>" aria-expanded="<?php echo $selected; ?>" aria-controls="accordion-panel-<?php echo $i; ?>">
-				            <h5><?php echo $item['item_title']; ?></h5>
-				            <i class="h5 icon-chevron-small-right"></i>
-				        </a>
-						
-				        <div id="accordion-panel-<?php echo $i; ?>" class="collapse <?php echo $class; ?>" role="tabpanel">
-				            <?php echo $item['item_content']; ?>
-				        </div>
-						
-				    </div>
-				
-				<?php endforeach; ?>
-				
-			</div>
-		
-		<?php endif; ?>
+		if( !$user_selected_animation ){
+			echo '<div data-aos="fade-up" data-aos-delay="NaN">';
+		}
 
-	<?php
+		if( 'inline' == $settings['layout'] ) {
+		
+			echo '
+				<div class="border-bottom pb-3 mb-3">
+					<div data-target="#'. esc_attr( $attr_title ) .'" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="'. esc_attr( $attr_title ) .'">
+						<span class="h6 mb-0">'. $title .'</span>
+						<svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529" />
+							<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529" />
+						</svg>
+					</div>
+					<div class="collapse" id="'. esc_attr( $attr_title ) .'">
+						<div class="pt-3">
+							<p class="mb-0">
+								'. $settings['item_content'] .'
+							</p>
+						</div>
+					</div>
+				</div>
+			';
+
+		} elseif( 'inline_open' == $settings['layout'] ) {
+		
+			echo '
+				<div class="border-bottom pb-3 mb-3">
+					<div data-target="#'. esc_attr( $attr_title ) .'" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="'. esc_attr( $attr_title ) .'">
+						<span class="h6 mb-0">'. $title .'</span>
+						<svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529" />
+							<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529" />
+						</svg>
+					</div>
+					<div class="collapse show" id="'. esc_attr( $attr_title ) .'">
+						<div class="pt-3">
+							<p class="mb-0">
+								'. $settings['item_content'] .'
+							</p>
+						</div>
+					</div>
+				</div>
+			';
+
+		} else {
+
+			echo '
+				<div class="card mb-2 card-sm card-body hover-shadow-sm">
+				
+					<div data-target="#'. esc_attr( $attr_title ) .'" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="'. esc_attr( $attr_title ) .'">
+						<span class="h6 mb-0">'. $title .'</span>
+						<svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529" />
+							<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529" />
+						</svg>
+					</div>
+					
+					<div class="collapse" id="'. esc_attr( $attr_title ) .'">
+						<div class="pt-3">
+							<p class="mb-0">'. $settings['item_content'] .'</p>
+						</div>
+					</div>
+				</div>
+			';	
+
+		}
+		
+		if( !$user_selected_animation ){
+			echo '</div>';
+		}
+
+	}
+	
+	protected function _content_template() {
+		?>
+		
+			<# var $title = <?php echo rand( 0, 30000 ); ?>; #>
+
+			<# if ( 'vertical-alt' == settings.layout ) { #>
+				
+				<div class="border-bottom pb-3 mb-3">
+					<div data-target="#{{ $title }}" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{ $title }}">
+						<span class="h6 mb-0">{{{ settings.item_title }}}</span>
+						<svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529" />
+							<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529" />
+						</svg>
+					</div>
+					<div class="collapse" id="{{ $title }}">
+						<div class="pt-3">
+							<p class="mb-0">
+								{{{ settings.item_content }}}
+							</p>
+						</div>
+					</div>
+				</div>
+
+			<# } else { #>
+
+				<div class="card mb-2 card-sm card-body hover-shadow-sm">
+				
+					<div data-target="#{{ $title }}" class="accordion-panel-title" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="{{ $title }}">
+						<span class="h6 mb-0">{{{ settings.item_title }}}</span>
+						<svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M19 11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11Z" fill="#212529" />
+							<path d="M13 19L13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5L11 19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19Z" fill="#212529" />
+						</svg>
+					</div>
+					
+					<div class="collapse" id="{{ $title }}">
+						<div class="pt-3">
+							<p class="mb-0">{{{ settings.item_content }}}</p>
+						</div>
+					</div>
+				</div>
+
+			<# } #>
+		
+		<?php
 	}
 	
 }

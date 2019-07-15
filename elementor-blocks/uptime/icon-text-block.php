@@ -18,11 +18,25 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-call-to-action';
+		return 'eicon-icon-box';
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
+		return [ 'leap-elements' ];
+	}
+	
+	/**
+	 * Whether the reload preview is required or not.
+	 *
+	 * Used to determine whether the reload preview is required.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return bool Whether the reload preview is required.
+	 */
+	public function is_reload_preview_required() {
+		return true;
 	}
 
 	protected function _register_controls() {
@@ -40,28 +54,34 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [
-					'tiny'      => esc_html__( 'Tiny Side Icon', 'tr-framework' ),
-					'tiny-card' => esc_html__( 'Tiny Side Icon [Boxed]', 'tr-framework' ),
-					'large'     => esc_html__( 'Large Top Icon', 'tr-framework' ),
-					'huge'      => esc_html__( 'Huge Top Icon [Centred]', 'tr-framework' ),
-					'huge-card' => esc_html__( 'Huge Top Icon [Boxed]', 'tr-framework' )
+					'extra-tiny'      	=> esc_html__( 'Smallest Side Icon', 'tr-framework' ),
+					'tiny'      		=> esc_html__( 'Tiny Side Icon', 'tr-framework' ),					
+					'medium'      		=> esc_html__( 'Medium Side Icon', 'tr-framework' ),				
+					'round'      		=> esc_html__( 'Round Side Icon', 'tr-framework' ),					
+					'icon-top'      	=> esc_html__( 'Icon Top', 'tr-framework' ),					
+					'icon-top-small'	=> esc_html__( 'Small Icon Top', 'tr-framework' )
 				],
-			]
-		);
-		
-		$this->add_control(
-			'color', [
-				'label'   => __( 'Icon Color', 'tr-framework' ),
-				'type'    => Controls_Manager::COLOR,
-				'default' => '',
 			]
 		);
 		
 		$this->add_control(
 			'icon', [
 				'label'   => __( 'Icon', 'tr-framework' ),
-				'type'    => Controls_Manager::ICON,
-				'default' => 'fa fa-rocket',
+				'type'    => Controls_Manager::SELECT,
+				'default' => '0',
+				'options' => array_keys( tommusrhodus_get_svg_icons() ),
+			]
+		);
+
+		$this->add_control(
+			'icon_colour', [
+				'label'   => __( 'Icon Colour', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'bg-primary',
+				'options' => [
+					'bg-primary'      => esc_html__( 'Primary Colour', 'tr-framework' ),					
+					'bg-white'        => esc_html__( 'White', 'tr-framework' )
+				],
 			]
 		);
 		
@@ -70,19 +90,6 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		$this->start_controls_section(
 			'section_content', [
 				'label' => esc_html__( 'Icon & Text Content', 'tr-framework' ),
-			]
-		);
-		
-		$this->add_control(
-			'url', [
-				'label'         => esc_html__( 'Icon Card URL', 'tr-framework' ),
-				'type'          => Controls_Manager::URL,
-				'show_external' => true,
-				'default' => [
-					'url'         => '#',
-					'is_external' => false,
-					'nofollow'    => false,
-				],
 			]
 		);
 
@@ -101,138 +108,79 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 
 	protected function render() {
 		
-		$settings = $this->get_settings_for_display();
-		$target   = $settings['url']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
-		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;		
-		$color 	  = 'style="color: '. $settings['color'] .';"'   ? ''  : '';
+		$settings                = $this->get_settings_for_display();
+		$user_selected_animation = (bool) $settings['_animation'];
+		
+		if( !$user_selected_animation ){
+			echo '<div data-aos="fade-up" data-aos-delay="100">';
+		}
 		
 		if( 'tiny' == $settings['layout'] ){
-		
-			echo '
-				<ul class="feature-list feature-list-sm">
-					<li>
-					    <div class="media">
-					        <i class="'. esc_attr( $settings['icon'] ).' mr-2" '. $color  .'></i>
-					        <div class="media-body">'. $settings['content'] .'</div>
-					    </div>
-					</li>
-				</ul>
-			';
-		
-		} elseif( 'tiny-card' == $settings['layout'] ) {
 			
 			echo '
-				<div class="card">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-						    <div class="media">
-						        <i class="'. esc_attr( $settings['icon'] ).' mr-2" '. $color  .'></i>
-						        <div class="media-body">'. $settings['content'] .'</div>
-						    </div>
-						</li>
-					</ul>
+				<div class="d-flex mb-3 mb-md-0">
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] ) .'
+				  <div class="ml-3">'. $settings['content'] .'</div>
 				</div>
 			';
-			
-		} elseif( 'huge' == $settings['layout'] ) {
 		
+		} elseif( 'medium' == $settings['layout'] ){
+			
 			echo '
-				<div class="text-center">
-					<i class="'. esc_attr( $settings['icon'] ).' display-3" '. $color  .'></i>
+				<div class="d-flex align-items-center my-2">
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg '. $settings['icon_colour'] ) .'
+					<span class="h6 mb-0 ml-2">'. $settings['content'] .'</span>
+				</div>
+			';
+		
+		} elseif( 'icon-top' == $settings['layout'] ){
+			
+			echo '
+				<div>
+					<div class="icon-round '. $settings['icon_colour'] .' mx-auto mb-4">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+					</div>
 					'. $settings['content'] .'
 				</div>
 			';
 		
-		} elseif( 'huge-card' == $settings['layout'] ) {
-		
+		} elseif( 'icon-top-small' == $settings['layout'] ){
+			
 			echo '
-				<ul class="feature-list feature-list-sm">
-				    <li>
-				        <a '. $link .' class="card card-lg">
-				            <div class="card-header card-header-borderless py-5 text-center">
-				                <i class="'. esc_attr( $settings['icon'] ).' display-2" '. $color  .'></i>
-				            </div>
-				            <div class="card-body text-body">'. $settings['content'] .'</div>
-				        </a>
-				    </li>
-				</ul>
+				<div>
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] ) .'	
+					'. $settings['content'] .'
+				</div>
 			';
 		
-		} else {
-		
+		} elseif( 'round' == $settings['layout'] ){
+			
 			echo '
-				<ul class="feature-list">
-				    <li>
-				        <i class="'. esc_attr( $settings['icon'] ).' h1" '. $color  .'></i>
-				        '. $settings['content'] .'
-				    </li>
-				</ul>
+				<div class="d-flex mb-4">
+					<div class="icon-round bg-primary mr-3">
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary '. $settings['icon_colour'] ) .'
+					</div>
+					<div>
+						'. $settings['content'] .'
+					</div>
+				</div>
+			';
+		
+		} elseif( 'extra-tiny' == $settings['layout'] ){
+			
+			echo '
+				<div class="d-flex mb-3 mb-md-0">
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+				  <div class="ml-3">'. $settings['content'] .'</div>
+				</div>
 			';
 		
 		}
 		
-	}
-
-	protected function _content_template() {
-		?>
+		if( !$user_selected_animation ){
+			echo '</div>';
+		}
 		
-		<# if ( 'tiny' == settings.layout ) { #>
-		
-			<ul class="feature-list feature-list-sm">
-				<li>
-				    <div class="media">
-				        <i class="{{ settings.icon }} mr-2" style="color: {{ settings.color }};"></i>
-				        <div class="media-body">{{{ settings.content }}}</div>
-				    </div>
-				</li>
-			</ul>
-			
-		<# } else if ( 'tiny-card' == settings.layout ) { #>
-		
-			<div class="card">
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-					    <div class="media">
-					        <i class="{{ settings.icon }} mr-2" style="color: {{ settings.color }};"></i>
-					        <div class="media-body">{{{ settings.content }}}</div>
-					    </div>
-					</li>
-				</ul>
-			</div>
-			
-		<# } else if ( 'huge' == settings.layout ) { #>
-		
-			<div class="text-center">
-				<i class="{{ settings.icon }} display-3" style="color: {{ settings.color }};"></i>
-				{{{ settings.content }}}
-			</div>
-			
-		<# } else if ( 'huge-card' == settings.layout ) { #>
-			
-			<ul class="feature-list feature-list-sm">
-			    <li>
-			        <a href="{{ settings.url.url }}" class="card card-lg">
-			            <div class="card-header card-header-borderless py-5 text-center">
-			                <i class="{{ settings.icon }} display-2" style="color: {{ settings.color }};"></i>
-			            </div>
-			            <div class="card-body text-body">{{{ settings.content }}}</div>
-			        </a>
-			    </li>
-			</ul>
-			
-		<# } else { #>
-		
-			<ul class="feature-list">
-			    <li>
-			        <i class="{{ settings.icon }} h1" style="color: {{ settings.color }};"></i>
-			        {{{ settings.content }}}
-			    </li>
-			</ul>
-		
-		<# } #>
-		
-		<?php
 	}
 
 }

@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'wingman-elements' ];
 	}
 	
 	/**
@@ -51,56 +51,44 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 			'posts_per_page', [
 				'label'   => esc_html__( 'Number of Posts', 'tr-framework' ),
 				'type'    => Controls_Manager::NUMBER,
-				'default' => '6'
+				'default' => '3'
 			]
 		);
 
 		$this->add_control(
 			'layout', [
-				'label'   => esc_html__( 'Portfolio Layout', 'tr-framework' ),
+				'label'   => __( 'Portfolio Feed Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => '2-columns',
-				'options' => tommusrhodus_get_portfolio_layouts(),
-			]
-		);
-
-		$this->add_control(
-			'show_filters', [
-				'label'   => __( 'Show Pagination?', 'tr-framework' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'show',
-				'options' => [
-					'hide'          	=> esc_html__( 'Hide Filters', 'tr-framework' ),
-					'show'         		=> esc_html__( 'Show Filters', 'tr-framework' ),
-				],
+				'default' => 'list',
+				'options' => array_flip( tommusrhodus_get_portfolio_layouts() ),
 			]
 		);
 
 		// Category Selector
 		if( taxonomy_exists('portfolio_category') ){
 		
-			$args = array(
+			$portfolio_args = array(
 				'orderby'      => 'name',
 				'hide_empty'   => 0,
 				'hierarchical' => 1,
 				'taxonomy'     => 'portfolio_category'
 			);
 			
-			$cats       = get_categories( $args );
-			$final_cats = array( 'all' => 'Show all categories' );
+			$portfolio_cats       = get_categories( $portfolio_args );
+			$final_portfolio_cats = array( 'all' => 'Show all categories' );
 		
-			if( is_array( $cats ) ){
-				foreach( $cats as $cat ){
-					$final_cats[$cat->slug] = $cat->name;
+			if( is_array( $portfolio_cats ) ){
+				foreach( $portfolio_cats as $cat ){
+					$final_portfolio_cats[$cat->slug] = $cat->name;
 				}
 			}
 		
 			$this->add_control(
 				'filter', [
-					'label'   => esc_html__( 'Category', 'tr-framework' ),
+					'label'   => esc_html__( 'Portfolio Category', 'tr-framework' ),
 					'type'    => Controls_Manager::SELECT,
 					'default' => 'all',
-					'options' => $final_cats,
+					'options' => $final_portfolio_cats,
 				]
 			);
 		
@@ -114,16 +102,9 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 		
 		global $wp_query, $post;
 
-		extract( 
-			shortcode_atts( 
-				array(
-					'posts_per_page' 	=> '6',
-					'filter'		 	=> 'all',
-					'layout'		 	=> 'card',
-					'show_filters'		=> 'show'
-				), $this->get_settings()
-			) 
-		);
+		$settings = $this->get_settings_for_display();
+
+		$filter = $settings['filter'];
 		
 		if( is_front_page() ) { 
 			$paged = ( get_query_var( 'page' ) )  ? get_query_var( 'page' )  : 1; 
@@ -137,10 +118,10 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 		$query_args = array(
 			'post_type'      => 'portfolio',
 			'post_status'    => 'publish',
-			'posts_per_page' => $posts_per_page,
-			'paged'          => $paged,
-			'offset'		 => $posts_offset
+			'posts_per_page' => $settings['posts_per_page'],
+			'paged'          => $paged
 		);
+
 		if(!( $filter == 'all' )) {
 			
 			// Check for WPML
@@ -174,9 +155,8 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 		$old_query = $wp_query;
 		$old_post  = $post;
 		$wp_query  = new \WP_Query( $query_args );
-		$wp_query->{"show_filters"} =  $show_filters;	
 
-		get_template_part( 'loop/loop-portfolio', $layout );
+		get_template_part( 'loop/loop-portfolio', $settings['layout'] );
 
 		wp_reset_postdata();
 		$wp_query = $old_query;

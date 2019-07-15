@@ -47,10 +47,10 @@ if(!( class_exists('TommusRhodus_Nav_Menu_Widget') )){
 
 			$nav_menu_args = array(
 				'fallback_cb' 		=> '',
-				'menu_class'		=> 'nav flex-column',
+				'menu_class'		=> 'list-unstyled',
 				'depth'				=> 1,
-				'list_item_class'  	=> 'nav-item',
-				'link_class'   		=> 'nav-link',
+				'list_item_class'  	=> '',
+				'link_class'   		=> '',
 				'menu'        		=> $nav_menu,
 			);
 

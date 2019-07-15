@@ -18,11 +18,11 @@ class Widget_TommusRhodus_Clients_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-carousel';
+		return 'eicon-post';
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'wingman-elements' ];
 	}
 	
 	/**

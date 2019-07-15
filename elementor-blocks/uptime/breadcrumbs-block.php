@@ -18,11 +18,11 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-post';
+		return 'eicon-product-breadcrumbs';
 	}
 	
 	public function get_categories() {
-		return [ 'wingman-elements' ];
+		return [ 'leap-elements' ];
 	}
 
 	/**
@@ -51,11 +51,9 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 			'text_colour', [
 				'label'   => __( 'Select a Colour', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'text-white',
+				'default' => 'text-dark',
 				'options' => [
 					'text-white' 			=> esc_html__( 'White Text', 'tr-framework' ),
-					'text-primary'  		=> esc_html__( 'Primary Colour Text', 'tr-framework' ),
-					'text-secondary'        => esc_html__( 'Secondary Colour Text', 'tr-framework' ),
 					'text-dark'        		=> esc_html__( 'Dark Text', 'tr-framework' )
 				],
 			]
@@ -68,7 +66,7 @@ class Widget_TommusRhodus_Breadcrumbs_Block extends Widget_Base {
 	protected function render() {
 
 		$settings = $this->get_settings_for_display();
-		echo tommusrhodus_breadcrumbs( $settings['text_colour'] );
+		echo get_tommusrhodus_breadcrumbs( 'breadcrumb ' . $settings['text_colour'] );
 		
 	}
 

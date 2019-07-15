@@ -4,16 +4,16 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class Widget_TommusRhodus_Team_Block extends Widget_Base {
+class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 	
 	//Return Class Name
 	public function get_name() {
-		return 'tommusrhodus-team-block';
+		return 'tommusrhodus-blog-block';
 	}
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Team Posts', 'tr-framework' );
+		return esc_html__( 'Blog Posts', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -22,7 +22,7 @@ class Widget_TommusRhodus_Team_Block extends Widget_Base {
 	}
 	
 	public function get_categories() {
-		return [ 'leap-elements' ];
+		return [ 'wingman-elements' ];
 	}
 	
 	/**
@@ -43,7 +43,7 @@ class Widget_TommusRhodus_Team_Block extends Widget_Base {
 
 		$this->start_controls_section(
 			'section_my_custom', [
-				'label' => esc_html__( 'Team Posts', 'tr-framework' ),
+				'label' => esc_html__( 'Blog Posts', 'tr-framework' ),
 			]
 		);
 
@@ -62,23 +62,30 @@ class Widget_TommusRhodus_Team_Block extends Widget_Base {
 	protected function render() {
 		
 		global $wp_query, $post;
-		
+
 		$settings = $this->get_settings_for_display();
+		
+		if( is_front_page() ) { 
+			$paged = ( get_query_var( 'page' ) )  ? get_query_var( 'page' )  : 1; 
+		} else { 
+			$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1; 
+		}
 
 		/**
 		 * Setup post query
 		 */
 		$query_args = array(
-			'post_type'      => 'team',
+			'post_type'      => 'post',
 			'post_status'    => 'publish',
-			'posts_per_page' => $settings['posts_per_page']
+			'posts_per_page' => $settings['posts_per_page'],
+			'paged'          => $paged
 		);
 		
 		$old_query = $wp_query;
 		$old_post  = $post;
 		$wp_query  = new \WP_Query( $query_args );
 
-		get_template_part( 'loop/loop', 'team' );
+		get_template_part( 'loop/loop', 'post' );
 
 		wp_reset_postdata();
 		$wp_query = $old_query;
@@ -89,4 +96,4 @@ class Widget_TommusRhodus_Team_Block extends Widget_Base {
 }
 
 // Register our new widget
-Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Team_Block() );
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Blog_Block() );
