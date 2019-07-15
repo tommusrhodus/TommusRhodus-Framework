@@ -145,7 +145,7 @@ if( !( function_exists('tommusrhodus_vc_add_att') ) && function_exists('vc_set_a
 		
 		$attributes = array(
 			'type' => 'dropdown',
-			'heading' => "Show Specific Test Category?",
+			'heading' => "Show Specific Team Category?",
 			'param_name' => 'filter',
 			'value' => $final_blog_cats
 		);
@@ -176,6 +176,32 @@ if( !( function_exists('tommusrhodus_vc_add_att') ) && function_exists('vc_set_a
 			'value' => $final_blog_cats
 		);
 		vc_add_param('tommusrhodus_testimonial', $attributes);
+
+		/**
+		 * Add portfolio category selectors
+		 */
+		$blog_args = array(
+			'orderby'                  => 'name',
+			'hide_empty'               => 0,
+			'hierarchical'             => 1,
+			'taxonomy'                 => 'portfolio_category'
+		);
+		$blog_cats = get_categories( $blog_args );
+		$final_blog_cats = array( 'Show all categories' => 'all' );
+		
+		if( is_array($blog_cats) ){
+			foreach( $blog_cats as $cat ){
+				$final_blog_cats[$cat->name] = $cat->slug;
+			}
+		}
+		
+		$attributes = array(
+			'type' => 'dropdown',
+			'heading' => "Show Specific Portfolio Category?",
+			'param_name' => 'filter',
+			'value' => $final_blog_cats
+		);
+		vc_add_param('tommusrhodus_portfolio_feed', $attributes);
 		
 	}
 	add_action('init', 'tommusrhodus_vc_add_attr', 999);
