@@ -198,7 +198,7 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 							
 						}
 						
-				echo '</div><span class="h6">'. $settings['title'] .'</span>';
+				echo '</div><div class="text-center"><span class="h6">'. $settings['title'] .'</span></div>';
 
 			} else {
 
