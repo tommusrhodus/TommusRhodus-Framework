@@ -54,6 +54,15 @@ class Widget_TommusRhodus_Team_Block extends Widget_Base {
 				'default' => '3'
 			]
 		);
+
+		$this->add_control(
+			'layout', [
+				'label'   => esc_html__( 'Team Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '4-columns',
+				'options' => tommusrhodus_get_team_layouts(),
+			]
+		);
 		
 		$this->end_controls_section();
 
@@ -78,7 +87,7 @@ class Widget_TommusRhodus_Team_Block extends Widget_Base {
 		$old_post  = $post;
 		$wp_query  = new \WP_Query( $query_args );
 
-		get_template_part( 'loop/loop', 'team' );
+		get_template_part( 'loop/loop-team', $settings['layout'] );
 
 		wp_reset_postdata();
 		$wp_query = $old_query;

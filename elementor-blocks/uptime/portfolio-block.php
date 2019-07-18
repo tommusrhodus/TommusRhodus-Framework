@@ -119,7 +119,7 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 				array(
 					'posts_per_page' 	=> '6',
 					'filter'		 	=> 'all',
-					'layout'		 	=> 'card',
+					'layout'		 	=> '2-columns',
 					'show_filters'		=> 'show'
 				), $this->get_settings()
 			) 
@@ -138,8 +138,7 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 			'post_type'      => 'portfolio',
 			'post_status'    => 'publish',
 			'posts_per_page' => $posts_per_page,
-			'paged'          => $paged,
-			'offset'		 => $posts_offset
+			'paged'          => $paged
 		);
 		if(!( $filter == 'all' )) {
 			
