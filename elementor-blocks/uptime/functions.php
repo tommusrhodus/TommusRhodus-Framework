@@ -279,3 +279,25 @@ if(!( function_exists('tommusrhodus_counter_shortcode') )) {
 	}
 	add_shortcode( 'uptime_counter', 'tommusrhodus_counter_shortcode' );
 }
+
+/**
+ * Icon Shortcode
+ */
+if(!( function_exists('tommusrhodus_all_icons_shortcode') )) {
+	function tommusrhodus_all_icons_shortcode( $atts ) {
+
+		$all_icons = tommusrhodus_get_svg_icons();
+
+		$output = '<div class="row justify-content-center text-center">';
+
+			foreach ( array_slice( $all_icons, 1 ) as $key => $value) {
+				$output .= '<div class="col-lg-2 col-md-2 mb-2">'. tommusrhodus_svg_icons_pluck( $key, 'icon icon-lg bg-primary clearfix' ). '<span class="small clearfix">'. $key .'</span></div>';
+			}	
+
+		$output .= '</div>';    
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'uptime_all_icons', 'tommusrhodus_all_icons_shortcode' );
+}
