@@ -208,26 +208,28 @@ if( !( function_exists('tommusrhodus_vc_add_att') ) && function_exists('vc_set_a
 }
 
 /* TYPED TEXT SHORTCODE */
-function insight_typed_text_shortcode( $atts, $content = null ) {
-	extract( 
-		shortcode_atts( 
-			array(
-				'intro' => '',
-				'outro' => '',
-				'text' => '',
-				'custom_css_class' => '',
-				'size' => 'h4'
-			), $atts 
-		) 
-	);
-	
-	$output = '
-		<div class="typed-headline '. esc_attr($custom_css_class) .'">
-			<span class="'. $size .' inline-block">'. $intro .'</span>
-			<span class="'. $size .' inline-block typed-text typed-text--cursor color--primary" data-typed-strings="'. $text .'"></span>
-			<span class="'. $size .' inline-block">'. $outro .'</span>
-		</div>
-	';
-	return $output;
+if(!( function_exists( 'insight_typed_text_shortcode' ) )){
+	function insight_typed_text_shortcode( $atts, $content = null ) {
+		extract( 
+			shortcode_atts( 
+				array(
+					'intro' => '',
+					'outro' => '',
+					'text' => '',
+					'custom_css_class' => '',
+					'size' => 'h4'
+				), $atts 
+			) 
+		);
+		
+		$output = '
+			<div class="typed-headline '. esc_attr($custom_css_class) .'">
+				<span class="'. $size .' inline-block">'. $intro .'</span>
+				<span class="'. $size .' inline-block typed-text typed-text--cursor color--primary" data-typed-strings="'. $text .'"></span>
+				<span class="'. $size .' inline-block">'. $outro .'</span>
+			</div>
+		';
+		return $output;
+	}
+	add_shortcode( 'insight_typed_text', 'insight_typed_text_shortcode' );
 }
-add_shortcode( 'insight_typed_text', 'insight_typed_text_shortcode' );
