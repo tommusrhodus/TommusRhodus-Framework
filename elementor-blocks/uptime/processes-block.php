@@ -43,6 +43,7 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 					'basic'          	=> esc_html__( 'Basic', 'tr-framework' ),
 					'vertical'			=> esc_html__( 'Vertical', 'tr-framework' ),
 					'vertical-alt'		=> esc_html__( 'Vertical Alt', 'tr-framework' ),
+					'numbered'			=> esc_html__( 'Numbered', 'tr-framework' ),
 				],
 			]
 		);
@@ -172,12 +173,33 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 			
 			echo '</div>';
 			
+		} elseif( 'numbered' == $settings['layout'] ) {
+
+			echo '<div class="row text-center">';
+			
+			foreach( $settings['list'] as $item ){
+				echo '
+					<div class="col-md-4 mb-3 mb-md-0" data-aos="fade-up" data-aos-delay="'. $i .'00">
+						<div class="px-xl-2">
+							<div class="process-circle '. $item['icon_bg'] .' mb-3 d-inline-flex">'. $i .'</div>
+							<h4>'. $item['item_title'] .'</h4>
+				            '. $item['item_description'] .'
+						</div>
+					</div>
+				';
+				$i++;
+			}
+			
+			echo '</div>';
+			
 		}
 			
 	}
 
 	protected function _content_template() {
-		?>
+		?>	
+
+			<?php $i = 1; ?>
 
 			<# if ( 'vertical-alt' == settings.layout ) { #>
 				
@@ -221,6 +243,25 @@ class Widget_TommusRhodus_Processes_Block extends Widget_Base {
 						<h4>{{{ item.item_title }}}</h4>
 			            {{{ item.item_description }}}
 					</div>
+				<# }); #>
+
+				</div>
+
+			<# } else if ( 'numbered' == settings.layout ) { #>
+
+				<div class="row text-center">
+
+				<# _.each( settings.list, function( item ) { #>
+					<div class="col-md-4 mb-3 mb-md-0">
+						<div class="px-xl-2">
+							<div class="process-circle {{{ item.icon_bg }}} mb-3 d-inline-flex"><?php echo $i; ?></div>
+							<h4>{{{ item.item_title }}}</h4>
+				            {{{ item.item_description }}}
+						</div>
+					</div>
+
+					<?php $i++; ?>
+
 				<# }); #>
 
 				</div>
