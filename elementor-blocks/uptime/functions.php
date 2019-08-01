@@ -72,6 +72,13 @@ add_filter('elementor/shapes/additional_shapes', function( $additional_shapes ){
 		'url' => get_template_directory_uri() . '/style/img/dividers/divider-1.svg',
 		'path' => get_template_directory() . '/style/img/dividers/divider-1.svg',
 	];
+	
+	$additional_shapes['ramp-flipped'] = [
+		'title' => _x('Ramp Flipped', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-1-flipped.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-1-flipped.svg',
+	];
 
 	$additional_shapes['half-pipe'] = [
 		'title' => _x('Half Pipe', 'Shapes', 'elementor'),

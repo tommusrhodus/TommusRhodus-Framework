@@ -178,10 +178,10 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			echo '
 				<div class="card card-body">
-					<div class="mb-3 mb-lg-5 flex-grow-1">
-						<span class="h2 mb-0">'. $settings['title'] .'</span>
+					<div class="flex-grow-1">
+						<div class="h3">'. $settings['title'] .'</div>
+						'. $settings['content'] .'
 					</div>
-					'. $settings['content'] .'
 				</div>
 			';
 
@@ -669,7 +669,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					<div class="flex-grow-1 pt-md-3">
 						<h4>'. $settings['title'] .'</h4>
 					</div>
-					<div class="avatar-author d-block">
+					<div class="avatar-author d-block mb-2">
 						'. $settings['content'] .'
 					</div>
 				</div>
@@ -755,12 +755,12 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'card-img-top' ) ) .'
 					<div class="card-body d-flex flex-column">
 						<div class="d-flex">
-							<div>
+							<div class="text-right">
 								<div class="h4 mb-0 text-danger">'. $settings['event_date_1'] .'</div>
 								<div class="h4 mb-0 text-uppercase">'. $settings['event_date_2'] .'</div>
 							</div>
 							<div class="ml-3">
-								 <div class="badge badge-primary mb-3">'. $settings['badge_label'] .'</div>
+								 <div class="badge badge-primary mb-2">'. $settings['badge_label'] .'</div>
 								'. $settings['content'] .'
 							</div>
 						</div>
