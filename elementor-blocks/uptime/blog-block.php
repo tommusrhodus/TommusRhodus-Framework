@@ -151,9 +151,13 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 			'post_type'      => 'post',
 			'post_status'    => 'publish',
 			'posts_per_page' => $posts_per_page,
-			'paged'          => $paged,
-			'offset'		 => $posts_offset
+			'paged'          => $paged
 		);
+		
+		if( $posts_offset ){
+			$query_args[ 'offset' ] = $posts_offset;
+		}
+		
 		if(!( $filter == 'all' )) {
 			
 			// Check for WPML
