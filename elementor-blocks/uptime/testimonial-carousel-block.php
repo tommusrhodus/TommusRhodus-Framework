@@ -123,6 +123,7 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 				                <div class="card card-body">
 				                  	<div class="d-flex mb-3">';
 
+				                  	if( $item['rating'] ) {
 				                  		if ( strpos( $item['rating'], "." ) ) {
 									      	$whole_number = floor( $item['rating'] );
 									      	$html = tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' );
@@ -133,6 +134,7 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 									      	$html = tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' );
 									      	echo str_repeat( $html, $whole_number );
 									    }
+								    }
 
 				                  	echo '
 				                  	</div>
