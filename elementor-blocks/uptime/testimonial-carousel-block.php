@@ -83,6 +83,15 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 			]
 		);
 
+		$repeater->add_control(
+			'rating', [
+				'label'       => __( 'Rating (eg 5 or 4.5)', 'tr-framework' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '5',
+				'label_block' => true
+			]
+		);
+
 		$this->add_control(
 			'list', [
 				'label'   => __( 'Slide Content', 'tr-framework' ),
@@ -100,24 +109,32 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings                = $this->get_settings_for_display();
-		$user_selected_animation = (bool) $settings['_animation'];
+		$user_selected_animation = (bool) $settings['_animation'];		
 		
 		if( 'card-3' == $settings['layout'] ) {
 
 			echo '
 				 <div data-flickity=\'{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true, "prevNextButtons": false }\'>';
 
-					foreach( $settings['list'] as $item ){
+					foreach( $settings['list'] as $item ){						
 
 						echo '
 							<div class="carousel-cell mx-3 pb-1">
 				                <div class="card card-body">
-				                  	<div class="d-flex mb-3">
-										'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-										'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-										'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-										'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-										'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+				                  	<div class="d-flex mb-3">';
+
+				                  		if ( strpos( $item['rating'], "." ) ) {
+									      	$whole_number = floor( $item['rating'] );
+									      	$html = tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' );
+									      	echo str_repeat( $html, $whole_number );
+									      	echo tommusrhodus_svg_icons_pluck( 'Half Star', $class = 'icon bg-warning' );
+									    } else {
+									        $whole_number = $item['rating'];
+									      	$html = tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' );
+									      	echo str_repeat( $html, $whole_number );
+									    }
+
+				                  	echo '
 				                  	</div>
 				                  	<div class="my-md-2 flex-grow-1">
 				                    	'. do_shortcode( $item['content'] ) .'
