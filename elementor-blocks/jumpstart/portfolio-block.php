@@ -93,6 +93,18 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 			);
 		
 		}	
+
+		$this->add_control(
+			'show_pagination', [
+				'label'   => __( 'Show Pagination?', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'hide',
+				'options' => [
+					'hide'          	=> esc_html__( 'Hide Pagination', 'tr-framework' ),
+					'show'         		=> esc_html__( 'Show Pagination', 'tr-framework' ),
+				],
+			]
+		);
 		
 		$this->end_controls_section();
 
@@ -108,7 +120,8 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 					'posts_per_page' 	=> '6',
 					'filter'		 	=> 'all',
 					'layout'		 	=> '2-columns',
-					'show_filters'		=> 'show'
+					'show_filters'		=> 'show',
+					'show_pagination'	=> 'hide'
 				), $this->get_settings()
 			) 
 		);
@@ -161,6 +174,7 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 		$old_query = $wp_query;
 		$old_post  = $post;
 		$wp_query  = new \WP_Query( $query_args );
+		$wp_query->{"show_pagination"} =  $show_pagination;	
 
 		get_template_part( 'loop/loop-portfolio', $layout );
 

@@ -40,18 +40,9 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				'default' => 'standard',
 				'label_block' => true,
 				'options' => [
-					'standard' => esc_html__( 'Standard', 'tr-framework' ),
+					'standard' 					=> esc_html__( 'Standard', 'tr-framework' ),
+					'image-background' => esc_html__( 'Standard, Image Background', 'tr-framework' ),
 				],
-			]
-		);
-		
-		$this->add_control(
-			'divider', [
-				'label'       => __( 'Bottom Divider Shape', 'tr-framework' ),
-				'type'        => Controls_Manager::SELECT,
-				'default'     => 'none',
-				'options'     => tommusrhodus_get_divider_layouts(),
-				'label_block' => true
 			]
 		);
 		
@@ -115,7 +106,7 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 		
 			echo '
 				<div data-overlay class="o-hidden">
-					<section class="pb-0">
+					<section>
 					<div class="container">
 						<div class="row justify-content-center text-center min-vh-40 d-flex flex-column align-items-center">
 							<div class="col-md-10 col-lg-9 col-xl-8" data-aos="fade-up">
@@ -131,14 +122,28 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 						</div>
 						<div class="position-absolute top right w-50 h-50 d-none d-md-block" data-jarallax-element="48">
 							<div class="blob blob-2 bg-gradient w-50 h-50 top right"></div>
-						</div>';
-						
-						if(!( 'none' == $settings['divider'] )){	
-							echo tommusrhodus_svg_dividers_pluck( $settings['divider'], '' );		
-						}
-
-					echo '
+						</div>
 					</section>
+				</div>
+			';
+		
+		} elseif( 'image-background' == $settings['layout'] ){
+		
+			echo '
+				<div data-overlay class="bg-primary-3 jarallax text-white" data-jarallax data-speed="0.2">
+					'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'jarallax-img opacity-30' ) ) .'
+				  	<section>
+					    <div class="container pb-5">
+					      <div class="row justify-content-center text-center">
+					        <div class="col-xl-8 col-lg-10 col-md-11">
+						        '. $settings['content'] .'
+					          	<div class="d-flex flex-column flex-sm-row justify-content-center mt-4 mt-md-5" data-aos="fade-up" data-aos-delay="300">
+						           	'. $settings['lower_content'] .'
+					          	</div>
+					        </div>
+					      </div>
+					    </div>
+				  	</section>
 				</div>
 			';
 		

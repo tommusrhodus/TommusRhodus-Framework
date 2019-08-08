@@ -127,7 +127,7 @@ if(!( function_exists('tommusrhodus_login_shortcode') )) {
 		
 		return str_replace($find, $replace, wp_login_form( array( 'echo' => false ) ));
 	}
-	add_shortcode( 'uptime_login', 'tommusrhodus_login_shortcode' );
+	add_shortcode( 'jumpstart_login', 'tommusrhodus_login_shortcode' );
 }
 
 /**
@@ -155,7 +155,7 @@ if(!( function_exists('tommusrhodus_stars_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'uptime_stars', 'tommusrhodus_stars_shortcode' );
+	add_shortcode( 'jumpstart_stars', 'tommusrhodus_stars_shortcode' );
 }
 
 /**
@@ -185,7 +185,7 @@ if(!( function_exists('tommusrhodus_video_lightbox_button_shortcode') )) {
     	} else {
 
 			$output = '
-				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="btn btn-xlg btn-primary btn-round mx-auto mb-4 aos-init aos-animate" data-aos="fade-up">
+				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="btn btn-lg btn-light rounded-circle mb-4 mb-md-5" data-aos="fade-up">
 		    		'. tommusrhodus_svg_icons_pluck( 'Play', 'icon' ) .'
 		    	</a>';
 
@@ -196,7 +196,7 @@ if(!( function_exists('tommusrhodus_video_lightbox_button_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'uptime_video_lightbox_button', 'tommusrhodus_video_lightbox_button_shortcode' );
+	add_shortcode( 'jumpstart_video_lightbox_button', 'tommusrhodus_video_lightbox_button_shortcode' );
 }
 
 /**
@@ -234,7 +234,7 @@ if(!( function_exists('tommusrhodus_icon_button_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'uptime_icon_button', 'tommusrhodus_icon_button_shortcode' );
+	add_shortcode( 'jumpstart_icon_button', 'tommusrhodus_icon_button_shortcode' );
 }
 
 /**
@@ -255,7 +255,7 @@ if(!( function_exists('tommusrhodus_icon_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'uptime_icon', 'tommusrhodus_icon_shortcode' );
+	add_shortcode( 'jumpstart_icon', 'tommusrhodus_icon_shortcode' );
 }
 
 /**
@@ -277,7 +277,7 @@ if(!( function_exists('tommusrhodus_counter_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'uptime_counter', 'tommusrhodus_counter_shortcode' );
+	add_shortcode( 'jumpstart_counter', 'tommusrhodus_counter_shortcode' );
 }
 
 /**
@@ -299,7 +299,7 @@ if(!( function_exists('tommusrhodus_all_icons_shortcode') )) {
 	    return $output;
 	 
 	}
-	add_shortcode( 'uptime_all_icons', 'tommusrhodus_all_icons_shortcode' );
+	add_shortcode( 'jumpstart_all_icons', 'tommusrhodus_all_icons_shortcode' );
 }
 
 /* SOCIAL SHARING */

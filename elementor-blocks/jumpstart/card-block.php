@@ -40,8 +40,11 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				'default' => 'basic',
 				'label_block' => true,
 				'options' => [
-					'image-and-title'		=> esc_html__( 'Image + Title', 'tr-framework' ),
-					'customer'				=> esc_html__( 'Customer', 'tr-framework' ),
+					'image-and-title'			=> esc_html__( 'Image + Title', 'tr-framework' ),
+					'image-left-text-right'		=> esc_html__( 'Image Left + Text Right', 'tr-framework' ),
+					'customer'					=> esc_html__( 'Customer', 'tr-framework' ),	
+					'customer-small'			=> esc_html__( 'Customer Small', 'tr-framework' ),					
+					'text-feature'				=> esc_html__( 'Text Feature', 'tr-framework' ),
 				],
 			]
 		);
@@ -104,6 +107,16 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'link_text',
+			[
+				'label'       => __( 'Link Text (Where applicable)', 'tr-framework' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'Learn more',
+				'label_block' => true
+			]
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -139,6 +152,28 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			}			
 
+		} elseif( 'image-left-text-right' == $settings['layout'] ) {
+
+			echo '
+				<div class=" mb-3 mb-lg-5">
+					<div class="row align-items-center">
+						<div class="col-sm-4 mb-3 mb-sm-0">
+							'. wp_get_attachment_image( $settings['image']['id'], 'medium', 0, array( 'class' => 'img-fluid rounded' ) ) .'
+						</div>
+						<div class="col">
+							<h4>'. $settings['title'] .'</h4>
+							'. $settings['content'] .'';
+
+							if( !empty( $settings['url']['url'] ) ) {						
+								echo '<a '. $link .'>'. $settings['link_text'] .'</a>';
+							}
+
+							echo '
+						</div>
+					</div>
+				</div>
+			';
+
 		} elseif( 'customer' == $settings['layout'] ) {
 
 			echo '
@@ -155,6 +190,35 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				</div>
 			';			
 
+		} elseif( 'customer-small' == $settings['layout'] ) {
+
+			echo '
+				<div class="d-flex m-2">
+					<div class="media rounded align-items-center pl-3 pr-3 pr-md-4 py-2 shadow-sm bg-white">
+					'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-sm flex-shrink-0 mr-3' ) ) .'
+						<div class="text-dark mb-0">'. $settings['content'] .'</div>
+					</div>
+	            </div>
+			';			
+
+		} elseif( 'text-feature' == $settings['layout'] ) {
+
+			echo '
+				<div class="mb-3 mb-md-4" data-aos="fade-up" data-aos-delay="10">
+					<div class="card card-body bg-white min-vh-md-30 hover-box-shadow">
+						<div class="flex-fill">
+							<h4 class="h3">'. $settings['title'] .'</h4>
+							'. $settings['content'] .'
+						</div>';
+
+						if( !empty( $settings['url']['url'] ) ) {						
+							echo '<a '. $link .' class="stretched-link">'. $settings['link_text'] .'</a>';
+						}
+
+						echo '
+					</div>
+				</div>
+			';
 		}
 		
 	}

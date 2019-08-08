@@ -187,11 +187,18 @@ class Widget_TommusRhodus_Blog_Block extends Widget_Base {
 			);	
 			
 		}
+
+		if( 1 == $posts_per_page ) {
+			$is_single_post_item = 'yes';
+		} else {
+			$is_single_post_item = 'no';
+		}
 		
 		$old_query = $wp_query;
 		$old_post  = $post;
 		$wp_query  = new \WP_Query( $query_args );
 		$wp_query->{"show_pagination"} =  $show_pagination;	
+		$wp_query->{"is_single_post_item"} =  $is_single_post_item;	
 
 		get_template_part( 'loop/loop-post', $layout );
 
