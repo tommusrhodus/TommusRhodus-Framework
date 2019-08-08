@@ -152,20 +152,15 @@ if(!( function_exists('tommusrhodus_stars_shortcode') )) {
 	    $output = '<div class="d-flex mr-2">';
 
 	    	if ( strpos( $values['number_of_stars'], "." ) ) {
-	    		$output .'xxxx';
 		      	$whole_number = floor( $values['number_of_stars'] );
 		      	$html = tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' );
 		      	$output .= str_repeat( $html, $whole_number );
 		      	$output .= tommusrhodus_svg_icons_pluck( 'Half Star', $class = 'icon bg-warning' );
 		    } else {
-		    	$output .'zzzzzz';
 		        $whole_number = $values['number_of_stars'];
 		      	$html = tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' );
 		      	$output .= str_repeat( $html, $whole_number );
 		    }
-
-
-	    	$output .= str_repeat( $icon, );
 
 	    $output .= '</div>';
 	     
