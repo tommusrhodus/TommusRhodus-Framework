@@ -196,6 +196,19 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'launching_modal', [
+				'label'   => __( 'Using Button to Trigger Modal? (eg modal-6848)', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'no',
+				'label_block' => true,
+				'options' => [					
+					'no'						=> esc_html__( 'No', 'tr-framework' ),
+					'yes'          				=> esc_html__( 'Yes', 'tr-framework' ),
+				],
+			]
+		);
+
 		$this->end_controls_section();
 
 	}
@@ -207,6 +220,12 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 		$target   = $settings['url']['is_external'] ? ' target="_blank"' : '';
 		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
 		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
+
+		if( 'yes' == $settings['launching_modal'] ) {
+			$trigger_modal = 'data-toggle="modal" data-target="#'. $settings['url']['url'] .'"';
+		} else {
+			$trigger_modal = false;
+		}
 		
 		$user_selected_animation = (bool) $settings['_animation'];
 		
@@ -282,7 +301,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 			echo '
 					</ul>
 					
-			        <a '. $link .' class="btn '. $settings['button_class'] .'">'. $settings['button_text'] .'</a>
+			        <a '. $link .' class="btn '. $settings['button_class'] .'" '. $trigger_modal .'>'. $settings['button_text'] .'</a>
 			        
 			    </div>
 			';
