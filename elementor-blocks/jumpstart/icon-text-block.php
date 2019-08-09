@@ -54,7 +54,8 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [				
-					'medium-side'      		=> esc_html__( 'Medium Side Icon', 'tr-framework' ),	
+					'medium-side'      		=> esc_html__( 'Medium Side Icon Card', 'tr-framework' ),	
+					'medium-side-simple'	=> esc_html__( 'Medium Side Icon', 'tr-framework' ),	
 				],
 			]
 		);
@@ -119,6 +120,21 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 						'. $settings['content'] .'						
 					</div>
 				</div>
+			';
+		
+		} elseif( 'medium-side-simple' == $settings['layout'] ){
+			
+			echo '
+				<div class="my-4">
+					<div class="d-flex">
+						<div class="mr-3 mr-md-4">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+						</div>
+						<div>
+							'. $settings['content'] .'
+						</div>
+					</div>
+                </div>
 			';
 		
 		}

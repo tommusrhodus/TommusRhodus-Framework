@@ -41,7 +41,8 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				'label_block' => true,
 				'options' => [
 					'standard' 					=> esc_html__( 'Standard', 'tr-framework' ),
-					'image-background' => esc_html__( 'Standard, Image Background', 'tr-framework' ),
+					'image-background' 			=> esc_html__( 'Standard, Image Background', 'tr-framework' ),
+					'standard-image-right' 		=> esc_html__( 'Standard, Image Inline Right', 'tr-framework' ),
 				],
 			]
 		);
@@ -147,6 +148,29 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				</div>
 			';
 		
+		} elseif( 'standard-image-right' == $settings['layout'] ){
+
+			echo '
+				<section class="bg-primary-3 text-white o-hidden">
+					<div class="container">
+						<div class="row justify-content-between align-items-center">
+							<div class="col-xl-5 col-lg-6 text-center text-lg-left mb-4 mb-md-5 mb-lg-0" data-aos="fade-right">
+								'. $settings['content'] .'
+							</div>
+							<div class="col" data-aos="fade-left" data-aos-delay="250">
+								'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid rounded shadow-lg border' ) ) .'
+							</div>
+						</div>
+					</div>
+					<div class="w-50 h-50 bottom right position-absolute" data-jarallax-element="50">
+						<div class="blob blob-2 bg-gradient w-100 h-100"></div>
+					</div>
+					<div class="w-50 h-50 bottom right position-absolute" data-jarallax-element="75">
+						<div class="blob blob-4 bg-white opacity-10 w-100 h-100"></div>
+					</div>
+				</section>
+			';
+
 		}
 		
 	}

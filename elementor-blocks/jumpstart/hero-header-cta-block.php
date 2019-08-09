@@ -1,0 +1,141 @@
+<?php
+
+namespace Elementor;
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
+	
+	//Return Class Name
+	public function get_name() {
+		return 'tommusrhodus-hero-header-cta-block';
+	}
+	
+	//Return Block Title (for blocks list)
+	public function get_title() {
+		return esc_html__( 'Hero Header CTA', 'tr-framework' );
+	}
+	
+	//Return Block Icon (for blocks list)
+	public function get_icon() {
+		return 'eicon-call-to-action';
+	}
+	
+	public function get_categories() {
+		return [ 'jumpstart-elements' ];
+	}
+
+	protected function _register_controls() {
+		
+		$this->start_controls_section(
+			'section_layout', [
+				'label' => esc_html__( 'Layout', 'tr-framework' ),
+			]
+		);
+		
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Hero Header Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'gradient-bg-form-right',
+				'label_block' => true,
+				'options' => [
+					'gradient-bg-form-right'         	=> esc_html__( 'Gradient Background + Form', 'tr-framework' ),			
+				],
+			]
+		);
+		
+		$this->add_control(
+			'divider', [
+				'label'       => __( 'Bottom Divider Shape', 'tr-framework' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'none',
+				'options'     => tommusrhodus_get_divider_layouts(),
+				'label_block' => true
+			]
+		);
+		
+		$this->end_controls_section();
+		
+		$this->start_controls_section(
+			'section_content', [
+				'label' => esc_html__( 'Content', 'tr-framework' ),
+			]
+		);
+		
+		$this->add_control(
+			'image', [
+				'label'      => __( 'Image', 'tr-framework' ),
+				'type'       => Controls_Manager::MEDIA,
+				'default' => [
+					'url' => '',
+				],
+			]
+		);
+		
+		$this->add_control(
+			'content', [
+				'label'       => __( 'Content', 'tr-framework' ),
+				'type'        => Controls_Manager::WYSIWYG,
+				'default'     => ''
+			]
+		);
+
+		$this->add_control(
+			'cta_content', [
+				'label'       => __( 'CTA Content', 'tr-framework' ),
+				'type'        => Controls_Manager::WYSIWYG,
+				'default'     => ''
+			]
+		);
+
+		$this->end_controls_section();
+
+	}
+	
+	/**
+	 * Whether the reload preview is required or not.
+	 *
+	 * Used to determine whether the reload preview is required.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return bool Whether the reload preview is required.
+	 */
+	public function is_reload_preview_required() {
+		return true;
+	}
+
+	protected function render() {
+		
+		$settings = $this->get_settings_for_display();
+		
+		if( 'gradient-bg-form-right' == $settings['layout'] ){
+		
+			echo '
+				<div class="bg-gradient o-hidden position-relative" data-overlay>
+      				<section>
+        				<div class="container">
+          					<div class="row justify-content-around align-items-center">
+            					<div class="col-lg-6 col-xl-5 mb-4 mb-sm-5 mb-lg-0">
+            						'. $settings['content'] .'
+        						</div>
+        						<div class="col-lg-6 col-xl-5 col-md-9" data-aos="fade-left" data-aos-delay="250">
+              						<div class="card card-body shadow-lg">
+              							'. $settings['cta_content'] .'
+              						</div>
+              					</div>
+              				</div>
+              			</div>
+              		</section>
+              	</div>';
+			
+		} 
+		
+	}
+
+}
+
+// Register our new widget
+Plugin::instance()->widgets_manager->register_widget_type( new Widget_TommusRhodus_Hero_Header_CTA_Block() );
