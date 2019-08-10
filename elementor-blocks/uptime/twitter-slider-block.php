@@ -89,7 +89,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 					<div class="carousel-cell">
 						<div class="tweet mb-2"></div>
 						<div class="d-flex align-items-center">
-							'. tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon icon-sm mr-2 opacity-30' ) .'
+							'. tommusrhodus_svg_icons_pluck( 'Twitter Icon', 'icon icon-sm mr-2 opacity-30' ) .'
 							<div class="timePosted text-small"></div>
 						</div>
 					</div>
@@ -102,7 +102,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 				<div class="row" data-twitter-fetcher data-username="'. $settings['twitter_username'] .'" data-twitter-isotope data-sort-ascending="true">
 					<div class="col-md-4" data-isotope-item>
 						<div class="card card-body align-items-start">
-							'. tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon mb-3 bg-primary' ) .'
+							'. tommusrhodus_svg_icons_pluck( 'Twitter Icon', 'icon mb-3 bg-primary' ) .'
 							<p class="tweet w-100"></p>
 							<span class="text-small timePosted"></span>
 						</div>
@@ -117,7 +117,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 					<div class="col-md-6" data-isotope-item>
 						<div class="card card-body flex-row">
 							<div class="icon-round icon-round-sm bg-primary">
-								'. tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon bg-primary' ) .'
+								'. tommusrhodus_svg_icons_pluck( 'Twitter Icon', 'icon bg-primary' ) .'
 							</div>
 							<div class="ml-3">
 								<p class="tweet"></p>
@@ -155,7 +155,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 				<div class="carousel-cell">
 					<div class="tweet mb-2"></div>
 					<div class="d-flex align-items-center">
-						<?php echo tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon icon-sm mr-2 opacity-30' ); ?>
+						<?php echo tommusrhodus_svg_icons_pluck( 'Twitter Icon', 'icon icon-sm mr-2 opacity-30' ); ?>
 						<div class="timePosted text-small"></div>
 					</div>
 				</div>
@@ -166,7 +166,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 			<div class="row" data-twitter-fetcher data-username="{{ settings.twitter_username }}" data-twitter-isotope data-sort-ascending="true">
 				<div class="col-md-4" data-isotope-item>
 					<div class="card card-body align-items-start">
-						<?php echo tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon mb-3 bg-primary' ); ?>
+						<?php echo tommusrhodus_svg_icons_pluck( 'Twitter Icon', 'icon mb-3 bg-primary' ); ?>
 						<p class="tweet w-100"></p>
 						<span class="text-small timePosted"></span>
 					</div>
@@ -179,7 +179,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 				<div class="col-md-6" data-isotope-item>
 					<div class="card card-body flex-row">
 						<div class="icon-round icon-round-sm bg-primary">
-							<?php echo tommusrhodus_svg_icons_pluck( 'Twitter icon', 'icon bg-primary' ); ?>
+							<?php echo tommusrhodus_svg_icons_pluck( 'Twitter Icon', 'icon bg-primary' ); ?>
 						</div>
 						<div class="ml-3">
 							<p class="tweet"></p>
