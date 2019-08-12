@@ -7,7 +7,7 @@
  * Author URI:   https://www.tommusrhodus.com
  * Contributors: Tom Rhodes
  *
- * Version:      1.0.0
+ * Version:      1.0.1
  *
  * Text Domain:  trframework
  * Domain Path:  languages
