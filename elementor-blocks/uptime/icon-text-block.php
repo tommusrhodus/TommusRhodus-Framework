@@ -74,6 +74,17 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		);
 
 		$this->add_control(
+			'image', [
+				'label'      => __( 'Image (Will override icon and be shown full size, so be sure to supply a suitablely sized image)', 'tr-framework' ),
+				'type'       => Controls_Manager::MEDIA,
+				'default' => [
+					'url' => '',
+				],
+			]
+		);
+		
+
+		$this->add_control(
 			'icon_colour', [
 				'label'   => __( 'Icon Colour', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
@@ -118,8 +129,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		if( 'tiny' == $settings['layout'] ){
 			
 			echo '
-				<div class="d-flex mb-3 mb-md-0">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] ) .'
+				<div class="d-flex mb-3 mb-md-0">';
+
+					if( $settings['image'] ) {
+						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
+					} else { 
+						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] );
+					}
+
+					echo '
 				  <div class="ml-3">'. $settings['content'] .'</div>
 				</div>
 			';
@@ -127,8 +145,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		} elseif( 'medium' == $settings['layout'] ){
 			
 			echo '
-				<div class="d-flex align-items-center my-2">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg '. $settings['icon_colour'] ) .'
+				<div class="d-flex align-items-center my-2">';
+
+					if( $settings['image'] ) {
+						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
+					} else { 
+						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg '. $settings['icon_colour'] );
+					}
+
+					echo '
 					<span class="h6 mb-0 ml-2">'. $settings['content'] .'</span>
 				</div>
 			';
@@ -137,8 +162,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			
 			echo '
 				<div>
-					<div class="icon-round '. $settings['icon_colour'] .' mx-auto mb-4">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+					<div class="icon-round '. $settings['icon_colour'] .' mx-auto mb-4">';
+
+					if( $settings['image'] ) {
+						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
+					} else { 
+						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] );
+					}
+
+					echo '
 					</div>
 					'. $settings['content'] .'
 				</div>
@@ -148,7 +180,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			
 			echo '
 				<div>
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] ) .'	
+					';
+
+					if( $settings['image'] ) {
+						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
+					} else { 
+						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] );
+					}
+
+					echo '
 					'. $settings['content'] .'
 				</div>
 			';
@@ -157,8 +197,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			
 			echo '
 				<div class="d-flex mb-4">
-					<div class="icon-round bg-primary mr-3">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary '. $settings['icon_colour'] ) .'
+					<div class="icon-round bg-primary mr-3">';
+
+						if( $settings['image'] ) {
+							echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
+						} else { 
+							echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary '. $settings['icon_colour'] );
+						}
+
+						echo '
 					</div>
 					<div>
 						'. $settings['content'] .'
@@ -169,8 +216,15 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 		} elseif( 'extra-tiny' == $settings['layout'] ){
 			
 			echo '
-				<div class="d-flex mb-3 mb-md-0">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+				<div class="d-flex mb-3 mb-md-0">';
+
+					if( $settings['image'] ) {
+						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
+					} else { 
+						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] );
+					}
+
+					echo '
 				  <div class="ml-3">'. $settings['content'] .'</div>
 				</div>
 			';
