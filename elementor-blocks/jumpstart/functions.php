@@ -80,6 +80,13 @@ add_filter('elementor/shapes/additional_shapes', function( $additional_shapes ){
 		'path' => get_template_directory() . '/style/img/dividers/divider-2.svg',
 	];
 
+	$additional_shapes['half-pipe-inverse'] = [
+		'title' => _x('Half Pipe Inverse', 'Shapes', 'elementor'),
+		'has_negative' => true,
+		'url' => get_template_directory_uri() . '/style/img/dividers/divider-2-inverse.svg',
+		'path' => get_template_directory() . '/style/img/dividers/divider-2-inverse.svg',
+	];
+
 	$additional_shapes['curve-2'] = [
 		'title' => _x('Curve 2', 'Shapes', 'elementor'),
 		'has_negative' => true,

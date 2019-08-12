@@ -42,7 +42,8 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				'options' => [
 					'standard' 					=> esc_html__( 'Standard', 'tr-framework' ),
 					'image-background' 			=> esc_html__( 'Standard, Image Background', 'tr-framework' ),
-					'standard-image-right' 		=> esc_html__( 'Standard, Image Inline Right', 'tr-framework' ),
+					'standard-image-right' 		=> esc_html__( 'Standard, Image Inline Right', 'tr-framework' ),					
+					'alternative-image-right'	=> esc_html__( 'Alternative, Image Inline Right', 'tr-framework' ),
 				],
 			]
 		);
@@ -167,6 +168,32 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 					</div>
 					<div class="w-50 h-50 bottom right position-absolute" data-jarallax-element="75">
 						<div class="blob blob-4 bg-white opacity-10 w-100 h-100"></div>
+					</div>
+				</section>
+			';
+
+		} elseif( 'alternative-image-right' == $settings['layout'] ){
+
+			echo '
+				<section class="bg-light o-hidden pt-5">
+					<div class="container">
+						<div class="row align-items-center justify-content-between">
+							<div class="col-lg-6 d-flex flex-column text-center text-lg-left mb-5 mb-lg-0" data-aos="fade-right">
+								<div class="pr-xl-5">
+									'. $settings['content'] .'
+								</div>
+							</div>
+							<div class="col">
+								<div class="row justify-content-center" data-jarallax-element="-50">
+									<div class="col-10 col-sm-8 col-md-7 col-lg-9 col-xl-7" data-aos="zoom-in" data-aos-delay="250">
+										'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) ) .'
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="w-50 h-50 bottom right position-absolute" data-aos="zoom-in" data-aos-delay="500">
+						<div class="blob h-100 w-100 bottom right bg-warning opacity-90"></div>
 					</div>
 				</section>
 			';

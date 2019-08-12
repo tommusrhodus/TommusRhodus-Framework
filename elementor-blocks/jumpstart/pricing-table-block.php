@@ -286,7 +286,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 				echo '
 						</ul>
 						
-				        <a '. $link .' class="btn '. $settings['button_class'] .'" '. $trigger_modal .'>'. $settings['button_text'] .'</a>
+				        <a '. $link .' class="btn btn-lg btn-block '. $settings['button_class'] .'" '. $trigger_modal .'>'. $settings['button_text'] .'</a>
 				        
 				    </div>
 			';
