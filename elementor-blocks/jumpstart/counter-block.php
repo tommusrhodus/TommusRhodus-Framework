@@ -43,6 +43,7 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 					'regular'          		=> esc_html__( 'Regular', 'tr-framework' ),
 					'small'          		=> esc_html__( 'Small', 'tr-framework' ),
 					'card'          		=> esc_html__( 'Card', 'tr-framework' ),
+					'card-opaque'			=> esc_html__( 'Card Opaque (use on Dark Background)', 'tr-framework' ),
 				],
 			]
 		);
@@ -165,6 +166,28 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 			echo '
 				<div class="mb-3 mb-md-0">
             		<div class="card card-body shadow-sm h-100">';
+
+            			if ( Plugin::$instance->editor->is_edit_mode() ) {
+			
+							echo '<div class="display-4 text-'. $settings['colour'] .' mb-3"">'. $settings['finish'] . $settings['counter_suffix'] .'</div>';
+							
+						} else {
+						
+							echo '<div class="display-4 text-'. $settings['colour'] .' mb-3" data-countup data-start="'. $settings['start'] .'" data-end="'. $settings['finish'] .'" data-duration="3" data-grouping="true" data-suffix="'. $settings['counter_suffix'] .'" '. $decimal .'></div>';
+							
+						}
+						
+						echo '
+         			 	<div>'. $settings['title'] .'</div>
+         			 	
+            		</div>
+          		</div>';
+
+		} elseif( 'card-opaque' == $settings['layout'] ) {
+
+			echo '
+				<div class="mb-3 mb-md-0">
+            		<div class="card card-body bg-white h-100">';
 
             			if ( Plugin::$instance->editor->is_edit_mode() ) {
 			
