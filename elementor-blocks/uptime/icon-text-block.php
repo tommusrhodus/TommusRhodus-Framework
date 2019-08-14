@@ -131,7 +131,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			echo '
 				<div class="d-flex mb-3 mb-md-0">';
 
-					if( $settings['image'] ) {
+					if( $settings['image']['id'] ) {
 						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
 					} else { 
 						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] );
@@ -147,7 +147,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			echo '
 				<div class="d-flex align-items-center my-2">';
 
-					if( $settings['image'] ) {
+					if( $settings['image']['id'] ) {
 						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
 					} else { 
 						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg '. $settings['icon_colour'] );
@@ -164,7 +164,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				<div>
 					<div class="icon-round '. $settings['icon_colour'] .' mx-auto mb-4">';
 
-					if( $settings['image'] ) {
+					if( $settings['image']['id'] ) {
 						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
 					} else { 
 						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] );
@@ -182,7 +182,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				<div>
 					';
 
-					if( $settings['image'] ) {
+					if( $settings['image']['id'] ) {
 						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
 					} else { 
 						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md '. $settings['icon_colour'] );
@@ -199,7 +199,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				<div class="d-flex mb-4">
 					<div class="icon-round bg-primary mr-3">';
 
-						if( $settings['image'] ) {
+						if( $settings['image']['id'] ) {
 							echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
 						} else { 
 							echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary '. $settings['icon_colour'] );
@@ -218,7 +218,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			echo '
 				<div class="d-flex mb-3 mb-md-0">';
 
-					if( $settings['image'] ) {
+					if( $settings['image']['id'] ) {
 						echo wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'img-fluid' ) );
 					} else { 
 						echo tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] );
