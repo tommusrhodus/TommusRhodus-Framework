@@ -31,6 +31,19 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 			'carousel_items_section', [
 				'label' => __( 'Carousel Content', 'tr-framework' )
 			]
+		); 
+
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Carousel Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'fullwidth',
+				'label_block' => true,
+				'options' => [
+					'fullwidth'			=> esc_html__( 'Fullwidth Carousel', 'tr-framework' ),
+					'single'			=> esc_html__( 'Single Item', 'tr-framework' ),
+				],
+			]
 		);
 
 		$repeater = new Repeater();
@@ -89,25 +102,48 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 	protected function render() {
 		
 		$settings = $this->get_settings_for_display();
-		
-		echo '
-			<div class="highlight-selected" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true }\'>';
 
-			foreach( $settings['list'] as $item ) {
+		if( 'fullwidth' == $settings['layout'] ) {
+		
+			echo '
+				<div class="highlight-selected" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true }\'>';
+
+				foreach( $settings['list'] as $item ) {
+
+					echo '
+						<div class="carousel-cell text-center col-9 col-md-7 col-lg-5">
+							<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'img-fluid rounded' ) ) .'
+							</a>
+						</div>
+					';
+
+				}
 
 				echo '
-					<div class="carousel-cell text-center col-9 col-md-7 col-lg-5">
-						<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
-							'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'img-fluid rounded' ) ) .'
-						</a>
-					</div>
-				';
+				</div>		
+			';
 
-			}
+		} elseif( 'single' == $settings['layout'] ) {
 
 			echo '
-			</div>		
-		';
+				<div class="buttons-attached" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true }\'>';
+
+				foreach( $settings['list'] as $item ) {
+
+					echo '
+						<div class="carousel-cell text-center">
+							'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'img-fluid rounded' ) ) .'
+						</div>
+					';
+
+				}
+
+				echo '
+				</div>		
+			';
+
+		}
 
 		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
 

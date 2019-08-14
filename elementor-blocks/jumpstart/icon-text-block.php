@@ -54,9 +54,11 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [				
-					'medium-side'      		=> esc_html__( 'Medium Side Icon Card', 'tr-framework' ),	
-					'medium-side-simple'	=> esc_html__( 'Medium Side Icon', 'tr-framework' ),
-					'medium-top-simple'		=> esc_html__( 'Medium Top Icon', 'tr-framework' ),	
+					'medium-side'      			=> esc_html__( 'Medium Side Icon Card', 'tr-framework' ),	
+					'medium-side-simple'		=> esc_html__( 'Medium Side Icon', 'tr-framework' ),
+					'medium-top-simple'			=> esc_html__( 'Medium Top Icon', 'tr-framework' ),	
+					'medium-top-simple-card'	=> esc_html__( 'Medium Top Icon Card', 'tr-framework' ),
+					'rounded-top-simple'		=> esc_html__( 'Round Top Icon Card', 'tr-framework' ),	
 				],
 			]
 		);
@@ -76,8 +78,9 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'bg-primary',
 				'options' => [
-					'bg-primary'      => esc_html__( 'Primary Colour', 'tr-framework' ),					
-					'bg-white'        => esc_html__( 'White', 'tr-framework' )
+					'bg-primary'      	=> esc_html__( 'Primary Colour', 'tr-framework' ),
+					'bg-primary-2'		=> esc_html__( 'Primary Colour 2', 'tr-framework' ),					
+					'bg-white'        	=> esc_html__( 'White', 'tr-framework' )
 				],
 			]
 		);
@@ -146,6 +149,34 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
 						'. $settings['content'] .'
 					</div>
+				</div>
+			';
+		
+		} elseif( 'medium-top-simple-card' == $settings['layout'] ){
+			
+			echo '
+				<div class="mb-3 mb-md-4">
+					<div class="card card-body">
+						<div>
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+							'. $settings['content'] .'
+						</div>
+					</div>
+				</div>
+			';
+		
+		} elseif( 'rounded-top-simple' == $settings['layout'] ){
+			
+			echo '
+				<div class="mb-3 mb-md-4 text-center">
+					<div>
+                		<div class="d-inline-block mb-4 p-3 p-md-4 rounded-circle '. $settings['icon_colour'] .'-alt">
+                			'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon '. $settings['icon_colour'] ) .'
+                		</div>
+						<div>
+							'. $settings['content'] .'
+						</div>
+              		</div>
 				</div>
 			';
 		

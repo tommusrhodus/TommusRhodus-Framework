@@ -42,11 +42,13 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 				'options' => [
 					'image-and-title'					=> esc_html__( 'Image + Title', 'tr-framework' ),
 					'image-left-text-right'				=> esc_html__( 'Image Left + Text Right', 'tr-framework' ),
-					'image-and-title-card' 				=> esc_html__( 'Image + Title Card', 'tr-framework' ),
+					'image-and-title-card' 				=> esc_html__( 'Image + Title Card', 'tr-framework' ),					
+					'image-and-text-card-alt'			=> esc_html__( 'Alternative Image + Text Card', 'tr-framework' ),
 					'customer'							=> esc_html__( 'Customer', 'tr-framework' ),	
 					'customer-small'					=> esc_html__( 'Customer Small', 'tr-framework' ),					
 					'text-feature'						=> esc_html__( 'Text Feature', 'tr-framework' ),					
-					'icon-left-title-right'				=> esc_html__( 'Icon Left + Title Right', 'tr-framework' ),		
+					'icon-left-title-right'				=> esc_html__( 'Icon Left + Title Right', 'tr-framework' ),			
+					'icon-left-title-right-bg-light'	=> esc_html__( 'Icon Left + Title Right, Light Background', 'tr-framework' ),		
 					'image-icon-left-title-right'		=> esc_html__( 'Custom Image Icon Left + Title Right', 'tr-framework' ),
 				],
 			]
@@ -248,6 +250,17 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
             </div>
 			';
 
+		} elseif( 'icon-left-title-right-bg-light' == $settings['layout'] ) {
+
+			echo '
+			<div class="m-2">
+              	<div class="media rounded align-items-center pl-3 pr-4 pl-md-4 pr-md-5 py-2 bg-light">
+              		'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon mr-3 bg-primary' ) .'
+                	<h5 class="mb-0">'. $settings['title'] .'</h5>
+              	</div>
+            </div>
+			';
+
 		} elseif( 'image-icon-left-title-right' == $settings['layout'] ) {
 
 			echo '
@@ -258,6 +271,19 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
               	</div>
             </div>
 			';
+
+		} elseif( 'image-and-text-card-alt' == $settings['layout'] ) {
+
+			echo '
+				<div class="mb-5 mb-lg-0">
+            		<div class="text-center card card-body bg-secondary mb-4 d-block">
+            			'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'opacity-50 my-4 my-lg-5 img-max-32' ) ) .'
+            		</div>
+            		<div class="px-xl-4">
+              			'. $settings['content'] .'
+            		</div>
+          		</div>
+          ';
 
 		}
 		
