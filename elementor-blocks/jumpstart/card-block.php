@@ -49,7 +49,8 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'text-feature'						=> esc_html__( 'Text Feature', 'tr-framework' ),					
 					'icon-left-title-right'				=> esc_html__( 'Icon Left + Title Right', 'tr-framework' ),			
 					'icon-left-title-right-bg-light'	=> esc_html__( 'Icon Left + Title Right, Light Background', 'tr-framework' ),		
-					'image-icon-left-title-right'		=> esc_html__( 'Custom Image Icon Left + Title Right', 'tr-framework' ),
+					'image-icon-left-title-right'		=> esc_html__( 'Custom Image Icon Left + Title Right', 'tr-framework' ),		
+					'customer-card'						=> esc_html__( 'Customomer Card', 'tr-framework' ),
 				],
 			]
 		);
@@ -283,6 +284,19 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
               			'. $settings['content'] .'
             		</div>
           		</div>
+          ';
+
+		} elseif( 'customer-card' == $settings['layout'] ) {
+
+			echo '
+				<div class="mb-3 mb-sm-4">
+					<div class="card card-body flex-md-row pl-md-3 bg-white">
+						'. wp_get_attachment_image( $settings['image']['id'], 'thumbnail', 0, array( 'class' => 'avatar d-block mr-md-5 ml-md-n5 mb-3 mb-md-0' ) ) .'
+						<div>
+							'. $settings['content'] .'
+						</div>
+					</div>
+				</div>
           ';
 
 		}

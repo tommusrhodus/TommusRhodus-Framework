@@ -265,6 +265,27 @@ if(!( function_exists('tommusrhodus_icon_shortcode') )) {
 	add_shortcode( 'jumpstart_icon', 'tommusrhodus_icon_shortcode' );
 }
 
+if(!( function_exists('tommusrhodus_icon_round_shortcode') )) {
+	function tommusrhodus_icon_round_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'icon_name' => 'Dribbble Icon',
+	        	'url' => '#',
+	        	'class' => '',
+	    	), 
+    	$atts );
+
+    	$output = '<a href="'. esc_url( $values['url'] ) .'" class="btn btn-lg btn-outline-light rounded-circle m-2 m-md-3">
+        	'. tommusrhodus_svg_icons_pluck( $values['icon_name'], 'icon ' . $values['class'] ) .'
+      	</a>';
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'jumpstart_icon_round', 'tommusrhodus_icon_round_shortcode' );
+}
+
 /**
  * Icon Shortcode
  */
