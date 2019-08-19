@@ -50,7 +50,10 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 					'icon-left-title-right'				=> esc_html__( 'Icon Left + Title Right', 'tr-framework' ),			
 					'icon-left-title-right-bg-light'	=> esc_html__( 'Icon Left + Title Right, Light Background', 'tr-framework' ),		
 					'image-icon-left-title-right'		=> esc_html__( 'Custom Image Icon Left + Title Right', 'tr-framework' ),		
-					'customer-card'						=> esc_html__( 'Customomer Card', 'tr-framework' ),
+					'customer-card'						=> esc_html__( 'Customomer Card', 'tr-framework' ),	
+					'plain-card'						=> esc_html__( 'Plain Title + Text', 'tr-framework' ),
+					'plain-card-light-bg'				=> esc_html__( 'Plain Title + Text Light BG', 'tr-framework' ),
+					'plain-card-reverse'				=> esc_html__( 'Plain Title + Text Reverse (Use on Dark BGs)', 'tr-framework' ),
 				],
 			]
 		);
@@ -297,6 +300,45 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 						</div>
 					</div>
 				</div>
+          ';
+
+		} elseif( 'plain-card' == $settings['layout'] ) {
+
+			echo '
+				<div class="mb-3 mb-md-4">
+                	<div class="card">
+                  		<div class="card-body">
+                    		<h4>'. $settings['title'] .'</h4>
+                    		'. $settings['content'] .'
+                  		</div>
+                	</div>
+              	</div>
+          ';
+
+		} elseif( 'plain-card-light-bg' == $settings['layout'] ) {
+
+			echo '
+				<div class="mb-3 mb-md-4">
+                	<div class="card bg-light">
+                  		<div class="card-body">
+                    		<h4>'. $settings['title'] .'</h4>
+                    		'. $settings['content'] .'
+                  		</div>
+                	</div>
+              	</div>
+          ';
+
+		} elseif( 'plain-card-reverse' == $settings['layout'] ) {
+
+			echo '
+				<div class="mb-3 mb-md-4">
+                	<div class="card text-white links-white bg-white">
+                  		<div class="card-body">
+                    		<h4>'. $settings['title'] .'</h4>
+                    		'. $settings['content'] .'
+                  		</div>
+                	</div>
+              	</div>
           ';
 
 		}

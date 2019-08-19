@@ -61,6 +61,31 @@ class Widget_TommusRhodus_Alert_Block extends Widget_Base {
 		);
 		
 		$this->add_control(
+			'rounded', [
+				'label'   => __( 'Border Style', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'rounded-lg',
+				'options' => [
+					'rounded-lg'  	=> 'Rounded',
+					'regular' 		=> 'Regular'
+				],
+			]
+		);
+
+		$this->add_control(
+			'display', [
+				'label'   => __( 'Display Style', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'rounded-lg',
+				'options' => [
+					'd-inline-block'  	=> 'Inline',
+					'd-fw' 				=> 'Full Width'
+				],
+			]
+		);
+		
+
+		$this->add_control(
 			'style', [
 				'label'   => __( 'Colour Style', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
@@ -128,7 +153,7 @@ class Widget_TommusRhodus_Alert_Block extends Widget_Base {
 			if(!( 'None' == $settings['icon'] )){
 			
 				echo '
-					<div class="alert '. $settings['style'] .' rounded-lg d-inline-block mb-4">
+					<div class="alert '. $settings['style'] .' '. $settings['rounded'] .' '. $settings['display'] .' mb-4">
 						<div class="d-flex align-items-center">
 							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
 							<div class="mx-3">'. $settings['content'] .'</div>
@@ -138,7 +163,7 @@ class Widget_TommusRhodus_Alert_Block extends Widget_Base {
 				
 			} else {
 				
-				echo '<div class="alert '. $settings['style'] .' rounded-lg d-inline-block mb-4">
+				echo '<div class="alert '. $settings['style'] .' '. $settings['rounded'] .' '. $settings['display'] .' mb-4">
 						<div class="d-flex align-items-center">';
 
 							if( $settings['badge_label'] ) {

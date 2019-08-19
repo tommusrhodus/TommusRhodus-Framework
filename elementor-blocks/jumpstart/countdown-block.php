@@ -54,7 +54,8 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 				'default' => 'labels',
 				'label_block' => true,
 				'options' => [
-					'labels'          	=> esc_html__( 'Simple', 'tr-framework' ),
+					'labels'          	=> esc_html__( 'Detailed', 'tr-framework' ),
+					'simple'          	=> esc_html__( 'Simple', 'tr-framework' ),
 				],
 			]
 		);
@@ -75,7 +76,24 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 				'default'     => 'This is the fallback for when the countdown is elapsed',
 				'label_block' => true
 			]
-		);		
+		);	
+
+		$this->add_control(
+			'text_size', [
+				'label'   => __( 'Text Size', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'h4',
+				'label_block' => true,
+				'options' => [
+					'h1'          	=> esc_html__( 'H1', 'tr-framework' ),
+					'h2'          	=> esc_html__( 'H2', 'tr-framework' ),
+					'h3'          	=> esc_html__( 'H3', 'tr-framework' ),
+					'h4'          	=> esc_html__( 'H4', 'tr-framework' ),
+					'h5'          	=> esc_html__( 'H5', 'tr-framework' ),
+					'h6'          	=> esc_html__( 'H6', 'tr-framework' ),
+				],
+			]
+		);	
 
 		$this->end_controls_section();
 
@@ -89,24 +107,30 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 
 		if ( strtotime( $settings['date'] ) > $now ) {
 
-			if( 'labels' == $settings['layout'] ) {
+			if( 'simple' == $settings['layout'] ) {
+
+				echo '
+					<'. $settings['text_size'] .' class="mb-0 add-countdown-time" data-countdown-date="'. $settings['date'] .'"></'. $settings['text_size'] .'>
+				';
+
+			} elseif( 'labels' == $settings['layout'] ) {
 
 				echo '
 					<div class="card card-body bg-white flex-row flex-wrap justify-content-around add-countdown-time" data-countdown-date="'. $settings['date'] .'" data-detailed>
 		                <div class="mx-4 my-4 my-md-0 text-center">
-		                  <div class="h1 mb-2" data-days></div>
+		                  <div class="'. $settings['text_size'] .' mb-2" data-days></div>
 		                  <span>Days</span>
 		                </div>
 		                <div class="mx-4 my-4 my-md-0 text-center">
-		                  <div class="h1 mb-2" data-hours></div>
+		                  <div class="'. $settings['text_size'] .' mb-2" data-hours></div>
 		                  <span>Hours</span>
 		                </div>
 		                <div class="mx-4 my-4 my-md-0 text-center">
-		                  <div class="h1 mb-2" data-minutes></div>
+		                  <div class="'. $settings['text_size'] .' mb-2" data-minutes></div>
 		                  <span>Minutes</span>
 		                </div>
 		                <div class="mx-4 my-4 my-md-0 text-center">
-		                  <div class="h1 mb-2" data-seconds></div>
+		                  <div class="'. $settings['text_size'] .' mb-2" data-seconds></div>
 		                  <span>Seconds</span>
 		                </div>
 		                <div data-elapsed style="display: none;">
@@ -119,9 +143,19 @@ class Widget_TommusRhodus_Countdown_Block extends Widget_Base {
 
 		} else {
 
-			echo '<div data-countdown-date="2018/12/12" data-detailed>
-              		<div data-elapsed-state class="d-none alert alert-danger">'. $settings['fallback_text'] .'</div>
-            	</div>';
+			if( 'simple' == $settings['layout'] ) {
+
+				echo '
+					<'. $settings['text_size'] .' class="mb-0 add-countdown-time" data-countdown-date="'. $settings['date'] .'"></'. $settings['text_size'] .'>
+				';
+
+			} elseif( 'labels' == $settings['layout'] ) {
+
+				echo '<div data-countdown-date="2018/12/12" data-detailed>
+				  		<div data-elapsed-state class="alert alert-warning mb-0">'. $settings['fallback_text'] .'</div>
+					</div>';
+
+			}
 
 		}	
 		
