@@ -54,11 +54,12 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [				
-					'medium-side'      			=> esc_html__( 'Medium Side Icon Card', 'tr-framework' ),	
-					'medium-side-simple'		=> esc_html__( 'Medium Side Icon', 'tr-framework' ),
-					'medium-top-simple'			=> esc_html__( 'Medium Top Icon', 'tr-framework' ),	
-					'medium-top-simple-card'	=> esc_html__( 'Medium Top Icon Card', 'tr-framework' ),
-					'rounded-top-simple'		=> esc_html__( 'Round Top Icon Card', 'tr-framework' ),	
+					'medium-side'      					=> esc_html__( 'Medium Side Icon Card', 'tr-framework' ),	
+					'medium-side-simple'				=> esc_html__( 'Medium Side Icon', 'tr-framework' ),
+					'medium-top-simple'					=> esc_html__( 'Medium Top Icon', 'tr-framework' ),	
+					'medium-top-simple-card'			=> esc_html__( 'Medium Top Icon Card', 'tr-framework' ),
+					'rounded-top-simple'				=> esc_html__( 'Round Top Icon Centered', 'tr-framework' ),	
+					'rounded-top-simple-left-align'		=> esc_html__( 'Round Top Icon Card', 'tr-framework' ),	
 				],
 			]
 		);
@@ -177,6 +178,21 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 							'. $settings['content'] .'
 						</div>
               		</div>
+				</div>
+			';
+		
+		} elseif( 'rounded-top-simple-left-align' == $settings['layout'] ){
+			
+			echo '
+				<div class="mb-4">
+					<div class="card card-body h-100 shadow-sm">
+						<div>
+							<div class="d-inline-block mb-4 p-3 p-md-4 rounded-circle '. $settings['icon_colour'] .'-alt">
+								'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-sm '. $settings['icon_colour'] ) .'
+							</div>
+							'. $settings['content'] .'
+						</div>
+					</div>
 				</div>
 			';
 		

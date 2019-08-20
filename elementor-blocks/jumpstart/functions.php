@@ -175,7 +175,8 @@ if(!( function_exists('tommusrhodus_video_lightbox_button_shortcode') )) {
 	    	array(
 	        	'media_url' 	=> '',
 	        	'button_style'	=> 'icon',
-	        	'button_label'	=> 'Watch the video'
+	        	'button_label'	=> 'Watch the video',
+	        	'button_class'	=> 'btn-light'
 	    	), 
     	$atts );
 
@@ -192,7 +193,7 @@ if(!( function_exists('tommusrhodus_video_lightbox_button_shortcode') )) {
     	} else {
 
 			$output = '
-				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="btn btn-lg btn-light rounded-circle mb-4 mb-md-5" data-aos="fade-up">
+				<a data-fancybox href="'. esc_url( $values['media_url'] ) .'" class="btn btn-lg '. $values['button_class'] .' rounded-circle mb-4 mb-md-5" data-aos="fade-up">
 		    		'. tommusrhodus_svg_icons_pluck( 'Play', 'icon' ) .'
 		    	</a>';
 

@@ -53,7 +53,7 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 				'default' => 'modal-basic',
 				'label_block' => true,
 				'options' => [
-					'modal-basic'          	=> esc_html__( 'Regular', 'tr-framework' ),
+					'modal-basic'          	=> esc_html__( 'Top', 'tr-framework' ),
 					'modal-dialog-centered'	=> esc_html__( 'Centered', 'tr-framework' ),
 				],
 			]
@@ -91,10 +91,23 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 
 		$this->add_control(
 			'modal_bg_image', [
-				'label'      => __( 'Background Image', 'tr-framework' ),
+				'label'      => __( 'BG/Side Image', 'tr-framework' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$this->add_control(
+			'modal_style', [
+				'label'   => __( 'Image Style', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'background-image',
+				'label_block' => true,
+				'options' => [					
+					'background-image'          	=> esc_html__( 'Use Image as Background', 'tr-framework' ),
+					'side-image'          			=> esc_html__( 'Show Image at side of modal', 'tr-framework' ),
 				],
 			]
 		);
@@ -160,6 +173,17 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 			]
 		);	
 
+		$this->add_control(
+			'show_close', [
+				'label' 		=> __( 'Show Close Button', 'tr-framework' ),
+				'type' 			=> \Elementor\Controls_Manager::SWITCHER,
+				'label_on' 		=> __( 'Show', 'tr-framework' ),
+				'label_off' 	=> __( 'Hide', 'tr-framework' ),
+				'return_value' 	=> 'yes',
+				'default' 		=> 'yes',
+			]
+		);	
+
 		$this->end_controls_section();
 
 	}
@@ -168,11 +192,6 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 		
 		$settings                = $this->get_settings_for_display();
 		$user_selected_animation = (bool) $settings['_animation'];
-		if( !empty( $settings['modal_bg_image']['id'] )) {
-			$bg_image = wp_get_attachment_image( $settings['modal_bg_image']['id'], 'large', 0, array( 'class' => 'bg-image blend-mode-multiply rounded opacity-50' ) );
-		} else {
-			$bg_image = '';
-		}
 
 		if( 'yes' == $settings['show_button'] ) {
 			echo '
@@ -182,38 +201,120 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 			';
 		}
 
-		echo '			
-			<div class="modal fade" id="'. $settings['modal_id'] .'" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog '. $settings['modal_size'] .' '. $settings['modal_position'] .'" role="document">
-					<div class="modal-content '. $settings['modal_bg_colour'] .' '. $settings['modal_content_colour'] .'">
-						'. $bg_image .'
-						<div class="modal-body">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
-								if( 'text-white' == $settings['modal_content_colour'] ) {
-									echo tommusrhodus_svg_icons_pluck( 'Modal close', 'icon bg-white' );
-								} else {
-									echo tommusrhodus_svg_icons_pluck( 'Modal close', 'icon bg-dark' );
-								}
+		if( 'background-image' == $settings['modal_style'] ) {
 
-							echo '
-							</button>
-							<div class="'. $settings['modal_content_padding'] .'">';
+			if( !empty( $settings['modal_bg_image']['id'] )) {
+				$bg_image = wp_get_attachment_image( $settings['modal_bg_image']['id'], 'large', 0, array( 'class' => 'bg-image blend-mode-multiply rounded opacity-50' ) );
+			} else {
+				$bg_image = '';
+			}
 
-							if( '0' !== $settings['icon'] && 'text-white' == $settings['modal_content_colour'] ) {
-								echo '<div class="icon-round icon-round-lg bg-white mx-auto mb-4">'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md bg-white' ) .'</div>';
-							} elseif( '0' !== $settings['icon'] ) {
-								echo '<div class="icon-round icon-round-lg bg-primary mx-auto mb-4">'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md bg-primary' ) .'</div>';
+			echo '			
+				<div class="modal fade" id="'. $settings['modal_id'] .'" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog '. $settings['modal_size'] .' '. $settings['modal_position'] .'" role="document">
+						<div class="modal-content '. $settings['modal_bg_colour'] .' '. $settings['modal_content_colour'] .'">
+							'. $bg_image .'';
+
+							if( 'yes' == $settings['show_close'] ) { 
+
+								echo '
+								<div class="modal-header border-0 pb-0">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">';
+											if( 'text-white' == $settings['modal_content_colour'] ) {
+											echo tommusrhodus_svg_icons_pluck( 'Interface Close', 'icon icon-sm bg-white' );
+											} else {
+												echo tommusrhodus_svg_icons_pluck( 'Interface Close', 'icon icon-sm bg-dark' );
+											}
+										echo '
+										</span>
+									</button>
+								</div>';
 							}
 
-							echo do_shortcode( $settings['content'] );
-
 							echo '
+							<div class="w-100">';
+
+								if( '0' !== $settings['icon'] && 'text-white' == $settings['modal_content_colour'] ) {
+									echo '<div class="text-center pt-4"><div class="d-inline-block mb-4 p-3 p-md-4 rounded-circle bg-white">'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md bg-white' ) .'</div></div>';
+								} elseif( '0' !== $settings['icon'] ) {
+									echo '<div class="text-center pt-4"><div class="d-inline-block mb-4 p-3 p-md-4 rounded-circle bg-primary-alt">'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md bg-primary' ) .'</div></div>';
+								}
+
+								
+
+								echo '
+							</div>	
+							<div class="modal-body">
+								<div class="'. $settings['modal_content_padding'] .'">';								
+
+								echo do_shortcode( $settings['content'] );
+
+								echo '
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		';
+			';
+
+		} elseif( 'side-image' == $settings['modal_style'] && !empty( $settings['modal_bg_image']['id'] ) ) {
+
+			if( !empty( $settings['modal_bg_image']['id'] )) {
+				$bg_image = wp_get_attachment_image( $settings['modal_bg_image']['id'], 'large', 0, array( 'class' => 'rounded-left img-fluid' ) );
+			} else {
+				$bg_image = '';
+			}
+
+			echo '			
+				<div class="modal fade" id="'. $settings['modal_id'] .'" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog '. $settings['modal_size'] .' '. $settings['modal_position'] .'" role="document">
+						<div class="modal-content row flex-row no-gutters border-0 '. $settings['modal_bg_colour'] .' '. $settings['modal_content_colour'] .'">
+							<div class="col-lg-6">
+								'. $bg_image .'
+							</div>
+							<div class="col-lg-6 d-flex flex-column">';
+
+								if( 'yes' == $settings['show_close'] ) { 
+
+									echo '
+									<div class="modal-header text-center border-0 p-0">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">';
+												if( 'text-white' == $settings['modal_content_colour'] ) {
+												echo tommusrhodus_svg_icons_pluck( 'Interface Close', 'icon icon-sm bg-white' );
+												} else {
+													echo tommusrhodus_svg_icons_pluck( 'Interface Close', 'icon icon-sm bg-dark' );
+												}
+											echo '
+											</span>
+										</button>
+									</div>';
+								}
+
+								echo '
+
+								<div class="modal-body p-4 p-md-5 text-center flex-fill d-flex flex-column justify-content-center">						
+									<div class="'. $settings['modal_content_padding'] .'">';
+
+									if( '0' !== $settings['icon'] && 'text-white' == $settings['modal_content_colour'] ) {
+										echo '<div class="icon-round icon-round-lg bg-white mx-auto mb-4">'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md bg-white' ) .'</div>';
+									} elseif( '0' !== $settings['icon'] ) {
+										echo '<div class="icon-round icon-round-lg bg-primary mx-auto mb-4">'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-md bg-primary' ) .'</div>';
+									}
+
+									echo do_shortcode( $settings['content'] );
+
+									echo '
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			';
+
+		}
 		
 	}
 
