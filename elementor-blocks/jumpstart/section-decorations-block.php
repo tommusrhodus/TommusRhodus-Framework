@@ -57,7 +57,8 @@ class Widget_TommusRhodus_Decorations_Block extends Widget_Base {
 					'big_gradient_blog_top_left_alt' 		=> esc_html__( 'Alternative Big Gradient Blob Top Left', 'tr-framework' ),	
 					'big_gradient_blog_bottom_right' 		=> esc_html__( 'Big Gradient Blob Bottom Right', 'tr-framework' ),
 					'white_blob_bottom_left' 				=> esc_html__( 'White Blob Bottom Left', 'tr-framework' ),
-					'white_blob_top_right' 					=> esc_html__( 'White Block Top Right', 'tr-framework' ),
+					'white_blob_top_right' 					=> esc_html__( 'White Blob Top Right', 'tr-framework' ),
+					'big_white_blob_bottom_left' 			=> esc_html__( 'Big White Blob Bottom Left', 'tr-framework' ),
 					'triple_blob' 							=> esc_html__( 'Triple Blob', 'tr-framework' ),
 				],
 			]
@@ -157,8 +158,13 @@ class Widget_TommusRhodus_Decorations_Block extends Widget_Base {
 						';
 					}	
 
-      
-
+					if( 'big_white_blob_bottom_left' == $item['layout'] ) {
+						echo '
+						 	<div class="h-75 w-50 position-absolute bottom left" data-jarallax-element="-60">
+				        		<div class="blob bottom left w-100 h-100 bg-white opacity-10"></div>
+				     	 	</div>
+						';
+					}
 				}
 
 				echo '

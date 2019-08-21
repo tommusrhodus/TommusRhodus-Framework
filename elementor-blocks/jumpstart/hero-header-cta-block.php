@@ -129,6 +129,9 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
               				</div>
               			</div>
               		</section>
+              		<div class="position-absolute w-50 h-50 bottom right" data-jarallax-element="-50">
+				        <div class="blob blob-3 w-100 h-100 top right bg-white opacity-10"></div>
+			      	</div>
               	</div>';
 			
 		} 

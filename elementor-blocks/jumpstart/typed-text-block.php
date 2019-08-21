@@ -78,6 +78,33 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 		);
 
 		$this->add_control(
+			'text_colour', [
+				'label'   => __( 'Text Colour', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'text-primary',
+				'label_block' => true,
+				'options' => [
+					'text-regular'          			=> esc_html__( 'Regular', 'tr-framework' ),
+					'text-primary'          			=> esc_html__( 'Primary', 'tr-framework' ),
+					'text-white'          				=> esc_html__( 'White', 'tr-framework' ),
+				],
+			]
+		);
+
+		$this->add_control(
+			'underline', [
+				'label'   => __( 'Underline Typed Text?', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'span',
+				'label_block' => true,
+				'options' => [
+					'span'          			=> esc_html__( 'No Underlay', 'tr-framework' ),
+					'mark'          			=> esc_html__( 'Underline', 'tr-framework' ),
+				],
+			]
+		);
+
+		$this->add_control(
 			'prefix', [
 				'label'       => __( 'Prefix Text', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
@@ -117,6 +144,34 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 
 		$this->end_controls_section();
 
+	}
+
+	protected function render() {
+		
+		$settings                = $this->get_settings_for_display();
+		$user_selected_animation = (bool) $settings['_animation'];
+		$item_text               = '"'. rtrim( implode('","', array_column( $settings['list'], 'item_text' ) ), ',"' ) .'"';
+
+		if( 'basic' == $settings['layout'] ) {
+
+			echo "
+				<span class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>". $settings['prefix'] ."</span>
+				<div class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>
+	            	<". $settings['underline'] ."><span data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span></". $settings['underline'] .">
+                </div>
+        	";
+
+		} elseif( 'fade' == $settings['layout'] ) {
+
+			echo "
+				<span class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>". $settings['prefix'] ."</span>
+				<div class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>
+                  <". $settings['underline'] ."><span data-typed-text data-loop='true' data-fade-out='true' data-show-cursor='false' data-type-speed='45' data-strings='[". $item_text ."]'></span></". $settings['underline'] .">
+                </div>
+        	";
+
+		}	
+	
 	}
 
 }

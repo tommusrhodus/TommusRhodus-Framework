@@ -394,3 +394,44 @@ if(!( function_exists('tommusrhodus_social_sharing') )) {
 	 
 	}	
 }
+
+/**
+ * Icon Shortcode
+ */
+if(!( function_exists('tommusrhodus_typed_text_shortcode') )) {
+	function tommusrhodus_typed_text_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'prefix' => '',
+	        	'heading_size' => 'h4',
+	        	'text_colour' => 'text-regular',
+	        	'text' => '',
+	        	'underline' => '',
+	        	'class' => '',
+	    	), 
+    	$atts );
+
+    	$item_text = $values['text'];
+
+    	if( 'yes' == $values['underline'] ) {
+
+		$output = "<span class='". $values['heading_size'] ." ". $values['text_colour'] ." ". $values['class'] ."'>". $values['prefix'] ."</span>
+				<div class='". $values['heading_size'] ." ". $values['text_colour'] ." ". $values['class'] ."'>
+	            	<mark><span data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span><mark>
+                </div>";  
+
+    	} else {
+
+		$output = "<span class='". $values['heading_size'] ." ". $values['text_colour'] ." ". $values['class'] ."'>". $values['prefix'] ."</span>
+				<div class='". $values['heading_size'] ." ". $values['text_colour'] ." ". $values['class'] ."'>
+	            	<span data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span>
+                </div>";  
+
+    	}  
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'jumpstart_typed_text', 'tommusrhodus_typed_text_shortcode' );
+}
