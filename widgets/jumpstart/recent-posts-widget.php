@@ -22,7 +22,7 @@ if(!( class_exists('TommusRhodus_Recent_Widget') )){
 				echo  $before_title.$title.$after_title;
 			} ?>
 	
-		    	<ul class="list-unstyled list-articles">
+		    	<ul class="list-unstyled d-flex flex-wrap">
 			    	<?php 
 			    		$widget_query = new WP_Query(
 			    			array(
@@ -35,25 +35,14 @@ if(!( class_exists('TommusRhodus_Recent_Widget') )){
 			    	  	
 			    	  	<?php $categories = get_the_category(); ?>
 
-						<li class="row row-tight">
-							<a href="<?php the_permalink(); ?>" class="col-3 col-md-4">
-								<?php the_post_thumbnail( 'thumbnail', array( 'class' => 'rounded' ) ); ?>
-							</a>
-							<div class="col d-flex flex-column justify-content-between">
-								<div>
-									<a href="<?php the_permalink(); ?>">
-										<h6 class="mb-1"><?php the_title(); ?></h6>
-									</a>
-									<div class="d-flex text-small">
-										<?php
-											if( is_array( $categories ) ){
-												foreach( $categories as $cat ){
-													echo '<a href="'. esc_url( get_category_link( $cat->term_id ) ) .'">'. $cat->name . '</a>';
-												}
-											}
-										?>
-										<span class="text-muted ml-1"><?php the_time( get_option('date_format') ); ?></span>
-									</div>
+						<li class="col-12 col-lg-6 col-xl-12 px-0">
+							<div class="row my-2 my-md-3">
+								<a href="<?php the_permalink(); ?>" class="col-5">
+									<?php the_post_thumbnail( 'jumpstart-card-top', array( 'class' => 'rounded img-fluid hover-fade-out' ) ); ?>
+								</a>
+								<div class="col">
+									<a class="h6" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									<div class="text-small text-muted mt-2"><?php the_time( get_option('date_format') ); ?></div>
 								</div>
 							</div>
 						</li>
