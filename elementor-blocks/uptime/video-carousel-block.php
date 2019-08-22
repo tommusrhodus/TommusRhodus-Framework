@@ -73,7 +73,7 @@ class Widget_TommusRhodus_Video_Carousel_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'image', [
-				'label'      => __( 'Poster Image', 'tr-framework' ),
+				'label'      => __( 'Lightbox Poster Image', 'tr-framework' ),
 				'type'       => Controls_Manager::MEDIA,
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
