@@ -79,7 +79,6 @@ class Widget_TommusRhodus_Image_Divider_Block extends Widget_Base {
 		
 		$settings = $this->get_settings_for_display();
 		$url      =  wp_get_attachment_image_src( $settings['image']['id'], 'full' );
-		$url2     =  wp_get_attachment_image_src( $settings['image2']['id'], 'full' );
 		
 		if( 'divider-right' == $settings['layout'] ) {
 

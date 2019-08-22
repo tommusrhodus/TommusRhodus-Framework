@@ -105,6 +105,14 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 				],
 			]
 		);
+
+		$this->add_control(
+			'posts_offset', [
+				'label'   => esc_html__( 'Offset', 'tr-framework' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => '0'
+			]
+		);
 		
 		$this->end_controls_section();
 
@@ -118,6 +126,7 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 			shortcode_atts( 
 				array(
 					'posts_per_page' 	=> '6',
+					'posts_offset' 		=> '0',
 					'filter'		 	=> 'all',
 					'layout'		 	=> '2-columns',
 					'show_filters'		=> 'show',
@@ -141,6 +150,11 @@ class Widget_TommusRhodus_Portfolio_Block extends Widget_Base {
 			'posts_per_page' => $posts_per_page,
 			'paged'          => $paged
 		);
+
+		if( $posts_offset ){
+			$query_args[ 'offset' ] = $posts_offset;
+		}
+		
 		if(!( $filter == 'all' )) {
 			
 			// Check for WPML
