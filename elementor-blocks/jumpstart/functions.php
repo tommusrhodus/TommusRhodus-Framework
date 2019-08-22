@@ -310,6 +310,28 @@ if(!( function_exists('tommusrhodus_counter_shortcode') )) {
 }
 
 /**
+ * Countdown Shortcode
+ */
+if(!( function_exists('tommusrhodus_countdown_shortcode') )) {
+	function tommusrhodus_countdown_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'date' => '2020/10/05',
+	    	), 
+    	$atts );
+
+	    $output = '<span class="font-weight-bold add-countdown-time" data-countdown-date="'. $values['date'] .'"></span>';
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'jumpstart_countdown', 'tommusrhodus_countdown_shortcode' );
+}
+
+
+
+/**
  * Icon Shortcode
  */
 if(!( function_exists('tommusrhodus_all_icons_shortcode') )) {
