@@ -72,7 +72,7 @@ class Widget_TommusRhodus_Twitter_Slider_Block extends Widget_Base {
 
 		if( 'slider' == $settings['layout'] ) {
 
-			echo ';
+			echo '
 				<div data-twitter-fetcher data-username="'. $settings['twitter_username'] .'" data-twitter-flickity=\'{"wrapAround": true, "autoPlay":true}\' class="text-center">
 					<div class="carousel-cell">
 						<div class="user mb-3"></div>
