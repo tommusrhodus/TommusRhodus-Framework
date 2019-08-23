@@ -134,8 +134,7 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 
 		} elseif( 'fullwidth_text' == $settings['layout'] ) {
 
-			echo '
-			    <section class="controls-inside controls-light p-0 bg-primary-3" data-flickity=\'{ "imagesLoaded": true, "wrapAround": true }\'>';
+			echo '<section class="controls-inside controls-light p-0 bg-primary-3" data-flickity=\'{ "imagesLoaded": true, "wrapAround": true }\'>';
 
 			      	foreach( $settings['list'] as $item ){
 
@@ -146,7 +145,7 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 									<div class="row justify-content-center min-vh-70 align-items-center">
 										<div class="col-lg-10 col-xl-9">
 											<div class="text-center text-light">
-												'. do_shortcode( $item['content'] ) .';
+												'. do_shortcode( $item['content'] ) .'
 											</div>
 										</div>
 									</div>
@@ -156,9 +155,7 @@ class Widget_TommusRhodus_Slider_Block extends Widget_Base {
 
 					}
 
-			      echo '
-			    </section>
-			';
+			 echo '</section>';
 
 		} elseif( 'phone' == $settings['layout'] ) {
 
