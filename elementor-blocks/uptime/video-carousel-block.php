@@ -37,7 +37,7 @@ class Widget_TommusRhodus_Video_Carousel_Block extends Widget_Base {
 			'items_layout', [
 				'label'   => __( 'Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'basic',
+				'default' => 'left',
 				'label_block' => true,
 				'options' => [
 					'left'          	=> esc_html__( 'Left Align', 'tr-framework' ),
@@ -135,7 +135,7 @@ class Widget_TommusRhodus_Video_Carousel_Block extends Widget_Base {
 		$settings = $this->get_settings_for_display();
 		
 		echo '
-			<div class="arrows-inside mb-6" data-flickity=\'{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true, "prevNextButtons": false, "cellAlign": "left" }\'>';
+			<div class="arrows-inside mb-6" data-flickity=\'{ "autoPlay": true, "imagesLoaded": true, "wrapAround": true, "prevNextButtons": false, "cellAlign": "'. $settings['items_layout'] .'" }\'>';
 
 			foreach( $settings['list'] as $item ) {
 
@@ -200,11 +200,23 @@ class Widget_TommusRhodus_Video_Carousel_Block extends Widget_Base {
 
  	 		<script>
 				jQuery(document).ready(function(){
+					const players = Plyr.setup('.plyr');
 
-					jQuery( '[data-flickity]' ).each(function(){
-						jQuery(this).flickity();
-					});
+					var nodeList = document.querySelectorAll('[data-flickity]');
 
+					for (var i = 0, t = nodeList.length; i < t; i++) {
+					    var flkty = Flickity.data(nodeList[i]);
+					    if (!flkty) {
+					        // Check if element had flickity options specified in data attribute.
+					        var flktyData = nodeList[i].getAttribute('data-flickity');
+					        if (flktyData) {
+					            var flktyOptions = JSON.parse(flktyData);
+					            new Flickity(nodeList[i], flktyOptions);
+					        } else {
+					            new Flickity(nodeList[i]);
+					        }
+					    }
+					}
 				});
  	 		</script>
 
