@@ -54,6 +54,7 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'tiny',
 				'options' => [				
+					'small-side'      					=> esc_html__( 'Small Side Icon Card', 'tr-framework' ),	
 					'medium-side'      					=> esc_html__( 'Medium Side Icon Card', 'tr-framework' ),	
 					'medium-side-simple'				=> esc_html__( 'Medium Side Icon', 'tr-framework' ),
 					'medium-top-simple'					=> esc_html__( 'Medium Top Icon', 'tr-framework' ),	
@@ -81,7 +82,8 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 				'options' => [
 					'bg-primary'      	=> esc_html__( 'Primary Colour', 'tr-framework' ),
 					'bg-primary-2'		=> esc_html__( 'Primary Colour 2', 'tr-framework' ),					
-					'bg-white'        	=> esc_html__( 'White', 'tr-framework' )
+					'bg-white'        	=> esc_html__( 'White', 'tr-framework' ),					
+					'bg-success'		=> esc_html__( 'Success', 'tr-framework' )
 				],
 			]
 		);
@@ -116,7 +118,20 @@ class Widget_TommusRhodus_Icon_Text_Block extends Widget_Base {
 			echo '<div data-aos="fade-up" data-aos-delay="100">';
 		}
 		
-		if( 'medium-side' == $settings['layout'] ){
+		if( 'small-side' == $settings['layout'] ){
+			
+			echo '
+				<div class="mb-3 mr-4 ml-lg-0 mr-lg-4">
+					<div class="d-flex align-items-center">
+						<div class="rounded-circle '.  $settings['icon_colour'] .'-alt">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'm-2 icon icon-xs '. $settings['icon_colour'] ) .'
+						</div>
+						<h6 class="mb-0 ml-3">'. $settings['content'] .'</h6>
+					</div>
+				</div>
+			';
+		
+		} elseif( 'medium-side' == $settings['layout'] ){
 			
 			echo '
 				<div class="card card-body bg-white align-items-start flex-sm-row h-100">

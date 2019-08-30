@@ -89,7 +89,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 			'title',
 			[
 				'label'       => __( 'Title', 'tr-framework' ),
-				'type'        => Controls_Manager::TEXT,
+				'type'        => Controls_Manager::WYSIWYG,
 				'default'     => '',
 				'label_block' => true
 			]
