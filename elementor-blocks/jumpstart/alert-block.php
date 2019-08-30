@@ -99,7 +99,7 @@ class Widget_TommusRhodus_Alert_Block extends Widget_Base {
 					'alert-danger'    => 'Danger',
 					'alert-warning'   => 'Warning',
 					'alert-info'      => 'Info',
-					'alert-light'     => 'Light',
+					'bg-light'     => 'Light',
 					'alert-dark'      => 'Dark',
 				],
 			]

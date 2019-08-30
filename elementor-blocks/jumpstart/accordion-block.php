@@ -84,7 +84,7 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 		
 			echo '
 				<div class="card mb-2 mb-md-3">
-					<a href="#'. esc_attr( $attr_title ) .'" data-toggle="collapse" role="button" aria-expanded="false" class="p-3 p-md-4"  aria-controls="'. esc_attr( $attr_title ) .'">
+					<a href="#'. sanitize_file_name( $attr_title ) .'" data-toggle="collapse" role="button" aria-expanded="false" class="p-3 p-md-4"  aria-controls="'. sanitize_file_name( $attr_title ) .'">
 						<div class="d-flex justify-content-between align-items-center">
 							<h6 class="mb-0 mr-2">'. $title .'</h6>
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="icon icon-sm" data-src="assets/img/icons/interface/icon-caret-right.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -92,7 +92,7 @@ class Widget_TommusRhodus_Accordion_Block extends Widget_Base {
 							</svg>
 						</div>
 					</a>
-					<div class="collapse" id="'. esc_attr( $attr_title ) .'" data-parent="#'. esc_attr( $attr_title ) .'">
+					<div class="collapse" id="'. sanitize_file_name( $attr_title ) .'" data-parent="#'. sanitize_file_name( $attr_title ) .'">
 						<div class="px-3 px-md-4 pb-3 pb-md-4">
 							'. $settings['item_content'] .'
 						</div>

@@ -166,7 +166,7 @@ class Widget_TommusRhodus_Tabs_HTML_Block extends Widget_Base {
 						      		<li class="nav-item">
 						      			<a class="btn btn-lg btn-primary w-100 '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" role="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" '; if( 0 == $i ) { echo 'aria-selected="true"'; } else { echo 'aria-selected="false"'; } echo '>
 							                <div class="d-flex align-items-center">
-							                  	'. tommusrhodus_svg_icons_pluck( $item['icon'], 'icon bg-primary' ) .'
+							                  	'. tommusrhodus_svg_icons_pluck( $item['icon'], 'icon bg-primary mr-2' ) .'
 							                  	'. $item['title'] .'
 							                </div>
 						                </a>

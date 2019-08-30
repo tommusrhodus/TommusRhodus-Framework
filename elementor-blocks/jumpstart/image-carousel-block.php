@@ -40,8 +40,9 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 				'default' => 'fullwidth',
 				'label_block' => true,
 				'options' => [
-					'fullwidth'			=> esc_html__( 'Fullwidth Carousel', 'tr-framework' ),
-					'single'			=> esc_html__( 'Single Item', 'tr-framework' ),
+					'fullwidth'						=> esc_html__( 'Fullwidth Carousel', 'tr-framework' ),
+					'fullwidth-no-bullets'			=> esc_html__( 'Fullwidth Carousel, No Bullets', 'tr-framework' ),
+					'single'						=> esc_html__( 'Single Item', 'tr-framework' ),
 				],
 			]
 		);
@@ -107,6 +108,27 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 		
 			echo '
 				<div class="highlight-selected" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true }\'>';
+
+				foreach( $settings['list'] as $item ) {
+
+					echo '
+						<div class="carousel-cell text-center col-9 col-md-7 col-lg-5">
+							<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'img-fluid rounded' ) ) .'
+							</a>
+						</div>
+					';
+
+				}
+
+				echo '
+				</div>		
+			';
+
+		} elseif( 'fullwidth-no-bullets' == $settings['layout'] ) {
+		
+			echo '
+				<div class="highlight-selected" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true, "pageDots": false }\'>';
 
 				foreach( $settings['list'] as $item ) {
 

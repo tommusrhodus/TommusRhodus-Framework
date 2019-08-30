@@ -316,7 +316,7 @@ class Widget_TommusRhodus_Maps_Block extends Widget_Base {
 		}
 
 		if( 'divider_right' == $settings['layout'] ) {
-			echo '<div class="divider divider-side '. esc_attr( $settings['divider_colour'] ) .' d-none d-lg-block rotated-180"></div>';
+			echo '<div class="divider divider-side '. esc_attr( $settings['divider_colour'] ) .' d-none d-lg-block"></div>';
 		}
 
 	}

@@ -238,16 +238,14 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 				<div class="card card-body align-items-center shadow '. $settings['skin'] .'">
 					
 					<div class="badge badge-success badge-pill mb-4">'. $settings['description_title'] .'</div>
-					
+
 					<div class="text-center mb-4">
 						<h4>'. $settings['title'] .'</h4>
-					
-						<div class="d-flex align-items-start pb-md-2">
+						<div class="d-flex align-items-center justify-content-center mb-1">
 							<span class="h5 mb-0 mr-2">'. $settings['currency'] .'</span>
 							<span class="display-3 mb-0 text-dark">'. $settings['price'] .'</span>
-						</div>	
-
-						<div>'. $settings['small_text'] .'</div>				
+						</div>
+						<div>'. $settings['small_text'] .'</div>
 					</div>
 
 			        <ul class="text-center list-unstyled p-0">
@@ -257,9 +255,9 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 
 					if( 'text-strikethrough' == $item['detail_style'] ) {
 						echo '
-							<li class="my-3">
+							<li class="my-3 opacity-50">
                   				<div class="d-flex align-items-center">
-                    				<div class="rounded-circle bg-success-alt">
+                    				<div class="rounded-circle bg-danger-alt">
                     					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="injected-svg m-2 icon icon-xs bg-danger" data-src="assets/img/icons/interface/icon-x.svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 										<path d="M18 6L6 18" stroke="#2C3038" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
 										<path d="M6 6L18 18" stroke="#2C3038" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
