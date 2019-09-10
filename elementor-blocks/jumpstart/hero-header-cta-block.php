@@ -81,30 +81,27 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
 		
 		$settings = $this->get_settings_for_display();
 		
-		if( 'gradient-bg-form-right' == $settings['layout'] ){
-		
-			echo '
-				<div class="bg-gradient o-hidden position-relative" data-overlay>
-      				<section>
-        				<div class="container">
-          					<div class="row justify-content-around align-items-center">
-            					<div class="col-lg-6 col-xl-5 mb-4 mb-sm-5 mb-lg-0">
-            						'. $settings['content'] .'
-        						</div>
-        						<div class="col-lg-6 col-xl-5 col-md-9" data-aos="fade-left" data-aos-delay="250">
-              						<div class="card card-body shadow-lg">
-              							'. $settings['cta_content'] .'
-              						</div>
-              					</div>
-              				</div>
-              			</div>
-              		</section>
-              		<div class="position-absolute w-50 h-50 bottom right" data-jarallax-element="-50">
-				        <div class="blob blob-3 w-100 h-100 top right bg-white opacity-10"></div>
-			      	</div>
-              	</div>';
-			
-		} 
+		echo '
+			<div class="bg-gradient o-hidden position-relative" data-overlay>
+					<section>
+					<div class="container">
+	  					<div class="row justify-content-around align-items-center">
+	    					<div class="col-lg-6 col-xl-5 mb-4 mb-sm-5 mb-lg-0">
+	    						'. $settings['content'] .'
+							</div>
+							<div class="col-lg-6 col-xl-5 col-md-9" data-aos="fade-left" data-aos-delay="250">
+	      						<div class="card card-body shadow-lg">
+	      							'. $settings['cta_content'] .'
+	      						</div>
+	      					</div>
+	      				</div>
+	      			</div>
+	      		</section>
+	      		<div class="position-absolute w-50 h-50 bottom right" data-jarallax-element="-50">
+			        <div class="blob blob-3 w-100 h-100 top right bg-white opacity-10"></div>
+		      	</div>
+	      	</div>
+	     ';
 		
 	}
 
