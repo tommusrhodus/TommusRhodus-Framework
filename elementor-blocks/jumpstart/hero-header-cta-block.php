@@ -28,36 +28,6 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
 	protected function _register_controls() {
 		
 		$this->start_controls_section(
-			'section_layout', [
-				'label' => esc_html__( 'Layout', 'tr-framework' ),
-			]
-		);
-		
-		$this->add_control(
-			'layout', [
-				'label'   => __( 'Hero Header Layout', 'tr-framework' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'gradient-bg-form-right',
-				'label_block' => true,
-				'options' => [
-					'gradient-bg-form-right'         	=> esc_html__( 'Gradient Background + Form', 'tr-framework' ),			
-				],
-			]
-		);
-		
-		$this->add_control(
-			'divider', [
-				'label'       => __( 'Bottom Divider Shape', 'tr-framework' ),
-				'type'        => Controls_Manager::SELECT,
-				'default'     => 'none',
-				'options'     => tommusrhodus_get_divider_layouts(),
-				'label_block' => true
-			]
-		);
-		
-		$this->end_controls_section();
-		
-		$this->start_controls_section(
 			'section_content', [
 				'label' => esc_html__( 'Content', 'tr-framework' ),
 			]
