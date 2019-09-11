@@ -34,16 +34,6 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
 		);
 		
 		$this->add_control(
-			'image', [
-				'label'      => __( 'Image', 'tr-framework' ),
-				'type'       => Controls_Manager::MEDIA,
-				'default' => [
-					'url' => '',
-				],
-			]
-		);
-		
-		$this->add_control(
 			'content', [
 				'label'       => __( 'Content', 'tr-framework' ),
 				'type'        => Controls_Manager::WYSIWYG,

@@ -82,15 +82,6 @@ class Widget_TommusRhodus_Testimonial_Carousel_Block extends Widget_Base {
 			]
 		);
 
-		$repeater->add_control(
-			'rating', [
-				'label'       => __( 'Rating (eg 5 or 4.5)', 'tr-framework' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => '5',
-				'label_block' => true
-			]
-		);
-
 		$this->add_control(
 			'list', [
 				'label'   => __( 'Slide Content', 'tr-framework' ),
