@@ -113,11 +113,7 @@ class Widget_TommusRhodus_Tabs_HTML_Block extends Widget_Base {
 
 				    			echo '
 						      		<li class="nav-item">
-						      			<a class="nav-link '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" role="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" '; if( 0 == $i ) { echo 'aria-selected="true"'; } else { echo 'aria-selected="false"'; } echo '>
-						                  <div class="icon-round icon-round-sm bg-primary">
-						                  	'. tommusrhodus_svg_icons_pluck( $item['icon'], 'icon bg-primary' ) .'
-						                  </div>
-						                  	
+						      			<a class="nav-link '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" role="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" '; if( 0 == $i ) { echo 'aria-selected="true"'; } else { echo 'aria-selected="false"'; } echo '>						                  	
 						                  	'. $item['title'] .'</a>
 						                </a>
 						     		 </li>';
