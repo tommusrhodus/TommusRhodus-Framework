@@ -37,17 +37,13 @@ class Widget_TommusRhodus_Service_Image_Block extends Widget_Base {
 			'caption_style', [
 				'label'   => __( 'Caption Style', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'default',
+				'default' => 'polaroid',
 				'options' => [
-					'default'   		=> 'Default',
-					'default-bottom'   	=> 'Default align Bottom',
-					'dark-bg'   		=> 'Dark Background',
-					'dark-bg-bottom'   	=> 'Dark Background align Bottom',
-					'light'   			=> 'Light',
-					'light-bottom'   	=> 'Light align Bottom',
-					'coloured'   		=> 'Coloured',
-					'coloured-bottom'	=> 'Coloured align Bottom',
-
+					'polaroid'   		=> 'Polaroid',
+					'list-view'   		=> 'List View',
+					'grid-view'   		=> 'Grid View',
+					'fs-grid-view'		=> 'Fullscreen Grid View',
+					'caption'   		=> 'Caption',
 				],
 			]
 		);
@@ -59,6 +55,15 @@ class Widget_TommusRhodus_Service_Image_Block extends Widget_Base {
 				'default' => [
 					'url' => Utils::get_placeholder_image_src(),
 				],
+			]
+		);
+
+		$this->add_control(
+			'title', [
+				'label'       => __( 'Title', 'tr-framework' ),
+				'type'        => Controls_Manager::WYSIWYG,
+				'default'     => '',
+				'label_block' => true
 			]
 		);
 
@@ -96,176 +101,97 @@ class Widget_TommusRhodus_Service_Image_Block extends Widget_Base {
 		$nofollow = $settings['url']['nofollow']    ? ' rel="nofollow"'  : '';
 		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
 
-		if( 'default' == $settings['caption_style'] ) {
+		if( 'polaroid' == $settings['caption_style'] ) {
 
 			echo '
-				<figure class="overlay caption caption-overlay mb-0">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-center mx-auto">
-							<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
-						</div>
-					</figcaption>
-				</figure>
+				<div class="item">
+					<div class="box bg-white shadow p-30">
+						<figure class="main polaroid">
+							'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'
+						</figure>
+						'. $settings['caption'] .'
+					</div>
+				</div>
 			';
 
-		} elseif( 'default-bottom' == $settings['caption_style'] ) {
+		} elseif( 'list-view' == $settings['caption_style'] ) {
 
 			echo '
-				<figure class="overlay caption caption-overlay mb-0">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-end mx-auto">
-							<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
-						</div>
-					</figcaption>
-				</figure>
-			';
-
-		} elseif( 'dark-bg' == $settings['caption_style'] ) {
-
-			echo '
-				<figure class="overlay caption rounded">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-center mx-auto">
-							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+				<div class="list-vew">
+					<div class="item grid-sizer">
+						<div class="bg-white shadow rounded">
+							<div class="image-block-wrapper">
+								<div class="image-block col-lg-6">
+									<div class="image-block-bg bg-image" data-image-src="'. esc_url( $url[0] ) .'"></div>
+								</div>
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-lg-6 offset-lg-6">
+											<div class="box d-flex">
+												<div class="align-self-center">
+													'. $settings['caption'] .'
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</figcaption>
-				</figure>
+					</div>
+				</div>
 			';
 
-		} elseif( 'dark-bg-bottom' == $settings['caption_style'] ) {
+		} elseif( 'grid-view' == $settings['caption_style'] ) {
 
 			echo '
-				<figure class="overlay caption rounded">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-end mx-auto">
-							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
-							</div>
+				<div class="boxed grid-vew">
+					<div class="item">
+						<div class="box bg-white shadow p-30">
+							<figure class="main mb-30">
+								'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'
+							</figure>
+							'. $settings['caption'] .'
 						</div>
-					</figcaption>
-				</figure>
+					</div>
+				</div>
 			';
 
-		} elseif( 'light' == $settings['caption_style'] ) {
+		} elseif( 'fs-grid-view' == $settings['caption_style'] ) {
 
 			echo '
-				<figure class="overlay caption light rounded">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-center mx-auto">
-							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
-							</div>
-						</div>
-					</figcaption>
-				</figure>
+				<div class="grid-vew">
+					<div class="item grid-sizer mb-0">
+						<figure class="overlay caption caption-overlay mb-0">
+							<a '. $link .'> 
+								<span class="bg"></span>
+								'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'
+							</a>
+							<figcaption class="d-flex">
+								<div class="align-self-center mx-auto">
+									'. $settings['caption'] .'
+								</div>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
 			';
 
-		} elseif( 'light-bottom' == $settings['caption_style'] ) {
+		} elseif( 'caption' == $settings['caption_style'] ) {
 
 			echo '
-				<figure class="overlay caption light rounded">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-end mx-auto">
-							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+				<div class="item grid-sizer mb-0">
+					<figure class="overlay caption caption-overlay mb-0">
+						<a '. $link .'> 
+							<span class="bg"></span>
+							'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'
+						</a>
+						<figcaption class="d-flex">
+							<div class="align-self-center mx-auto">
+								'. $settings['caption'] .'
 							</div>
-						</div>
-					</figcaption>
-				</figure>
-			';
-
-		} elseif( 'coloured' == $settings['caption_style'] ) {
-
-			echo '
-				<figure class="overlay caption color rounded">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-center mx-auto">
-							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
-							</div>
-						</div>
-					</figcaption>
-				</figure>
-			';
-
-		} elseif( 'coloured-bottom' == $settings['caption_style'] ) {
-
-			echo '
-				<figure class="overlay caption color rounded">';
-
-					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
-					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
-					}
-										
-					echo '
-					<figcaption class="d-flex">
-						<div class="align-self-end mx-auto">
-							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
-							</div>
-						</div>
-					</figcaption>
-				</figure>
+						</figcaption>
+					</figure>
+				</div>
 			';
 
 		}
