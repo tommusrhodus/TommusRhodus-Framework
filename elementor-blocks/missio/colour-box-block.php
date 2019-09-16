@@ -13,7 +13,7 @@ class Widget_TommusRhodus_Color_Box_Block extends Widget_Base {
 	
 	//Return Block Title (for blocks list)
 	public function get_title() {
-		return esc_html__( 'Color Bpx', 'tr-framework' );
+		return esc_html__( 'Color Box', 'tr-framework' );
 	}
 	
 	//Return Block Icon (for blocks list)
@@ -101,7 +101,7 @@ class Widget_TommusRhodus_Color_Box_Block extends Widget_Base {
 		
 		echo '
 			<div class="box '. $settings['text_layout'] .'" style="background-color: ' . $settings['bg_color'] . '">
-	            <div class="icon fs-50 color-dark mb-20"><i class="'. $settings['icon'] .'"></i></div>
+	            <div class="icon fs-50 color-dark mb-20"><i class="'. substr($settings['icon'], 0, 2) .' '. $settings['icon'] .'"></i></div>
 	            '. $settings['content'] .'
 	      	</div>
 		';

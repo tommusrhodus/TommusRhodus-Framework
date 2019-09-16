@@ -112,7 +112,7 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 
 				echo '
 				<div class="d-flex flex-row justify-content-center">
-					<div class="icon fs-58 icon-color color-dark mr-25"><i class="'. $settings['icon'] .'"></i></div>
+					<div class="icon fs-58 icon-color color-dark mr-25"><i class="'. substr($settings['icon'], 0, 2) .' '. $settings['icon'] .'"></i></div>
 					<div>
 						<h3 class="value">'. $settings['number'] .'</h3>
 						'. $settings['content'] .'
@@ -140,7 +140,7 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 				echo '
 				<div class="box bg-white shadow">
 					<div class="d-flex flex-row justify-content-center">
-						<div class="icon fs-58 icon-color mr-25" style="color: '. $settings['icon_color'] .'"> <i class="'. $settings['icon'] .'"></i> </div>
+						<div class="icon fs-58 icon-color mr-25" style="color: '. $settings['icon_color'] .'"> <i class="'. substr($settings['icon'], 0, 2) .' '. $settings['icon'] .'"></i> </div>
 						<div>
 							<h3 class="value">'. $settings['number'] .'</h3>
 							'. $settings['content'] .'
@@ -171,7 +171,7 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 				echo '
 				<div class="box" style="background-color: '. $settings['bg_color'] .'">
 					<div class="d-flex flex-row justify-content-center">
-						<div class="icon fs-58 icon-color color-dark mr-25"> <i class="'. $settings['icon'] .'"></i> </div>
+						<div class="icon fs-58 icon-color color-dark mr-25"> <i class="'. substr($settings['icon'], 0, 2) .' '. $settings['icon'] .'"></i> </div>
 						<div>
 							<h3 class="value">'. $settings['number'] .'</h3>
 							'. $settings['content'] .'
