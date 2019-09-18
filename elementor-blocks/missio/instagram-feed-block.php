@@ -99,7 +99,7 @@ class Widget_TommusRhodus_Instagram_Feed_Block extends Widget_Base {
 
 			echo '
 			<div class="tiles tiles-s">
-         	 	<div id="instafeed" class="items row" data-instagram-user-id="'. $settings['user_id'] .'" data-instagram-access-token="'. $settings['access_token'] .'" data-instagram-number-items="'. $settings['number_of_items'] .'"></div>
+         	 	<div id="instafeed-widget" class="items row" data-instagram-user-id="'. $settings['user_id'] .'" data-instagram-access-token="'. $settings['access_token'] .'" data-instagram-number-items="'. $settings['number_of_items'] .'"></div>
        		</div>
 			';
 

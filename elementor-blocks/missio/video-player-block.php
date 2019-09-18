@@ -83,15 +83,6 @@ class Widget_TommusRhodus_Video_Lightbox_Block extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'ogv_url', [
-				'label'       => __( 'Local Video .ogv URL', 'tr-framework' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => '',
-				'label_block' => true
-			]
-		);
-
 		$this->end_controls_section();
 
 	}
@@ -104,13 +95,10 @@ class Widget_TommusRhodus_Video_Lightbox_Block extends Widget_Base {
 		if( 'inline-local' == $settings['layout'] ) {
 
 			echo '
-				<div>
-					<video poster="'. esc_url( $image_url ) .'" class="player" playsinline controls preload="none">
-						<source src="'. esc_url( $settings['mp4_url'] ) .'" type="video/mp4">
-						<source src="'. esc_url( $settings['webm_url'] ) .'" type="video/webm">
-						<source src="'. esc_url( $settings['ogv_url'] ) .'" type="video/ogg">
-					</video>
-				</div>
+				<video poster="'. esc_url( $image_url ) .'" class="player" playsinline controls preload="none">
+					<source src="'. esc_url( $settings['mp4_url'] ) .'" type="video/mp4">
+					<source src="'. esc_url( $settings['webm_url'] ) .'" type="video/webm">
+				</video>
 			';	
 
 		} elseif( 'inline-embed-vimeo' == $settings['layout'] ) {

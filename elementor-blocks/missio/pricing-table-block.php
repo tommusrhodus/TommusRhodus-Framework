@@ -78,15 +78,6 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 		);
 		
 		$this->add_control(
-			'title', [
-				'label'       => __( 'Title', 'tr-framework' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => 'Unlimited',
-				'label_block' => true
-			]
-		);
-		
-		$this->add_control(
 			'currency', [
 				'label'       => __( 'Currency', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,

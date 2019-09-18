@@ -104,7 +104,7 @@ class Widget_TommusRhodus_Service_Image_Block extends Widget_Base {
 		if( 'polaroid' == $settings['caption_style'] ) {
 
 			echo '
-				<div class="item">
+				<div class="boxed item">
 					<div class="box bg-white shadow p-30">
 						<figure class="main polaroid">
 							'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'
@@ -117,7 +117,7 @@ class Widget_TommusRhodus_Service_Image_Block extends Widget_Base {
 		} elseif( 'list-view' == $settings['caption_style'] ) {
 
 			echo '
-				<div class="list-vew">
+				<div class="boxed list-view">
 					<div class="item grid-sizer">
 						<div class="bg-white shadow rounded">
 							<div class="image-block-wrapper">
@@ -163,7 +163,7 @@ class Widget_TommusRhodus_Service_Image_Block extends Widget_Base {
 					<div class="item grid-sizer mb-0">
 						<figure class="overlay caption caption-overlay mb-0">
 							<a '. $link .'> 
-								<span class="bg"></span>
+								<spanla la-arrow-right></span>
 								'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'
 							</a>
 							<figcaption class="d-flex">
@@ -182,7 +182,7 @@ class Widget_TommusRhodus_Service_Image_Block extends Widget_Base {
 				<div class="item grid-sizer mb-0">
 					<figure class="overlay caption caption-overlay mb-0">
 						<a '. $link .'> 
-							<span class="bg"></span>
+							<spanla la-arrow-right></span>
 							'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'
 						</a>
 						<figcaption class="d-flex">

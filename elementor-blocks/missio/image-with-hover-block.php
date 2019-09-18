@@ -135,9 +135,9 @@ class Widget_TommusRhodus_Image_Hover_Block extends Widget_Base {
 					<figure class="overlay '. $settings['overlay_style'] .' '. $settings['caption_style'] .' rounded">';
 
 						if( !empty( $settings['url']['url'] ) ) {
-							echo '<a href="#"><span class="bg"></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
+							echo '<a href="#"><span></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
 						} else {
-							echo '<span class="bg"></span>'.wp_get_attachment_image( $settings['image']['id'], 'full' );
+							echo '<span></span>'.wp_get_attachment_image( $settings['image']['id'], 'full' );
 						}
 
 						if( 'none' !== $settings['icon'] ) {
@@ -148,7 +148,7 @@ class Widget_TommusRhodus_Image_Hover_Block extends Widget_Base {
                     		</figcaption>
                    			 ';
 
-						} elseif( 'overlay3' !== $settings['overlay_style'] || 'overlay4' !== $settings['overlay_style'] ) {
+						} elseif( 'overlay1' == $settings['overlay_style'] || 'overlay2' == $settings['overlay_style'] ) {
 
 							echo '						
 							<figcaption>

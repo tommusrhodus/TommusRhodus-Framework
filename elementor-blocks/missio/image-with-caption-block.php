@@ -102,9 +102,9 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 				<figure class="overlay caption caption-overlay mb-0">';
 
 					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
+						echo '<a href="#"><spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
 					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
+						echo '<spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' );
 					}
 										
 					echo '
@@ -122,9 +122,9 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 				<figure class="overlay caption caption-overlay mb-0">';
 
 					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#">'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
+						echo '<a href="#"><spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
 					} else {
-						echo wp_get_attachment_image( $settings['image']['id'], 'full' );
+						echo '<spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' );
 					}
 										
 					echo '

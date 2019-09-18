@@ -137,7 +137,7 @@ class Widget_TommusRhodus_Service_Icon_Block extends Widget_Base {
 				<div class="box bg-white shadow">
 					<div class="d-flex flex-row justify-content-center">
 						<div class="icon fs-50 icon-color color-rose mr-25"> 
-							<i class="'. substr($settings['icon'], 0, 2) .' '. $settings['icon'] .'"></i>
+							<i class="'. substr($settings['icon'], 0, 2) .' '. $settings['icon'] .'"  style="color: '. $settings['icon_color'] .'"></i>
 						</div>
 						<div>
 							 '. $settings['content'] .'
