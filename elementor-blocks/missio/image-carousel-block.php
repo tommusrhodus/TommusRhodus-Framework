@@ -41,6 +41,7 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 				'label_block' => true,
 				'options' => [
 					'fullwidth'						=> esc_html__( 'Fullwidth Carousel', 'tr-framework' ),
+					'fullscreen'					=> esc_html__( 'Fullscreen Carousel', 'tr-framework' ),
 				],
 			]
 		);
@@ -106,6 +107,46 @@ class Widget_TommusRhodus_Image_Carousel_Block extends Widget_Base {
 		
 			echo '
 				<div class="flickity-carousel-container">
+        			<div class="flickity flickity-carousel">';
+
+				foreach( $settings['list'] as $item ) {
+
+					if( $item['item_link']['url'] ) {
+
+						echo '
+							<div class="item">
+								<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
+									'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+								</a>
+							</div>
+						';
+
+					} else {
+
+						echo '
+							<div class="item">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+							</div>
+						';
+
+					}
+
+					
+
+				}
+
+				echo '
+					</div>	
+					<p class="flickity-status"></p>
+				</div>		
+			';
+
+		} 
+
+		if( 'fullscreen' == $settings['layout'] ) {
+		
+			echo '
+				<div class="flickity-carousel-container fullscreen">
         			<div class="flickity flickity-carousel">';
 
 				foreach( $settings['list'] as $item ) {
