@@ -41,7 +41,9 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				'label_block' => true,
 				'options' => [
 					'image-and-title-card'					=> esc_html__( 'Image + Title Card', 'tr-framework' ),
-					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),
+					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),					
+					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),
+					'featured-gallery'						=> esc_html__( 'Feature Gallery', 'tr-framework' ),
 				],
 			]
 		);
@@ -123,9 +125,17 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				'label_block' => true,
 				'options' => [
 					'bg-white'					=> esc_html__( 'White Background', 'tr-framework' ),
-					'bg-dark'					=> esc_html__( 'Dark Background', 'tr-framework' ),
+					'bg-inverse'				=> esc_html__( 'Dark Background', 'tr-framework' ),
 					'bg-pastel-default'			=> esc_html__( 'Pastel Background', 'tr-framework' ),
 				],
+			]
+		);
+
+		$repeater->add_control(
+			'item_category', [
+				'label'       => __( 'Item Category? (Used for filtering)', 'tr-framework' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => ''
 			]
 		);
 
@@ -257,7 +267,92 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				</div>		
 			';
 
-		} 
+		} elseif( 'featured-gallery' == $settings['layout'] ) {
+		
+			echo '
+				<div class="flickity-slider-container fullscreen">
+          			<div class="flickity flickity-slider-main">';
+
+					foreach( $settings['list'] as $item ) {
+
+						echo '
+							<div class="item">
+				              	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+				            </div>
+						';						
+
+					}
+
+					echo '
+					</div>
+					<div class="flickity flickity-slider-nav">';
+
+					foreach( $settings['list'] as $item ) {
+
+						echo '
+							<div class="item">
+				              	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+				            </div>
+						';						
+
+					}
+
+				echo '
+					</div>	
+				</div>		
+			';
+
+		} elseif( 'filterable-image-and-title-card' == $settings['layout'] ) {
+
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			echo '
+			<div id="cube-grid-filter" class="cbp-filter-container text-center">
+	          	<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+
+	          	foreach( $filters as $filter ) {
+
+					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+				}
+
+				echo '
+	        </div>
+	        <div class="clearfix"></div>
+	        <div class="space20"></div>
+	        <div id="cube-grid" class="cbp">
+        	';
+
+        	foreach( $settings['list'] as $item ) {
+
+				echo '
+					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+						<figure class="overlay overlay1 rounded">
+							<span></span>
+							'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+						  	<figcaption>
+						    	<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+						  	</figcaption>
+						</figure>
+						'. $item['description'] .'
+					</div>
+				';			
+
+			}
+
+        	echo '
+        	</div>
+        	';
+
+		}
 
 		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
 
