@@ -44,7 +44,8 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),					
 					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),			
 					'filterable-image-lightbox'				=> esc_html__( 'Filterable Image Lightbox', 'tr-framework' ),
-					'featured-gallery'						=> esc_html__( 'Feature Gallery', 'tr-framework' ),
+					'featured-gallery'						=> esc_html__( 'Feature Gallery with Fullscreen Link', 'tr-framework' ),
+					'featured-gallery-no-zoom'				=> esc_html__( 'Feature Gallery', 'tr-framework' ),
 					'polaroid-carousel'						=> esc_html__( 'Polaroid Carousel', 'tr-framework' ),
 				],
 			]
@@ -304,6 +305,41 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				</div>		
 			';
 
+		} elseif( 'featured-gallery-no-zoom' == $settings['layout'] ) {
+		
+			echo '
+				<div class="flickity-slider-container">
+          			<div class="flickity flickity-slider-main">';
+
+					foreach( $settings['list'] as $item ) {
+
+						echo '
+							<div class="item">
+				              	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+				            </div>
+						';						
+
+					}
+
+					echo '
+					</div>
+					<div class="flickity flickity-slider-nav">';
+
+					foreach( $settings['list'] as $item ) {
+
+						echo '
+							<div class="item">
+				              	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+				            </div>
+						';						
+
+					}
+
+				echo '
+					</div>	
+				</div>		
+			';
+
 		} elseif( 'filterable-image-and-title-card' == $settings['layout'] ) {
 
 			$filter_categories = array();
@@ -440,7 +476,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				echo '
 					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
 						<figure class="overlay overlay3 rounded">
-							<a href="style/images/art/jp1-full.jpg" data-sub-html="#caption'. $i .'">
+							<a href="'. $item['image']['url'] .'" data-sub-html="#caption'. $i .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
 								<div id="caption'. $i .'" class="d-none">
 									'. $item['description'] .'
