@@ -72,6 +72,19 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 		);
 
 		$this->add_control(
+			'text_style', [
+				'label'   => __( 'Text Style', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'text-default',
+				'options' => [
+					'text-default'		=> 'Default',
+					'text-uppercase'   	=> 'Uppercase',
+
+				],
+			]
+		);
+
+		$this->add_control(
 			'url', [
 				'label'         => esc_html__( 'URL', 'tr-framework' ),
 				'type'          => Controls_Manager::URL,
@@ -110,7 +123,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					echo '
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
-							<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+							<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 						</div>
 					</figcaption>
 				</figure>
@@ -130,7 +143,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					echo '
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
-							<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+							<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 						</div>
 					</figcaption>
 				</figure>
@@ -151,7 +164,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
 							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 							</div>
 						</div>
 					</figcaption>
@@ -173,7 +186,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
 							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 							</div>
 						</div>
 					</figcaption>
@@ -195,7 +208,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
 							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 							</div>
 						</div>
 					</figcaption>
@@ -217,7 +230,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
 							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 							</div>
 						</div>
 					</figcaption>
@@ -239,7 +252,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
 							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 							</div>
 						</div>
 					</figcaption>
@@ -261,7 +274,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
 							<div class="caption-inner">
-								<h3 class="text-uppercase mb-0">'. $settings['caption'] .'</h3>
+								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
 							</div>
 						</div>
 					</figcaption>

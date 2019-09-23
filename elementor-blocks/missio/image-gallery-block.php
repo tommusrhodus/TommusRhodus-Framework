@@ -44,6 +44,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),					
 					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),
 					'featured-gallery'						=> esc_html__( 'Feature Gallery', 'tr-framework' ),
+					'polaroid-carousel'						=> esc_html__( 'Polaroid Carousel', 'tr-framework' ),
 				],
 			]
 		);
@@ -345,6 +346,56 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 						'. $item['description'] .'
 					</div>
 				';			
+
+			}
+
+        	echo '
+        	</div>
+        	';
+
+		} elseif( 'polaroid-carousel' == $settings['layout'] ) {
+
+			echo '<div class="cube-carousel cbp boxed grid-view text-center">';
+
+        	foreach( $settings['list'] as $item ) {
+
+        		if( $item['item_link']['url'] ) {
+
+        			echo '
+						<div class="cbp-item">
+							<div class="box bg-white shadow p-30">
+								<figure class="main polaroid overlay overlay1">
+									<span></span>
+				                	<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
+										'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+									</a>
+									<figcaption>
+										<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+									</figcaption>
+								</figure>
+								'. $item['description'] .'
+							</div>
+						</div>
+        			';
+
+        		} else {
+
+        			echo '
+						<div class="cbp-item">
+							<div class="box bg-white shadow p-30">
+								<figure class="main polaroid overlay overlay1">
+									<span></span>
+				                	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+									<figcaption>
+										<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+									</figcaption>
+								</figure>
+								'. $item['description'] .'
+							</div>
+						</div>
+        			';
+
+        		}		
 
 			}
 

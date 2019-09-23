@@ -57,6 +57,7 @@ class Widget_TommusRhodus_Service_Icon_Block extends Widget_Base {
 					'icon-left'      			=> esc_html__( 'Icon Left', 'tr-framework' ),
 					'bg-icon-left'      		=> esc_html__( 'BG Icon Left', 'tr-framework' ),	
 					'number-left'      			=> esc_html__( 'Number Left', 'tr-framework' ),	
+					'number-left-no-box'		=> esc_html__( 'Number Left, No Box', 'tr-framework' ),	
 					'icon-centered'      		=> esc_html__( 'Icon Centrred', 'tr-framework' ),
 					'bg-icon-centered'      	=> esc_html__( 'BG Icon Centrred', 'tr-framework' ),	
 					'number-centered'      		=> esc_html__( 'Number Centrred', 'tr-framework' ),	
@@ -91,7 +92,7 @@ class Widget_TommusRhodus_Service_Icon_Block extends Widget_Base {
 
 		$this->add_control(
 			'icon_bg_color', [
-				'label' => __( 'Icon Background Colour', 'tr-framework' ),
+				'label' => __( 'Icon/Number Background Colour', 'tr-framework' ),
 				'type' => Controls_Manager::COLOR,
 				'default'     => ''
 			]
@@ -99,7 +100,7 @@ class Widget_TommusRhodus_Service_Icon_Block extends Widget_Base {
 
 		$this->add_control(
 			'icon_color', [
-				'label' => __( 'Icon Colour', 'tr-framework' ),
+				'label' => __( 'Icon/Number Colour', 'tr-framework' ),
 				'type' => Controls_Manager::COLOR,
 				'default'     => ''
 			]
@@ -167,6 +168,23 @@ class Widget_TommusRhodus_Service_Icon_Block extends Widget_Base {
 			
 			echo '
 				<div class="box bg-white shadow">
+					<div class="d-flex flex-row justify-content-center">
+						<div>
+                  			<div class="icon fs-30 icon-bg mr-25" style="background-color: '. $settings['icon_bg_color'] .';"> 
+                  				<span class="number" style="color: '. $settings['icon_color'] .';">'. $settings['number'] .'</span> 
+              				</div>
+                		</div>
+						<div>
+							 '. $settings['content'] .'
+						</div>
+					</div>
+				</div>
+			';
+
+		} elseif( 'number-left-no-box' == $settings['layout'] ){
+			
+			echo '
+				<div>
 					<div class="d-flex flex-row justify-content-center">
 						<div>
                   			<div class="icon fs-30 icon-bg mr-25" style="background-color: '. $settings['icon_bg_color'] .';"> 
