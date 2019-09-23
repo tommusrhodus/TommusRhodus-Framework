@@ -85,6 +85,19 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 		);
 
 		$this->add_control(
+			'text_size', [
+				'label'   => __( 'Text Size', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'h3',
+				'options' => [
+					'h3'			=> 'H3',
+					'h5'   			=> 'H5',
+
+				],
+			]
+		);
+
+		$this->add_control(
 			'url', [
 				'label'         => esc_html__( 'URL', 'tr-framework' ),
 				'type'          => Controls_Manager::URL,
@@ -115,15 +128,15 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 				<figure class="overlay caption caption-overlay mb-0">';
 
 					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#"><spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
+						echo '<a href="#"><span></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
 					} else {
-						echo '<spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' );
+						echo '<span></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' );
 					}
 										
 					echo '
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
-							<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+							<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 						</div>
 					</figcaption>
 				</figure>
@@ -135,15 +148,15 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 				<figure class="overlay caption caption-overlay mb-0">';
 
 					if( !empty( $settings['url']['url'] ) ) {
-						echo '<a href="#"><spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
+						echo '<a href="#"><span></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' ) .'</a>';
 					} else {
-						echo '<spanla la-arrow-right></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' );
+						echo '<span></span>'. wp_get_attachment_image( $settings['image']['id'], 'full' );
 					}
 										
 					echo '
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
-							<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+							<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 						</div>
 					</figcaption>
 				</figure>
@@ -164,7 +177,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
 							<div class="caption-inner">
-								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+								<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 							</div>
 						</div>
 					</figcaption>
@@ -186,7 +199,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
 							<div class="caption-inner">
-								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+								<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 							</div>
 						</div>
 					</figcaption>
@@ -208,7 +221,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
 							<div class="caption-inner">
-								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+								<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 							</div>
 						</div>
 					</figcaption>
@@ -230,7 +243,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
 							<div class="caption-inner">
-								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+								<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 							</div>
 						</div>
 					</figcaption>
@@ -252,7 +265,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-center mx-auto">
 							<div class="caption-inner">
-								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+								<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 							</div>
 						</div>
 					</figcaption>
@@ -274,7 +287,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 					<figcaption class="d-flex">
 						<div class="align-self-end mx-auto">
 							<div class="caption-inner">
-								<h3 class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</h3>
+								<'. $settings['text_size'] .' class="'. $settings['text_style'] .' mb-0">'. $settings['caption'] .'</'. $settings['text_size'] .'>
 							</div>
 						</div>
 					</figcaption>

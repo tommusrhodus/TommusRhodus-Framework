@@ -42,7 +42,8 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				'options' => [
 					'image-and-title-card'					=> esc_html__( 'Image + Title Card', 'tr-framework' ),
 					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),					
-					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),
+					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),			
+					'filterable-image-lightbox'				=> esc_html__( 'Filterable Image Lightbox', 'tr-framework' ),
 					'featured-gallery'						=> esc_html__( 'Feature Gallery', 'tr-framework' ),
 					'polaroid-carousel'						=> esc_html__( 'Polaroid Carousel', 'tr-framework' ),
 				],
@@ -71,7 +72,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'overlay_caption', [
-				'label'       => __( 'Overlay Caption', 'tr-framework' ),
+				'label'       => __( 'Overlay Caption (Used in applicable layouts)', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'See Gallery'
 			]
@@ -79,7 +80,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'item_link', [
-				'label' => __( 'Link Image to URL?', 'tr-framework' ),
+				'label' => __( 'Link Image to URL? (Used in applicable layouts)', 'tr-framework' ),
 				'type' => \Elementor\Controls_Manager::URL,
 				'placeholder' => __( '#', 'tr-framework' ),
 				'show_external' => true,
@@ -396,6 +397,60 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
         			';
 
         		}		
+
+			}
+
+        	echo '
+        	</div>
+        	';
+
+		} elseif( 'filterable-image-lightbox' == $settings['layout'] ) {
+
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			echo '
+			<div id="cube-grid-filter" class="cbp-filter-container text-center">
+	          	<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+
+	          	foreach( $filters as $filter ) {
+
+					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+				}
+
+				echo '
+	        </div>
+	        <div class="clearfix"></div>
+	        <div class="space20"></div>
+	        <div id="cube-grid" class="cbp light-gallery">
+        	';
+
+        	$i = 0;
+
+        	foreach( $settings['list'] as $item ) {
+
+				echo '
+					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+						<figure class="overlay overlay3 rounded">
+							<a href="style/images/art/jp1-full.jpg" data-sub-html="#caption'. $i .'">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+								<div id="caption'. $i .'" class="d-none">
+									'. $item['description'] .'
+								</div>
+							</a>
+						</figure>
+					</div>
+				';			
+
+				$i++;
 
 			}
 
