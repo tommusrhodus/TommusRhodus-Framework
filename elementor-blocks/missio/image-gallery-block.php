@@ -75,7 +75,8 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 			'overlay_caption', [
 				'label'       => __( 'Overlay Caption (Used in applicable layouts)', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => 'See Gallery'
+				'default'     => 'See Gallery',
+				'label_block' => true
 			]
 		);
 
@@ -138,7 +139,8 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 			'item_category', [
 				'label'       => __( 'Item Category? (Used for filtering)', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => ''
+				'default'     => '',
+				'label_block' => true
 			]
 		);
 
