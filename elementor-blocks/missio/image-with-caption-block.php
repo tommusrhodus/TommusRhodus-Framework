@@ -91,6 +91,7 @@ class Widget_TommusRhodus_Image_Caption_Block extends Widget_Base {
 				'default' => 'h3',
 				'options' => [
 					'h3'			=> 'H3',
+					'h4'			=> 'H4',
 					'h5'   			=> 'H5',
 
 				],
