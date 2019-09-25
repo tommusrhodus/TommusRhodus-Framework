@@ -41,8 +41,11 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 				'label_block' => true,
 				'options' => [
 					'text-list'							=> esc_html__( 'Text List', 'tr-framework' ),		
+					'filterable-text-list'				=> esc_html__( 'Filterable Text List', 'tr-framework' ),		
 					'filterable-select'					=> esc_html__( 'Filterable Grid, Select Filter Style', 'tr-framework' ),					
 					'filterable-image-and-text-list'	=> esc_html__( 'Filterable Image & Text List', 'tr-framework' ),
+					'grid-2-columns'					=> esc_html__( 'Grid 2 Columns', 'tr-framework' ),
+					'large-image-list'					=> esc_html__( 'Large Image List', 'tr-framework' ),	
 				],
 			]
 		);
@@ -292,6 +295,123 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
         	echo '
         	</div>
         	';
+
+		} elseif( 'filterable-text-list' == $settings['layout'] ) {
+
+
+			$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			echo '
+			<div class="d-flex flex-row justify-content-center align-items-center">
+				<div>
+					<div class="cbp-l-filters-dropdownTitle">Filter By:</div>
+				</div>
+				<div>
+					<div id="cube-inline-filter" class="cbp-l-filters-dropdown">
+						<div class="cbp-l-filters-dropdownWrap">
+							<div class="cbp-l-filters-dropdownHeader">All</div>
+							<div class="cbp-l-filters-dropdownList">
+								<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+
+								foreach( $filters as $filter ) {
+
+									echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+								}
+
+								echo '
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	        <div class="clearfix"></div>
+	        <div class="space20"></div>
+	        <div id="cube-inline" class="cbp cbp-text cbp-inline-bg numbered text-center">
+        	';
+
+        	$i = 0;
+
+        	foreach( $settings['list'] as $item ) {
+
+				echo '
+				<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+					<div class="container">
+						<div class="cbp-item-inner">
+							<div class="meta">								
+								'. $item['description'] .'
+							</div>
+							<h3>
+								<a href="'. esc_url( $item['item_link']['url'] ) .'" class="cbp-singlePageInline image-tooltip" title=\'<img src="'. esc_url( $url[0] ) .'" />\' data-placement="right"><span class="number"></span>'. strip_tags( $item['overlay_caption'] ) .'
+								</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+				';			
+
+				$i++;
+
+			}
+
+        	echo '
+        	</div>
+        	';
+
+		} elseif( 'grid-2-columns' == $settings['layout'] ) {
+		
+			echo '<div id="cube-inline-5" class="cbp cbp-images cube-inline-5">';
+
+				foreach( $settings['list'] as $item ) {
+
+					echo '
+					<div class="cbp-item text-center">
+						<figure class="overlay overlay4">
+							<a href="'. esc_url( $item['item_link']['url'] ) .'" class="cbp-singlePageInline">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+							</a>
+							<figcaption class="d-flex">
+								<div class="align-self-center mx-auto">
+									<h3 class="caption mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h3>
+								</div>
+							</figcaption>
+						</figure>
+          			</div>';					
+
+				}
+
+			echo '</div>';
+
+		} elseif( 'large-image-list' == $settings['layout'] ) {
+
+			$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
+		
+			echo '<div id="cube-inline" class="cbp cbp-images cube-inline-4">';
+
+				foreach( $settings['list'] as $item ) {
+
+					echo '
+					<div class="cbp-item text-center">
+						<div class="wrapper image-wrapper cbp-image-wrapper bg-image inverse-text" data-image-src="'. esc_url( $url[0] ) .'">
+							<div class="container inner pt-120 pb-120">
+								'. $item['description'] .'
+								<a href="'. esc_url( $item['item_link']['url'] ) .'" class="btn btn-white cbp-singlePageInline">'. strip_tags( $item['overlay_caption'] ) .'</a>
+							</div>
+						</div>
+          			</div>';					
+
+				}
+
+			echo '</div>';
 
 		}
 		

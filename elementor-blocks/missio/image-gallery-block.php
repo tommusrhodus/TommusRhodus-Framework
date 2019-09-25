@@ -43,10 +43,13 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 					'image-and-title-card'					=> esc_html__( 'Image + Title Card', 'tr-framework' ),
 					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),					
 					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),			
-					'filterable-image-lightbox'				=> esc_html__( 'Filterable Image Lightbox', 'tr-framework' ),
+					'filterable-image-lightbox'				=> esc_html__( 'Filterable Image Lightbox', 'tr-framework' ),			
+					'filterable-image-lightbox-4-columns'	=> esc_html__( 'Filterable Image Lightbox, 4 Columns', 'tr-framework' ),		
+					'filterable-image-lightbox-2-columns'	=> esc_html__( 'Filterable Image Lightbox, 2 Columns', 'tr-framework' ),
 					'featured-gallery'						=> esc_html__( 'Feature Gallery with Fullscreen Link', 'tr-framework' ),
 					'featured-gallery-no-zoom'				=> esc_html__( 'Feature Gallery', 'tr-framework' ),
 					'polaroid-carousel'						=> esc_html__( 'Polaroid Carousel', 'tr-framework' ),
+					'polaroid'								=> esc_html__( 'Polaroid', 'tr-framework' ),
 				],
 			]
 		);
@@ -495,6 +498,168 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
         	echo '
         	</div>
         	';
+
+		} elseif( 'filterable-image-lightbox-2-columns' == $settings['layout'] ) {
+
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			echo '
+			<div id="cube-grid-large-filter" class="cbp-filter-container text-center">
+	          	<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+
+	          	foreach( $filters as $filter ) {
+
+					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+				}
+
+				echo '
+	        </div>
+	        <div class="clearfix"></div>
+	        <div class="space20"></div>
+	        <div id="cube-grid-large" class="cbp light-gallery">
+        	';
+
+        	$i = 0;
+
+        	foreach( $settings['list'] as $item ) {
+
+				echo '
+					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+						<figure class="overlay overlay3 rounded">
+							<a href="'. $item['image']['url'] .'" data-sub-html="#caption'. $i .'">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+								<div id="caption'. $i .'" class="d-none">
+									'. $item['description'] .'
+								</div>
+							</a>
+						</figure>
+					</div>
+				';			
+
+				$i++;
+
+			}
+
+        	echo '
+        	</div>
+        	';
+
+		} elseif( 'filterable-image-lightbox-4-columns' == $settings['layout'] ) {
+
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			echo '
+			<div id="cube-grid-large-filter" class="cbp-filter-container text-center">
+	          	<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+
+	          	foreach( $filters as $filter ) {
+
+					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+				}
+
+				echo '
+	        </div>
+	        <div class="clearfix"></div>
+	        <div class="space20"></div>
+	        <div id="cube-grid-full" class="cbp light-gallery">
+        	';
+
+        	$i = 0;
+
+        	foreach( $settings['list'] as $item ) {
+
+				echo '
+					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+						<figure class="overlay overlay3 rounded">
+							<a href="'. $item['image']['url'] .'" data-sub-html="#caption'. $i .'">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+								<div id="caption'. $i .'" class="d-none">
+									'. $item['description'] .'
+								</div>
+							</a>
+						</figure>
+					</div>
+				';			
+
+				$i++;
+
+			}
+
+        	echo '
+        	</div>
+        	';
+
+		} elseif( 'polaroid' == $settings['layout'] ) {
+		
+			echo '
+				<div class="tiles grid">
+          			<div class="items row isotope boxed grid-view text-center">';
+
+				foreach( $settings['list'] as $item ) {
+
+					if( $item['item_link']['url'] ) {
+
+						echo '
+							<div class="item grid-sizer col-md-6 col-lg-4">
+								<div class="box '. $item['bg_color'] .' shadow p-30">
+									<figure class="main polaroid overlay overlay1">
+										<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
+											'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+										</a>
+										<figcaption>
+											<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+										</figcaption>
+									</figure>
+									'. $item['description'] .'
+								</div>
+							</div>
+						';
+
+					} else {
+
+						echo '
+							<div class="item grid-sizer col-md-6 col-lg-4">
+								<div class="box '. $item['bg_color'] .' shadow p-30">
+									<figure class="main polaroid overlay overlay1">
+										<span></span>
+					                	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+										<figcaption>
+											<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+										</figcaption>
+									</figure>
+									'. $item['description'] .'
+								</div>
+							</div>
+						';
+
+					}
+
+					
+
+				}
+
+				echo '
+					</div>	
+				</div>		
+			';
 
 		}
 
