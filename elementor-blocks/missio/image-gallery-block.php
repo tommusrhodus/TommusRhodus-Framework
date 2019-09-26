@@ -42,7 +42,8 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				'options' => [
 					'image-and-title-card'					=> esc_html__( 'Image + Title Card', 'tr-framework' ),
 					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),					
-					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),			
+					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),
+					'image-and-title-card-carousel'			=> esc_html__( 'Image + Title Card Carousel', 'tr-framework' ),			
 					'filterable-image-lightbox'				=> esc_html__( 'Filterable Image Lightbox', 'tr-framework' ),			
 					'filterable-image-lightbox-4-columns'	=> esc_html__( 'Filterable Image Lightbox, 4 Columns', 'tr-framework' ),		
 					'filterable-image-lightbox-2-columns'	=> esc_html__( 'Filterable Image Lightbox, 2 Columns', 'tr-framework' ),
@@ -275,6 +276,58 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				</div>		
 			';
 
+		} elseif( 'image-and-title-card-carousel' == $settings['layout'] ) {
+		
+			echo '<div class="cube-carousel cbp boxed grid-view text-center">';
+
+				foreach( $settings['list'] as $item ) {
+
+					if( $item['item_link']['url'] ) {
+
+						echo '
+							<div class="cbp-item">
+				              	<div class="box '. $item['bg_color'] .' shadow p-30">
+				                	<figure class="main mb-20 overlay overlay1 rounded">
+				                		<span></span>
+					                	<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
+											'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+										</a>
+					                  	<figcaption>
+					                    	<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+					                  	</figcaption>
+					                </figure>
+				                	'. $item['description'] .'
+				              	</div>
+				            </div>
+						';
+
+					} else {
+
+						echo '
+							<div class="cbp-item">
+				              	<div class="box '. $item['bg_color'] .' shadow p-30">
+				                	<figure class="main mb-20 overlay overlay1 rounded">
+				                		<span></span>
+					                	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+					                  	<figcaption>
+					                    	<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+					                  	</figcaption>
+					                </figure>
+				                	'. $item['description'] .'
+				              	</div>
+				            </div>
+						';
+
+					}
+
+					
+
+				}
+
+				echo '
+				</div>		
+			';
+
 		} elseif( 'featured-gallery' == $settings['layout'] ) {
 		
 			echo '
@@ -457,20 +510,26 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 			$filters = array_unique(array_filter($filter_categories));
 
-			echo '
-			<div id="cube-grid-filter" class="cbp-filter-container text-center">
-	          	<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
-
-	          	foreach( $filters as $filter ) {
-
-					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
-
-				}
+			if( $filters ) {
 
 				echo '
-	        </div>
-	        <div class="clearfix"></div>
-	        <div class="space20"></div>
+				<div id="cube-grid-filter" class="cbp-filter-container text-center">
+		          	<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+
+		          	foreach( $filters as $filter ) {
+
+						echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+					}
+
+					echo '
+		        </div>
+		        <div class="clearfix"></div>
+		        <div class="space20"></div>';
+
+		    }
+
+		    echo '
 	        <div id="cube-grid" class="cbp light-gallery">
         	';
 

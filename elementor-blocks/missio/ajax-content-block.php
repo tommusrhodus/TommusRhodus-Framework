@@ -40,12 +40,14 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 				'default' => 'text-list',
 				'label_block' => true,
 				'options' => [
-					'text-list'							=> esc_html__( 'Text List', 'tr-framework' ),		
-					'filterable-text-list'				=> esc_html__( 'Filterable Text List', 'tr-framework' ),		
+					'text-list'							=> esc_html__( 'Simple Text List', 'tr-framework' ),		
+					'filterable-text-list'				=> esc_html__( 'Filterable Text List', 'tr-framework' ),										
+					'alt-filterable-text-list'			=> esc_html__( 'Alternative Filterable Text List ', 'tr-framework' ),		
 					'filterable-select'					=> esc_html__( 'Filterable Grid, Select Filter Style', 'tr-framework' ),					
 					'filterable-image-and-text-list'	=> esc_html__( 'Filterable Image & Text List', 'tr-framework' ),
 					'grid-2-columns'					=> esc_html__( 'Grid 2 Columns', 'tr-framework' ),
 					'large-image-list'					=> esc_html__( 'Large Image List', 'tr-framework' ),	
+					'3-column-image-list'				=> esc_html__( '3 Column Image List', 'tr-framework' ),	
 				],
 			]
 		);
@@ -81,13 +83,13 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 		$repeater->add_control(
 			'item_link', [
-				'label' => __( 'Gallery Post URL', 'tr-framework' ),
+				'label' => __( 'Gallery Post URL (if set to open in new window, user will be directed to the URL upon click)', 'tr-framework' ),
 				'type' => \Elementor\Controls_Manager::URL,
 				'placeholder' => __( '#', 'tr-framework' ),
 				'show_external' => true,
 				'default' => [
 					'url' => '',
-					'is_external' => true,
+					'is_external' => false,
 					'nofollow' => true,
 				],
 			]
@@ -154,9 +156,15 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 				foreach( $settings['list'] as $item ) {
 
+					if( $item['item_link']['is_external'] ) {
+	        			$class = '';
+	        		} else {        			
+	        			$class = 'cbp-singlePageInline';
+	        		}
+
 					echo '
 					<div class="cbp-item">
-            			<h3 class="text-uppercase"><a href="'. esc_url( $item['item_link']['url'] ) .'" class="cbp-singlePageInline">'. $item['description'] .'</a></h3>
+            			<h3 class="text-uppercase"><a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .'">'. $item['description'] .'</a></h3>
           			</div>';					
 
 				}
@@ -206,12 +214,18 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
         	$i = 0;
 
-        	foreach( $settings['list'] as $item ) {
+        	foreach( $settings['list'] as $item ) {       		
+
+        		if( $item['item_link']['is_external'] ) {
+        			$class = '';
+        		} else {        			
+        			$class = 'cbp-singlePageInline';
+        		}
 
 				echo '
 					<div class="cbp-item text-center '. sanitize_file_name( $item['item_category'] ) .'">
 		            	<figure class="overlay overlay4 rounded">
-		            		<a href="'. esc_url( $item['item_link']['url'] ) .'" class="cbp-singlePageInline">
+		            		<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
 								<figcaption class="d-flex">
 				                	<div class="align-self-center mx-auto">
@@ -264,6 +278,12 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
         	foreach( $settings['list'] as $item ) {
 
+        		if( $item['item_link']['is_external'] ) {
+        			$class = '';
+        		} else {        			
+        			$class = 'cbp-singlePageInline';
+        		}
+
 				echo '
 				<div class="cbp-item bordered cbp-item-flex '. sanitize_file_name( $item['item_category'] ) .'">
 					<div class="container">
@@ -278,7 +298,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 										<div class="ml-50">
 											'. $item['description'] .'
 											<div class="space10"></div>
-											<a href="'. esc_url( $item['item_link']['url'] ) .'" class="cbp-singlePageInline btn btn-white shadow">'. strip_tags( $item['overlay_caption'] ) .'</a>
+											<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .' btn btn-white shadow">'. strip_tags( $item['overlay_caption'] ) .'</a>
 										</div>
 									</div>
 								</div>
@@ -298,8 +318,6 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 		} elseif( 'filterable-text-list' == $settings['layout'] ) {
 
-
-			$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
 			$filter_categories = array();
 
 			foreach( $settings['list'] as $item ) {
@@ -310,30 +328,35 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 			$filters = array_unique(array_filter($filter_categories));
 
-			echo '
-			<div class="d-flex flex-row justify-content-center align-items-center">
-				<div>
-					<div class="cbp-l-filters-dropdownTitle">Filter By:</div>
-				</div>
-				<div>
-					<div id="cube-inline-filter" class="cbp-l-filters-dropdown">
-						<div class="cbp-l-filters-dropdownWrap">
-							<div class="cbp-l-filters-dropdownHeader">All</div>
-							<div class="cbp-l-filters-dropdownList">
-								<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+			if( $filters ) { 
+				echo '
+				<div class="d-flex flex-row justify-content-center align-items-center">
+					<div>
+						<div class="cbp-l-filters-dropdownTitle">Filter By:</div>
+					</div>
+					<div>
+						<div id="cube-inline-filter" class="cbp-l-filters-dropdown">
+							<div class="cbp-l-filters-dropdownWrap">
+								<div class="cbp-l-filters-dropdownHeader">All</div>
+								<div class="cbp-l-filters-dropdownList">
+									<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
 
-								foreach( $filters as $filter ) {
+									foreach( $filters as $filter ) {
 
-									echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+										echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
-								}
+									}
 
-								echo '
+									echo '
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
+				</div>';
+
+			}
+
+			echo '
 	        <div class="clearfix"></div>
 	        <div class="space20"></div>
 	        <div id="cube-inline" class="cbp cbp-text cbp-inline-bg numbered text-center">
@@ -343,6 +366,14 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
         	foreach( $settings['list'] as $item ) {
 
+        		$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
+
+        		if( 'on' == $item['item_link']['is_external'] ) {
+        			$class = '';
+        		} else {        			
+        			$class = 'cbp-singlePageInline';
+        		}
+
 				echo '
 				<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
 					<div class="container">
@@ -351,7 +382,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 								'. $item['description'] .'
 							</div>
 							<h3>
-								<a href="'. esc_url( $item['item_link']['url'] ) .'" class="cbp-singlePageInline image-tooltip" title=\'<img src="'. esc_url( $url[0] ) .'" />\' data-placement="right"><span class="number"></span>'. strip_tags( $item['overlay_caption'] ) .'
+								<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .' image-tooltip" title=\'<img src="'. esc_url( $url[0] ) .'" />\' data-placement="right"><span class="number"></span>'. strip_tags( $item['overlay_caption'] ) .'
 								</a>
 							</h3>
 						</div>
@@ -373,10 +404,16 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 				foreach( $settings['list'] as $item ) {
 
+					if( $item['item_link']['is_external'] ) {
+	        			$class = '';
+	        		} else {        			
+	        			$class = 'cbp-singlePageInline';
+	        		}
+
 					echo '
 					<div class="cbp-item text-center">
 						<figure class="overlay overlay4">
-							<a href="'. esc_url( $item['item_link']['url'] ) .'" class="cbp-singlePageInline">
+							<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
 							</a>
 							<figcaption class="d-flex">
@@ -391,20 +428,67 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 			echo '</div>';
 
-		} elseif( 'large-image-list' == $settings['layout'] ) {
+		} elseif( 'large-image-list' == $settings['layout'] ) {		
 
-			$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			if( $filters ) {
+
+			echo '
+				<div class="d-flex flex-row align-items-center">
+		          	<div>
+		            	<div class="cbp-l-filters-dropdownTitle">Filter By:</div>
+		          	</div>
+		          	<div>
+	            		<div id="cube-inline-8-filter" class="cbp-l-filters-dropdown">
+		             		<div class="cbp-l-filters-dropdownWrap">
+				                <div class="cbp-l-filters-dropdownHeader">All</div>
+				                <div class="cbp-l-filters-dropdownList">
+				                  	<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>';
+
+				                  	foreach( $filters as $filter ) {
+
+										echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+									}
+
+									echo '
+				                </div>
+			              	</div>
+			            </div>
+		          	</div>
+	        	</div>
+		        <div class="clearfix"></div>
+		        <div class="space20"></div>';
+
+	        }
 		
 			echo '<div id="cube-inline" class="cbp cbp-images cube-inline-4">';
 
 				foreach( $settings['list'] as $item ) {
+
+					if( $item['item_link']['is_external'] ) {
+	        			$class = '';
+	        		} else {        			
+	        			$class = 'cbp-singlePageInline';
+	        		}
+
+					$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
 
 					echo '
 					<div class="cbp-item text-center">
 						<div class="wrapper image-wrapper cbp-image-wrapper bg-image inverse-text" data-image-src="'. esc_url( $url[0] ) .'">
 							<div class="container inner pt-120 pb-120">
 								'. $item['description'] .'
-								<a href="'. esc_url( $item['item_link']['url'] ) .'" class="btn btn-white cbp-singlePageInline">'. strip_tags( $item['overlay_caption'] ) .'</a>
+								<a href="'. esc_url( $item['item_link']['url'] ) .'" class="btn btn-white '. $class .'">'. strip_tags( $item['overlay_caption'] ) .'</a>
 							</div>
 						</div>
           			</div>';					
@@ -413,7 +497,101 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 			echo '</div>';
 
-		}
+		} elseif( '3-column-image-list' == $settings['layout'] ) {			
+		
+			echo '<div id="cube-inline-6" class="cbp cbp-images cube-inline-6">';
+
+				foreach( $settings['list'] as $item ) {
+
+					$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
+
+					if( $item['item_link']['is_external'] ) {
+        				$class = '';
+	        		} else {        			
+	        			$class = 'cbp-singlePageInline';
+	        		}
+
+					echo '
+					<div class="cbp-item text-center family">
+						<figure class="overlay overlay4 rounded">
+							<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .'">
+								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+							</a>
+							<figcaption class="d-flex">
+								<div class="align-self-center mx-auto">
+									<h3 class="caption mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h3>
+								</div>
+							</figcaption>
+						</figure>
+					</div>';					
+
+				}
+
+			echo '</div>';
+
+		} elseif( 'alt-filterable-text-list' == $settings['layout'] ) {
+
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			echo '
+			<div class="container inner pt-60 pb-0">
+		        <div id="cube-inline-filter" class="cbp-filter-container">
+					<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>'; 
+
+					foreach( $filters as $filter ) {
+
+						echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+					}
+
+					echo '
+		        </div>
+      		</div>
+	        <div class="clearfix"></div>
+	        <div class="space20"></div>
+	        <div id="cube-inline" class="cbp cbp-text cube-inline-1">
+        	';
+
+        	$i = 0;
+
+        	foreach( $settings['list'] as $item ) {
+
+        		$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
+
+        		if( $item['item_link']['is_external'] ) {
+        			$class = '';
+        		} else {        			
+        			$class = 'cbp-singlePageInline';
+        		}
+
+				echo '
+				<div class="cbp-item bordered text-center '. sanitize_file_name( $item['item_category'] ) .'">
+					<div class="cbp-item-inner">
+						<div class="container d-md-flex justify-content-between align-items-center">
+							<h3><a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .' image-tooltip" title=\'<img src="'. esc_url( $url[0] ) .'" />\' data-placement="right">'. strip_tags( $item['overlay_caption'] ) .'</a></h3>
+							<div class="meta">'. $item['description'] .'</div>
+						</div>
+					</div>
+				</div>
+				';			
+
+				$i++;
+
+			}
+
+        	echo '
+        	</div>
+        	';
+
+		} 
 		
 	}
 
