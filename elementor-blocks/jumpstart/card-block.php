@@ -178,7 +178,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 		} elseif( 'image-left-text-right' == $settings['layout'] ) {
 
 			echo '
-				<div class=" mb-3 mb-lg-5">
+				<div class="image-left-text-right mb-3 mb-lg-5">
 					<div class="row align-items-center">
 						<div class="col-sm-4 mb-3 mb-sm-0">
 							'. wp_get_attachment_image( $settings['image']['id'], 'medium', 0, array( 'class' => 'img-fluid rounded' ) ) .'
