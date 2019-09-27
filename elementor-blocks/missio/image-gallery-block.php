@@ -416,7 +416,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 	          	foreach( $filters as $filter ) {
 
-					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+					echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 				}
 
@@ -430,7 +430,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
         	foreach( $settings['list'] as $item ) {
 
 				echo '
-					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+					<div class="cbp-item '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 						<figure class="overlay overlay1 rounded">
 							<span></span>
 							'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
@@ -518,7 +518,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 		          	foreach( $filters as $filter ) {
 
-						echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+						echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 					}
 
@@ -538,7 +538,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
         	foreach( $settings['list'] as $item ) {
 
 				echo '
-					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+					<div class="cbp-item '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 						<figure class="overlay overlay3 rounded">
 							<a href="'. $item['image']['url'] .'" data-sub-html="#caption'. $i .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
@@ -576,7 +576,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 	          	foreach( $filters as $filter ) {
 
-					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+					echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 				}
 
@@ -592,7 +592,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
         	foreach( $settings['list'] as $item ) {
 
 				echo '
-					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+					<div class="cbp-item '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 						<figure class="overlay overlay3 rounded">
 							<a href="'. $item['image']['url'] .'" data-sub-html="#caption'. $i .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
@@ -630,7 +630,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 	          	foreach( $filters as $filter ) {
 
-					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+					echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 				}
 
@@ -646,7 +646,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
         	foreach( $settings['list'] as $item ) {
 
 				echo '
-					<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+					<div class="cbp-item '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 						<figure class="overlay overlay3 rounded">
 							<a href="'. $item['image']['url'] .'" data-sub-html="#caption'. $i .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'

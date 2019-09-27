@@ -197,7 +197,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 			                  	foreach( $filters as $filter ) {
 
-									echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+									echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 								}
 
@@ -223,7 +223,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
         		}
 
 				echo '
-					<div class="cbp-item text-center '. sanitize_file_name( $item['item_category'] ) .'">
+					<div class="cbp-item text-center '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 		            	<figure class="overlay overlay4 rounded">
 		            		<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
@@ -263,7 +263,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
               	foreach( $filters as $filter ) {
 
-					echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+					echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 				}
 
@@ -285,7 +285,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
         		}
 
 				echo '
-				<div class="cbp-item bordered cbp-item-flex '. sanitize_file_name( $item['item_category'] ) .'">
+				<div class="cbp-item bordered cbp-item-flex '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 					<div class="container">
 						<div class="cbp-item-inner">
 							<div class="row">
@@ -343,7 +343,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 									foreach( $filters as $filter ) {
 
-										echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+										echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 									}
 
@@ -375,7 +375,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
         		}
 
 				echo '
-				<div class="cbp-item '. sanitize_file_name( $item['item_category'] ) .'">
+				<div class="cbp-item '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 					<div class="container">
 						<div class="cbp-item-inner">
 							<div class="meta">								
@@ -399,6 +399,36 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
         	';
 
 		} elseif( 'grid-2-columns' == $settings['layout'] ) {
+
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			if( $filters ) {
+
+			echo '
+				<div class="container inner pt-60 pb-0">
+			        <div id="cube-inline-5-filter" class="cbp-filter-container">
+						<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>'; 
+
+						foreach( $filters as $filter ) {
+
+							echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+						}
+
+						echo '
+			        </div>
+	      		</div>
+	      		<div class="clearfix"></div>
+		        <div class="space20"></div>';
+		    }
 		
 			echo '<div id="cube-inline-5" class="cbp cbp-images cube-inline-5">';
 
@@ -411,7 +441,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 	        		}
 
 					echo '
-					<div class="cbp-item text-center">
+					<div class="cbp-item text-center '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 						<figure class="overlay overlay4">
 							<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
@@ -443,12 +473,12 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 			if( $filters ) {
 
 			echo '
-				<div class="d-flex flex-row align-items-center">
+				<div class="d-flex flex-row justify-content-center align-items-center">
 		          	<div>
 		            	<div class="cbp-l-filters-dropdownTitle">Filter By:</div>
 		          	</div>
 		          	<div>
-	            		<div id="cube-inline-8-filter" class="cbp-l-filters-dropdown">
+	            		<div id="cube-inline-filter" class="cbp-l-filters-dropdown">
 		             		<div class="cbp-l-filters-dropdownWrap">
 				                <div class="cbp-l-filters-dropdownHeader">All</div>
 				                <div class="cbp-l-filters-dropdownList">
@@ -456,7 +486,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 				                  	foreach( $filters as $filter ) {
 
-										echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+										echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 									}
 
@@ -484,7 +514,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 					$url =  wp_get_attachment_image_src( $item['image']['id'], 'full' );
 
 					echo '
-					<div class="cbp-item text-center">
+					<div class="cbp-item text-center '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 						<div class="wrapper image-wrapper cbp-image-wrapper bg-image inverse-text" data-image-src="'. esc_url( $url[0] ) .'">
 							<div class="container inner pt-120 pb-120">
 								'. $item['description'] .'
@@ -497,7 +527,37 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 			echo '</div>';
 
-		} elseif( '3-column-image-list' == $settings['layout'] ) {			
+		} elseif( '3-column-image-list' == $settings['layout'] ) {		
+
+			$filter_categories = array();
+
+			foreach( $settings['list'] as $item ) {
+
+				$filter_categories[] = $item['item_category'];				
+
+			}
+
+			$filters = array_unique(array_filter($filter_categories));
+
+			if( $filters ) {
+
+			echo '
+				<div class="container inner pt-60 pb-0">
+			        <div id="cube-inline-8-filter" class="cbp-filter-container">
+						<div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All</div>'; 
+
+						foreach( $filters as $filter ) {
+
+							echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+
+						}
+
+						echo '
+			        </div>
+	      		</div>
+	      		<div class="clearfix"></div>
+		        <div class="space20"></div>';
+		    }	
 		
 			echo '<div id="cube-inline-6" class="cbp cbp-images cube-inline-6">';
 
@@ -512,7 +572,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 	        		}
 
 					echo '
-					<div class="cbp-item text-center family">
+					<div class="cbp-item text-center '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 						<figure class="overlay overlay4 rounded">
 							<a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .'">
 								'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
@@ -548,7 +608,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
 
 					foreach( $filters as $filter ) {
 
-						echo '<div data-filter=".'. sanitize_file_name( $filter ) .'" class="cbp-filter-item">'. $filter .'</div>';			
+						echo '<div data-filter=".'. sanitize_file_name( strtolower( $filter ) ) .'" class="cbp-filter-item">'. $filter .'</div>';			
 
 					}
 
@@ -573,7 +633,7 @@ class Widget_TommusRhodus_Ajax_Content_Block extends Widget_Base {
         		}
 
 				echo '
-				<div class="cbp-item bordered text-center '. sanitize_file_name( $item['item_category'] ) .'">
+				<div class="cbp-item bordered text-center '. sanitize_file_name( strtolower( $item['item_category'] ) ) .'">
 					<div class="cbp-item-inner">
 						<div class="container d-md-flex justify-content-between align-items-center">
 							<h3><a href="'. esc_url( $item['item_link']['url'] ) .'" class="'. $class .' image-tooltip" title=\'<img src="'. esc_url( $url[0] ) .'" />\' data-placement="right">'. strip_tags( $item['overlay_caption'] ) .'</a></h3>
