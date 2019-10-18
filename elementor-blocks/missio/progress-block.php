@@ -74,6 +74,7 @@ class Widget_TommusRhodus_Progress_Block extends Widget_Base {
 				'default' => 'pastel-lavender',
 				'label_block' => true,
 				'options' => [
+					'pastel-default'		=> esc_html__( 'Pastel Default', 'tr-framework' ),
 					'pastel-lavender'		=> esc_html__( 'Pastel Lavender', 'tr-framework' ),
 					'pastel-rose'			=> esc_html__( 'Pastel Rose', 'tr-framework' ),
 					'pastel-leaf'			=> esc_html__( 'Pastel Leaf', 'tr-framework' ),

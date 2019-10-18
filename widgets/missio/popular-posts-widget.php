@@ -48,7 +48,7 @@ if(!( class_exists('TommusRhodus_Popular_Widget') )){
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a> 
 								</h6>
 								<div class="meta">
-									<span class="date"><?php the_time( get_option('date_format') ); ?></span>
+									<span class="date"><?php the_time( 'M d, Y' ); ?></span>
 									<span class="comments"><a href="<?php comments_link(); ?>"><?php comments_number( esc_html__( '0', 'missio' ), esc_html__( '1', 'missio' ), esc_html__( '%', 'missio' ) ); ?></a></span>
 								</div>
 							</div>

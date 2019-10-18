@@ -40,17 +40,18 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 				'default' => 'image-and-title-card',
 				'label_block' => true,
 				'options' => [
-					'image-and-title-card'					=> esc_html__( 'Image + Title Card', 'tr-framework' ),
-					'image-and-title-card-custom-grid'		=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),					
-					'filterable-image-and-title-card'		=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),
-					'image-and-title-card-carousel'			=> esc_html__( 'Image + Title Card Carousel', 'tr-framework' ),			
-					'filterable-image-lightbox'				=> esc_html__( 'Filterable Image Lightbox', 'tr-framework' ),			
-					'filterable-image-lightbox-4-columns'	=> esc_html__( 'Filterable Image Lightbox, 4 Columns', 'tr-framework' ),		
-					'filterable-image-lightbox-2-columns'	=> esc_html__( 'Filterable Image Lightbox, 2 Columns', 'tr-framework' ),
-					'featured-gallery'						=> esc_html__( 'Feature Gallery with Fullscreen Link', 'tr-framework' ),
-					'featured-gallery-no-zoom'				=> esc_html__( 'Feature Gallery', 'tr-framework' ),
-					'polaroid-carousel'						=> esc_html__( 'Polaroid Carousel', 'tr-framework' ),
-					'polaroid'								=> esc_html__( 'Polaroid', 'tr-framework' ),
+					'image-and-title-card'								=> esc_html__( 'Image + Title Card', 'tr-framework' ),
+					'image-and-title-card-custom-grid'					=> esc_html__( 'Image + Title Card Custom Grid', 'tr-framework' ),	
+					'image-and-title-card-custom-grid-transparent'		=> esc_html__( 'Image + Title Card Custom Grid Transparent', 'tr-framework' ),					
+					'filterable-image-and-title-card'					=> esc_html__( 'Filterable Image + Title Card', 'tr-framework' ),
+					'image-and-title-card-carousel'						=> esc_html__( 'Image + Title Card Carousel', 'tr-framework' ),			
+					'filterable-image-lightbox'							=> esc_html__( 'Filterable Image Lightbox', 'tr-framework' ),			
+					'filterable-image-lightbox-4-columns'				=> esc_html__( 'Filterable Image Lightbox, 4 Columns', 'tr-framework' ),		
+					'filterable-image-lightbox-2-columns'				=> esc_html__( 'Filterable Image Lightbox, 2 Columns', 'tr-framework' ),
+					'featured-gallery'									=> esc_html__( 'Feature Gallery with Fullscreen Link', 'tr-framework' ),
+					'featured-gallery-no-zoom'							=> esc_html__( 'Feature Gallery', 'tr-framework' ),
+					'polaroid-carousel'									=> esc_html__( 'Polaroid Carousel', 'tr-framework' ),
+					'polaroid'											=> esc_html__( 'Polaroid', 'tr-framework' ),
 				],
 			]
 		);
@@ -178,7 +179,7 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 						echo '
 							<div class="item grid-sizer '. $item['item_size'] .'">
-				              	<div class="box '. $item['bg_color'] .' p-30">
+				              	<div class="box '. $item['bg_color'] .' shadow p-30">
 				                	<figure class="main mb-20 overlay overlay1 rounded">
 				                		<span></span>
 					                	<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
@@ -197,7 +198,62 @@ class Widget_TommusRhodus_Image_Gallery_Block extends Widget_Base {
 
 						echo '
 							<div class="item grid-sizer '. $item['item_size'] .'">
-				              	<div class="box '. $item['bg_color'] .' p-30">
+				              	<div class="box '. $item['bg_color'] .' shadow p-30">
+				                	<figure class="main mb-20 overlay overlay1 rounded">
+				                		<span></span>
+					                	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+					                  	<figcaption>
+					                    	<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+					                  	</figcaption>
+					                </figure>
+				                	'. $item['description'] .'
+				              	</div>
+				            </div>
+						';
+
+					}
+
+					
+
+				}
+
+				echo '
+					</div>	
+				</div>		
+			';
+
+		} elseif( 'image-and-title-card-custom-grid-transparent' == $settings['layout'] ) {
+		
+			echo '
+				<div class="tiles grid">
+          			<div class="items row align-items-start isotope boxed grid-view text-center">';
+
+				foreach( $settings['list'] as $item ) {
+
+					if( $item['item_link']['url'] ) {
+
+						echo '
+							<div class="item grid-sizer '. $item['item_size'] .'">
+				              	<div class="box p-30">
+				                	<figure class="main mb-20 overlay overlay1 rounded">
+				                		<span></span>
+					                	<a href="'. esc_url( $item['item_link']['url'] ) .'" target="'. $item['item_link_target'] .'">
+											'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
+										</a>
+					                  	<figcaption>
+					                    	<h5 class="text-uppercase from-top mb-0">'. strip_tags( $item['overlay_caption'] ) .'</h5>
+					                  	</figcaption>
+					                </figure>
+				                	'. $item['description'] .'
+				              	</div>
+				            </div>
+						';
+
+					} else {
+
+						echo '
+							<div class="item grid-sizer '. $item['item_size'] .'">
+				              	<div class="box p-30">
 				                	<figure class="main mb-20 overlay overlay1 rounded">
 				                		<span></span>
 					                	'. wp_get_attachment_image( $item['image']['id'], 'large', 0 ) .'
