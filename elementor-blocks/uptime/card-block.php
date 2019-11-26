@@ -509,7 +509,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 				echo '
 					<a '. $link .' class="card card-sm card-body flex-row align-items-center hover-shadow-3d">					
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary' ) .'	             	
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary', $settings['image']['url'] ) .'	             	
 	                  	<div class="ml-3">
 	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 		                    '. $settings['content'] .'
@@ -521,7 +521,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 				echo '
 					<div class="card card-sm card-body flex-row align-items-center">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary' ) .'	             	
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary', $settings['image']['url'] ) .'	             	
 	                  	<div class="ml-3">
 	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 		                    '. $settings['content'] .'
@@ -537,7 +537,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 				echo '
 					<a '. $link .' class="card card-sm card-body flex-row align-items-center hover-shadow-3d">					
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2' ) .'	             	
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2', $settings['image']['url'] ) .'	             	
 	                  	<div class="ml-3">
 	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 		                    '. $settings['content'] .'
@@ -549,7 +549,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 				echo '
 					<div class="card card-sm card-body flex-row align-items-center">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2' ) .'	             	
+						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2', $settings['image']['url'] ) .'	             	
 	                  	<div class="ml-3">
 	                  		<h5 class="mb-0">'. $settings['title'] .'</h5>
 		                    '. $settings['content'] .'
@@ -563,7 +563,7 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 
 			echo '
 				<a '. $link .' class="card card-sm card-body flex-row align-items-center hover-bg-primary-2 hover-shadow-3d">
-					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2' ) .'             	
+					'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon icon-lg bg-primary-2', $settings['image']['url'] ) .'             	
                   	<div class="ml-3">
                   		<h5 class="mb-0">'. $settings['title'] .'</h5>
 	                    '. $settings['content'] .'
