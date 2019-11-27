@@ -28,11 +28,21 @@ class Widget_TommusRhodus_Inner_Decorations_Block extends Widget_Base {
 	protected function _register_controls() {
 		
 		$this->start_controls_section(
-			'section_my_custom', [
-				'label' => esc_html__( 'Inner Decorations Settings', 'tr-framework' ),
+			'styling_section', [
+				'label' => __( 'Decorations Styling', 'tr-framework' )
 			]
-		);		
-
+		);
+		
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'blob_background',
+				'label' => __( 'Background', 'tr-framework' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}}.decoration-block .blob',
+			]
+		);
+		
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -58,11 +68,11 @@ class Widget_TommusRhodus_Inner_Decorations_Block extends Widget_Base {
 
 		$this->add_control(
 			'list', [
-				'label'   => __( 'Slide Content', 'tr-framework' ),
+				'label'   => __( 'Decoration', 'tr-framework' ),
 				'type'    => Controls_Manager::REPEATER,
 				'fields'  => $repeater->get_controls(),
 				'default' => [],
-				'title_field' => __( 'Slide Content', 'tr-framework' ),
+				'title_field' => __( 'Decoration', 'tr-framework' ),
 			]
 		);		
 
@@ -72,25 +82,34 @@ class Widget_TommusRhodus_Inner_Decorations_Block extends Widget_Base {
 
 	protected function render() {
 		
-		$settings                = $this->get_settings_for_display();
-		$user_selected_animation = (bool) $settings['_animation'];	
+		$settings                 = $this->get_settings_for_display();
+		$user_selected_animation  = (bool) $settings['_animation'];	
+		$user_selected_background = (bool) $settings['blob_background_background'];
 
 		foreach( $settings['list'] as $item ){
 
 			if( 'blob_bottom_right' == $item['layout'] ) {
+				
+				$class = ( $user_selected_background ) ? '' : 'bg-success opacity-90';
+				
 				echo '
-					<div class="decoration-block h-75 w-75 position-absolute bottom right d-none d-lg-block" data-jarallax-element="-50">
-                  		<div class="blob blob-4 w-100 h-100 bg-success opacity-90"></div>
+					<div class="elementor-element elementor-element-'. $this->get_id() .' decoration-block h-75 w-75 position-absolute bottom right d-none d-lg-block" data-jarallax-element="-50">
+                  		<div class="blob blob-4 w-100 h-100 '. $class .'"></div>
                		</div>
 				';
+				
 			}	
 
 			if( 'blob_bottom_left' == $item['layout'] ) {
+				
+				$class = ( $user_selected_background ) ? '' : 'bg-primary-2 opacity-90';
+				
 				echo '
-					<div class="decoration-block h-50 w-50 position-absolute bottom left d-none d-lg-block" data-jarallax-element="-50">
-                  		<div class="blob blob-2 w-100 h-100 bg-primary-2 opacity-90 top right"></div>
+					<div class="elementor-element elementor-element-'. $this->get_id() .' decoration-block h-50 w-50 position-absolute bottom left d-none d-lg-block" data-jarallax-element="-50">
+                  		<div class="blob blob-2 w-100 h-100 '. $class .' top right"></div>
                 	</div>
 				';
+				
 			}	
 
 		}
