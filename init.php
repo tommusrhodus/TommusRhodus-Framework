@@ -208,7 +208,8 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 										$option['id'], 
 										array(
 											'default'   => $option['default'],
-											'transport' => $option['transport']
+											'transport' => $option['transport'],
+											'type'      => ( isset( $option['option_type'] ) ) ? $option['option_type'] : 'theme_mod'
 										)
 									);
 									
@@ -594,3 +595,78 @@ add_action( 'admin_init', function() {
 		remove_action( 'admin_init', [ \Elementor\Plugin::$instance->admin, 'maybe_redirect_to_getting_started' ] );
 	}
 }, 1 );
+
+/* Add post type options automatically */
+function tr_framework_post_type_options( $args ){
+	
+	/**
+	 * Setup theme customiser options
+	 */
+	if( is_array( $args['post_types'] ) ) :
+		
+		$sections = array();
+		
+		foreach( $args['post_types'] as $key => $array ) :
+			
+			$options = array();
+			
+			if( $array['has_archive'] ){
+			
+				$options[] = array(
+					'id'          => $key . '_post_type_slug',
+					'title'       => ucfirst( $key ) . ' Archive URL Slug',
+					'default'     => get_option( $key . '_post_type_slug', $key ),
+					'type'        => 'text',
+					'transport'   => 'postMessage',
+					'choices'     => '',
+					'option_type' => 'option'
+				);
+				
+			}
+			
+			$options[] = array(
+				'id'          => $key . '_post_type_active',
+				'title'       => ucfirst( $key ) . ' Post Type Active?',
+				'default'     => 'yes',
+				'type'        => 'select',
+				'transport'   => 'postMessage',
+				'choices'     => array(
+					'yes' => 'Yes',
+					'no'  => 'No'
+				),
+				'option_type' => 'option'
+			);
+			
+			$sections[] = array(
+				'id'          => $key . '_post_type_settings',
+				'title'       => ucfirst( $key ) . ' Settings',
+				'description' => 'When changing these settings, you will need to go to "settings => permalinks" and hit the "Save Changes" button if you receive any unexpected 404 errors.',
+				'options'     => $options
+			);
+			
+		endforeach;
+		
+		$args['theme_options'][] = array(
+			'title'        => 'Post Type Settings',
+			'id'           => 'post_type_settings',
+			'description'  => '',
+			'sections'     => $sections
+		);
+		
+	endif;
+	
+	/**
+	 * Enable / Disable post types
+	 */
+	if( is_array( $args['post_types'] ) ){
+		foreach( $args['post_types'] as $key => $array ){
+			if( 'no' == get_option( $key . '_post_type_active', 'yes' ) ){
+				unset( $args['post_types'][$key] );
+			}
+		}
+	}
+	
+	return $args;
+	
+}
+add_filter( 'tommusrhodus_framework_theme_args', 'tr_framework_post_type_options', 10, 1 );
