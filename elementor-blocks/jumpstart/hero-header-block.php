@@ -48,6 +48,16 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 			]
 		);
 		
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'blob_background',
+				'label' => __( 'Blob Background Colour', 'tr-framework' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .blob',
+			]
+		);
+		
 		$this->end_controls_section();
 		
 		$this->start_controls_section(
@@ -102,10 +112,13 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 
 	protected function render() {
 		
-		$settings = $this->get_settings_for_display();
+		$settings                 = $this->get_settings_for_display();
+		$user_selected_background = (bool) $settings['blob_background_background'];
 		
 		if( 'standard' == $settings['layout'] ){
-		
+			
+			$class = ( $user_selected_background ) ? '' : 'bg-gradient';
+			
 			echo '
 				<div data-overlay class="o-hidden">
 					<section>
@@ -120,10 +133,10 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 						</div>
 					</div>
 						<div class="position-absolute bottom left w-50 h-50 d-none d-md-block" data-jarallax-element="-24 48">
-							<div class="blob bg-gradient w-50 h-100 bottom left"></div>
+							<div class="blob '. $class .' w-50 h-100 bottom left"></div>
 						</div>
 						<div class="position-absolute top right w-50 h-50 d-none d-md-block" data-jarallax-element="48">
-							<div class="blob blob-2 bg-gradient w-50 h-50 top right"></div>
+							<div class="blob blob-2 '. $class .' w-50 h-50 top right"></div>
 						</div>
 					</section>
 				</div>
@@ -150,7 +163,10 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 			';
 		
 		} elseif( 'standard-image-right' == $settings['layout'] ){
-
+			
+			$class = ( $user_selected_background ) ? '' : 'bg-gradient';
+			$class_2 = ( $user_selected_background ) ? '' : 'bg-white opacity-10';
+			
 			echo '
 				<section class="bg-primary-3 text-white o-hidden">
 					<div class="container">
@@ -164,16 +180,18 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 						</div>
 					</div>
 					<div class="w-50 h-50 bottom right position-absolute" data-jarallax-element="50">
-						<div class="blob blob-2 bg-gradient w-100 h-100"></div>
+						<div class="blob blob-2 '. $class .' w-100 h-100"></div>
 					</div>
 					<div class="w-50 h-50 bottom right position-absolute" data-jarallax-element="75">
-						<div class="blob blob-4 bg-white opacity-10 w-100 h-100"></div>
+						<div class="blob blob-4 '. $class_2 .' w-100 h-100"></div>
 					</div>
 				</section>
 			';
 
 		} elseif( 'alternative-image-right' == $settings['layout'] ){
-
+			
+			$class = ( $user_selected_background ) ? '' : 'bg-warning opacity-90';
+			
 			echo '
 				<section class="bg-light o-hidden pt-5">
 					<div class="container">
@@ -193,7 +211,7 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 						</div>
 					</div>
 					<div class="w-50 h-50 bottom right position-absolute" data-aos="zoom-in" data-aos-delay="500">
-						<div class="blob h-100 w-100 bottom right bg-warning opacity-90"></div>
+						<div class="blob h-100 w-100 bottom right '. $class .'"></div>
 					</div>
 				</section>
 			';

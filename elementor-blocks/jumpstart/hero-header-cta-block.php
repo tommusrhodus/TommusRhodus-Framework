@@ -48,6 +48,16 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
 				'default'     => ''
 			]
 		);
+		
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'blob_background',
+				'label' => __( 'Blob Background Colour', 'tr-framework' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .blob',
+			]
+		);
 
 		$this->end_controls_section();
 
@@ -69,7 +79,9 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
 
 	protected function render() {
 		
-		$settings = $this->get_settings_for_display();
+		$settings                 = $this->get_settings_for_display();
+		$user_selected_background = (bool) $settings['blob_background_background'];
+		$class                    = ( $user_selected_background ) ? '' : 'bg-white opacity-10';
 		
 		echo '
 			<div class="bg-gradient o-hidden position-relative" data-overlay>
@@ -88,7 +100,7 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
 	      			</div>
 	      		</section>
 	      		<div class="position-absolute w-50 h-50 bottom right" data-jarallax-element="-50">
-			        <div class="blob blob-3 w-100 h-100 top right bg-white opacity-10"></div>
+			        <div class="blob blob-3 w-100 h-100 top right '. $class .'"></div>
 		      	</div>
 	      	</div>
 	     ';
