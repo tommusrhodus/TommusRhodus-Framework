@@ -126,7 +126,7 @@ class Widget_tommusrhodus_Team_Block extends Widget_Base {
 			'post_type'      => 'team',
 			'post_status'    => 'publish',
 			'posts_per_page' => $posts_per_page,
-			'pages'          => $paged
+			'paged'          => $paged
 		);
 
 		if(!( $filter == 'all' )) {
