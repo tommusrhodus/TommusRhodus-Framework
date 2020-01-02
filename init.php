@@ -575,7 +575,9 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 			
 			}
 			
-			return rtrim( $output, $separator ) . $after;
+			$length = strlen( $separator );
+			
+			return substr( $output, 0, -$length ) . $after;
 			
 		}
 		
