@@ -223,6 +223,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 
 		if( 'yes' == $settings['launching_modal'] ) {
 			$trigger_modal = 'data-toggle="modal" data-target="#'. $settings['url']['url'] .'"';
+			$link = 'href="#"';
 		} else {
 			$trigger_modal = false;
 		}

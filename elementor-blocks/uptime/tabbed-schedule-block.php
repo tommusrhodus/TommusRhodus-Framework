@@ -192,7 +192,7 @@ class Widget_TommusRhodus_Tabbed_Schedule_Block extends Widget_Base {
 				
 				echo '
 					<li class="nav-item">
-						<a class="nav-link btn '. $class .'" href="#'. esc_attr( $attr ) .'" id="'. esc_attr( $attr ) .'-tab" data-toggle="tab" aria-controls="'. esc_attr( $attr ) .'" role="tab" aria-selected="'. $selected .'">
+						<a class="nav-link btn '. $class .'" href="#tab-'. esc_attr( $attr ) .'" id="'. esc_attr( $attr ) .'-tab" data-toggle="tab" aria-controls="'. esc_attr( $attr ) .'" role="tab" aria-selected="'. $selected .'">
 							'. $day .'
 						</a>
 					</li>
@@ -231,7 +231,7 @@ class Widget_TommusRhodus_Tabbed_Schedule_Block extends Widget_Base {
 			$attr     = sanitize_title( $day );
 			$class    = ( 0 == $i ) ? 'show active' : '';
 			
-			echo '<div id="'. esc_attr( $attr ) .'" class="list-group list-group-flush tab-pane fade '. $class .'" role="tabpanel" aria-labelledby="'. esc_attr( $attr ) .'-tab">';
+			echo '<div id="tab-'. esc_attr( $attr ) .'" class="list-group list-group-flush tab-pane fade '. $class .'" role="tabpanel" aria-labelledby="'. esc_attr( $attr ) .'-tab">';
 			
 				foreach( $settings['list'] as $item ){
 					
