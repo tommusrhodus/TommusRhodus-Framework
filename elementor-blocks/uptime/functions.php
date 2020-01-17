@@ -128,6 +128,51 @@ add_filter('elementor/shapes/additional_shapes', function( $additional_shapes ){
 });
 
 /**
+ * Icon Shortcode
+ */
+if(!( function_exists('tommusrhodus_typed_text_shortcode') )) {
+	function tommusrhodus_typed_text_shortcode( $atts ) {
+
+	    $values = shortcode_atts( 
+	    	array(
+	        	'prefix'       => '',
+	        	'heading_size' => 'h3',
+	        	'text_colour'  => 'text-regular',
+	        	'text'         => '',
+	        	'underline'    => 'yes',
+	        	'class'        => ''
+	    	), 
+    	$atts );
+    	
+    	// Actual uptime shortcode
+    	$item_text = $values['text'];
+    	$output = '';
+    	
+		if( 'yes' == $values['underline'] ) {
+
+			$output .= "
+				<span>". $values['prefix'] ."</span>
+        		<span data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span>
+        	";
+
+		} else {
+			
+			$output .= "
+				<span class='". $values['heading_size'] ."'>". $values['prefix'] ."</span>
+	            <div class='highlight'>
+	              	<span class='". $values['heading_size'] ."' data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span>
+	            </div>
+			";
+
+		}
+	     
+	    return $output;
+	 
+	}
+	add_shortcode( 'uptime_typed_text', 'tommusrhodus_typed_text_shortcode' );
+}
+
+/**
  * Login Shortcode
  */
 if(!( function_exists('tommusrhodus_login_shortcode') )) {
