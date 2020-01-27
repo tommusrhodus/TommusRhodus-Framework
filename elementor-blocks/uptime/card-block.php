@@ -175,15 +175,30 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 		$link     = 'href="'. esc_url( $settings['url']['url'] ) .'"' . $target . $nofollow;
 		
 		if( 'basic' == $settings['layout'] ) {
-
-			echo '
-				<div class="card card-body">
-					<div class="flex-grow-1">
-						<div class="h3">'. $settings['title'] .'</div>
-						'. $settings['content'] .'
+			
+			if( !empty( $settings['url']['url'] ) ) {
+				
+				echo '
+					<a '. $link .' class="card card-body">
+						<div class="flex-grow-1">
+							<div class="h3">'. $settings['title'] .'</div>
+							'. $settings['content'] .'
+						</div>
+					</a>
+				';
+				
+			} else {
+			
+				echo '
+					<div class="card card-body">
+						<div class="flex-grow-1">
+							<div class="h3">'. $settings['title'] .'</div>
+							'. $settings['content'] .'
+						</div>
 					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'icon-1' == $settings['layout'] ) {
 
@@ -429,79 +444,174 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 			}
 			
 		} elseif( 'icon-3' == $settings['layout'] ) {
-
-			echo '
-				<div class="card card-icon-3 card-body justify-content-between">
-					<div class="icon-round mb-3 mb-md-4 bg-primary">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
-				 	</div>
-					<span class="badge badge-primary">'. $settings['badge_label'] .'</span>
-					<div>
-						<h3>'. $settings['title'] .'</h3>
-						'. $settings['content'] .'
+			
+			if( !empty( $settings['url']['url'] ) ) {
+				
+				echo '
+					<a '. $link .' class="card card-icon-3 card-body justify-content-between">
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+					 	</div>
+						<span class="badge badge-primary">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
+					</a>
+				';
+				
+			} else {
+			
+				echo '
+					<div class="card card-icon-3 card-body justify-content-between">
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+					 	</div>
+						<span class="badge badge-primary">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
 					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'icon-3-tilted' == $settings['layout'] ) {
+		
+			if( !empty( $settings['url']['url'] ) ) {
+				
+				echo '
+					<a '. $link .' class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+					 	</div>
+						<span class="badge badge-primary text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
+					</a>
+				';
+				
+			} else {
 
-			echo '
-				<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
-					<div class="icon-round mb-3 mb-md-4 bg-primary">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
-				 	</div>
-					<span class="badge badge-primary text-light">'. $settings['badge_label'] .'</span>
-					<div>
-						<h3>'. $settings['title'] .'</h3>
-						'. $settings['content'] .'
+				echo '
+					<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+					 	</div>
+						<span class="badge badge-primary text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
 					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'icon-3-tilted-alt' == $settings['layout'] ) {
-
-			echo '
-				<div class="card card-icon-3 card-body justify-content-between hover-shadow-3d rotate-right">
-					<div class="icon-round mb-3 mb-md-4 bg-primary">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
-				 	</div>
-					<span class="badge badge-primary text-light">'. $settings['badge_label'] .'</span>
-					<div>
-						<h3>'. $settings['title'] .'</h3>
-						'. $settings['content'] .'
+			
+			if( !empty( $settings['url']['url'] ) ) {
+				
+				echo '
+					<a '. $link .' class="card card-icon-3 card-body justify-content-between hover-shadow-3d rotate-right">
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+					 	</div>
+						<span class="badge badge-primary text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
+					</a>
+				';
+				
+			} else {
+			
+				echo '
+					<div class="card card-icon-3 card-body justify-content-between hover-shadow-3d rotate-right">
+						<div class="icon-round mb-3 mb-md-4 bg-primary">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary' ) .'
+					 	</div>
+						<span class="badge badge-primary text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
 					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'icon-3-tilted-primary-2' == $settings['layout'] ) {
-
-			echo '
-				<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
-					<div class="icon-round mb-3 mb-md-4 bg-primary-2">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
-				 	</div>
-					<span class="badge bg-primary-2 text-light">'. $settings['badge_label'] .'</span>
-					<div>
-						<h3>'. $settings['title'] .'</h3>
-						'. $settings['content'] .'
+			
+			if( !empty( $settings['url']['url'] ) ) {
+				
+				echo '
+					<a '. $link .' class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+						<div class="icon-round mb-3 mb-md-4 bg-primary-2">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
+					 	</div>
+						<span class="badge bg-primary-2 text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
+					</a>
+				';
+				
+			} else {
+			
+				echo '
+					<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+						<div class="icon-round mb-3 mb-md-4 bg-primary-2">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-2' ) .'
+					 	</div>
+						<span class="badge bg-primary-2 text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
 					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'icon-3-tilted-primary-3' == $settings['layout'] ) {
-
-			echo '
-				<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
-					<div class="icon-round mb-3 mb-md-4 bg-primary-3">
-						'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-3' ) .'
-				 	</div>
-					<span class="badge bg-primary-3 text-light">'. $settings['badge_label'] .'</span>
-					<div>
-						<h3>'. $settings['title'] .'</h3>
-						'. $settings['content'] .'
+			
+			if( !empty( $settings['url']['url'] ) ) {
+				
+				echo '
+					<a '. $link .' class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+						<div class="icon-round mb-3 mb-md-4 bg-primary-3">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-3' ) .'
+					 	</div>
+						<span class="badge bg-primary-3 text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
+					</a>
+				';
+				
+			} else {
+			
+				echo '
+					<div class="card card-icon-3 card-body justify-content-between shadow-3d rotate-left">
+						<div class="icon-round mb-3 mb-md-4 bg-primary-3">
+							'. tommusrhodus_svg_icons_pluck( $settings['icon'], 'icon bg-primary-3' ) .'
+					 	</div>
+						<span class="badge bg-primary-3 text-light">'. $settings['badge_label'] .'</span>
+						<div>
+							<h3>'. $settings['title'] .'</h3>
+							'. $settings['content'] .'
+						</div>
 					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'icon-4' == $settings['layout'] ) {
 
@@ -637,73 +747,158 @@ class Widget_TommusRhodus_Card_Block extends Widget_Base {
 			}
  
 		} elseif( 'customer-3' == $settings['layout'] ) {
+			
+			if( !empty( $settings['url']['url'] ) ) {
+			
+				echo '
+					<a '. $link .' class="card card-body">
+					  	<div class="d-flex mb-3">
+					    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+					    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+					    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+					    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+					    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+					  	</div>
+					  	<div class="my-md-2 flex-grow-1">
+					        <h4>'. $settings['title'] .'</h4>
+					  	</div>
+					  	<div class="avatar-author align-items-center">
+					  		'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
+					    	<div class="ml-2">
+					          	'. $settings['content'] .'
+					        </div>
+					  	</div>
+					</a>
+				';
 
-			echo '
-				<div class="card card-body">
-                  	<div class="d-flex mb-3">
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
-                  	</div>
-                  	<div class="my-md-2 flex-grow-1">
-	                    <h4>'. $settings['title'] .'</h4>
-                  	</div>
-                  	<div class="avatar-author align-items-center">
-                  		'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
-                    	<div class="ml-2">
-	                      	'. $settings['content'] .'
-	                    </div>
-                  	</div>
-                </div>
-			';
+			} else {
+						
+				echo '
+					<div class="card card-body">
+	                  	<div class="d-flex mb-3">
+	                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+	                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+	                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+	                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+	                    	'. tommusrhodus_svg_icons_pluck( 'Star', $class = 'icon bg-warning' ) .'
+	                  	</div>
+	                  	<div class="my-md-2 flex-grow-1">
+		                    <h4>'. $settings['title'] .'</h4>
+	                  	</div>
+	                  	<div class="avatar-author align-items-center">
+	                  		'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
+	                    	<div class="ml-2">
+		                      	'. $settings['content'] .'
+		                    </div>
+	                  	</div>
+	                </div>
+				';
+			
+			}
 
 		} elseif( 'customer-4' == $settings['layout'] ) {
+			
+			if( !empty( $settings['url']['url'] ) ) {
+						
+				echo '
+					<a '. $link .' class="card card-body">
+						<div class="mb-3 mb-md-4">
+							'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+						</div>
+						<div class="flex-grow-1 pt-md-3">
+							<h4>'. $settings['title'] .'</h4>
+						</div>
+						<div class="avatar-author d-block mb-2">
+							'. $settings['content'] .'
+						</div>
+					</a>
+				';
 
-			echo '
-				<div class="card card-body">
-					<div class="mb-3 mb-md-4">
-						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+			} else {
+						
+				echo '
+					<div class="card card-body">
+						<div class="mb-3 mb-md-4">
+							'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+						</div>
+						<div class="flex-grow-1 pt-md-3">
+							<h4>'. $settings['title'] .'</h4>
+						</div>
+						<div class="avatar-author d-block mb-2">
+							'. $settings['content'] .'
+						</div>
 					</div>
-					<div class="flex-grow-1 pt-md-3">
-						<h4>'. $settings['title'] .'</h4>
-					</div>
-					<div class="avatar-author d-block mb-2">
-						'. $settings['content'] .'
-					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'customer-5' == $settings['layout'] ) {
+			
+			if( !empty( $settings['url']['url'] ) ) {
+									
+				echo '
+					<a '. $link .' class="card card-body flex-row py-4">
+						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+						<div class="ml-3">
+							<h4>'. $settings['title'] .'</h4>
+							<div class="avatar-author d-block">
+								'. $settings['content'] .'
+							</div>
+						</div>
+					</a>
+				';
 
-			echo '
-				<div class="card card-body flex-row py-4">
-					'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
-					<div class="ml-3">
-						<h4>'. $settings['title'] .'</h4>
-						<div class="avatar-author d-block">
-							'. $settings['content'] .'
+			} else {
+						
+				echo '
+					<div class="card card-body flex-row py-4">
+						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar avatar-lg' ) ) .'
+						<div class="ml-3">
+							<h4>'. $settings['title'] .'</h4>
+							<div class="avatar-author d-block">
+								'. $settings['content'] .'
+							</div>
 						</div>
 					</div>
-				</div>
-			';
+				';
+				
+			}
 
 		} elseif( 'customer-7' == $settings['layout'] ) {
+			
+			if( !empty( $settings['url']['url'] ) ) {
+												
+				echo '
+					<a '. $link .' class="card card-body">
+						<div class="flex-grow-1 mb-3">
+							<p class="lead">'. $settings['title'] .'</p>
+						</div>
+						<div class="avatar-author align-items-center">
+							'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
+							<div class="ml-2">
+								'. $settings['content'] .'
+							</div>
+						</div>
+					</a>
+				';
 
-			echo '
-				<div class="card card-body">
-					<div class="flex-grow-1 mb-3">
-						<p class="lead">'. $settings['title'] .'</p>
-					</div>
-					<div class="avatar-author align-items-center">
-						'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
-						<div class="ml-2">
-							'. $settings['content'] .'
+			} else {
+						
+				echo '
+					<div class="card card-body">
+						<div class="flex-grow-1 mb-3">
+							<p class="lead">'. $settings['title'] .'</p>
+						</div>
+						<div class="avatar-author align-items-center">
+							'. wp_get_attachment_image( $settings['image']['id'], 'large', 0, array( 'class' => 'avatar' ) ) .'
+							<div class="ml-2">
+								'. $settings['content'] .'
+							</div>
 						</div>
 					</div>
-				</div>
-			';
+				';
+			
+			}
 
 		} elseif( 'customer-8' == $settings['layout'] ) {
 
