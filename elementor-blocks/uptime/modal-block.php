@@ -189,10 +189,11 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 						'. $bg_image .'
 						<div class="modal-body">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+							
 								if( 'text-white' == $settings['modal_content_colour'] ) {
-									echo tommusrhodus_svg_icons_pluck( 'Modal close', 'icon bg-white' );
+									echo tommusrhodus_svg_icons_pluck( 'Modal Close', 'icon bg-white' );
 								} else {
-									echo tommusrhodus_svg_icons_pluck( 'Modal close', 'icon bg-dark' );
+									echo tommusrhodus_svg_icons_pluck( 'Modal Close', 'icon bg-dark' );
 								}
 
 							echo '
