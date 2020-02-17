@@ -24,6 +24,10 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 	public function get_categories() {
 		return [ 'jumpstart-elements' ];
 	}
+	
+	public function is_reload_preview_required() {
+		return true;
+	}
 
 	protected function _register_controls() {
 		
@@ -95,6 +99,22 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 					'primary-2'         	=> esc_html__( 'Primary Colour 2', 'tr-framework' ),
 					'primary-3'         	=> esc_html__( 'Primary Colour 3', 'tr-framework' ),
 					'dark'         			=> esc_html__( 'Dark', 'tr-framework' ),
+					'custom'                => esc_html__( 'Custom Colour', 'tr-framework' )
+				],
+			]
+		);
+		
+		$this->add_control(
+			'title_color',
+			[
+				'label' => __( 'Custom Title Color', 'tr-framework' ),
+				'type' => Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} [data-countup]' => 'color: {{VALUE}}',
 				],
 			]
 		);
