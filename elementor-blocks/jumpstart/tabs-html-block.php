@@ -110,10 +110,12 @@ class Widget_TommusRhodus_Tabs_HTML_Block extends Widget_Base {
 				    		$i = 0;
 
 				    		foreach( $settings['list'] as $item ){
-
+								
+								$title = str_replace( '%', '', esc_attr( sanitize_title( $item['title'] ) ) );
+								
 				    			echo '
 						      		<li class="nav-item">
-						      			<a class="nav-link '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" role="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" '; if( 0 == $i ) { echo 'aria-selected="true"'; } else { echo 'aria-selected="false"'; } echo '>						                  	
+						      			<a class="nav-link '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. $title .'" data-toggle="tab" role="tab" aria-controls="'. $title .'" '; if( 0 == $i ) { echo 'aria-selected="true"'; } else { echo 'aria-selected="false"'; } echo '>						                  	
 						                  	'. $item['title'] .'</a>
 						                </a>
 						     		 </li>';
@@ -128,9 +130,11 @@ class Widget_TommusRhodus_Tabs_HTML_Block extends Widget_Base {
 				    		$i = 0;
 
 				    		foreach( $settings['list'] as $item ){
-
+								
+								$title = str_replace( '%', '', esc_attr( sanitize_title( $item['title'] ) ) );
+								
 				    			echo '
-						      		<div class="tab-pane fade show '; if( 0 == $i ) { echo 'active'; } echo '" id="'. sanitize_title( $item['title'] ) .'" role="tabpanel" aria-labelledby="'. sanitize_title( $item['title'] ) .'">
+						      		<div class="tab-pane fade show '; if( 0 == $i ) { echo 'active'; } echo '" id="'. $title .'" role="tabpanel" aria-labelledby="'. $title .'">
 						      			'. $item['content'] .'
 						      		</div>';
 
@@ -157,10 +161,12 @@ class Widget_TommusRhodus_Tabs_HTML_Block extends Widget_Base {
 				    		$i = 0;
 
 				    		foreach( $settings['list'] as $item ){
+				    		
+				    			$title = str_replace( '%', '', esc_attr( sanitize_title( $item['title'] ) ) );
 
 				    			echo '
 						      		<li class="nav-item">
-						      			<a class="btn btn-lg btn-primary w-100 '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. sanitize_title( $item['title'] ) .'" data-toggle="tab" role="tab" aria-controls="'. sanitize_title( $item['title'] ) .'" '; if( 0 == $i ) { echo 'aria-selected="true"'; } else { echo 'aria-selected="false"'; } echo '>
+						      			<a class="btn btn-lg btn-primary w-100 '; if( 0 == $i ) { echo 'active'; } echo '" href="#'. $title .'" data-toggle="tab" role="tab" aria-controls="'. $title .'" '; if( 0 == $i ) { echo 'aria-selected="true"'; } else { echo 'aria-selected="false"'; } echo '>
 							                <div class="d-flex align-items-center">
 							                  	'. tommusrhodus_svg_icons_pluck( $item['icon'], 'icon bg-primary mr-2' ) .'
 							                  	'. $item['title'] .'
@@ -182,9 +188,11 @@ class Widget_TommusRhodus_Tabs_HTML_Block extends Widget_Base {
 				    		$i = 0;
 
 				    		foreach( $settings['list'] as $item ){
-
+								
+								$title = str_replace( '%', '', esc_attr( sanitize_title( $item['title'] ) ) );
+								
 				    			echo '
-						      		<div class="tab-pane fade show '; if( 0 == $i ) { echo 'active'; } echo '" id="'. sanitize_title( $item['title'] ) .'" role="tabpanel" aria-labelledby="'. sanitize_title( $item['title'] ) .'">
+						      		<div class="tab-pane fade show '; if( 0 == $i ) { echo 'active'; } echo '" id="'. $title .'" role="tabpanel" aria-labelledby="'. $title .'">
 						      			'. $item['content'] .'
 						      		</div>';
 
