@@ -114,7 +114,7 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 		);	
 		
 		$this->add_control(
-			'text_speed', [
+			'type_speed', [
 				'label'       => __( 'Text Speed', 'tr-framework' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '45',
