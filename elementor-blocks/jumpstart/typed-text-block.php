@@ -112,6 +112,15 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 				'label_block' => true
 			]
 		);	
+		
+		$this->add_control(
+			'prefix', [
+				'label'       => __( 'Text Speed', 'tr-framework' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '45',
+				'label_block' => true
+			]
+		);	
 
 		$this->end_controls_section();
 
@@ -157,7 +166,7 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 			echo "
 				<span class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>". $settings['prefix'] ."</span>
 				<div class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>
-	            	<". $settings['underline'] ."><span data-typed-text data-loop='true' data-type-speed='45' data-strings='[". $item_text ."]'></span></". $settings['underline'] .">
+	            	<". $settings['underline'] ."><span data-typed-text data-loop='true' data-type-speed='". $settings['type_speed'] ."' data-strings='[". $item_text ."]'></span></". $settings['underline'] .">
                 </div>
         	";
 
@@ -166,7 +175,7 @@ class Widget_TommusRhodus_Typed_Text_Block extends Widget_Base {
 			echo "
 				<span class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>". $settings['prefix'] ."</span>
 				<div class='". $settings['heading_size'] ." ". $settings['text_colour'] ."'>
-                  <". $settings['underline'] ."><span data-typed-text data-loop='true' data-fade-out='true' data-show-cursor='false' data-type-speed='45' data-strings='[". $item_text ."]'></span></". $settings['underline'] .">
+                  <". $settings['underline'] ."><span data-typed-text data-loop='true' data-fade-out='true' data-show-cursor='false' data-type-speed='". $settings['type_speed'] ."' data-strings='[". $item_text ."]'></span></". $settings['underline'] .">
                 </div>
         	";
 
