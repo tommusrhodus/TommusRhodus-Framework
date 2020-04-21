@@ -360,7 +360,7 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 		} elseif( 'image-background' == $settings['layout'] ) {
 			
 			echo '
-				<section class="bg-dark text-light header-inner p-0 jarallax o-hidden" data-overlay data-speed="0.2">
+				<section data-jarallax data-speed="0.2" class="bg-dark text-light header-inner p-0 jarallax o-hidden" data-overlay>
 					
 					'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'jarallax-img opacity-30' ) ) .'
 			      
