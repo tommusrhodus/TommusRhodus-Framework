@@ -55,6 +55,8 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 				'label' => __( 'Blob Background Colour', 'tr-framework' ),
 				'types' => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .blob',
+				'show_label' => true,
+				'label_block' => true
 			]
 		);
 		

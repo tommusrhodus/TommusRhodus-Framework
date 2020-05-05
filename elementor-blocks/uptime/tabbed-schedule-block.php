@@ -18,7 +18,7 @@ class Widget_TommusRhodus_Tabbed_Schedule_Block extends Widget_Base {
 	
 	//Return Block Icon (for blocks list)
 	public function get_icon() {
-		return 'eicon-type-tool';
+		return 'eicon-tabs';
 	}
 	
 	public function get_categories() {

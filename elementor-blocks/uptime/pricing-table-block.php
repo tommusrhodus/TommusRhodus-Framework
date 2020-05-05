@@ -236,7 +236,7 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 		
 		if( 'compact' == $settings['layout'] ){
 			
-			echo '			
+			echo do_shortcode( '			
 				<div class="card card-body justify-content-center text-center '. $settings['skin'] .'">
 				
 					<div class="text-muted"><span>'. $settings['description_title'] .'</span></div>
@@ -249,28 +249,28 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 					<div class="text-small text-muted js-pricing-charge-description">'. $settings['small_text'] .'</div>
 					
 					<ul class="text-center list-unstyled my-2 my-md-4">
-			';
+			' );
 			
 			foreach( $settings['list'] as $item ){
 
 				if( 'text-strikethrough' == $item['detail_style'] ) {
-					echo '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>';
+					echo do_shortcode( '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>' );
 				} else {
-					echo '<li class="py-1">'. $item['item_title'] .'</li>';
+					echo do_shortcode( '<li class="py-1">'. $item['item_title'] .'</li>' );
 				}
 				
 			}
 			
-			echo '</ul>
+			echo do_shortcode( '</ul>
 				
 					<a '. $link .' class="btn btn-lg mt-3 '. $settings['button_class'] .'" '. $trigger_modal .'>'. $settings['button_text'] .'</a>
 				
 				</div>
-			';
+			' );
 		
 		} else {
 		
-			echo '
+			echo do_shortcode( '
 				<div class="card card-body align-items-center '. $settings['skin'] .'">
 					
 					<span class="badge badge-top badge-dark">'. $settings['description_title'] .'</span>
@@ -287,25 +287,25 @@ class Widget_TommusRhodus_Pricing_Table_Block extends Widget_Base {
 					<span class="text-small text-muted">'. $settings['small_text'] .'</span>
 
 			        <ul class="text-center list-unstyled my-2 my-md-4">
-			';
+			' );
 			
 			foreach( $settings['list'] as $item ){
 
 				if( 'text-strikethrough' == $item['detail_style'] ) {
-					echo '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>';
+					echo do_shortcode( '<li class="py-1"><span class="text-muted text-strikethrough">'. $item['item_title'] .'</span></li>' );
 				} else {
-					echo '<li class="py-1">'. $item['item_title'] .'</li>';
+					echo do_shortcode( '<li class="py-1">'. $item['item_title'] .'</li>' );
 				}
 
 			}
 	        
-			echo '
+			echo do_shortcode( '
 					</ul>
 					
 			        <a '. $link .' class="btn '. $settings['button_class'] .'" '. $trigger_modal .'>'. $settings['button_text'] .'</a>
 			        
 			    </div>
-			';
+			' );
 		
 		}
 		
