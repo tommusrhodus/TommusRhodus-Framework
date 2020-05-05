@@ -82,9 +82,10 @@ class Widget_TommusRhodus_Hero_Header_CTA_Block extends Widget_Base {
 		$settings                 = $this->get_settings_for_display();
 		$user_selected_background = (bool) $settings['blob_background_background'];
 		$class                    = ( $user_selected_background ) ? '' : 'bg-white opacity-10';
+		$background_class = ( $user_section_background ) ? false : 'bg-gradient';
 		
 		echo '
-			<div class="bg-gradient o-hidden position-relative" data-overlay>
+			<div class="'. $background_class .' o-hidden position-relative" data-overlay>
 					<section>
 					<div class="container">
 	  					<div class="row justify-content-around align-items-center">

@@ -116,6 +116,7 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 		
 		$settings                 = $this->get_settings_for_display();
 		$user_selected_background = (bool) $settings['blob_background_background'];
+		$user_section_background  = (bool) $settings['_background_background'];
 		
 		if( 'standard' == $settings['layout'] ){
 			
@@ -145,9 +146,11 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 			';
 		
 		} elseif( 'image-background' == $settings['layout'] ){
-		
+			
+			$background_class = ( $user_section_background ) ? false : 'bg-primary-3';
+			
 			echo '
-				<div data-overlay class="bg-primary-3 jarallax text-white" data-jarallax data-speed="0.2">
+				<div data-overlay class="'. $background_class .' jarallax text-white" data-jarallax data-speed="0.2">
 					'. wp_get_attachment_image( $settings['image']['id'], 'full', 0, array( 'class' => 'jarallax-img opacity-30' ) ) .'
 				  	<section>
 					    <div class="container pb-5">
@@ -168,9 +171,10 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 			
 			$class = ( $user_selected_background ) ? '' : 'bg-gradient';
 			$class_2 = ( $user_selected_background ) ? '' : 'bg-white opacity-10';
+			$background_class = ( $user_section_background ) ? false : 'bg-primary-3';
 			
 			echo '
-				<section class="bg-primary-3 text-white o-hidden">
+				<section class="'. $background_class .' text-white o-hidden">
 					<div class="container">
 						<div class="row justify-content-between align-items-center">
 							<div class="col-xl-5 col-lg-6 text-center text-lg-left mb-4 mb-md-5 mb-lg-0" data-aos="fade-right">
@@ -193,9 +197,10 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 		} elseif( 'alternative-image-right' == $settings['layout'] ){
 			
 			$class = ( $user_selected_background ) ? '' : 'bg-warning opacity-90';
+			$background_class = ( $user_section_background ) ? false : 'bg-light';
 			
 			echo '
-				<section class="bg-light o-hidden pt-5">
+				<section class="'. $background_class .' o-hidden pt-5">
 					<div class="container">
 						<div class="row align-items-center justify-content-between">
 							<div class="col-lg-6 d-flex flex-column text-center text-lg-left mb-5 mb-lg-0" data-aos="fade-right">
