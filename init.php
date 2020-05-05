@@ -639,6 +639,22 @@ function tr_framework_post_type_options( $args ){
 				'option_type' => 'option'
 			);
 			
+			if( isset( $array['taxonomies'] ) && is_array( $array['taxonomies'] ) ){
+				foreach( $array['taxonomies'] as $value ){
+					
+					$options[] = array(
+						'id'          => $value . '_taxonomy_slug',
+						'title'       => ucwords( str_replace( '_', ' ', $value ) ) . ' Taxonomy Slug',
+						'default'     => $value,
+						'type'        => 'text',
+						'transport'   => 'postMessage',
+						'choices'     => '',
+						'option_type' => 'option'
+					);
+				
+				}
+			}
+			
 			$sections[] = array(
 				'id'          => $key . '_post_type_settings',
 				'title'       => ucfirst( $key ) . ' Settings',
@@ -662,9 +678,24 @@ function tr_framework_post_type_options( $args ){
 	 */
 	if( is_array( $args['post_types'] ) ){
 		foreach( $args['post_types'] as $key => $array ){
+
 			if( 'no' == get_option( $key . '_post_type_active', 'yes' ) ){
 				unset( $args['post_types'][$key] );
 			}
+			
+		}
+	}
+	
+	if( is_array( $args['taxonomy_types'] ) ){
+		foreach( $args['taxonomy_types'] as $key => $array ){
+
+			if( $new_slug = get_option( $key . '_taxonomy_slug' ) ){
+				$args[ 'taxonomy_types' ][ $key ][ 'rewrite' ] = array( 
+					'slug'       => $new_slug,
+					'with_front' => false
+				);
+			}
+			
 		}
 	}
 	
