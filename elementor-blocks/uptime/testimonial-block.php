@@ -74,6 +74,36 @@ class Widget_TommusRhodus_Testimonial_Block extends Widget_Base {
 				'default' => '0'
 			]
 		);
+		
+		// Category Selector
+		if( taxonomy_exists('testimonial_category') ){
+		
+			$args = array(
+				'orderby'      => 'name',
+				'hide_empty'   => 0,
+				'hierarchical' => 1,
+				'taxonomy'     => 'testimonial_category'
+			);
+			
+			$cats       = get_categories( $args );
+			$final_cats = array( 'all' => 'Show all categories' );
+		
+			if( is_array( $cats ) ){
+				foreach( $cats as $cat ){
+					$final_cats[$cat->slug] = $cat->name;
+				}
+			}
+		
+			$this->add_control(
+				'filter', [
+					'label'   => esc_html__( 'Category', 'tr-framework' ),
+					'type'    => Controls_Manager::SELECT,
+					'default' => 'all',
+					'options' => $final_cats,
+				]
+			);
+		
+		}	
 
 		$this->end_controls_section();
 
@@ -106,6 +136,36 @@ class Widget_TommusRhodus_Testimonial_Block extends Widget_Base {
 		
 		if( $posts_offset ){
 			$query_args[ 'offset' ] = $posts_offset;
+		}
+		
+		if(!( $filter == 'all' )) {
+			
+			// Check for WPML
+			if( has_filter('wpml_object_id') ){
+			
+				global $sitepress;
+				
+				// WPML recommended, remove filter, then add back after
+				remove_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10, 4 );
+				
+				$filterClass    = get_term_by( 'slug', $filter, 'testimonial_category' );
+				$ID             = (int) apply_filters( 'wpml_object_id', (int) $filterClass->term_id, 'testimonial_category', true );
+				$translatedSlug = get_term_by( 'id', $ID, 'testimonial_category' );
+				$filter          = $translatedSlug->slug;
+				
+				// Adding filter back
+				add_filter( 'terms_clauses', array( $sitepress, 'terms_clauses' ), 10, 4 );
+				
+			}
+				
+			$query_args['tax_query'] = array(
+				array(
+					'taxonomy' => 'testimonial_category',
+					'field'    => 'slug',
+					'terms'    => $filter 
+				)
+			);	
+			
 		}
 		
 		$old_query = $wp_query;
