@@ -144,9 +144,12 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 
 			// Process Theme Options
 			add_action( 'customize_register', array( $this, 'process_options' ), 15 );
+			
+			// Elementor + WPML
+			add_filter( 'wpml_elementor_widgets_to_translate', array( $this, 'wpml_widgets_to_translate_filter' ), 10, 1 );
 
 		}
-		
+
 		/**
 		 * process_options()
 		 * 
@@ -495,6 +498,42 @@ if( !class_exists( 'TommusRhodus_Framework' ) ){
 				
 			}
 			
+		}
+		
+		public function wpml_widgets_to_translate_filter( $widgets ) {
+
+			$widgets[ 'tommusrhodus-icon-text-block' ] = array(
+				'conditions' => [ 
+					'widgetType' => 'tommusrhodus-icon-text-block'
+				],
+				'fields'     => [
+					[
+						'field'       => 'content',
+						'type'        => 'Icon & Text Block Content',
+						'editor_type' => 'VISUAL'
+					],
+				],
+			);
+			
+			$widgets[ 'tommusrhodus-accordion-block' ] = array(
+				'conditions' => [ 
+					'widgetType' => 'tommusrhodus-accordion-block'
+				],
+				'fields'     => [
+					[
+						'field'       => 'item_title',
+						'type'        => 'Accordion Title',
+						'editor_type' => 'LINE'
+					],
+					[
+						'field'       => 'item_content',
+						'type'        => 'Accordion Content',
+						'editor_type' => 'VISUAL'
+					],
+				],
+			);
+  
+			return $widgets;
 		}
 		
 		/**
