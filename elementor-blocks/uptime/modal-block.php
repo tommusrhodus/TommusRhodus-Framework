@@ -157,6 +157,7 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 				'label_off' 	=> __( 'Hide', 'tr-framework' ),
 				'return_value' 	=> 'yes',
 				'default' 		=> 'yes',
+				'label_block' => true
 			]
 		);	
 
@@ -231,7 +232,7 @@ class Widget_TommusRhodus_Modal_Block extends Widget_Base {
 					<div class="modal-content">
 						<div class="modal-body">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<?php echo tommusrhodus_svg_icons_pluck( 'Modal close', 'icon bg-dark' ); ?>	
+								<?php echo tommusrhodus_svg_icons_pluck( 'Modal Close', 'icon bg-dark' ); ?>	
 							</button>
 							<div class="m-xl-4 m-3">
 								{{{ settings.content }}}
