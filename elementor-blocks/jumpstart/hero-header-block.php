@@ -35,7 +35,7 @@ class Widget_TommusRhodus_Hero_Header_Block extends Widget_Base {
 		
 		$this->add_control(
 			'layout', [
-				'label'   => __( 'Hero Header', 'tr-framework' ),
+				'label'   => __( 'Hero Header Layout', 'tr-framework' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'standard',
 				'label_block' => true,

@@ -32,6 +32,19 @@ class Widget_TommusRhodus_Hero_Slider_Block extends Widget_Base {
 				'label' => esc_html__( 'Slider Layout', 'tr-framework' ),
 			]
 		);
+		
+		$this->add_control(
+			'layout', [
+				'label'   => __( 'Layout', 'tr-framework' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'standard',
+				'label_block' => true,
+				'options' => [
+					'standard' => esc_html__( 'Content Left, Slider Right', 'tr-framework' ),
+					'alt' 	   => esc_html__( 'Content Right, Slider Left', 'tr-framework' )
+				],
+			]
+		);
 
 		$this->add_control(
 			'content', [
@@ -88,45 +101,91 @@ class Widget_TommusRhodus_Hero_Slider_Block extends Widget_Base {
 		$settings                = $this->get_settings_for_display();
 		$user_selected_animation = (bool) $settings['_animation'];
 		
-		echo '
-			<section class="p-0 border-top border-bottom row no-gutters">
-
-				<div class="col-lg-7 col-xl-6">
-					<div class="container min-vh-lg-80 d-flex align-items-center">
-						<div class="row justify-content-center">
-							<div class="col col-md-10 col-xl-9 text-center text-lg-left">
-								<section>
-									<div data-aos="fade-right">
-										'. $settings['content'] .'
-									</div>
-									<div class="d-flex flex-column flex-sm-row mt-4 mt-md-5 justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="300">
-										'. $settings['lower_content'] .'
-									</div>
-								</section>
+		if( 'standard' == $settings[ 'layout' ] ){
+		
+			echo '
+				<section class="p-0 border-top border-bottom row no-gutters">
+	
+					<div class="col-lg-7 col-xl-6">
+						<div class="container min-vh-lg-80 d-flex align-items-center">
+							<div class="row justify-content-center">
+								<div class="col col-md-10 col-xl-9 text-center text-lg-left">
+									<section>
+										<div data-aos="fade-right">
+											'. $settings['content'] .'
+										</div>
+										<div class="d-flex flex-column flex-sm-row mt-4 mt-md-5 justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="300">
+											'. $settings['lower_content'] .'
+										</div>
+									</section>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="col-lg-5 col-xl-6 d-lg-flex flex-lg-column">
-					<div class="divider divider-side transform-flip-y bg-white d-none d-lg-block"></div>
-					<div class="d-lg-flex flex-column flex-fill controls-hover" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true, "pageDots":false, "autoPlay":true }\'>';
-
-						foreach( $settings['list'] as $item ){
-
+	
+					<div class="col-lg-5 col-xl-6 d-lg-flex flex-lg-column">
+						<div class="divider divider-side transform-flip-y bg-white d-none d-lg-block"></div>
+						<div class="d-lg-flex flex-column flex-fill controls-hover" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true, "pageDots":false, "autoPlay":true }\'>';
+	
+							foreach( $settings['list'] as $item ){
+	
+								echo '
+									<div class="carousel-cell text-center">
+										'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'img-fluid' ) ) .'
+									</div>';
+	
+							}
+	
 							echo '
-								<div class="carousel-cell text-center">
-									'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'img-fluid' ) ) .'
-								</div>';
-
-						}
-
-						echo '
+						</div>
 					</div>
-				</div>
-
-			</section>
-		';
+	
+				</section>
+			';
+		
+		} else {
+			
+			echo '
+				<section class="p-0 border-top border-bottom row no-gutters">
+					
+					<div class="col-lg-5 col-xl-6 d-lg-flex flex-lg-column">
+						<div class="d-lg-flex flex-column flex-fill controls-hover" data-flickity=\'{ "imagesLoaded": true, "wrapAround":true, "pageDots":false, "autoPlay":true }\'>';
+	
+							foreach( $settings['list'] as $item ){
+	
+								echo '
+									<div class="carousel-cell text-center">
+										'. wp_get_attachment_image( $item['image']['id'], 'large', 0, array( 'class' => 'img-fluid' ) ) .'
+									</div>';
+	
+							}
+	
+							echo '
+						</div>
+					</div>
+					
+					<div class="col-lg-7 col-xl-6">
+						<div class="divider divider-side bg-white d-none d-lg-block custom-divider"></div>
+						<div class="container min-vh-lg-80 d-flex align-items-center">
+							<div class="row justify-content-center">
+								<div class="col col-md-10 col-xl-9 text-center text-lg-left">
+									<section>
+										<div data-aos="fade-right">
+											'. $settings['content'] .'
+										</div>
+										<div class="d-flex flex-column flex-sm-row mt-4 mt-md-5 justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="300">
+											'. $settings['lower_content'] .'
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+	
+				</section>
+			';
+		
+		}
 
 		if ( Plugin::$instance->editor->is_edit_mode() ) { ?>
 
