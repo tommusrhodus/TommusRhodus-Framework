@@ -261,7 +261,7 @@ if(!( function_exists('tommusrhodus_icon_shortcode') )) {
 
 	    $values = shortcode_atts( 
 	    	array(
-	        	'icon_name' => 'Apple icon',
+	        	'icon_name' => 'Apple Icon',
 	        	'class' => '',
 	    	), 
     	$atts );
