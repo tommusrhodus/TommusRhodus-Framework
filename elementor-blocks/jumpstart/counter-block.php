@@ -110,8 +110,8 @@ class Widget_TommusRhodus_Counter_Block extends Widget_Base {
 				'label' => __( 'Custom Title Color', 'tr-framework' ),
 				'type' => Controls_Manager::COLOR,
 				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+					'type' => \Elementor\Core\Schemes\Color::get_type(),
+					'value' => \Elementor\Core\Schemes\Color::COLOR_1,
 				],
 				'selectors' => [
 					'{{WRAPPER}} [data-countup]' => 'color: {{VALUE}}',
